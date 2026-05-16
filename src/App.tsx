@@ -154,6 +154,25 @@ function AppContent() {
                     </div>
                   </div>
                 </div>
+
+                {/* High-Tech Categories Grid */}
+                <div className="mb-12 pb-8 border-b border-white/5">
+                  <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-2">
+                    {[
+                      'Recuperação', 'Cognição', 'Longevidade', 'Performance', 'Metabolismo', 'Estética', 'Imunologia', 'Sexual',
+                      'Neuroproteção', 'Sarcopenia', 'Cicatrização', 'Sono', 'Glicemia', 'Vascular', 'Inflamação', 'Dopamina',
+                      'Foco HD', 'Massa Magra', 'Gordura Visceral', 'Bio-Reparo', 'Osteogênese', 'Antioxidante', 'Neural', 'Digestivo'
+                    ].map((cat, i) => (
+                      <div 
+                        key={i}
+                        className="px-3 py-2 bg-white/[0.02] border border-white/5 hover:border-accent/30 hover:bg-accent/5 rounded-lg transition-all group flex items-center gap-2 cursor-pointer"
+                      >
+                        <div className="w-1 h-1 rounded-full bg-accent/30 group-hover:bg-accent animate-pulse" />
+                        <span className="text-[12px] font-black text-white/40 group-hover:text-white uppercase tracking-widest truncate">{cat}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
                 
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                   {Array.isArray(PROTOCOLS) && PROTOCOLS.slice(0, 8).map((protocol, i) => {
