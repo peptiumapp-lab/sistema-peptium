@@ -33,6 +33,22 @@ export default function PeptideLibrary({ setView, isPremium }: PeptideLibraryPro
     return matchesSearch && matchesCategory;
   });
 
+  const getAccessLevel = (index: number) => {
+    if (isPremium) return 'full';
+    if (index < 30) return 'free';
+    if (index < 70) return 'pro';
+    return 'blurred';
+  };
+
+  const handlePeptideClick = (protocol: PeptideDossier, index: number) => {
+    const level = getAccessLevel(index);
+    if (level === 'full' || level === 'free') {
+      setSelectedPeptide(protocol);
+    } else {
+      setView('plans');
+    }
+  };
+
   return (
     <div className="space-y-12">
       <button 
@@ -45,20 +61,24 @@ export default function PeptideLibrary({ setView, isPremium }: PeptideLibraryPro
 
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
         <div className="space-y-4">
-          <div className="inline-flex items-center gap-2 px-3 py-1 bg-accent/20 border border-accent/40 rounded-full">
-            <Zap size={10} className="text-accent fill-accent" />
-            <span className="text-[9px] font-black uppercase tracking-widest text-accent">Status: Acesso Prime Ativado • {TOTAL_PEPTIDES} Compostos</span>
+          <div className={`inline-flex items-center gap-2 px-3 py-1 border rounded-full ${isPremium ? 'bg-accent/20 border-accent/40' : 'bg-white/5 border-white/10'}`}>
+            <Zap size={10} className={`${isPremium ? 'text-accent fill-accent' : 'text-white/20'}`} />
+            <span className={`text-[9px] font-black uppercase tracking-widest ${isPremium ? 'text-accent' : 'text-white/40'}`}>
+              Status: {isPremium ? 'Acesso Prime Ativado' : 'Acesso Limitado (Free)'} • {TOTAL_PEPTIDES} Compostos
+            </span>
           </div>
-          <h2 className="text-2xl md:text-3xl font-extrabold text-secondary uppercase tracking-tight italic">Biblioteca <span className="text-accent underline decoration-2 underline-offset-8">Prime</span></h2>
+          <h2 className="text-2xl md:text-3xl font-extrabold text-secondary uppercase tracking-tight italic">
+            Atlas de <span className="text-accent underline decoration-2 underline-offset-8">Compostos</span>
+          </h2>
           <p className="text-muted text-xs font-medium max-w-lg leading-relaxed">
-            Explore nossa base de dados com {TOTAL_PEPTIDES} compostos, SARMs e biorreguladores validados cientificamente. Informação técnica para otimização humana.
+            Nossa inteligência mapeou {TOTAL_PEPTIDES} compostos. {isPremium ? 'Sua licença Prime concede acesso total.' : 'Upgrade para Prime para desbloquear o catálogo completo e farmacodinâmica avançada.'}
           </p>
         </div>
         
         <div className="relative w-full md:w-96">
           <input 
             type="text" 
-            placeholder="Buscar composto (ex: BPC-157)..."
+            placeholder="Buscar composto..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="w-full bg-secondary/5 border border-secondary/10 rounded-2xl py-4 px-12 text-sm font-medium text-secondary placeholder:text-secondary/40 outline-none focus:border-accent/40 transition-all font-medium"
@@ -68,7 +88,7 @@ export default function PeptideLibrary({ setView, isPremium }: PeptideLibraryPro
       </div>
 
       <div className="flex flex-wrap gap-3">
-        {categories.map((cat) => (
+        {categories.slice(0, 15).map((cat) => (
           <button
             key={cat}
             onClick={() => setActiveCategory(cat)}
@@ -81,62 +101,95 @@ export default function PeptideLibrary({ setView, isPremium }: PeptideLibraryPro
 
       {filtered.length > 0 ? (
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          {filtered.map((protocol, i) => (
-            <motion.div
-              key={protocol.id}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.2, delay: Math.min(i * 0.01, 0.5) }}
-              onClick={() => setSelectedPeptide(protocol)}
-              className="group relative glass-card cursor-pointer rounded-[16px] overflow-hidden border border-white/[0.03] hover:border-accent/20 transition-all flex flex-col h-full bg-[#080808]"
-            >
-              <div className="relative h-28 overflow-hidden">
-                 <img src={protocol.image} alt={protocol.name} className="w-full h-full object-cover grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-60 transition-all duration-700 blur-[2px] group-hover:blur-0" />
-                 <div className="absolute inset-0 bg-gradient-to-t from-[#080808] to-transparent" />
-                 <span className="absolute top-3 left-3 px-2 py-0.5 bg-accent/20 text-accent rounded-full text-[7px] font-black uppercase tracking-widest border border-accent/20 backdrop-blur-md">
-                  {protocol.tag}
-                </span>
-              </div>
-              
-              <div className="p-4 flex flex-col flex-grow">
-                <h3 className="text-base font-extrabold text-secondary mb-1.5 tracking-tight group-hover:text-accent transition-colors uppercase">{protocol.name}</h3>
-                <p className="text-muted text-[9px] leading-relaxed font-medium mb-4 line-clamp-3">
-                  {protocol.description}
-                </p>
-                
-                <div className="mt-auto flex items-center justify-between pt-3 border-t border-white/5">
-                  <div className="flex -space-x-2">
-                    {protocol.synergies && Array.isArray(protocol.synergies) ? (
-                      protocol.synergies.slice(0, 3).map((s, j) => (
-                        <div key={j} className="w-6 h-6 rounded-full border-2 border-black bg-accent/10 flex items-center justify-center text-[5px] text-accent font-black uppercase overflow-hidden" title={`Sinergia: ${s}`}>
-                          {s.charAt(0)}
-                        </div>
-                      ))
-                    ) : (
-                      [1, 2, 3].map(j => (
-                        <div key={j} className="w-6 h-6 rounded-full border-2 border-black bg-[#111] flex items-center justify-center text-[6px] text-secondary/40 font-bold overflow-hidden">
-                           <img src={`https://i.pravatar.cc/100?u=${protocol.id}${j}`} alt="user" className="w-full h-full object-cover opacity-60" />
-                        </div>
-                      ))
+          {filtered.map((protocol, i) => {
+            const level = getAccessLevel(i);
+            const isBlurred = level === 'blurred';
+            const isProLocked = level === 'pro';
+
+            return (
+              <motion.div
+                key={protocol.id}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.2, delay: Math.min(i * 0.01, 0.5) }}
+                onClick={() => handlePeptideClick(protocol, i)}
+                className={`group relative glass-card cursor-pointer rounded-[16px] overflow-hidden border border-white/[0.03] hover:border-accent/20 transition-all flex flex-col h-full bg-[#080808] ${isBlurred ? 'grayscale saturate-0 opacity-50' : ''}`}
+              >
+                <div className="relative h-28 overflow-hidden">
+                  <img src={protocol.image} alt={protocol.name} className={`w-full h-full object-cover grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-60 transition-all duration-700 ${isBlurred ? 'blur-[8px]' : 'blur-[2px] group-hover:blur-0'}`} />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#080808] to-transparent" />
+                  
+                  {/* Access Badge */}
+                  <div className="absolute top-3 left-3 flex gap-2">
+                    <span className="px-2 py-0.5 bg-black/50 text-white/60 rounded-full text-[7px] font-black uppercase tracking-widest border border-white/10 backdrop-blur-md">
+                      {protocol.tag.split(' ')[0]}
+                    </span>
+                    {level === 'free' && (
+                        <span className="px-2 py-0.5 bg-green-500 text-black rounded-full text-[7px] font-black uppercase tracking-widest">
+                            FREE
+                        </span>
+                    )}
+                    {(isProLocked || isBlurred) && (
+                        <span className="px-2 py-0.5 bg-accent text-black rounded-full text-[7px] font-black uppercase tracking-widest flex items-center gap-1">
+                            <Lock size={8} /> PRO
+                        </span>
                     )}
                   </div>
-                  <button 
-                    onClick={() => setSelectedPeptide(protocol)}
-                    className="text-[8px] font-black text-secondary/40 uppercase tracking-widest hover:text-accent transition-all flex items-center gap-1 group/btn"
-                  >
-                    Ver Bula <ArrowUpRight size={12} className="group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
-                  </button>
                 </div>
-              </div>
-            </motion.div>
-          ))}
+                
+                <div className="p-4 flex flex-col flex-grow">
+                  <h3 className={`text-sm font-extrabold text-secondary mb-1.5 tracking-tight group-hover:text-accent transition-colors uppercase ${isBlurred ? 'blur-[4px] select-none' : ''}`}>
+                    {isBlurred ? 'XXXXXXXXXXXXX' : protocol.name}
+                  </h3>
+                  
+                  <p className={`text-muted text-[9px] leading-relaxed font-medium mb-4 line-clamp-2 ${isBlurred ? 'blur-[3px] select-none' : ''}`}>
+                    {isBlurred ? 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' : protocol.description}
+                  </p>
+                  
+                  <div className="mt-auto flex items-center justify-between pt-3 border-t border-white/5">
+                    <div className={`flex -space-x-2 ${isBlurred ? 'blur-[2px] opacity-20' : ''}`}>
+                      {protocol.synergies && Array.isArray(protocol.synergies) ? (
+                        protocol.synergies.slice(0, 3).map((s, j) => (
+                          <div key={j} className="w-6 h-6 rounded-full border-2 border-black bg-accent/10 flex items-center justify-center text-[5px] text-accent font-black uppercase overflow-hidden">
+                            {s.charAt(0)}
+                          </div>
+                        ))
+                      ) : (
+                        [1, 2].map(j => (
+                          <div key={j} className="w-6 h-6 rounded-full border-2 border-black bg-[#111] overflow-hidden">
+                             <img src={`https://i.pravatar.cc/100?u=${protocol.id}${j}`} alt="u" className="w-full h-full object-cover opacity-60" />
+                          </div>
+                        ))
+                      )}
+                    </div>
+                    
+                    <button 
+                      className={`text-[8px] font-black uppercase tracking-widest transition-all flex items-center gap-1 ${level === 'free' || level === 'full' ? 'text-accent' : 'text-secondary/20'}`}
+                    >
+                      {level === 'free' || level === 'full' ? 'Ver Bula' : 'Bloqueado'} 
+                      {level === 'free' || level === 'full' ? <ArrowUpRight size={12} /> : <Lock size={10} />}
+                    </button>
+                  </div>
+                </div>
+
+                {/* Hover Overlay for Locked */}
+                {(isProLocked || isBlurred) && (
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all flex items-center justify-center opacity-0 group-hover:opacity-100 z-10 backdrop-blur-[1px]">
+                        <div className="bg-accent text-black px-4 py-2 rounded-xl font-black text-[9px] uppercase tracking-[0.2em] shadow-xl transform translate-y-4 group-hover:translate-y-0 transition-all">
+                            Upgrade Prime
+                        </div>
+                    </div>
+                )}
+              </motion.div>
+            );
+          })}
         </div>
       ) : (
         <div className="py-20 text-center space-y-4">
           <div className="w-16 h-16 bg-white/5 rounded-full flex items-center justify-center mx-auto text-secondary/20">
             <Search size={24} />
           </div>
-          <p className="text-secondary/40 font-black uppercase tracking-widest text-[10px]">Nenhum composto encontrado para "{searchTerm}"</p>
+          <p className="text-secondary/40 font-black uppercase tracking-widest text-[10px]">Nenhum composto encontrado</p>
         </div>
       )}
 

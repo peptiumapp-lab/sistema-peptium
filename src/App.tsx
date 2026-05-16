@@ -18,13 +18,14 @@ import SalesPage from './components/SalesPage';
 import SynergySection from './components/SynergySection';
 import PeptideDetailModal from './components/library/PeptideDetailModal';
 import LegalModal from './components/LegalModal';
+import ProGate from './components/ProGate';
 import { PeptiumLogo } from './components/Logo';
 import { PROTOCOLS, WHATSAPP_LINK, TOTAL_PEPTIDES, INSTAGRAM_LINK, SITE_LINK } from './constants';
 import { PeptideDossier } from './types';
-import { Shield, Truck, CreditCard, Activity, CheckCircle2, ArrowUpRight, Star, Zap, MessageCircle, ChevronRight, ShieldAlert, X, Hexagon, Plus, GraduationCap, Microscope, BookOpen, Instagram, Globe, Mail, MapPin } from 'lucide-react';
+import { Shield, Truck, CreditCard, Activity, CheckCircle2, ArrowUpRight, Star, Zap, MessageCircle, ChevronRight, ShieldAlert, X, Hexagon, Plus, GraduationCap, Microscope, BookOpen, Instagram, Globe, Mail, MapPin, Lock } from 'lucide-react';
 
-import { AuthProvider, useAuth } from './context/AuthContext';
-
+import { useAuth } from './contexts/AuthContext';
+import { signInWithGoogle, logout, upgradeToPro } from './lib/firebase';
 import { auditInventory } from './services/atlasAuditor';
 
 export type View = 'home' | 'library' | 'calculator' | 'quiz' | 'stacks' | 'interactions' | 'my-protocols' | 'plans' | 'dossier' | 'guide' | 'synergies';
@@ -32,12 +33,11 @@ export type View = 'home' | 'library' | 'calculator' | 'quiz' | 'stacks' | 'inte
 function AppContent() {
   const [currentView, setCurrentView] = useState<View>('home');
   const [theme, setTheme] = useState<'dark' | 'light'>('dark');
-  const [userPeptides, setUserPeptides] = useState<string[]>(['bpc-157', 'selank']); // Default for demo as requested
+  const [userPeptides, setUserPeptides] = useState<string[]>(['bpc-157', 'selank']); 
   const [selectedPeptide, setSelectedPeptide] = useState<PeptideDossier | null>(null);
   const [selectedSynergyIds, setSelectedSynergyIds] = useState<string[]>([]);
   const [legalModalType, setLegalModalType] = useState<'termos' | 'privacidade' | 'disclaimer' | null>(null);
-  const { profile, loading } = useAuth();
-  const isPremium = profile?.isPro || false;
+  const { user, isPro: isPremium, loading: authLoading } = useAuth();
 
   const auditResult = auditInventory(userPeptides);
 
@@ -71,6 +71,28 @@ function AppContent() {
   }, [theme]);
 
   const renderView = () => {
+    // Content Locking Logic
+    const premiumViews: View[] = ['calculator', 'dossier', 'interactions', 'stacks', 'synergies'];
+    const isRestricted = !isPremium && premiumViews.includes(currentView);
+
+    if (isRestricted) {
+        const viewTitles: Record<string, string> = {
+            'calculator': 'Motor de Precisão',
+            'dossier': 'Inteligência Molecular',
+            'interactions': 'Guardião de Segurança',
+            'stacks': 'Análise de Sinergia',
+            'synergies': 'Biblioteca de Protocolos'
+        };
+
+        return (
+            <ProGate 
+                title={viewTitles[currentView] || 'Área Exclusiva'} 
+                onBack={() => setCurrentView('home')} 
+                onUpgrade={() => setCurrentView('plans')} 
+            />
+        );
+    }
+
     switch (currentView) {
       case 'library':
         return <div className="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto"><PeptideLibrary setView={setCurrentView} isPremium={isPremium} /></div>;
@@ -133,14 +155,25 @@ function AppContent() {
                 </div>
                 
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                  {Array.isArray(PROTOCOLS) && PROTOCOLS.slice(0, 8).map((protocol) => (
-                    <ProtocolCard 
-                      key={protocol.id} 
-                      protocol={protocol} 
-                      setView={setCurrentView}
-                      onClick={() => setSelectedPeptide(protocol)}
-                    />
-                  ))}
+                  {Array.isArray(PROTOCOLS) && PROTOCOLS.slice(0, 8).map((protocol, i) => {
+                    const isLocked = !isPremium && i >= 4; // Reveal only first 4 on home preview if not premium
+                    return (
+                        <div key={protocol.id} className="relative">
+                            <ProtocolCard 
+                                protocol={protocol} 
+                                setView={setCurrentView}
+                                onClick={() => isLocked ? setCurrentView('plans') : setSelectedPeptide(protocol)}
+                            />
+                            {isLocked && (
+                                <div className="absolute top-3 right-3 z-20">
+                                    <div className="px-2 py-0.5 bg-accent text-black rounded-full text-[7px] font-black uppercase tracking-widest flex items-center gap-1">
+                                        <Lock size={8} /> PRO
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+                    );
+                  })}
                 </div>
 
                 <div className="mt-20 flex flex-col items-center gap-8">
@@ -151,12 +184,12 @@ function AppContent() {
                     }}
                     className="group relative px-10 py-4 bg-accent text-black rounded-xl font-black text-[10px] uppercase tracking-[0.3em] hover:bg-white transition-all shadow-[0_0_30px_rgba(0,229,255,0.15)] hover:shadow-[0_0_50px_rgba(255,255,255,0.1)] overflow-hidden"
                   >
-                    <span className="relative z-10">Explorar Catálogo Completo</span>
+                    <span className="relative z-10">Explorar Catálogo {isPremium ? 'Completo' : 'Limited'}</span>
                     <div className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
                   </button>
                   <div className="flex items-center gap-4 text-[9px] font-black text-white/20 uppercase tracking-[0.3em] italic">
                     <div className="w-8 h-px bg-white/10" />
-                    Acesso a {TOTAL_PEPTIDES} Dossiês Técnicos Atualizados
+                    {isPremium ? 'Acesso Total Liberado' : 'Contém Itens com Acesso Restrito'}
                     <div className="w-8 h-px bg-white/10" />
                   </div>
                 </div>
@@ -329,8 +362,6 @@ function AppContent() {
 
 export default function App() {
   return (
-    <AuthProvider>
-      <AppContent />
-    </AuthProvider>
+    <AppContent />
   );
 }

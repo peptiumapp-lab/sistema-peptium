@@ -3,6 +3,13 @@ import { motion } from 'motion/react';
 import { Check, Zap, Sparkles, Crown } from 'lucide-react';
 import { WHATSAPP_LINK } from '../constants';
 
+import React from 'react';
+import { motion } from 'motion/react';
+import { Check, Zap, Sparkles, Crown } from 'lucide-react';
+import { WHATSAPP_LINK } from '../constants';
+import { useAuth } from '../contexts/AuthContext';
+import { signInWithGoogle, upgradeToPro } from '../lib/firebase';
+
 const plans = [
   {
     name: 'Pro Mensal',
@@ -26,9 +33,30 @@ const plans = [
 ];
 
 export default function Pricing() {
+  const { user, isPro } = useAuth();
+
+  const handlePurchase = async (planName: string) => {
+    if (!user) {
+      await signInWithGoogle();
+      return;
+    }
+    
+    if (isPro) {
+      alert('Você já é um membro Prime!');
+      return;
+    }
+
+    try {
+      await upgradeToPro(user.uid);
+      alert(`Sucesso! Seu acesso ${planName} foi liberado.`);
+    } catch (error) {
+      console.error('Erro no checkout:', error);
+      alert('Erro ao processar ativação. Tente novamente.');
+    }
+  };
+
   return (
     <section id="pricing" className="py-24 relative overflow-hidden">
-      {/* Background Decor */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[radial-gradient(circle_at_center,rgba(20,255,180,0.05)_0%,transparent_70%)] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -85,25 +113,24 @@ export default function Pricing() {
                 </div>
 
                 <div className="space-y-4 mb-8 flex-grow">
-                {plan.features.map((feature) => (
-                  <div key={feature} className="flex items-center gap-3 text-sm text-gray-300">
-                    <Check size={16} className="text-accent shrink-0" />
-                    <span className="uppercase text-[10px] font-bold tracking-widest opacity-70">{feature}</span>
-                  </div>
-                ))}
-              </div>
+                  {plan.features.map((feature) => (
+                    <div key={feature} className="flex items-center gap-3 text-sm text-gray-300">
+                      <Check size={16} className="text-accent shrink-0" />
+                      <span className="uppercase text-[10px] font-bold tracking-widest opacity-70">{feature}</span>
+                    </div>
+                  ))}
+                </div>
 
-               <a 
-                href={WHATSAPP_LINK}
-                target="_blank"
-                rel="noreferrer"
-                className={`w-full py-3 rounded-[12px] font-bold transition-all duration-300 text-center uppercase tracking-[0.3em] text-[9px] ${
-                plan.premium 
-                ? 'bg-accent text-primary hover:bg-white' 
-                : 'bg-secondary/10 hover:bg-secondary/20 border border-secondary/20'
-              }`}>
-                Adquirir {plan.name}
-              </a>
+                <button 
+                  onClick={() => handlePurchase(plan.name)}
+                  className={`w-full py-4 rounded-[12px] font-bold transition-all duration-300 text-center uppercase tracking-[0.3em] text-[10px] ${
+                    plan.premium 
+                    ? 'bg-accent text-primary hover:bg-white shadow-[0_0_20px_rgba(0,229,255,0.2)]' 
+                    : 'bg-secondary/10 hover:bg-secondary/20 border border-secondary/20'
+                  }`}
+                >
+                  {isPro ? 'Plano Ativo' : user ? `Adquirir ${plan.name}` : 'Entrar para Adquirir'}
+                </button>
               </div>
             </motion.div>
           ))}

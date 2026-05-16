@@ -2,39 +2,23 @@
   "entities": {
     "User": {
       "title": "User Profile",
-      "description": "Stored user profile information and subscription status.",
+      "description": "User account details and membership status",
       "type": "object",
       "properties": {
-        "uid": { "type": "string", "description": "Firebase Auth unique ID" },
-        "email": { "type": "string", "format": "email" },
-        "displayName": { "type": "string" },
-        "photoURL": { "type": "string" },
+        "uid": { "type": "string", "description": "Firebase Auth UID" },
+        "email": { "type": "string", "description": "User email" },
+        "displayName": { "type": "string", "description": "User display name" },
         "isPro": { "type": "boolean", "description": "Subscription status" },
         "createdAt": { "type": "string", "format": "date-time" },
         "updatedAt": { "type": "string", "format": "date-time" }
       },
       "required": ["uid", "email", "isPro"]
-    },
-    "SavedPeptide": {
-      "title": "Saved Peptide",
-      "description": "PeptidesBookmarked by the user for quick access.",
-      "type": "object",
-      "properties": {
-        "peptideId": { "type": "string" },
-        "userId": { "type": "string" },
-        "savedAt": { "type": "string", "format": "date-time" }
-      },
-      "required": ["peptideId", "userId"]
     }
   },
   "firestore": {
-    "/users/{userId}": {
+    "users/{userId}": {
       "schema": "User",
-      "description": "User profile data."
-    },
-    "/users/{userId}/savedPeptides/{peptideId}": {
-      "schema": "SavedPeptide",
-      "description": "User's bookmarked peptides."
+      "description": "User profile document"
     }
   }
 }

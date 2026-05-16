@@ -1,38 +1,41 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth, GoogleAuthProvider, signInWithPopup, signOut } from 'firebase/auth';
-import { getFirestore, doc, setDoc, getDoc, updateDoc } from 'firebase/firestore';
+import { getFirestore, doc, getDoc, setDoc, updateDoc, serverTimestamp } from 'firebase/firestore';
 import firebaseConfig from '../../firebase-applet-config.json';
 
 const app = initializeApp(firebaseConfig);
-export const auth = getAuth(app);
 export const db = getFirestore(app, firebaseConfig.firestoreDatabaseId);
+export const auth = getAuth(app);
+export const googleProvider = new GoogleAuthProvider();
 
-const googleProvider = new GoogleAuthProvider();
-
-export const signInWithGoogle = async () => {
-  try {
-    const result = await signInWithPopup(auth, googleProvider);
-    const user = result.user;
-    
-    // Check if user profile exists, if not create it
-    const userDocRef = doc(db, 'users', user.uid);
-    const userSnap = await getDoc(userDocRef);
-    
-    if (!userSnap.exists()) {
-      await setDoc(userDocRef, {
-        uid: user.uid,
-        email: user.email,
-        displayName: user.displayName,
-        photoURL: user.photoURL,
-        isPro: false,
-        createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString()
-      });
-    }
-  } catch (error) {
-    console.error("Auth Error:", error);
-    throw error;
+export async function signInWithGoogle() {
+  const result = await signInWithPopup(auth, googleProvider);
+  const user = result.user;
+  
+  // Create or update user profile
+  const userDoc = doc(db, 'users', user.uid);
+  const snap = await getDoc(userDoc);
+  
+  if (!snap.exists()) {
+    await setDoc(userDoc, {
+      uid: user.uid,
+      email: user.email,
+      displayName: user.displayName,
+      isPro: false,
+      createdAt: serverTimestamp(),
+      updatedAt: serverTimestamp()
+    });
   }
-};
+}
 
-export const logout = () => signOut(auth);
+export async function logout() {
+  await signOut(auth);
+}
+
+export async function upgradeToPro(uid: string) {
+  const userDoc = doc(db, 'users', uid);
+  await updateDoc(userDoc, {
+    isPro: true,
+    updatedAt: serverTimestamp()
+  });
+}

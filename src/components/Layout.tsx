@@ -10,7 +10,7 @@ import {
 import { motion, AnimatePresence } from 'motion/react';
 import { WHATSAPP_LINK, INSTAGRAM_HANDLE, INSTAGRAM_LINK, SITE_URL, SITE_LINK } from '../constants';
 import type { View } from '../App';
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from '../contexts/AuthContext';
 import { PeptiumLogo } from './Logo';
 import { signInWithGoogle, logout } from '../lib/firebase';
 
@@ -25,7 +25,7 @@ interface LayoutProps {
 
 export default function Layout({ children, currentView, setCurrentView, theme, setTheme, isPremium }: LayoutProps) {
   const [isSidebarOpen, setIsSidebarOpen] = React.useState(false);
-  const { user, profile } = useAuth();
+  const { user, isPro } = useAuth();
 
   const bibliotecaItems = [
     { icon: <LayoutDashboard size={18} />, label: 'Painel Central', view: 'home' as View },
@@ -48,7 +48,7 @@ export default function Layout({ children, currentView, setCurrentView, theme, s
 
   const contaItems = [
     ...(user ? [
-      { icon: <User size={18} />, label: profile?.displayName || 'Minha Conta', view: 'plans' as View },
+      { icon: <User size={18} />, label: user.displayName || 'Minha Conta', view: 'plans' as View },
       { icon: <LogOut size={18} />, label: 'Sair', onClick: logout },
     ] : [
       { icon: <LogIn size={18} />, label: 'Entrar / Cadastrar', onClick: signInWithGoogle, highlight: true },
@@ -57,7 +57,7 @@ export default function Layout({ children, currentView, setCurrentView, theme, s
     { icon: <Globe size={18} />, label: SITE_URL, onClick: () => window.open(SITE_LINK, '_blank') },
     { icon: <HelpCircle size={18} />, label: 'Suporte', onClick: () => window.open(WHATSAPP_LINK, '_blank') },
     { icon: <Moon size={18} />, label: 'Modo Escuro', onClick: () => setTheme(theme === 'dark' ? 'light' : 'dark') },
-    ...(!isPremium ? [{ icon: <UserPlus size={18} />, label: 'Assinar Prime', view: 'plans' as View, highlight: true }] : []),
+    ...(!isPro ? [{ icon: <UserPlus size={18} />, label: 'Assinar Prime', view: 'plans' as View, highlight: true }] : []),
   ];
 
   const handleNavClick = (view: View, anchor?: string) => {
@@ -106,7 +106,7 @@ export default function Layout({ children, currentView, setCurrentView, theme, s
         </div>
         
         <div className="flex-grow overflow-y-auto px-3 py-2 custom-scrollbar">
-          {isPremium && (
+          {isPro && (
             <div className="px-4 py-3 mb-6 mx-1 bg-gradient-to-r from-accent/10 to-transparent border border-accent/20 rounded-2xl relative overflow-hidden">
               <div className="absolute top-0 right-0 w-16 h-16 bg-accent/20 blur-2xl rounded-full translate-x-1/2 -translate-y-1/2" />
               <div className="flex items-center gap-2 mb-1.5 relative z-10">
@@ -288,7 +288,7 @@ export default function Layout({ children, currentView, setCurrentView, theme, s
               </div>
               
               <div className="p-4 overflow-y-auto custom-scrollbar flex-grow">
-                {isPremium && (
+                {isPro && (
                   <div className="px-5 py-4 mb-6 bg-gradient-to-r from-accent/10 to-transparent border border-accent/20 rounded-2xl mx-1 relative overflow-hidden">
                     <div className="absolute top-0 right-0 w-16 h-16 bg-accent/20 blur-2xl rounded-full translate-x-1/2 -translate-y-1/2" />
                     <div className="flex items-center gap-2 mb-1.5 relative z-10">
