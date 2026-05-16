@@ -14,14 +14,14 @@ import InteractionVerifier from './components/InteractionVerifier';
 import PeptideComparator from './components/PeptideComparator';
 import Dossier from './components/Dossier';
 import PeptideGuide from './components/PeptideGuide';
-import WhatsAppButton from './components/WhatsAppButton';
 import SalesPage from './components/SalesPage';
 import SynergySection from './components/SynergySection';
 import PeptideDetailModal from './components/library/PeptideDetailModal';
+import LegalModal from './components/LegalModal';
 import { PeptiumLogo } from './components/Logo';
 import { PROTOCOLS, WHATSAPP_LINK, TOTAL_PEPTIDES, INSTAGRAM_LINK, SITE_LINK } from './constants';
 import { PeptideDossier } from './types';
-import { Shield, Truck, CreditCard, Activity, CheckCircle2, ArrowUpRight, Star, Zap, MessageCircle, ChevronRight, ShieldAlert, X, Hexagon, Plus, GraduationCap, Microscope, BookOpen, Instagram, Globe } from 'lucide-react';
+import { Shield, Truck, CreditCard, Activity, CheckCircle2, ArrowUpRight, Star, Zap, MessageCircle, ChevronRight, ShieldAlert, X, Hexagon, Plus, GraduationCap, Microscope, BookOpen, Instagram, Globe, Mail, MapPin } from 'lucide-react';
 
 import { AuthProvider, useAuth } from './context/AuthContext';
 
@@ -35,6 +35,7 @@ function AppContent() {
   const [userPeptides, setUserPeptides] = useState<string[]>(['bpc-157', 'selank']); // Default for demo as requested
   const [selectedPeptide, setSelectedPeptide] = useState<PeptideDossier | null>(null);
   const [selectedSynergyIds, setSelectedSynergyIds] = useState<string[]>([]);
+  const [legalModalType, setLegalModalType] = useState<'termos' | 'privacidade' | 'disclaimer' | null>(null);
   const { profile, loading } = useAuth();
   const isPremium = profile?.isPro || false;
 
@@ -191,28 +192,33 @@ function AppContent() {
       <div className="bg-primary text-secondary font-sans selection:bg-accent selection:text-white transition-colors duration-500 overflow-x-hidden min-h-screen">
         
         {/* Prime Market Ticker */}
-        <div className="bg-[#02010a] border-b border-white/5 py-2.5 overflow-hidden whitespace-nowrap z-[100] relative">
+        <div className="bg-[#02010a] border-b border-white/5 py-1.5 md:py-2 overflow-hidden whitespace-nowrap z-[100] relative flex">
           <motion.div 
-            animate={{ x: [0, -2000] }}
+            animate={{ x: [0, "-50%"] }}
             transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
-            className="inline-flex gap-20 pr-20"
+            className="inline-flex gap-8 md:gap-16 pr-8 md:pr-16 shrink-0"
           >
-            {[
-              `STATUS: ${TOTAL_PEPTIDES}+ PEPTÍDEOS REGISTRADOS`,
-              "NOVO: PROTOCOLO METABÓLICO SLU-PP-332",
-              "COMUNIDADE: 742 BIOHACKERS ATIVOS",
-              "SISTEMA: DATABASE 99.8% SINCRONIZADA",
-              "TENDÊNCIA: BPC-157 ORAL VS INJETÁVEL",
-              "DESTAQUE: STACK KISSPEPTINA-10 + HCG",
-              "ALGO: MOTOR DE CÁLCULO DE DOSAGEM V4.2",
-              `STATUS: ${TOTAL_PEPTIDES}+ PEPTÍDEOS REGISTRADOS`,
-              "NOVO: PROTOCOLO METABÓLICO SLU-PP-332",
-              "COMUNIDADE: 742 BIOHACKERS ATIVOS"
-            ].map((text, i) => (
-              <div key={i} className="flex items-center gap-3">
-                <div className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-accent shadow-[0_0_8px_rgba(0,229,255,0.6)] animate-pulse" />
-                <span className="text-sm md:text-base font-black text-white uppercase tracking-[0.2em] font-sans italic">{text}</span>
-              </div>
+            {[...Array(2)].map((_, arrayIndex) => (
+              <React.Fragment key={arrayIndex}>
+                {[
+                  `STATUS: ${TOTAL_PEPTIDES}+ PEPTÍDEOS REGISTRADOS`,
+                  "NOVO: PROTOCOLO METABÓLICO DE RECOMPOSIÇÃO",
+                  "COMUNIDADE: +700 BIOHACKERS ATIVOS NO BRASIL",
+                  "ALERTA: ACESSO VITALÍCIO LIBERADO",
+                  "TENDÊNCIA: GHK-CU E LONGEVIDADE CUTÂNEA",
+                  "STATUS: MOTOR DE DOSAGEM IA OPERACIONAL",
+                  "COFRE DE STACKS: 43 COMBINAÇÕES EXECUTADAS",
+                  "MAPA: REDE NEURAL DE PEPTÍDEOS ATIVA",
+                  "NOTÍCIA: BPC-157 (ARG) EM ALTA ESTA SEMANA",
+                  "DESTAQUE: RECUPERAÇÃO ACELERADA COM TB-500",
+                  "SISTEMA: DATABASE 99.8% SINCRONIZADA",
+                ].map((text, i) => (
+                  <div key={`${arrayIndex}-${i}`} className="flex items-center gap-2.5">
+                    <div className="w-1.5 h-1.5 rounded-full bg-accent shadow-[0_0_8px_rgba(0,229,255,0.6)] animate-pulse" />
+                    <span className="text-[10px] md:text-xs font-black text-white/90 uppercase tracking-[0.2em] font-sans italic">{text}</span>
+                  </div>
+                ))}
+              </React.Fragment>
             ))}
           </motion.div>
         </div>
@@ -250,13 +256,23 @@ function AppContent() {
                 A maior autoridade mundial em ciência e protocolos de peptídeos. 
                 Vanguarda do biohacking na palma da sua mão.
               </p>
-              <div className="flex gap-6">
-                <a href={INSTAGRAM_LINK} target="_blank" rel="noopener noreferrer" className="w-10 h-10 border border-secondary/10 rounded-full flex items-center justify-center text-secondary/40 hover:text-accent hover:border-accent/40 transition-all cursor-pointer">
-                  <Instagram size={18} />
-                </a>
-                <a href={SITE_LINK} target="_blank" rel="noopener noreferrer" className="w-10 h-10 border border-secondary/10 rounded-full flex items-center justify-center text-secondary/40 hover:text-accent hover:border-accent/40 transition-all cursor-pointer">
-                  <Globe size={18} />
-                </a>
+              <div className="space-y-4">
+                <div className="flex items-center gap-3 text-muted text-[11px] font-medium opacity-80 group">
+                  <Instagram size={14} className="text-accent" />
+                  <a href={INSTAGRAM_LINK} target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors">@peptium.app</a>
+                </div>
+                <div className="flex items-center gap-3 text-muted text-[11px] font-medium opacity-80 group">
+                  <Globe size={14} className="text-accent" />
+                  <a href={SITE_LINK} target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors">peptium.com.br</a>
+                </div>
+                <div className="flex items-center gap-3 text-muted text-[11px] font-medium opacity-80 group">
+                  <Mail size={14} className="text-accent" />
+                  <a href="mailto:peptium.app@gmail.com" className="hover:text-accent transition-colors">peptium.app@gmail.com</a>
+                </div>
+                <div className="flex gap-3 text-muted text-[11px] font-medium opacity-80">
+                  <MapPin size={14} className="text-accent shrink-0 mt-0.5" />
+                  <span>Brasília, DF - Brasil</span>
+                </div>
               </div>
             </div>
             
@@ -275,9 +291,9 @@ function AppContent() {
             <div className="space-y-6">
               <h5 className="text-[9px] font-black uppercase tracking-[0.2em] text-secondary opacity-40">Legal</h5>
               <ul className="space-y-4 text-[11px] font-medium text-muted">
-                <li className="hover:text-accent cursor-pointer transition-colors">Termos de Uso</li>
-                <li className="hover:text-accent cursor-pointer transition-colors">Privacidade</li>
-                <li className="hover:text-accent cursor-pointer transition-colors">Disclaimer Médico</li>
+                <li className="hover:text-accent cursor-pointer transition-colors" onClick={() => setLegalModalType('termos')}>Termos de Uso</li>
+                <li className="hover:text-accent cursor-pointer transition-colors" onClick={() => setLegalModalType('privacidade')}>Privacidade</li>
+                <li className="hover:text-accent cursor-pointer transition-colors" onClick={() => setLegalModalType('disclaimer')}>Disclaimer Médico</li>
               </ul>
             </div>
           </div>
@@ -295,8 +311,6 @@ function AppContent() {
         </div>
       </footer>
 
-      <WhatsAppButton />
-      
       <AnimatePresence>
         {selectedPeptide && (
           <PeptideDetailModal 
@@ -305,6 +319,8 @@ function AppContent() {
           />
         )}
       </AnimatePresence>
+
+      <LegalModal type={legalModalType} onClose={() => setLegalModalType(null)} />
       </Layout>
     </div>
   </div>

@@ -101,27 +101,30 @@ export default function StartHere({ setView }: StartHereProps) {
       </div>
 
       {/* Floating Notification */}
-      <div className="fixed top-20 right-6 z-[100] hidden lg:block">
+      <div className="fixed bottom-8 right-6 z-[100] hidden lg:block">
         <motion.div 
-          initial={{ x: 100, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 1, duration: 0.5 }}
           onClick={() => setView('plans')}
-          className="bg-primary/90 border border-secondary/10 p-3 pr-16 rounded-xl flex items-center gap-3 shadow-[0_10px_40_rgba(0,0,0,0.4)] backdrop-blur-3xl relative group/notif cursor-pointer hover:border-accent/30 transition-all hover:translate-y-[-2px]"
+          className="bg-[#050505]/95 border-l-[3px] border-l-accent border-r border-y border-white/5 py-4 px-5 rounded-r-xl rounded-l-sm shadow-[0_10px_40px_rgba(0,0,0,0.8)] backdrop-blur-2xl relative group/notif cursor-pointer hover:bg-accent/[0.02] transition-all flex items-center gap-5"
         >
-          <div className="w-8 h-8 rounded-lg bg-yellow-500/10 flex items-center justify-center text-yellow-500">
-            <Zap size={14} fill="currentColor" />
+          <div className="relative shrink-0">
+             <div className="absolute inset-0 bg-accent/30 blur-md rounded-full" />
+             <div className="w-2.5 h-2.5 rounded-full bg-accent animate-pulse relative z-10 shadow-[0_0_10px_rgba(0,229,255,0.8)]" />
           </div>
-          <div className="min-w-[180px]">
-            <div className="text-secondary text-[9px] font-bold leading-[1.4]">
-              3 novos protocolos clínicos <br />
-              <span className="text-muted font-medium tracking-normal lowercase">esta semana — </span> 
-              <span className="text-accent underline decoration-accent/30 underline-offset-2">acesso Elite</span>
+          <div className="flex-grow">
+            <div className="text-[9px] text-accent font-black tracking-[0.3em] uppercase mb-1.5 flex items-center gap-2">
+               <span>Atualização de Malha</span>
+            </div>
+            <div className="text-white/80 text-[12px] font-bold leading-tight tracking-wide">
+              3 Novos Protocolos Injetados<br />
+              <span className="text-white/40 text-[10px] uppercase tracking-widest font-medium mt-1 inline-block">Nível de acesso requerido: <span className="text-white font-black italic">PRIME</span></span>
             </div>
           </div>
-          <div className="absolute right-3 top-1/2 -translate-y-1/2">
-            <div className="w-8 h-8 rounded-lg bg-accent flex items-center justify-center text-black text-[9px] font-black shadow-[0_0_15px_rgba(0,229,255,0.3)] group-hover/notif:scale-105 transition-transform">
-              Ac
+          <div className="ml-2 pl-4 border-l border-white/10 group-hover/notif:border-accent/30 transition-colors flex items-center shrink-0">
+            <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center group-hover/notif:bg-accent/20 transition-colors">
+              <ArrowRight size={14} className="text-white/50 group-hover/notif:text-accent transition-colors" />
             </div>
           </div>
         </motion.div>

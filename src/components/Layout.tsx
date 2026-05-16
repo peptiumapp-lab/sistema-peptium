@@ -82,112 +82,133 @@ export default function Layout({ children, currentView, setCurrentView, theme, s
 
   return (
     <div className="min-h-screen bg-primary flex overflow-x-hidden">
-      {/* Desktop Sidebar */}
-      <aside className="hidden lg:flex flex-col w-52 h-screen fixed left-0 top-0 bg-primary border-r border-secondary/5 z-40 transition-colors">
-        <div className="p-4 pb-2">
+      {/* Desktop Sidebar (Floating UI) */}
+      <aside className="hidden lg:flex flex-col w-[230px] h-[calc(100vh-2rem)] fixed left-4 top-4 bg-[#050505]/80 backdrop-blur-2xl border border-white/5 rounded-3xl z-40 shadow-[0_8px_32px_rgba(0,0,0,0.6),inset_0_0_32px_rgba(0,229,255,0.02)]">
+        {/* Header */}
+        <div className="p-5 pb-4">
           <span 
-            className="flex items-center gap-2 cursor-pointer group"
+            className="flex items-center gap-3 cursor-pointer group"
             onClick={() => setCurrentView('home')}
           >
-            <PeptiumLogo className="w-12 h-12" glowing />
-            <span className="font-sans font-black text-[12px] tracking-widest text-[#00E5FF] uppercase leading-none drop-shadow-[0_0_8px_rgba(0,229,255,0.4)]">
-              PEPTIUM
-            </span>
-            <span className="font-sans font-bold text-[12px] tracking-[0.3em] text-white uppercase italic leading-none opacity-90">
-              PRIME
-            </span>
+            <div className="relative">
+              <div className="absolute inset-0 bg-accent/20 blur-xl rounded-full" />
+              <PeptiumLogo className="w-8 h-8 relative z-10" glowing />
+            </div>
+            <div className="flex flex-col">
+              <span className="font-sans font-black text-[14px] tracking-[0.2em] text-[#00E5FF] uppercase leading-none drop-shadow-[0_0_8px_rgba(0,229,255,0.4)]">
+                PEPTIUM
+              </span>
+              <span className="font-sans font-bold text-[9px] tracking-[0.4em] text-white/50 uppercase leading-relaxed mt-1">
+                PRIME
+              </span>
+            </div>
           </span>
         </div>
         
-        <div className="flex-grow overflow-y-auto px-1 py-1 custom-scrollbar">
+        <div className="flex-grow overflow-y-auto px-3 py-2 custom-scrollbar">
           {isPremium && (
-            <div className="px-4 py-3 mb-4 mx-2 bg-accent/5 border border-accent/20 rounded-2xl">
-              <div className="flex items-center gap-2 mb-1">
-                <Zap size={10} className="text-accent" fill="currentColor" />
-                <span className="text-[10px] font-black text-secondary tracking-widest uppercase italic">Status Prime</span>
+            <div className="px-4 py-3 mb-6 mx-1 bg-gradient-to-r from-accent/10 to-transparent border border-accent/20 rounded-2xl relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-16 h-16 bg-accent/20 blur-2xl rounded-full translate-x-1/2 -translate-y-1/2" />
+              <div className="flex items-center gap-2 mb-1.5 relative z-10">
+                <Zap size={12} className="text-accent" fill="currentColor" />
+                <span className="text-[10px] font-black text-white tracking-[0.2em] uppercase">Status Prime</span>
               </div>
-              <div className="flex items-center gap-2">
-                <div className="w-1 h-1 rounded-full bg-accent animate-pulse" />
-                <span className="text-[8px] font-bold text-accent uppercase tracking-[0.2em]">Acesso Ilimitado</span>
+              <div className="flex items-center gap-2 relative z-10">
+                <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse shadow-[0_0_8px_#00E5FF]" />
+                <span className="text-[9px] font-bold text-accent uppercase tracking-widest opacity-80">Acesso Neural Ativo</span>
               </div>
             </div>
           )}
 
-          <div className="mb-3">
-            <div className="text-[8px] font-black text-secondary/20 uppercase tracking-[0.2em] mb-1 px-4 italic">
-              BIBLIOTECA
+          <div className="mb-3 space-y-1">
+            <div className="flex items-center gap-2 px-3 mb-1.5">
+              <div className="h-[1px] w-4 bg-white/10" />
+              <div className="text-[9px] font-black text-white/40 uppercase tracking-[0.3em]">
+                Biblioteca
+              </div>
+              <div className="h-[1px] flex-grow bg-gradient-to-r from-white/10 to-transparent" />
             </div>
             <nav className="space-y-0">
-              {bibliotecaItems.map((item, index) => (
+              {bibliotecaItems.map((item, index) => {
+                const isActive = currentView === item.view;
+                return (
                 <button
                   key={index}
                   onClick={() => handleNavClick(item.view, (item as any).anchor)}
-                  className={`w-full flex items-center gap-2 px-4 py-1.5 transition-all text-[11px] font-bold group relative ${
-                    currentView === item.view 
-                      ? 'text-accent' 
-                      : 'text-muted hover:text-secondary hover:bg-secondary/5'
+                  className={`w-full flex items-center gap-3 px-3 py-1.5 rounded-xl transition-all duration-300 text-[12px] font-bold group relative overflow-hidden ${
+                    isActive 
+                      ? 'bg-accent/10 border border-accent/20 text-white shadow-[inset_0_0_20px_rgba(0,229,255,0.05)]' 
+                      : 'text-secondary/50 hover:text-white hover:bg-white/5 border border-transparent'
                   }`}
                 >
-                  {currentView === item.view && (
-                    <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[2px] h-3 bg-accent rounded-r-full" />
+                  {isActive && (
+                    <motion.div layoutId="sidebar-active" className="absolute left-0 top-1/4 bottom-1/4 w-[3px] bg-accent rounded-r-full shadow-[0_0_10px_#00E5FF]" />
                   )}
-                  <span className={`${
-                    currentView === item.view ? 'text-accent' : 'text-secondary/20 group-hover:text-secondary'
-                  } transition-colors`}>
-                    {React.cloneElement(item.icon as React.ReactElement, { size: 13 })}
-                  </span>
-                  {item.label}
+                  <div className={`p-1.5 rounded-xl transition-all duration-300 ${
+                    isActive ? 'bg-accent/20 text-accent shadow-[0_0_10px_rgba(0,229,255,0.2)]' : 'bg-white/5 text-white/40 group-hover:bg-white/10 group-hover:text-white/80'
+                  }`}>
+                    {React.cloneElement(item.icon as React.ReactElement, { size: 16 })}
+                  </div>
+                  <span className="tracking-wide text-left">{item.label}</span>
                 </button>
-              ))}
+              )})}
             </nav>
           </div>
 
-          <div className="mb-3">
-            <div className="text-[8px] font-black text-secondary/20 uppercase tracking-[0.2em] mb-1 px-4 italic">
-              FERRAMENTAS
+          <div className="mb-2 space-y-1">
+            <div className="flex items-center gap-2 px-3 mb-1.5">
+              <div className="h-[1px] w-4 bg-white/10" />
+              <div className="text-[9px] font-black text-white/40 uppercase tracking-[0.3em]">
+                Ferramentas
+              </div>
+              <div className="h-[1px] flex-grow bg-gradient-to-r from-white/10 to-transparent" />
             </div>
             <nav className="space-y-0">
-              {ferramentasItems.map((item, index) => (
+              {ferramentasItems.map((item, index) => {
+                const isActive = currentView === item.view;
+                return (
                 <button
                   key={index}
                   onClick={() => handleNavClick(item.view, (item as any).anchor)}
-                  className={`w-full flex items-center gap-2 px-4 py-1.5 transition-all text-[11px] font-bold group relative ${
-                    currentView === item.view 
-                      ? 'text-accent' 
-                      : 'text-muted hover:text-secondary hover:bg-secondary/5'
+                  className={`w-full flex items-center gap-3 px-3 py-1.5 rounded-xl transition-all duration-300 text-[12px] font-bold group relative overflow-hidden ${
+                    isActive 
+                      ? 'bg-accent/10 border border-accent/20 text-white shadow-[inset_0_0_20px_rgba(0,229,255,0.05)]' 
+                      : 'text-secondary/50 hover:text-white hover:bg-white/5 border border-transparent'
                   }`}
                 >
-                  {currentView === item.view && (
-                    <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[2px] h-3 bg-accent rounded-r-full" />
+                  {isActive && (
+                    <motion.div layoutId="sidebar-active-tools" className="absolute left-0 top-1/4 bottom-1/4 w-[3px] bg-accent rounded-r-full shadow-[0_0_10px_#00E5FF]" />
                   )}
-                  <span className={`${
-                    currentView === item.view ? 'text-accent' : 'text-secondary/20 group-hover:text-secondary'
-                  } transition-colors`}>
-                    {React.cloneElement(item.icon as React.ReactElement, { size: 13 })}
-                  </span>
-                  {item.label}
+                  <div className={`p-1.5 rounded-xl transition-all duration-300 ${
+                    isActive ? 'bg-accent/20 text-accent shadow-[0_0_10px_rgba(0,229,255,0.2)]' : 'bg-white/5 text-white/40 group-hover:bg-white/10 group-hover:text-white/80'
+                  }`}>
+                    {React.cloneElement(item.icon as React.ReactElement, { size: 16 })}
+                  </div>
+                  <span className="tracking-wide text-left">{item.label}</span>
                 </button>
-              ))}
+              )})}
             </nav>
           </div>
         </div>
 
-        <div className="p-1 border-t border-secondary/5 bg-primary/80 backdrop-blur-md">
+        <div className="p-3 border-t border-white/5 mt-auto">
           <nav className="space-y-0">
             {contaItems.map((item, index) => (
               <button
                 key={index}
                 onClick={item.onClick || (() => handleNavClick(item.view!))}
-                className={`w-full flex items-center gap-2 px-4 py-1.5 transition-all text-[11px] font-bold group ${
-                  item.highlight ? 'text-accent' : 'text-muted hover:text-secondary hover:bg-secondary/5'
+                className={`w-full flex items-center gap-3 px-3 py-1.5 rounded-xl transition-all duration-300 text-[12px] font-bold group ${
+                  item.highlight 
+                    ? 'bg-accent/10 text-accent border border-accent/20 hover:bg-accent/20 hover:shadow-[0_0_15px_rgba(0,229,255,0.2)]' 
+                    : 'text-secondary/50 hover:text-white hover:bg-white/5 border border-transparent'
                 }`}
               >
-                <span className={`${
-                  item.highlight ? 'text-accent' : 'text-secondary/20 group-hover:text-secondary shadow-sm'
-                } transition-colors`}>
-                  {React.cloneElement(item.icon as React.ReactElement, { size: 13 })}
-                </span>
-                {item.label}
+                <div className={`p-1.5 rounded-xl transition-all duration-300 ${
+                  item.highlight ? 'bg-accent/20 text-accent' : 'bg-white/5 text-white/40 group-hover:bg-white/10 group-hover:text-white/80'
+                }`}>
+                  {React.cloneElement(item.icon as React.ReactElement, { size: 16 })}
+                </div>
+                <span className="tracking-wide">{item.label}</span>
               </button>
             ))}
           </nav>
@@ -241,90 +262,131 @@ export default function Layout({ children, currentView, setCurrentView, theme, s
               initial={{ x: '-100%' }}
               animate={{ x: 0 }}
               exit={{ x: '-100%' }}
-              className="fixed top-0 left-0 h-full w-4/5 max-w-sm bg-primary z-[70] lg:hidden border-r border-secondary/10 flex flex-col"
+              className="fixed top-0 left-0 h-full w-[85%] max-w-sm bg-[#050505]/95 backdrop-blur-3xl z-[70] lg:hidden border-r border-white/5 flex flex-col shadow-[20px_0_40px_rgba(0,0,0,0.6)]"
             >
-              <div className="p-5 flex justify-between items-center border-b border-secondary/5">
-                <span className="flex items-center gap-2 cursor-pointer group">
-                  <PeptiumLogo className="w-12 h-12" glowing />
-                  <span className="font-sans font-black text-[14px] tracking-widest text-[#00E5FF] uppercase drop-shadow-[0_0_8px_rgba(0,229,255,0.4)]">
-                    PEPTIUM
-                  </span>
-                  <span className="font-sans font-bold text-[14px] tracking-[0.3em] text-white uppercase italic opacity-90">
-                    PRIME
-                  </span>
+              <div className="p-6 flex justify-between items-center border-b border-white/5">
+                <span className="flex items-center gap-3 cursor-pointer group">
+                  <div className="relative">
+                    <div className="absolute inset-0 bg-accent/20 blur-xl rounded-full" />
+                    <PeptiumLogo className="w-10 h-10 relative z-10" glowing />
+                  </div>
+                  <div className="flex flex-col">
+                    <span className="font-sans font-black text-[15px] tracking-[0.2em] text-[#00E5FF] uppercase leading-none drop-shadow-[0_0_8px_rgba(0,229,255,0.4)]">
+                      PEPTIUM
+                    </span>
+                    <span className="font-sans font-bold text-[10px] tracking-[0.4em] text-white/50 uppercase leading-relaxed mt-1">
+                      PRIME
+                    </span>
+                  </div>
                 </span>
-                <button onClick={() => setIsSidebarOpen(false)} className="text-secondary/40 hover:text-accent transition-colors"><X size={18} /></button>
+                <button 
+                  onClick={() => setIsSidebarOpen(false)} 
+                  className="p-2 bg-white/5 rounded-full text-white/50 hover:text-white hover:bg-white/10 transition-all"
+                >
+                  <X size={18} />
+                </button>
               </div>
               
               <div className="p-4 overflow-y-auto custom-scrollbar flex-grow">
                 {isPremium && (
-                  <div className="px-5 py-4 mb-6 bg-accent/5 border border-accent/20 rounded-2xl mx-4">
-                    <div className="flex items-center gap-2 mb-1">
+                  <div className="px-5 py-4 mb-6 bg-gradient-to-r from-accent/10 to-transparent border border-accent/20 rounded-2xl mx-1 relative overflow-hidden">
+                    <div className="absolute top-0 right-0 w-16 h-16 bg-accent/20 blur-2xl rounded-full translate-x-1/2 -translate-y-1/2" />
+                    <div className="flex items-center gap-2 mb-1.5 relative z-10">
                       <Zap size={12} className="text-accent" fill="currentColor" />
-                      <span className="text-[11px] font-black text-secondary tracking-widest uppercase italic">Assinatura Prime Ativa</span>
+                      <span className="text-[11px] font-black text-white tracking-[0.2em] uppercase">Assinatura Ativa</span>
                     </div>
-                    <span className="text-[9px] font-bold text-accent uppercase tracking-widest">Acesso Vitalício Liberado</span>
+                    <span className="text-[9px] font-bold text-accent uppercase tracking-widest relative z-10">Acesso Vitalício</span>
                   </div>
                 )}
 
-                <div className="mb-6">
-                  <div className="text-[10px] font-bold text-secondary/30 uppercase tracking-[0.05em] mb-4 px-4">BIBLIOTECA</div>
+                <div className="mb-6 space-y-2">
+                  <div className="flex items-center gap-2 px-2 mb-4">
+                    <div className="h-[1px] w-3 bg-white/10" />
+                    <div className="text-[10px] font-black text-white/40 uppercase tracking-[0.2em]">BIBLIOTECA</div>
+                    <div className="h-[1px] flex-grow bg-gradient-to-r from-white/10 to-transparent" />
+                  </div>
                   <nav className="space-y-0.5">
-                    {bibliotecaItems.map((item, index) => (
+                    {bibliotecaItems.map((item, index) => {
+                      const isActive = currentView === item.view;
+                      return (
                       <button
                         key={index}
                         onClick={() => handleNavClick(item.view, (item as any).anchor)}
-                        className={`w-full flex items-center gap-3 py-3 px-4 transition-all text-[13px] font-medium ${
-                          currentView === item.view ? 'text-accent' : 'text-muted'
+                        className={`w-full flex items-center gap-3 py-2 px-3 rounded-2xl transition-all text-[13px] font-bold ${
+                          isActive 
+                            ? 'bg-accent/10 border border-accent/20 text-white' 
+                            : 'text-secondary/50 hover:bg-white/5 hover:text-white border border-transparent'
                         }`}
                       >
-                        <span className={currentView === item.view ? 'text-accent' : 'text-secondary/40'}>{item.icon}</span>
+                        <div className={`p-1.5 rounded-xl transition-all ${
+                          isActive ? 'bg-accent/20 text-accent' : 'bg-white/5 text-white/40'
+                        }`}>
+                          {item.icon}
+                        </div>
                         {item.label}
                       </button>
-                    ))}
+                    )})}
                   </nav>
                 </div>
 
-                <div className="mb-6">
-                  <div className="text-[10px] font-bold text-secondary/30 uppercase tracking-[0.05em] mb-4 px-4">FERRAMENTAS</div>
+                <div className="mb-6 space-y-2">
+                  <div className="flex items-center gap-2 px-2 mb-4">
+                    <div className="h-[1px] w-3 bg-white/10" />
+                    <div className="text-[10px] font-black text-white/40 uppercase tracking-[0.2em]">FERRAMENTAS</div>
+                    <div className="h-[1px] flex-grow bg-gradient-to-r from-white/10 to-transparent" />
+                  </div>
                   <nav className="space-y-0.5">
-                    {ferramentasItems.map((item, index) => (
+                    {ferramentasItems.map((item, index) => {
+                      const isActive = currentView === item.view;
+                      return (
                       <button
                         key={index}
                         onClick={() => handleNavClick(item.view, (item as any).anchor)}
-                        className={`w-full flex items-center gap-3 py-3 px-4 transition-all text-[13px] font-medium ${
-                          currentView === item.view ? 'text-accent' : 'text-muted'
+                        className={`w-full flex items-center gap-3 py-2 px-3 rounded-2xl transition-all text-[13px] font-bold ${
+                          isActive 
+                            ? 'bg-accent/10 border border-accent/20 text-white' 
+                            : 'text-secondary/50 hover:bg-white/5 hover:text-white border border-transparent'
                         }`}
                       >
-                        <span className={currentView === item.view ? 'text-accent' : 'text-secondary/40'}>{item.icon}</span>
+                        <div className={`p-1.5 rounded-xl transition-all ${
+                          isActive ? 'bg-accent/20 text-accent' : 'bg-white/5 text-white/40'
+                        }`}>
+                          {item.icon}
+                        </div>
                         {item.label}
                       </button>
-                    ))}
+                    )})}
                   </nav>
                 </div>
               </div>
 
-              <div className="p-4 border-t border-secondary/5 bg-primary/80">
+              <div className="p-4 border-t border-white/5">
                 <nav className="space-y-0.5 mb-4">
                   {contaItems.map((item, index) => (
                     <button
                       key={index}
                       onClick={item.onClick || (() => handleNavClick(item.view!))}
-                      className={`w-full flex items-center gap-3 py-3 px-4 transition-all text-[13px] font-medium ${
-                        item.highlight ? 'text-accent' : 'text-muted'
+                      className={`w-full flex items-center gap-3 py-2 px-3 rounded-2xl transition-all text-[13px] font-bold ${
+                        item.highlight 
+                          ? 'bg-accent/10 border border-accent/20 text-accent' 
+                          : 'text-secondary/50 hover:bg-white/5 hover:text-white border border-transparent'
                       }`}
                     >
-                      <span className={item.highlight ? 'text-accent' : 'text-secondary/40'}>{item.icon}</span>
+                      <div className={`p-1.5 rounded-xl transition-all ${
+                        item.highlight ? 'bg-accent/20 text-accent' : 'bg-white/5 text-white/40'
+                      }`}>
+                        {item.icon}
+                      </div>
                       {item.label}
                     </button>
                   ))}
                 </nav>
                 <div className="flex flex-col gap-2">
-                  <a href={WHATSAPP_LINK} className="flex items-center justify-center gap-3 bg-accent text-white py-4 rounded-xl font-black text-[10px] uppercase tracking-[0.2em] shadow-xl">
+                  <a href={WHATSAPP_LINK} className="flex items-center justify-center gap-3 bg-accent text-white py-4 rounded-xl font-black text-[11px] uppercase tracking-[0.2em] shadow-[0_0_20px_rgba(0,229,255,0.3)]">
                     Suporte Via WhatsApp
                   </a>
-                  <a href={INSTAGRAM_LINK} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-3 bg-primary border border-secondary/10 text-secondary py-4 rounded-xl font-black text-[10px] uppercase tracking-[0.2em]">
-                    <Instagram size={14} /> @peptium.app
+                  <a href={INSTAGRAM_LINK} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-3 bg-white/5 border border-white/10 text-white/80 hover:text-white hover:bg-white/10 py-4 rounded-xl font-black text-[11px] uppercase tracking-[0.2em] transition-all">
+                    <Instagram size={16} /> @peptium.app
                   </a>
                 </div>
               </div>
@@ -334,7 +396,7 @@ export default function Layout({ children, currentView, setCurrentView, theme, s
       </AnimatePresence>
 
       {/* Main Content Area */}
-      <main className="flex-grow lg:pl-52 w-full tech-grid relative min-h-screen">
+      <main className="flex-grow lg:pl-[250px] w-full tech-grid relative min-h-screen">
         <div className="absolute inset-0 bg-gradient-to-b from-primary via-transparent to-primary pointer-events-none" />
         <div className="relative z-10">
           {children}
