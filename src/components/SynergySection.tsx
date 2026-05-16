@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
 import { Zap, Brain, Moon, Leaf, Network, ArrowRight, ShieldCheck, Clock, Shield, Layers } from 'lucide-react';
-import { SYNERGY_PROTOCOLS, SynergyProtocol } from '../constants';
+import { SYNERGY_PROTOCOLS } from '../constants';
+import { SynergyProtocol } from '../types';
 import ProtocolModal from './ProtocolModal';
 
 interface SynergySectionProps {

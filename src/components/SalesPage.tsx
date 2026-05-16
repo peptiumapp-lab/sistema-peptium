@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { motion } from 'motion/react';
-import { Shield, Activity, CheckCircle2, ArrowUpRight, Star, Zap, Plus, Hexagon, ShieldAlert, ChevronRight, Beaker, Apple, Target, Users, BookOpen, ArrowLeft } from 'lucide-react';
-import { WHATSAPP_LINK, PROTOCOLS, TOTAL_PEPTIDES, SYNERGY_PROTOCOLS } from '../constants';
+import { Shield, Activity, CheckCircle2, ArrowUpRight, Star, Zap, Plus, Hexagon, ShieldAlert, ChevronRight, Beaker, Apple, Target, Users, BookOpen, ArrowLeft, Microscope } from 'lucide-react';
+import { SUPPORT_LINK, PROTOCOLS, TOTAL_PEPTIDES, SYNERGY_PROTOCOLS } from '../constants';
 import { View } from '../App';
 import ProtocolCard from './ProtocolCard';
 import AtlasMatch from './AtlasMatch';
@@ -14,6 +14,9 @@ export default function SalesPage({ setView }: SalesPageProps) {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  const protocolsToShow = SYNERGY_PROTOCOLS.slice(0, 8);
+  const remainingCount = SYNERGY_PROTOCOLS.length - 8;
 
   return (
     <div className="bg-primary selection:bg-accent selection:text-black min-h-screen">
@@ -37,14 +40,14 @@ export default function SalesPage({ setView }: SalesPageProps) {
                   <span className="w-1.5 h-1.5 bg-accent rounded-full animate-pulse" />
                   <span className="text-[9px] font-black text-accent uppercase tracking-[0.4em]">Atlas Clínico Interativo V5.0</span>
                 </div>
-                <h2 className="text-5xl md:text-[90px] font-sans font-black text-white leading-[0.85] uppercase tracking-tighter italic">
-                  O SOFTWARE <br />
-                  <span className="text-accent">DEFINITIVO</span> <br />
-                  EM PEPTÍDEOS.
-                </h2>
-                <p className="text-white/60 text-xs md:text-sm font-medium leading-relaxed uppercase tracking-[0.15em] max-w-xl">
-                  Não é um e-book. Não é uma tabela. É o ecossistema de inteligência molecular mais avançado do mercado. O Peptium Prime Atlas entrega <span className="text-white font-black underline decoration-accent underline-offset-4">ROTAS BIOLÓGICAS</span> de cura e performance validadas.
-                </p>
+              <h2 className="text-3xl md:text-5xl font-sans font-black text-white leading-[0.95] uppercase tracking-tighter italic">
+                O SOFTWARE <br />
+                <span className="text-accent underline decoration-accent/30 underline-offset-[10px]">DEFINITIVO</span> <br />
+                EM PEPTÍDEOS.
+              </h2>
+              <p className="text-white/40 text-[10px] md:text-[11px] font-bold leading-relaxed uppercase tracking-[0.2em] max-w-xl">
+                Não é um e-book. Não é uma tabela. É o ecossistema de inteligência molecular mais avançado do mercado. O Peptium Prime Atlas entrega <span className="text-white font-black underline decoration-accent underline-offset-4">ROTAS BIOLÓGICAS</span> de cura e performance validadas.
+              </p>
                 <div className="flex flex-col sm:flex-row items-center gap-4 pt-4">
                   <button 
                     onClick={() => document.getElementById('planos-vendas')?.scrollIntoView({ behavior: 'smooth' })}
@@ -202,29 +205,37 @@ export default function SalesPage({ setView }: SalesPageProps) {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {SYNERGY_PROTOCOLS.map((protocol, i) => (
-                <div key={i} className="p-8 rounded-[40px] bg-white/[0.02] border border-white/5 hover:border-accent/30 transition-all group relative overflow-hidden">
-                  <div className="absolute top-0 right-0 p-8 opacity-0 group-hover:opacity-10 transition-opacity">
-                    <Zap size={64} className="text-accent" />
-                  </div>
-                  <div className="space-y-6">
-                    <div className="text-[8px] font-black text-accent uppercase tracking-[0.4em]">{protocol.target}</div>
-                    <h3 className="text-2xl font-sans font-black text-white uppercase italic tracking-tighter leading-none">{protocol.name}</h3>
-                    <p className="text-[10px] font-bold text-white/40 uppercase tracking-widest leading-relaxed">{protocol.description}</p>
-                    <div className="flex flex-wrap gap-2">
-                      {protocol.peptides.map((pepId, j) => {
-                        const pep = PROTOCOLS.find(p => p.id === pepId);
-                        return (
-                          <span key={j} className="px-3 py-1 bg-white/5 rounded-full text-[7px] font-black text-white/60 uppercase tracking-widest border border-white/10">
-                            {pep ? pep.name : pepId}
-                          </span>
-                        );
-                      })}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {protocolsToShow.map((protocol, i) => (
+                <div key={i} className="p-5 rounded-[24px] bg-white/[0.02] border border-white/5 hover:border-accent/30 transition-all group relative overflow-hidden flex flex-col min-h-[160px]">
+                  <div className="space-y-4">
+                    <div className="w-8 h-8 rounded-xl bg-accent/10 flex items-center justify-center text-accent">
+                      <Zap size={16} />
                     </div>
+                    <div>
+                      <div className="text-[7px] font-black text-accent uppercase tracking-[0.2em] mb-1">{protocol.target}</div>
+                      <h3 className="text-[12px] font-sans font-black text-white uppercase italic tracking-tighter leading-tight">{protocol.name}</h3>
+                    </div>
+                    <p className="text-[8px] font-bold text-white/20 uppercase tracking-widest leading-relaxed line-clamp-2">{protocol.description}</p>
                   </div>
                 </div>
               ))}
+            </div>
+
+            <div className="mt-12 flex flex-col items-center gap-6">
+              <button 
+                onClick={() => document.getElementById('planos-vendas')?.scrollIntoView({ behavior: 'smooth' })}
+                className="px-10 py-5 bg-white/5 border border-accent/20 rounded-2xl flex items-center gap-4 group hover:bg-white/10 transition-all shadow-[0_0_30px_rgba(0,229,255,0.1)]"
+              >
+                <div className="text-left">
+                  <span className="block text-[8px] font-black uppercase tracking-widest text-accent mb-0.5 italic">CONTEÚDO PRIME</span>
+                  <span className="text-[11px] font-black uppercase tracking-[0.3em] text-white">
+                    Desbloquear Catálogo (+{remainingCount} itens)
+                  </span>
+                </div>
+                <Lock size={16} className="text-accent" />
+              </button>
+              <p className="text-[8px] font-black text-white/20 uppercase tracking-[0.4em]">Protocolos atualizados semanalmente pela nossa IA</p>
             </div>
 
             <div className="mt-16 p-10 rounded-[48px] bg-accent/5 border border-accent/20 relative overflow-hidden">
@@ -315,25 +326,27 @@ export default function SalesPage({ setView }: SalesPageProps) {
               </div>
               <div className="relative group">
                 <div className="absolute inset-x-20 -inset-y-10 bg-accent/20 blur-[100px] rounded-full opacity-50 group-hover:opacity-80 transition-opacity" />
-                <div className="aspect-square bg-black border border-white/10 rounded-[64px] overflow-hidden relative shadow-2xl">
+                <div className="aspect-video bg-[#050505] border border-white/5 rounded-[48px] overflow-hidden relative shadow-2xl">
+                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,229,255,0.05)_0%,transparent_70%)]" />
                    <img 
-                    src="https://images.unsplash.com/photo-1579154235884-331505f562bd?q=80&w=800&auto=format&fit=crop" 
+                    src="https://images.unsplash.com/photo-1579154235884-331505f562bd?q=80&w=1200&auto=format&fit=crop" 
                     alt="Lab" 
-                    className="w-full h-full object-cover grayscale opacity-20 group-hover:scale-105 transition-transform duration-1000" 
+                    className="w-full h-full object-cover grayscale opacity-20 group-hover:scale-105 transition-transform duration-1000 mix-blend-luminosity" 
                    />
-                   <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
-                   <div className="absolute bottom-12 left-12 right-12 space-y-6">
-                      <div className="p-6 bg-white/[0.02] border border-white/5 backdrop-blur-3xl rounded-[32px] space-y-4">
+                   <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent flex items-center justify-center">
+                      <div className="w-16 h-16 rounded-full bg-accent/20 border border-accent/40 backdrop-blur-xl flex items-center justify-center text-accent animate-pulse">
+                        <Microscope size={32} />
+                      </div>
+                   </div>
+                   <div className="absolute bottom-6 left-6 right-6">
+                      <div className="p-4 bg-black/40 backdrop-blur-md border border-white/10 rounded-2xl space-y-3">
                         <div className="flex gap-1 text-accent">
-                          {[...Array(5)].map((_, i) => <Star key={i} size={12} fill="currentColor" />)}
+                          {[...Array(5)].map((_, i) => <Star key={i} size={10} fill="currentColor" />)}
                         </div>
-                        <p className="text-[10px] font-medium text-white/80 leading-relaxed italic uppercase tracking-widest">
-                          "O Peptium Prime é o único que entrega a interpretação clínica mastigada vinculada ao estudo original. É o guia de campo definitivo."
+                        <p className="text-[9px] font-medium text-white/70 leading-relaxed italic uppercase tracking-[0.1em]">
+                          "O Peptium Prime é o único que entrega a interpretação clínica mastigada vinculada ao estudo original."
                         </p>
-                        <div className="flex items-center gap-3">
-                          <div className="w-8 h-8 rounded-full bg-accent/20 flex items-center justify-center font-black text-accent text-[10px]">MD</div>
-                          <div className="text-[8px] font-black text-white uppercase tracking-widest">Dr. Lucas V. | Neurologista</div>
-                        </div>
+                        <div className="text-[7px] font-black text-white/40 uppercase tracking-widest">Dr. Lucas V. | Neurologista</div>
                       </div>
                    </div>
                 </div>
@@ -476,7 +489,7 @@ export default function SalesPage({ setView }: SalesPageProps) {
                     </li>
                   ))}
                 </ul>
-                <a href={WHATSAPP_LINK} className="py-5 bg-white/5 border border-white/10 rounded-2xl text-[10px] font-black text-white text-center uppercase tracking-[0.3em] hover:bg-white/10 transition-all">
+                <a href={SUPPORT_LINK} className="py-5 bg-white/5 border border-white/10 rounded-2xl text-[10px] font-black text-white text-center uppercase tracking-[0.3em] hover:bg-white/10 transition-all">
                   Assinar Agora
                 </a>
               </div>
@@ -502,7 +515,7 @@ export default function SalesPage({ setView }: SalesPageProps) {
                     </li>
                   ))}
                 </ul>
-                <a href={WHATSAPP_LINK} className="py-7 bg-accent text-black rounded-[20px] text-[12px] font-black text-center uppercase tracking-[0.4em] shadow-xl hover:scale-[1.02] active:scale-95 transition-all">
+                <a href={SUPPORT_LINK} className="py-7 bg-accent text-black rounded-[20px] text-[12px] font-black text-center uppercase tracking-[0.4em] shadow-xl hover:scale-[1.02] active:scale-95 transition-all">
                   QUERO O ANUAL
                 </a>
               </div>
@@ -511,17 +524,24 @@ export default function SalesPage({ setView }: SalesPageProps) {
         </section>
 
         {/* 7. FINAL CTA */}
-        <section className="py-32 bg-accent shadow-2xl relative z-30">
-          <div className="max-w-4xl mx-auto px-4 text-center space-y-10">
-            <h2 className="text-4xl md:text-7xl font-sans font-black text-black tracking-tighter uppercase italic leading-none">
-              COMECE A <span className="bg-black text-accent px-4 italic">DOMINAR</span> <br />
-              O MERCADO.
+        <section className="py-24 bg-black relative border-y border-white/5 overflow-hidden">
+          <div className="absolute inset-0 pointer-events-none">
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-[600px] bg-accent/5 blur-[120px] rounded-full" />
+            <div className="absolute inset-0 tech-grid opacity-[0.03]" />
+          </div>
+          <div className="max-w-4xl mx-auto px-4 text-center space-y-10 relative z-10">
+            <h2 className="text-4xl md:text-5xl font-sans font-black text-white tracking-tighter uppercase italic leading-[0.95]">
+              DOMINE A SUA <br/>
+              <span className="text-accent underline decoration-accent/20 underline-offset-8 italic">PRÓPRIA OPERAÇÃO.</span>
             </h2>
+            <p className="text-white/30 text-[10px] font-bold uppercase tracking-[0.4em] max-w-lg mx-auto">
+              Acesso instantâneo à maior rede neural de biohacking da América Latina.
+            </p>
             <button 
               onClick={() => document.getElementById('planos-vendas')?.scrollIntoView({ behavior: 'smooth' })}
-              className="px-16 py-8 bg-black text-accent rounded-full font-black text-sm uppercase tracking-[0.4em] shadow-2xl hover:scale-105 active:scale-95 transition-all"
+              className="px-16 py-6 bg-accent text-black rounded-2xl font-black text-xs uppercase tracking-[0.4em] shadow-[0_0_50px_rgba(0,229,255,0.2)] hover:bg-white hover:scale-105 active:scale-95 transition-all outline-none border-none"
             >
-              Quero ser Peptium Prime
+              Liberar Acesso Prime
             </button>
           </div>
         </section>

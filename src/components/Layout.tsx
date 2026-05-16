@@ -5,10 +5,10 @@ import {
   Zap, Shield, Target, Sun, Moon,
   Hexagon, Sparkles, ArrowLeftRight, ClipboardList,
   GraduationCap, Layers, ShieldAlert, MapPin,
-  Calendar, User, HelpCircle, UserPlus, BookOpen, LogOut, LogIn, Instagram, Globe
+  Calendar, User, HelpCircle, UserPlus, BookOpen, LogOut, LogIn, Instagram, Globe, Mail
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
-import { WHATSAPP_LINK, INSTAGRAM_HANDLE, INSTAGRAM_LINK, SITE_URL, SITE_LINK } from '../constants';
+import { SUPPORT_LINK, INSTAGRAM_HANDLE, INSTAGRAM_LINK, SITE_URL, SITE_LINK } from '../constants';
 import type { View } from '../App';
 import { useAuth } from '../contexts/AuthContext';
 import { PeptiumLogo } from './Logo';
@@ -55,7 +55,7 @@ export default function Layout({ children, currentView, setCurrentView, theme, s
     ]),
     { icon: <Instagram size={18} />, label: INSTAGRAM_HANDLE, onClick: () => window.open(INSTAGRAM_LINK, '_blank') },
     { icon: <Globe size={18} />, label: SITE_URL, onClick: () => window.open(SITE_LINK, '_blank') },
-    { icon: <HelpCircle size={18} />, label: 'Suporte', onClick: () => window.open(WHATSAPP_LINK, '_blank') },
+    { icon: <Mail size={18} />, label: 'Suporte', onClick: () => window.location.href = SUPPORT_LINK },
     { icon: <Moon size={18} />, label: 'Modo Escuro', onClick: () => setTheme(theme === 'dark' ? 'light' : 'dark') },
     ...(!isPro ? [{ icon: <UserPlus size={18} />, label: 'Assinar Prime', view: 'plans' as View, highlight: true }] : []),
   ];
@@ -382,8 +382,8 @@ export default function Layout({ children, currentView, setCurrentView, theme, s
                   ))}
                 </nav>
                 <div className="flex flex-col gap-2">
-                  <a href={WHATSAPP_LINK} className="flex items-center justify-center gap-3 bg-accent text-white py-4 rounded-xl font-black text-[11px] uppercase tracking-[0.2em] shadow-[0_0_20px_rgba(0,229,255,0.3)]">
-                    Suporte Via WhatsApp
+                  <a href={SUPPORT_LINK} className="flex items-center justify-center gap-3 bg-accent/20 border border-accent/40 text-accent py-4 rounded-xl font-black text-[11px] uppercase tracking-[0.2em] shadow-[0_0_20px_rgba(0,229,255,0.1)]">
+                    Fale com o Suporte
                   </a>
                   <a href={INSTAGRAM_LINK} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-3 bg-white/5 border border-white/10 text-white/80 hover:text-white hover:bg-white/10 py-4 rounded-xl font-black text-[11px] uppercase tracking-[0.2em] transition-all">
                     <Instagram size={16} /> @peptium.app

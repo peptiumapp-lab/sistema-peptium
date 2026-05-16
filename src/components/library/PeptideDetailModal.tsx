@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { X, ShieldCheck, Zap, Activity, AlertTriangle, ShieldCheck as Shield, Pill, Clock, Info, ArrowUpRight, Activity as ActivityIcon, Micropscope, Target, Droplets, BookOpen, Fingerprint } from 'lucide-react';
+import { X, ShieldCheck, Zap, Activity, AlertTriangle, ShieldCheck as Shield, Pill, Clock, Info, ArrowUpRight, Activity as ActivityIcon, Microscope, Target, Droplets, BookOpen, Fingerprint } from 'lucide-react';
 import { PeptideDossier } from '../../types';
 
 interface PeptideDetailModalProps {

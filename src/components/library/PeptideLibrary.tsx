@@ -35,14 +35,20 @@ export default function PeptideLibrary({ setView, isPremium }: PeptideLibraryPro
 
   const getAccessLevel = (index: number) => {
     if (isPremium) return 'full';
-    if (index < 30) return 'free';
-    if (index < 70) return 'pro';
-    return 'blurred';
+    
+    // Proteção de Dados: Após 50 compostos, desfoque total
+    if (index >= 50) return 'blurred';
+    
+    // Padrão Intercalado: 2 Grátis, 1 Pro (Bloqueado)
+    // 0, 1 -> Free | 2 -> Pro | 3, 4 -> Free | 5 -> Pro
+    if (index % 3 === 2) return 'pro';
+    
+    return 'free';
   };
 
   const handlePeptideClick = (protocol: PeptideDossier, index: number) => {
     const level = getAccessLevel(index);
-    if (level === 'full' || level === 'free') {
+    if (isPremium || level === 'free') {
       setSelectedPeptide(protocol);
     } else {
       setView('plans');

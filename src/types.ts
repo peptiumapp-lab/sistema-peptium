@@ -17,10 +17,27 @@ export enum PeptideCategory {
   COGNICAO = 'Cognição',
   METABOLISMO = 'Metabolismo',
   IMUNOLOGIA = 'Imunologia',
+  CARDIOMETABÓLICO = 'Cardiometabólico',
   CARDIOVASCULAR = 'Cardiometabólico',
   SEXUAL = 'Sexual',
   ONCOLOGIA = 'Oncologia',
   OUTROS = 'Outros'
+}
+
+export interface SynergyProtocol {
+  id: string;
+  name: string;
+  target: string;
+  peptides: string[];
+  description: string;
+  duration: string;
+  benefits: string[];
+  icon?: string;
+  warning?: string;
+  dosageInstructions?: string;
+  administrationMode?: string;
+  scientificBasis?: string[];
+  clinicalMarkers?: string[];
 }
 
 export interface PeptideDossier {

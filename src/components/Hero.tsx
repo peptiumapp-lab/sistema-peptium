@@ -73,12 +73,12 @@ export default function Hero({ setView, isPremium }: HeroProps) {
                 </div>
               </motion.div>
 
-            <h1 className="text-4xl md:text-[64px] font-sans font-black mb-8 leading-[0.85] tracking-tight text-white uppercase italic">
+            <h1 className="text-3xl md:text-5xl font-sans font-black mb-8 leading-[0.95] tracking-tighter text-white uppercase italic">
               DECODIFIQUE O CÓDIGO DA <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-br from-accent via-white to-accent text-glow">FISIOLOGIA DE ELITE</span>
             </h1>
             
-            <p className="max-w-3xl mx-auto text-xs md:text-sm text-white/40 mb-10 font-medium leading-relaxed uppercase tracking-[0.2em]">
+            <p className="max-w-3xl mx-auto text-[9px] md:text-[11px] text-white/40 mb-10 font-bold leading-relaxed uppercase tracking-[0.25em]">
               A INSIGHT MOLECULAR QUE TRANSFORMA <span className="text-white">DADOS BRUTOS</span> EM <br />
               <span className="text-accent underline underline-offset-8 decoration-accent/30">PERFORMANCE HUMANA ABSOLUTA.</span>
             </p>

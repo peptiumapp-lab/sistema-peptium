@@ -1,4 +1,5 @@
-import { PROTOCOLS, SYNERGY_PROTOCOLS, SynergyProtocol } from '../constants';
+import { PROTOCOLS, SYNERGY_PROTOCOLS } from '../constants';
+import { SynergyProtocol } from '../types';
 
 export interface AuditResult {
   availableSynergies: SynergyProtocol[];

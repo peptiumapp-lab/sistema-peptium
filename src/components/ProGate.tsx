@@ -52,7 +52,7 @@ export default function ProGate({ onBack, onUpgrade, title }: ProGateProps) {
           'Atlas com 150+ Compostos',
           'Protocolos de Recomposição',
           'Monitor de Interações Críticas',
-          'Suporte VIP via WhatsApp'
+          'Suporte Prioritário via E-mail'
         ].map((feature, i) => (
           <div key={i} className="flex items-center gap-3 text-[10px] font-black text-white/50 uppercase tracking-widest">
             <Check size={14} className="text-accent shrink-0" /> {feature}

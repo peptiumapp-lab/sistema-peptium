@@ -19,10 +19,11 @@ import SynergySection from './components/SynergySection';
 import PeptideDetailModal from './components/library/PeptideDetailModal';
 import LegalModal from './components/LegalModal';
 import ProGate from './components/ProGate';
+import SupportButton from './components/SupportButton';
 import { PeptiumLogo } from './components/Logo';
-import { PROTOCOLS, WHATSAPP_LINK, TOTAL_PEPTIDES, INSTAGRAM_LINK, SITE_LINK } from './constants';
+import { PROTOCOLS, SUPPORT_LINK, TOTAL_PEPTIDES, INSTAGRAM_LINK, SITE_LINK } from './constants';
 import { PeptideDossier } from './types';
-import { Shield, Truck, CreditCard, Activity, CheckCircle2, ArrowUpRight, Star, Zap, MessageCircle, ChevronRight, ShieldAlert, X, Hexagon, Plus, GraduationCap, Microscope, BookOpen, Instagram, Globe, Mail, MapPin, Lock } from 'lucide-react';
+import { Shield, Truck, CreditCard, Activity, CheckCircle2, ArrowUpRight, Star, Zap, ChevronRight, ShieldAlert, X, Hexagon, Plus, GraduationCap, Microscope, BookOpen, Instagram, Globe, Mail, MapPin, Lock } from 'lucide-react';
 
 import { useAuth } from './contexts/AuthContext';
 import { signInWithGoogle, logout, upgradeToPro } from './lib/firebase';
@@ -156,7 +157,7 @@ function AppContent() {
                 
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                   {Array.isArray(PROTOCOLS) && PROTOCOLS.slice(0, 8).map((protocol, i) => {
-                    const isLocked = !isPremium && i >= 4; // Reveal only first 4 on home preview if not premium
+                    const isLocked = !isPremium && i >= 4; 
                     return (
                         <div key={protocol.id} className="relative">
                             <ProtocolCard 
@@ -164,13 +165,17 @@ function AppContent() {
                                 setView={setCurrentView}
                                 onClick={() => isLocked ? setCurrentView('plans') : setSelectedPeptide(protocol)}
                             />
-                            {isLocked && (
-                                <div className="absolute top-3 right-3 z-20">
-                                    <div className="px-2 py-0.5 bg-accent text-black rounded-full text-[7px] font-black uppercase tracking-widest flex items-center gap-1">
+                            <div className="absolute top-3 left-3 z-30 flex gap-2">
+                                {i < 4 ? (
+                                    <div className="px-2 py-0.5 bg-green-500 text-black rounded-full text-[7px] font-black uppercase tracking-widest shadow-lg">
+                                        FREE
+                                    </div>
+                                ) : (
+                                    <div className="px-2 py-0.5 bg-accent text-black rounded-full text-[7px] font-black uppercase tracking-widest flex items-center gap-1 shadow-lg">
                                         <Lock size={8} /> PRO
                                     </div>
-                                </div>
-                            )}
+                                )}
+                            </div>
                         </div>
                     );
                   })}
@@ -268,6 +273,8 @@ function AppContent() {
               {renderView()}
             </motion.div>
           </AnimatePresence>
+          
+          <SupportButton />
           
           <footer className="py-16 bg-primary border-t border-secondary/5 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

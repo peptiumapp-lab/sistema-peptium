@@ -1,12 +1,7 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { Check, Zap, Sparkles, Crown } from 'lucide-react';
-import { WHATSAPP_LINK } from '../constants';
-
-import React from 'react';
-import { motion } from 'motion/react';
-import { Check, Zap, Sparkles, Crown } from 'lucide-react';
-import { WHATSAPP_LINK } from '../constants';
+import { SUPPORT_LINK } from '../constants';
 import { useAuth } from '../contexts/AuthContext';
 import { signInWithGoogle, upgradeToPro } from '../lib/firebase';
 
@@ -25,7 +20,7 @@ const plans = [
     price: '475,20',
     period: '/ano',
     description: 'O padrão ouro para performance máxima e precisão absoluta.',
-    features: ['Tudo do Mensal', 'Protocolos Exclusivos', 'Histórico Ilimitado', 'Suporte VIP 24/7', 'Acesso Antecipado a Novos Ativos'],
+    features: ['Tudo do Mensal', 'Protocolos Exclusivos', 'Histórico Ilimitado', 'Suporte Prime via E-mail', 'Acesso Antecipado a Novos Ativos'],
     icon: Crown,
     premium: true,
     tag: '60% OFF'

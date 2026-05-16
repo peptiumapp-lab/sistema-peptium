@@ -39793,7 +39793,9 @@ export const PROTOCOLS: PeptideDossier[] = [
 export const TOTAL_PEPTIDES = new Set(PROTOCOLS.map(p => p.id)).size;
 
 export const WHATSAPP_NUMBER = '5561998586862';
-export const WHATSAPP_LINK = 'https://wa.me/5561998586862';
+export const SUPPORT_EMAIL = 'peptium.app@gmail.com';
+export const SUPPORT_SUBJECT = 'Suporte Peptium Prime - Consulta';
+export const SUPPORT_LINK = `mailto:${SUPPORT_EMAIL}?subject=${encodeURIComponent(SUPPORT_SUBJECT)}`;
 export const INSTAGRAM_HANDLE = '@peptium.app';
 export const INSTAGRAM_LINK = 'https://instagram.com/peptium.app';
 export const SITE_URL = 'peptium.com.br';
@@ -39815,7 +39817,19 @@ export const SYNERGY_PROTOCOLS: SynergyProtocol[] = [
       'Reparo de mucosa e barreira hematoencefálica',
       'Equilíbrio emocional e digestivo'
     ],
-    icon: 'Leaf'
+    icon: 'Leaf',
+    dosageInstructions: 'BPC-157: 500mcg/dia (Subcutâneo ou Oral estável) + Selank: 250mcg/dia (Intranasal).',
+    administrationMode: 'Protocolo Híbrido: Intranasal para modulação límbica e SC/Oral para sistêmica.',
+    scientificBasis: [
+      'Integração do Eixo Intestino-Cérebro e BPC-157 (Sikiric et al., 2016)',
+      'Selank e Expressão de BDNF em modelos de estresse (Ueda et al., 2019)',
+      'Permeabilidade da Barreira Hematoencefálica (Zlokovic, 2020)'
+    ],
+    clinicalMarkers: [
+      'Proteína C-Reativa Ultrassensível (PCR-us)',
+      'Variação da Frequência Cardíaca (HRV)',
+      'Níveis de Zonulina Sérica'
+    ]
   },
 {
     id: 'neuro-genesis-max',
@@ -39834,7 +39848,19 @@ export const SYNERGY_PROTOCOLS: SynergyProtocol[] = [
       'Reparo de danos cognitivos',
       'Foco e memória em nível HD'
     ],
-    icon: 'Brain'
+    icon: 'Brain',
+    dosageInstructions: 'Dihexa: 10-20mg/dia (Oral) + Adamax: 100-200mcg/dia (Intranasal) + P21: 500mcg/dia (SC/Intranasal).',
+    administrationMode: 'Ataque Sináptico: Intranasal (Adamax) + Lipossomal (Dihexa) + Subcutâneo (P21).',
+    scientificBasis: [
+      'Hepatocyte Growth Factor e Dihexa na Sinaptogênese (Harding, 2012)',
+      'Semax/Adamax e Mecanismos Metabólicos de Foco (Kapitsa et al., 2016)',
+      'CNTF Mimético (P21) e Diferenciação Neuronal (Lv et al., 2017)'
+    ],
+    clinicalMarkers: [
+      'BDNF sérico (Fator Neurotrófico Derivado do Cérebro)',
+      'Teste de Atenção Sustentada (CPT-3)',
+      'Score de Fadiga Cognitiva'
+    ]
   },
 {
     id: 'circadian-reboot',
@@ -39851,7 +39877,19 @@ export const SYNERGY_PROTOCOLS: SynergyProtocol[] = [
       'Modulação de Pineal',
       'Recuperação neural acelerada'
     ],
-    icon: 'Moon'
+    icon: 'Moon',
+    dosageInstructions: 'DSIP: 100mcg (60-90 min antes do sono) + Epitalon: 10mg (Protocolo Khavinson - 10 dias).',
+    administrationMode: 'Via Subcutânea (SC) para sincronização farmacocinética com o ritmo circadiano.',
+    scientificBasis: [
+      'Indução de Sono Delta via DSIP (Schoenenberger & Monnier, 1977)',
+      'Epitalon e a Produção de Melatonina em Idosos (Korkushko et al., 2006)',
+      'Impacto do Sono Profundo no Sistema Glinfático (Xie et al., 2013)'
+    ],
+    clinicalMarkers: [
+      'Tempo de Sono Delta/REM (Oura/Apple Watch Score)',
+      'Cortisol Salivar (Curva de 4 pontos)',
+      'Níveis de Melatonina Sulfatoxina (Urina)'
+    ]
   },
 {
     id: 'prime-immune-resilience',
@@ -39887,7 +39925,19 @@ export const SYNERGY_PROTOCOLS: SynergyProtocol[] = [
       'Inibição da lipogênese',
       'Aumento drástico da biogênese mitocondrial'
     ],
-    icon: 'Zap'
+    icon: 'Zap',
+    dosageInstructions: 'Retatrutida: 2.0mg - 4.0mg (Semanal) + AOD-9604: 300mcg (Diário) + 5-Amino-1MQ: 50mg (Diário).',
+    administrationMode: 'Foco Lipolítico: Subcutâneo (Reta/AOD) e Oral (5-Amino-1MQ).',
+    scientificBasis: [
+      'Retatrutida: Triple Agonist Weight Loss Phase II (NEJM, 2023)',
+      'AOD-9604 e a Lipólise em Humanos (Heffernan et al., 2001)',
+      'NNMT Inhibition (5-Amino-1MQ) e Metabolismo Muscular (Neelakantan et al., 2019)'
+    ],
+    clinicalMarkers: [
+      'HOMA-IR (Sensibilidade à Insulina)',
+      'Perfil Lipídico Completo',
+      'Percentual de Gordura (DEXA Scan)'
+    ]
   },
 {
     id: 'wolverine-healing',
