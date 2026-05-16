@@ -1,0 +1,8 @@
+{
+  "name": "SF PERFORMANCE: ATLAS PRIME",
+  "description": "A plataforma de elite para otimização molecular e biorregulação. Atlas Clínico, Auditor de Sinergias e Protocolos de Vanguarda.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
