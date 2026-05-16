@@ -10,7 +10,7 @@ interface ProGateProps {
 
 export default function ProGate({ onBack, onUpgrade, title }: ProGateProps) {
   return (
-    <div className="min-h-screen bg-primary flex items-center justify-center p-6 bg-[radial-gradient(circle_at_center,rgba(191,255,0,0.03)_0%,transparent_100%)]">
+    <div className="min-h-screen bg-primary flex items-center justify-center p-6 bg-[radial-gradient(circle_at_center,rgba(0,229,255,0.03)_0%,transparent_100%)]">
       <div className="max-w-xl w-full text-center space-y-12">
         <button 
           onClick={onBack}
@@ -61,7 +61,7 @@ export default function ProGate({ onBack, onUpgrade, title }: ProGateProps) {
         <div className="space-y-6 pt-8">
           <button 
             onClick={onUpgrade}
-            className="w-full py-6 bg-accent text-primary font-black text-[12px] uppercase tracking-[0.4em] transition-all hover:scale-105 active:scale-95 shadow-[0_0_30px_rgba(191,255,0,0.2)]"
+            className="w-full py-6 bg-accent text-primary font-black text-[12px] uppercase tracking-[0.4em] transition-all hover:scale-105 active:scale-95 shadow-[0_0_30px_rgba(0,229,255,0.2)]"
             style={{ clipPath: 'polygon(5% 0, 100% 0, 100% 70%, 95% 100%, 0 100%, 0 30%)' }}
           >
             Assinar Cortex Prime

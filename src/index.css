@@ -4,7 +4,7 @@
 @theme {
   --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
   
-  --color-accent: #BFFF00;
+  --color-accent: #00E5FF;
   
   --color-primary: var(--primary);
   --color-secondary: var(--secondary);
@@ -97,13 +97,13 @@
 
 .tech-grid {
   background-image: 
-    linear-gradient(to right, rgba(191, 255, 0, 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(191, 255, 0, 0.05) 1px, transparent 1px);
+    linear-gradient(to right, rgba(0, 229, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 229, 255, 0.05) 1px, transparent 1px);
   background-size: 60px 60px;
 }
 
 .text-glow {
-  text-shadow: 0 0 20px rgba(191, 255, 0, 0.4), 0 0 40px rgba(191, 255, 0, 0.1);
+  text-shadow: 0 0 20px rgba(0, 229, 255, 0.4), 0 0 40px rgba(0, 229, 255, 0.1);
 }
 
 .light .glass-card {

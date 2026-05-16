@@ -110,7 +110,7 @@ export default function PeptideComparator({ setView, initialPeptideIds = [] }: P
           {selectedPeptides.length < 3 && (
             <button 
               onClick={() => setShowSelector(true)}
-              className="flex items-center gap-3 px-8 py-4 bg-accent border-2 border-accent rounded-[20px] hover:bg-accent/80 transition-all group shadow-[0_0_30px_rgba(191,255,0,0.2)] active:scale-95"
+              className="flex items-center gap-3 px-8 py-4 bg-accent border-2 border-accent rounded-[20px] hover:bg-accent/80 transition-all group shadow-[0_0_30px_rgba(0,229,255,0.2)] active:scale-95"
             >
               <Plus size={16} className="text-black group-hover:rotate-90 transition-transform" />
               <span className="text-[11px] font-black text-black uppercase tracking-[0.2em]">Acoplar Molécula</span>

@@ -154,7 +154,7 @@ export default function StackAnalysis({ selectedPeptides, onAddRequest }: StackA
                  <div className="flex flex-col items-center gap-6">
                     <button
                       onClick={fetchAnalysis}
-                      className="group relative px-20 py-8 bg-accent rounded-[32px] overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-[0_40px_80px_rgba(191,255,0,0.25)] hover:shadow-[0_40px_100px_rgba(191,255,0,0.4)]"
+                      className="group relative px-20 py-8 bg-accent rounded-[32px] overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-[0_40px_80px_rgba(0,229,255,0.25)] hover:shadow-[0_40px_100px_rgba(0,229,255,0.4)]"
                     >
                       <div className="absolute inset-0 bg-white/40 translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
                       <div className="relative flex items-center gap-4">
@@ -190,7 +190,7 @@ export default function StackAnalysis({ selectedPeptides, onAddRequest }: StackA
             className="grid grid-cols-1 lg:grid-cols-4 gap-6"
           >
             {/* Score Card */}
-            <div className="lg:col-span-1 bg-black/60 border-2 border-accent/30 rounded-[40px] p-10 flex flex-col items-center justify-center relative overflow-hidden group shadow-[0_0_40px_rgba(191,255,0,0.05)]">
+            <div className="lg:col-span-1 bg-black/60 border-2 border-accent/30 rounded-[40px] p-10 flex flex-col items-center justify-center relative overflow-hidden group shadow-[0_0_40px_rgba(0,229,255,0.05)]">
                <motion.div 
                  animate={{ rotate: 360 }}
                  transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
@@ -253,7 +253,7 @@ export default function StackAnalysis({ selectedPeptides, onAddRequest }: StackA
                         ))}
                       </div>
                    </div>
-                   <div className="bg-accent shadow-[0_20px_50px_rgba(191,255,0,0.15)] rounded-[32px] p-6 flex flex-col justify-between">
+                   <div className="bg-accent shadow-[0_20px_50px_rgba(0,229,255,0.15)] rounded-[32px] p-6 flex flex-col justify-between">
                       <div className="space-y-2">
                         <div className="text-black font-black text-[10px] uppercase tracking-[0.2em] flex items-center gap-2">
                           <Sparkles size={14} /> Matrix Hack

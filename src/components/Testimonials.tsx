@@ -4,19 +4,19 @@ import { Star, Quote } from 'lucide-react';
 
 const testimonials = [
   {
-    name: 'M. Carvalho',
+    name: 'Marcelo Carvalho',
     role: 'Atleta IFBB Pro & Preparador',
     content: 'O Atlas condensou anos de pesquisa em minutos. A precisão técnica na meia-vida e sinergias evita os erros clássicos de administração que costumam custar caro em finalizações. Nível de detalhe absurdo.',
     image: 'https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?w=100&h=100&fit=crop',
   },
   {
-    name: 'Dr. Rodrigo A.',
+    name: 'Dr. Rodrigo Almeida',
     role: 'Fisiologista e Médico do Esporte',
     content: 'Finalmente uma plataforma que tira o amadorismo da área. A bibliografia referenciada direto do PubMed e os protocolos baseados em bioequivalência dão muita segurança clínica.',
     image: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=100&h=100&fit=crop',
   },
   {
-    name: 'A. Fontenelle',
+    name: 'Aline Fontenelle',
     role: 'Pesquisador de Longevidade',
     content: 'O sistema de arquitetura de dosagem somado à biblioteca centralizada de SARMs e Peptídeos... não tem concorrente. O plano anual se paga só com o tempo que economizo não tendo que cruzar referências cruzadas em PDFs.',
     image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&h=100&fit=crop',

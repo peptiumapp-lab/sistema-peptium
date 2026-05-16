@@ -1,6 +1,7 @@
 import { motion } from 'motion/react';
 import { ArrowRight, Shield, Zap, Target, ArrowUpRight, BookOpen, ChevronRight, Activity } from 'lucide-react';
 import { TOTAL_PEPTIDES } from '../constants';
+import { PeptiumLogo } from './Logo';
 
 interface HeroProps {
   setView: (view: any) => void;
@@ -22,6 +23,14 @@ export default function Hero({ setView, isPremium }: HeroProps) {
             transition={{ duration: 0.6 }}
           >
             <div className="flex flex-col items-center">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8, filter: "blur(10px)" }}
+                animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+                className="mb-8"
+              >
+                <PeptiumLogo className="w-24 h-24 md:w-32 md:h-32 drop-shadow-[0_0_20px_rgba(0,229,255,0.4)]" glowing />
+              </motion.div>
               <motion.div
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}

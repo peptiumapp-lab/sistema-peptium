@@ -11,6 +11,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { WHATSAPP_LINK, INSTAGRAM_HANDLE, INSTAGRAM_LINK, SITE_URL, SITE_LINK } from '../constants';
 import type { View } from '../App';
 import { useAuth } from '../context/AuthContext';
+import { PeptiumLogo } from './Logo';
 import { signInWithGoogle, logout } from '../lib/firebase';
 
 interface LayoutProps {
@@ -88,11 +89,12 @@ export default function Layout({ children, currentView, setCurrentView, theme, s
             className="flex items-center gap-2 cursor-pointer group"
             onClick={() => setCurrentView('home')}
           >
-            <div className="w-6 h-6 rounded-md bg-accent/10 border border-accent/20 flex items-center justify-center text-accent shadow-[0_0_10px_rgba(0,112,243,0.1)]">
-              <Zap size={12} fill="currentColor" fillOpacity={0.1} />
-            </div>
-            <span className="font-sans font-black text-[12px] tracking-tighter text-secondary uppercase italic leading-none">
-              PEPTIUM<span className="text-accent"> PRIME</span>
+            <PeptiumLogo className="w-12 h-12" glowing />
+            <span className="font-sans font-black text-[12px] tracking-widest text-[#00E5FF] uppercase leading-none drop-shadow-[0_0_8px_rgba(0,229,255,0.4)]">
+              PEPTIUM
+            </span>
+            <span className="font-sans font-bold text-[12px] tracking-[0.3em] text-white uppercase italic leading-none opacity-90">
+              PRIME
             </span>
           </span>
         </div>
@@ -199,11 +201,12 @@ export default function Layout({ children, currentView, setCurrentView, theme, s
             className="flex items-center gap-2 cursor-pointer group"
             onClick={() => setCurrentView('home')}
           >
-            <div className="w-7 h-7 rounded-lg bg-accent/10 border border-accent/20 flex items-center justify-center text-accent">
-              <Zap size={14} fill="currentColor" fillOpacity={0.1} />
-            </div>
-            <span className="font-sans font-black text-[12px] tracking-tighter text-secondary uppercase italic">
-              PEPTIUM<span className="text-accent"> PRIME</span>
+            <PeptiumLogo className="w-12 h-12" glowing />
+            <span className="font-sans font-black text-[14px] tracking-widest text-[#00E5FF] uppercase drop-shadow-[0_0_8px_rgba(0,229,255,0.4)]">
+              PEPTIUM
+            </span>
+            <span className="font-sans font-bold text-[14px] tracking-[0.3em] text-white uppercase italic opacity-90">
+              PRIME
             </span>
           </span>
           <div className="flex items-center gap-2">
@@ -242,11 +245,12 @@ export default function Layout({ children, currentView, setCurrentView, theme, s
             >
               <div className="p-5 flex justify-between items-center border-b border-secondary/5">
                 <span className="flex items-center gap-2 cursor-pointer group">
-                  <div className="w-7 h-7 rounded-lg bg-accent/10 border border-accent/20 flex items-center justify-center text-accent">
-                    <Zap size={14} fill="currentColor" fillOpacity={0.1} />
-                  </div>
-                  <span className="font-sans font-black text-[13px] tracking-tighter text-secondary uppercase italic">
-                    PEPTIUM<span className="text-accent"> PRIME</span>
+                  <PeptiumLogo className="w-12 h-12" glowing />
+                  <span className="font-sans font-black text-[14px] tracking-widest text-[#00E5FF] uppercase drop-shadow-[0_0_8px_rgba(0,229,255,0.4)]">
+                    PEPTIUM
+                  </span>
+                  <span className="font-sans font-bold text-[14px] tracking-[0.3em] text-white uppercase italic opacity-90">
+                    PRIME
                   </span>
                 </span>
                 <button onClick={() => setIsSidebarOpen(false)} className="text-secondary/40 hover:text-accent transition-colors"><X size={18} /></button>

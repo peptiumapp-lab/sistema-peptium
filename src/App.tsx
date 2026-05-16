@@ -18,6 +18,7 @@ import WhatsAppButton from './components/WhatsAppButton';
 import SalesPage from './components/SalesPage';
 import SynergySection from './components/SynergySection';
 import PeptideDetailModal from './components/library/PeptideDetailModal';
+import { PeptiumLogo } from './components/Logo';
 import { PROTOCOLS, WHATSAPP_LINK, TOTAL_PEPTIDES, INSTAGRAM_LINK, SITE_LINK } from './constants';
 import { PeptideDossier } from './types';
 import { Shield, Truck, CreditCard, Activity, CheckCircle2, ArrowUpRight, Star, Zap, MessageCircle, ChevronRight, ShieldAlert, X, Hexagon, Plus, GraduationCap, Microscope, BookOpen, Instagram, Globe } from 'lucide-react';
@@ -147,7 +148,7 @@ function AppContent() {
                       setCurrentView('library');
                       window.scrollTo(0, 0);
                     }}
-                    className="group relative px-10 py-4 bg-accent text-black rounded-xl font-black text-[10px] uppercase tracking-[0.3em] hover:bg-white transition-all shadow-[0_0_30px_rgba(191,255,0,0.15)] hover:shadow-[0_0_50px_rgba(255,255,255,0.1)] overflow-hidden"
+                    className="group relative px-10 py-4 bg-accent text-black rounded-xl font-black text-[10px] uppercase tracking-[0.3em] hover:bg-white transition-all shadow-[0_0_30px_rgba(0,229,255,0.15)] hover:shadow-[0_0_50px_rgba(255,255,255,0.1)] overflow-hidden"
                   >
                     <span className="relative z-10">Explorar Catálogo Completo</span>
                     <div className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
@@ -209,8 +210,8 @@ function AppContent() {
               "COMUNIDADE: 742 BIOHACKERS ATIVOS"
             ].map((text, i) => (
               <div key={i} className="flex items-center gap-3">
-                <div className="w-1 h-1 rounded-full bg-accent shadow-[0_0_8px_rgba(191,255,0,0.6)] animate-pulse" />
-                <span className="text-[9px] font-black text-white/30 uppercase tracking-[0.3em] font-sans italic">{text}</span>
+                <div className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-accent shadow-[0_0_8px_rgba(0,229,255,0.6)] animate-pulse" />
+                <span className="text-sm md:text-base font-black text-white uppercase tracking-[0.2em] font-sans italic">{text}</span>
               </div>
             ))}
           </motion.div>
@@ -234,10 +235,16 @@ function AppContent() {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
             <div className="col-span-2 space-y-6">
               <span 
-                className="text-xl font-sans font-extrabold tracking-tighter text-secondary block uppercase cursor-pointer"
+                className="flex items-center gap-2 cursor-pointer group"
                 onClick={() => setCurrentView('home')}
               >
-                PEPTIUM<span className="text-accent"> PRIME</span>
+                <PeptiumLogo className="w-12 h-12" glowing />
+                <span className="font-sans font-black text-[20px] tracking-widest text-[#00E5FF] uppercase drop-shadow-[0_0_8px_rgba(0,229,255,0.4)]">
+                  PEPTIUM
+                </span>
+                <span className="font-sans font-bold text-[20px] tracking-[0.3em] text-white uppercase italic opacity-90">
+                  PRIME
+                </span>
               </span>
               <p className="text-muted max-w-sm text-[11px] leading-relaxed font-medium opacity-60">
                 A maior autoridade mundial em ciência e protocolos de peptídeos. 
