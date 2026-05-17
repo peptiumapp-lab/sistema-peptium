@@ -18,9 +18,7 @@ async function startServer() {
   
   // 1. Logging
   app.use((req, res, next) => {
-    if (req.url.startsWith('/api')) {
-      console.log(`[API REQUEST] ${req.method} ${req.url}`);
-    }
+    console.log(`[API REQUEST] ${req.method} ${req.url}`);
     next();
   });
 
@@ -31,9 +29,11 @@ async function startServer() {
 
   // 3. Stripe mounting - explicit
   app.use("/api/stripe", stripeRouter);
+  console.log('[SERVER] Stripe router mounted at /api/stripe');
 
   // 4. Analysis
   app.use("/api/analyze-stack", express.json(), stackAnalysisRouter);
+  console.log('[SERVER] Stack analysis router mounted at /api/analyze-stack');
 
   // 6. Debug route
   app.get("/api-routes", (req, res) => {
