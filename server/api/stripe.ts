@@ -52,6 +52,8 @@ const PLAN_PRICE_IDS: Record<string, string> = {
 };
 
 router.post('/create-checkout-session', async (req: Request, res: Response) => {
+  console.log('--- STRIPE CHECKOUT REQUEST RECEIVED ---');
+  console.log('Body:', JSON.stringify(req.body));
   try {
     const { planName, userId, userEmail } = req.body;
     

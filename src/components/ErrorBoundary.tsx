@@ -9,26 +9,24 @@ interface State {
   error: Error | null;
 }
 
-class ErrorBoundary extends React.Component<any, any> {
-  constructor(props: any) {
+class ErrorBoundary extends Component<Props, State> {
+  constructor(props: Props) {
     super(props);
-    // @ts-ignore
     this.state = {
       hasError: false,
       error: null
     };
   }
 
-  public static getDerivedStateFromError(error: Error) {
+  public static getDerivedStateFromError(error: Error): State {
     return { hasError: true, error };
   }
 
-  public componentDidCatch(error: Error, errorInfo: any) {
+  public componentDidCatch(error: Error, errorInfo: ErrorInfo) {
     console.error('Uncaught error:', error, errorInfo);
   }
 
   public render() {
-    // @ts-ignore
     if (this.state.hasError) {
       return (
         <div className="min-h-[400px] flex flex-col items-center justify-center p-8 text-center bg-black/40 backdrop-blur-xl border border-red-500/20 rounded-[32px] m-4">
@@ -41,7 +39,6 @@ class ErrorBoundary extends React.Component<any, any> {
           </p>
           <div className="bg-red-500/5 p-4 rounded-xl border border-red-500/10 mb-8 w-full max-w-lg overflow-auto">
             <code className="text-[10px] text-red-400 font-mono break-all">
-              {/* @ts-ignore */}
               {this.state.error?.toString()}
             </code>
           </div>
@@ -55,7 +52,6 @@ class ErrorBoundary extends React.Component<any, any> {
       );
     }
 
-    // @ts-ignore
     return this.props.children;
   }
 }

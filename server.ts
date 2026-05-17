@@ -8,15 +8,16 @@ async function startServer() {
   const app = express();
   const PORT = 3000;
 
-  // IMPORTANT: Webhook route must come BEFORE express.json() if it handles raw body
-  // However, I used express.raw in the router itself. 
-  // To be safe and clean, let's mount stripe separately.
-  app.use("/api/stripe", stripeRouter);
-
   app.use(express.json());
 
   // API Routes
+  app.use("/api/stripe", stripeRouter);
   app.use("/api", stackAnalysisRouter);
+
+  // Health check
+  app.get("/api/health", (req, res) => {
+    res.json({ status: "ok", timestamp: new Date().toISOString() });
+  });
 
   // Vite integration
   if (process.env.NODE_ENV !== "production") {
