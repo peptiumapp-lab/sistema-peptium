@@ -15,6 +15,7 @@ async function startServer() {
   });
 
   // API ROUTES
+  app.use(express.json());
   
   // 1. Logging
   app.use((req, res, next) => {
@@ -28,7 +29,7 @@ async function startServer() {
   });
 
   // Explicit route definition for testing (bypassing router)
-  app.post("/api/stripe/create-checkout-session", express.json(), (req, res) => {
+  app.post("/api/stripe/create-checkout-session-test", (req, res) => {
     console.log('[DEBUG] Direct route reached');
     res.json({ success: true, message: 'Direct route hit' });
   });
@@ -38,7 +39,6 @@ async function startServer() {
   console.log('[SERVER] Stripe router mounted at /api/stripe');
 
   // 4. Analysis
-  app.use(express.json());
   app.use("/api/analyze-stack", stackAnalysisRouter);
   console.log('[SERVER] Stack analysis router mounted at /api/analyze-stack');
 

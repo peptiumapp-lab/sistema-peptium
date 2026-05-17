@@ -6,6 +6,11 @@ import fs from 'fs';
 
 const router = express.Router();
 
+router.use((req, res, next) => {
+  console.log(`[STRIPE ROUTER] ${req.method} ${req.originalUrl}`);
+  next();
+});
+
 router.use(express.json());
 
 console.log('[STRIPE] Router module loaded');
@@ -60,7 +65,8 @@ const PLAN_PRICE_IDS: Record<string, string> = {
   'Pro Anual': process.env.STRIPE_PRICE_ANNUAL || 'price_annual_id',
 };
 
-router.post('/create-checkout-session', express.json(), async (req: Request, res: Response) => {
+router.post('/create-checkout-session', async (req: Request, res: Response) => {
+
   console.log('--- STRIPE CHECKOUT REQUEST RECEIVED ---');
   console.log('Path:', req.path);
   console.log('Body:', JSON.stringify(req.body));
