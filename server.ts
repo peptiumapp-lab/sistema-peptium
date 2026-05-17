@@ -35,7 +35,11 @@ async function startServer() {
   });
 
   // 3. Stripe mounting - properly mount the router
-  app.use("/api/stripe", stripeRouter);
+  console.log('[SERVER] Preparing to mount Stripe router');
+  app.use("/api/stripe", (req, res, next) => {
+    console.log('[SERVER] Stripe middleware reached');
+    next();
+  }, stripeRouter);
   console.log('[SERVER] Stripe router mounted at /api/stripe');
 
   // 4. Analysis
