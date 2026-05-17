@@ -27,15 +27,26 @@ async function startServer() {
     res.json({ status: "ok", timestamp: new Date().toISOString() });
   });
 
+  // Explicit route definition for testing (bypassing router)
+  app.post("/api/stripe/create-checkout-session", express.json(), (req, res) => {
+    console.log('[DEBUG] Direct route reached');
+    res.json({ success: true, message: 'Direct route hit' });
+  });
+
   // 3. Stripe mounting - explicit
   app.use("/api/stripe", stripeRouter);
   console.log('[SERVER] Stripe router mounted at /api/stripe');
 
   // 4. Analysis
-  app.use("/api/analyze-stack", express.json(), stackAnalysisRouter);
+  app.use(express.json());
+  app.use("/api/analyze-stack", stackAnalysisRouter);
   console.log('[SERVER] Stack analysis router mounted at /api/analyze-stack');
 
   // 6. Debug route
+  app.get("/api/test-direct", (req, res) => {
+    res.json({ success: true });
+  });
+  
   app.get("/api-routes", (req, res) => {
     const routes = [];
     app._router.stack.forEach((middleware) => {
