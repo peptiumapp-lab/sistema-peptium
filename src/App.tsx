@@ -40,6 +40,14 @@ function AppContent() {
   const [selectedSynergyIds, setSelectedSynergyIds] = useState<string[]>([]);
   const [legalModalType, setLegalModalType] = useState<'termos' | 'privacidade' | 'disclaimer' | null>(null);
   const { user, isPro: isPremium, loading: authLoading } = useAuth();
+  const [apiStatus, setApiStatus] = useState<string>('checking...');
+
+  useEffect(() => {
+    fetch('/api/health')
+      .then(res => res.json())
+      .then(data => setApiStatus(data.status === 'ok' ? 'Online' : 'Error'))
+      .catch(() => setApiStatus('Offline (404/Refused)'));
+  }, []);
 
   useEffect(() => {
     handleRedirectResult();
@@ -383,9 +391,16 @@ function AppContent() {
               <p className="text-[8px] font-bold text-secondary/20 uppercase tracking-widest">
                 © 2026 Peptium Prime. Scientific Research Purpose Only.
               </p>
-              <p className="text-[6px] font-black text-accent/20 uppercase tracking-[0.3em]">
-                Build v5.0.2-Prime | API Active Check
-              </p>
+              <div className="flex items-center gap-2">
+                <p className="text-[6px] font-black text-accent/20 uppercase tracking-[0.3em]">
+                  Build v5.0.3-Prime | Status:
+                </p>
+                <span className={`text-[6px] font-black uppercase tracking-widest ${
+                  apiStatus === 'Online' ? 'text-accent' : 'text-red-500'
+                }`}>
+                  {apiStatus}
+                </span>
+              </div>
             </div>
             <div className="flex gap-12 grayscale opacity-30">
                <span className="text-xs font-sans font-bold text-secondary">The Lancet</span>

@@ -8,28 +8,38 @@ async function startServer() {
   const app = express();
   const PORT = 3000;
 
-  // Logger middleware for API routes
-  app.use("/api", (req, res, next) => {
-    console.log(`[API REQUEST] ${req.method} ${req.url}`);
+  // Combined API Router
+  const apiRouter = express.Router();
+
+  // Logger middleware for API
+  apiRouter.use((req, res, next) => {
+    console.log(`[API] ${req.method} ${req.url}`);
     next();
   });
 
-  // API Routes - IMPORTANT: mount stripe BEFORE global express.json() 
-  // because the webhook needs raw body
-  app.use("/api/stripe", stripeRouter);
-
-  app.use(express.json());
-
-  app.use("/api", stackAnalysisRouter);
-
-  // Health check
-  app.get("/api/health", (req, res) => {
+  // Health check route
+  apiRouter.get("/health", (req, res) => {
     res.json({ 
       status: "ok", 
       timestamp: new Date().toISOString(),
       env: process.env.NODE_ENV,
-      stripeConfigured: !!process.env.STRIPE_SECRET_KEY
+      stripe: !!process.env.STRIPE_SECRET_KEY
     });
+  });
+
+  // Stripe routes - stripeRouter handles its own body parsing (json/raw)
+  apiRouter.use("/stripe", stripeRouter);
+
+  // Other API routes - need JSON parsing
+  apiRouter.use(express.json());
+  apiRouter.use("/", stackAnalysisRouter);
+
+  // Mount the API
+  app.use("/api", apiRouter);
+
+  // Diagnostic route
+  app.get("/api-debug", (req, res) => {
+    res.json({ message: "API Mount point reached", path: req.path });
   });
 
   // Vite integration
