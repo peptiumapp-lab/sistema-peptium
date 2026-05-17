@@ -85,6 +85,12 @@ async function startServer() {
   app.listen(PORT, "0.0.0.0", () => {
     console.log(`Server running on http://localhost:${PORT}`);
   });
+
+  // Catch-all to log 404s
+  app.use((req, res, next) => {
+    console.log(`[404 NOT FOUND] ${req.method} ${req.url}`);
+    res.status(404).send('Not Found');
+  });
 }
 
 startServer();
