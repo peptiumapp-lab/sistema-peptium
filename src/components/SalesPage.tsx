@@ -1,19 +1,58 @@
 import React, { useEffect } from 'react';
 import { motion } from 'motion/react';
-import { Shield, Activity, CheckCircle2, ArrowUpRight, Star, Zap, Plus, Hexagon, ShieldAlert, ChevronRight, Beaker, Apple, Target, Users, BookOpen, ArrowLeft, Microscope } from 'lucide-react';
+import { Shield, Activity, CheckCircle2, ArrowUpRight, Star, Zap, Plus, Hexagon, ShieldAlert, ChevronRight, Beaker, Apple, Target, Users, BookOpen, ArrowLeft, Microscope, Check } from 'lucide-react';
 import { SUPPORT_LINK, PROTOCOLS, TOTAL_PEPTIDES, SYNERGY_PROTOCOLS } from '../constants';
 import { View } from '../App';
 import ProtocolCard from './ProtocolCard';
 import AtlasMatch from './AtlasMatch';
+import { useAuth } from '../contexts/AuthContext';
+import { signInWithGoogle } from '../lib/firebase';
 
 interface SalesPageProps {
   setView: (view: View) => void;
 }
 
 export default function SalesPage({ setView }: SalesPageProps) {
+  const { user, isPro } = useAuth();
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  const handlePurchase = async (planName: string) => {
+    if (!user) {
+      await signInWithGoogle();
+      return;
+    }
+    
+    if (isPro) {
+      alert('Você já é um membro Prime!');
+      return;
+    }
+
+    try {
+      const response = await fetch('/api/stripe/create-checkout-session', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          planName: planName,
+          userId: user.uid,
+          userEmail: user.email,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data.url) {
+        window.location.href = data.url;
+      } else {
+        throw new Error(data.error || 'Falha ao criar sessão de checkout');
+      }
+    } catch (error: any) {
+      console.error('Erro no checkout:', error);
+      alert(`Erro: ${error.message}`);
+    }
+  };
 
   const protocolsToShow = SYNERGY_PROTOCOLS.slice(0, 8);
   const remainingCount = SYNERGY_PROTOCOLS.length - 8;
@@ -489,9 +528,12 @@ export default function SalesPage({ setView }: SalesPageProps) {
                     </li>
                   ))}
                 </ul>
-                <a href={SUPPORT_LINK} className="py-5 bg-white/5 border border-white/10 rounded-2xl text-[10px] font-black text-white text-center uppercase tracking-[0.3em] hover:bg-white/10 transition-all">
-                  Assinar Agora
-                </a>
+                <button 
+                  onClick={() => handlePurchase('Pro Mensal')}
+                  className="w-full py-5 bg-white/5 border border-white/10 rounded-2xl text-[10px] font-black text-white text-center uppercase tracking-[0.3em] hover:bg-white/10 transition-all"
+                >
+                  {isPro ? 'Plano Ativo' : user ? 'Assinar Agora' : 'Entrar para Assinar'}
+                </button>
               </div>
 
               {/* PRO ANUAL */}
@@ -515,9 +557,12 @@ export default function SalesPage({ setView }: SalesPageProps) {
                     </li>
                   ))}
                 </ul>
-                <a href={SUPPORT_LINK} className="py-7 bg-accent text-black rounded-[20px] text-[12px] font-black text-center uppercase tracking-[0.4em] shadow-xl hover:scale-[1.02] active:scale-95 transition-all">
-                  QUERO O ANUAL
-                </a>
+                <button 
+                  onClick={() => handlePurchase('Pro Anual')}
+                  className="w-full py-7 bg-accent text-black rounded-[20px] text-[12px] font-black text-center uppercase tracking-[0.4em] shadow-xl hover:scale-[1.02] active:scale-95 transition-all"
+                >
+                  {isPro ? 'Plano Ativo' : user ? 'QUERO O ANUAL' : 'Entrar para Assinar'}
+                </button>
               </div>
             </div>
           </div>

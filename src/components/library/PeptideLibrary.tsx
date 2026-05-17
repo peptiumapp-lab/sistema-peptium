@@ -125,21 +125,23 @@ export default function PeptideLibrary({ setView, isPremium }: PeptideLibraryPro
                   <img src={protocol.image} alt={protocol.name} className={`w-full h-full object-cover grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-60 transition-all duration-700 ${isBlurred ? 'blur-[8px]' : 'blur-[2px] group-hover:blur-0'}`} />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#080808] to-transparent" />
                   
-                  {/* Access Badge */}
-                  <div className="absolute top-3 left-3 flex gap-2">
-                    <span className="px-2 py-0.5 bg-black/50 text-white/60 rounded-full text-[7px] font-black uppercase tracking-widest border border-white/10 backdrop-blur-md">
-                      {protocol.tag.split(' ')[0]}
-                    </span>
+                  {/* Access Badge Container */}
+                  <div className="absolute top-3 left-3 z-20 flex gap-2">
                     {level === 'free' && (
-                        <span className="px-2 py-0.5 bg-green-500 text-black rounded-full text-[7px] font-black uppercase tracking-widest">
+                        <span className="px-2 py-0.5 bg-green-500 text-black rounded-full text-[7px] font-black uppercase tracking-widest shadow-lg">
                             FREE
                         </span>
                     )}
                     {(isProLocked || isBlurred) && (
-                        <span className="px-2 py-0.5 bg-accent text-black rounded-full text-[7px] font-black uppercase tracking-widest flex items-center gap-1">
+                        <span className="px-2 py-0.5 bg-accent text-black rounded-full text-[7px] font-black uppercase tracking-widest flex items-center gap-1 shadow-lg">
                             <Lock size={8} /> PRO
                         </span>
                     )}
+                  </div>
+                  
+                  {/* Category Badge - Moved to bottom-right of image to avoid overlap */}
+                  <div className="absolute bottom-3 right-3 z-20 px-2 py-0.5 bg-black/50 text-white/60 rounded-full text-[7px] font-black uppercase tracking-widest border border-white/10 backdrop-blur-md">
+                    {protocol.tag.split(' ')[0]}
                   </div>
                 </div>
                 

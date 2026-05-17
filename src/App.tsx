@@ -26,7 +26,7 @@ import { PeptideDossier } from './types';
 import { Shield, Truck, CreditCard, Activity, CheckCircle2, ArrowUpRight, Star, Zap, ChevronRight, ShieldAlert, X, Hexagon, Plus, GraduationCap, Microscope, BookOpen, Instagram, Globe, Mail, MapPin, Lock } from 'lucide-react';
 
 import { useAuth } from './contexts/AuthContext';
-import { signInWithGoogle, logout, upgradeToPro } from './lib/firebase';
+import { signInWithGoogle, logout, upgradeToPro, handleRedirectResult } from './lib/firebase';
 import { auditInventory } from './services/atlasAuditor';
 
 export type View = 'home' | 'library' | 'calculator' | 'quiz' | 'stacks' | 'interactions' | 'my-protocols' | 'plans' | 'dossier' | 'guide' | 'synergies';
@@ -39,6 +39,24 @@ function AppContent() {
   const [selectedSynergyIds, setSelectedSynergyIds] = useState<string[]>([]);
   const [legalModalType, setLegalModalType] = useState<'termos' | 'privacidade' | 'disclaimer' | null>(null);
   const { user, isPro: isPremium, loading: authLoading } = useAuth();
+
+  useEffect(() => {
+    handleRedirectResult();
+  }, []);
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const paymentStatus = params.get('payment_status');
+    
+    if (paymentStatus === 'success') {
+      alert('Pagamento processado! Seu acesso Prime será ativado em alguns instantes.');
+      // Remove query param without reload
+      window.history.replaceState({}, document.title, window.location.pathname);
+    } else if (paymentStatus === 'cancel') {
+      alert('O checkout foi cancelado.');
+      window.history.replaceState({}, document.title, window.location.pathname);
+    }
+  }, []);
 
   const auditResult = auditInventory(userPeptides);
 
@@ -184,13 +202,14 @@ function AppContent() {
                                 setView={setCurrentView}
                                 onClick={() => isLocked ? setCurrentView('plans') : setSelectedPeptide(protocol)}
                             />
-                            <div className="absolute top-3 left-3 z-30 flex gap-2">
+                            {/* Status Badge overlay for the Home page grid */}
+                            <div className="absolute top-3 left-3 z-30 flex gap-2 pointer-events-none">
                                 {i < 4 ? (
-                                    <div className="px-2 py-0.5 bg-green-500 text-black rounded-full text-[7px] font-black uppercase tracking-widest shadow-lg">
+                                    <div className="px-2 py-0.5 bg-green-500 text-black rounded-full text-[7px] font-black uppercase tracking-widest shadow-lg border border-white/10">
                                         FREE
                                     </div>
                                 ) : (
-                                    <div className="px-2 py-0.5 bg-accent text-black rounded-full text-[7px] font-black uppercase tracking-widest flex items-center gap-1 shadow-lg">
+                                    <div className="px-2 py-0.5 bg-accent text-black rounded-full text-[7px] font-black uppercase tracking-widest flex items-center gap-1 shadow-lg border border-white/10">
                                         <Lock size={8} /> PRO
                                     </div>
                                 )}

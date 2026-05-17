@@ -42,11 +42,26 @@ export default function Pricing() {
     }
 
     try {
-      await upgradeToPro(user.uid);
-      alert(`Sucesso! Seu acesso ${planName} foi liberado.`);
-    } catch (error) {
+      const response = await fetch('/api/stripe/create-checkout-session', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          planName: planName,
+          userId: user.uid,
+          userEmail: user.email,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data.url) {
+        window.location.href = data.url;
+      } else {
+        throw new Error(data.error || 'Falha ao criar sessão de checkout');
+      }
+    } catch (error: any) {
       console.error('Erro no checkout:', error);
-      alert('Erro ao processar ativação. Tente novamente.');
+      alert(`Erro: ${error.message}`);
     }
   };
 

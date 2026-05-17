@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { getAuth, GoogleAuthProvider, signInWithPopup, signOut } from 'firebase/auth';
+import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithRedirect, signOut, getRedirectResult } from 'firebase/auth';
 import { getFirestore, doc, getDoc, setDoc, updateDoc, serverTimestamp } from 'firebase/firestore';
 import firebaseConfig from '../../firebase-applet-config.json';
 
@@ -9,9 +9,24 @@ export const auth = getAuth(app);
 export const googleProvider = new GoogleAuthProvider();
 
 export async function signInWithGoogle() {
-  const result = await signInWithPopup(auth, googleProvider);
-  const user = result.user;
+  const isIframe = window.self !== window.top;
   
+  try {
+    if (isIframe) {
+      console.log('Detectado ambiente iframe, usando signInWithRedirect');
+      await signInWithRedirect(auth, googleProvider);
+    } else {
+      const result = await signInWithPopup(auth, googleProvider);
+      const user = result.user;
+      await syncUser(user);
+    }
+  } catch (error) {
+    console.error('Erro no login:', error);
+    throw error;
+  }
+}
+
+async function syncUser(user: any) {
   // Create or update user profile
   const userDoc = doc(db, 'users', user.uid);
   const snap = await getDoc(userDoc);
@@ -25,6 +40,17 @@ export async function signInWithGoogle() {
       createdAt: serverTimestamp(),
       updatedAt: serverTimestamp()
     });
+  }
+}
+
+export async function handleRedirectResult() {
+  try {
+    const result = await getRedirectResult(auth);
+    if (result) {
+      await syncUser(result.user);
+    }
+  } catch (error) {
+    console.error('Erro ao processar redirecionamento:', error);
   }
 }
 
