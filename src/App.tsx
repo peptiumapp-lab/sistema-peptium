@@ -300,9 +300,9 @@ function AppContent() {
           </motion.div>
         </div>
 
-        <Layout currentView={currentView} setCurrentView={setCurrentView} theme={theme} setTheme={setTheme} isPremium={isPremium}>
-          <AnimatePresence mode="wait">
-            <ErrorBoundary>
+        <ErrorBoundary>
+          <Layout currentView={currentView} setCurrentView={setCurrentView} theme={theme} setTheme={setTheme} isPremium={isPremium}>
+            <AnimatePresence mode="wait">
               <motion.div
                 key={currentView}
                 initial={{ opacity: 0, y: 20 }}
@@ -312,12 +312,11 @@ function AppContent() {
               >
                 {renderView()}
               </motion.div>
-            </ErrorBoundary>
-          </AnimatePresence>
-          
-          <SupportButton />
-          
-          <footer className="py-16 bg-primary border-t border-secondary/5 relative overflow-hidden">
+            </AnimatePresence>
+            
+            <SupportButton />
+            
+            <footer className="py-16 bg-primary border-t border-secondary/5 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
             <div className="col-span-2 space-y-6">
@@ -380,9 +379,14 @@ function AppContent() {
           </div>
           
           <div className="flex flex-col md:flex-row justify-between items-center gap-6 pt-10 border-t border-secondary/5">
-            <p className="text-[8px] font-bold text-secondary/20 uppercase tracking-widest">
-              © 2026 Peptium Prime. Scientific Research Purpose Only.
-            </p>
+            <div className="flex flex-col gap-1">
+              <p className="text-[8px] font-bold text-secondary/20 uppercase tracking-widest">
+                © 2026 Peptium Prime. Scientific Research Purpose Only.
+              </p>
+              <p className="text-[6px] font-black text-accent/20 uppercase tracking-[0.3em]">
+                Build v5.0.2-Prime | API Active Check
+              </p>
+            </div>
             <div className="flex gap-12 grayscale opacity-30">
                <span className="text-xs font-sans font-bold text-secondary">The Lancet</span>
                <span className="text-xs font-sans font-bold text-secondary">Nature</span>
@@ -403,8 +407,9 @@ function AppContent() {
 
       <LegalModal type={legalModalType} onClose={() => setLegalModalType(null)} />
       </Layout>
-    </div>
+    </ErrorBoundary>
   </div>
+</div>
   );
 }
 

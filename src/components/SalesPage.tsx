@@ -40,6 +40,10 @@ export default function SalesPage({ setView }: SalesPageProps) {
         }),
       });
 
+      if (response.status === 404) {
+        throw new Error('Servidor de API não encontrado (404). Verifique se a aplicação foi implantada corretamente com backend.');
+      }
+
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({}));
         throw new Error(errorData.details || errorData.error || 'Erro na comunicação com o servidor de pagamento.');

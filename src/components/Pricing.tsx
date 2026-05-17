@@ -52,6 +52,10 @@ export default function Pricing() {
         }),
       });
 
+      if (response.status === 404) {
+        throw new Error('Servidor de API não encontrado (404). Certifique-se de que o backend está rodando e o domínio está configurado.');
+      }
+
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({}));
         throw new Error(errorData.details || errorData.error || 'Erro na comunicação com o servidor de pagamento.');

@@ -51,7 +51,7 @@ const PLAN_PRICE_IDS: Record<string, string> = {
   'Pro Anual': process.env.STRIPE_PRICE_ANNUAL || 'price_annual_id',
 };
 
-router.post('/create-checkout-session', async (req: Request, res: Response) => {
+router.post('/create-checkout-session', express.json(), async (req: Request, res: Response) => {
   console.log('--- STRIPE CHECKOUT REQUEST RECEIVED ---');
   console.log('Body:', JSON.stringify(req.body));
   try {
@@ -110,6 +110,7 @@ router.post('/create-checkout-session', async (req: Request, res: Response) => {
 
 // Webhook listener
 router.post('/webhook', express.raw({ type: 'application/json' }), async (req: Request, res: Response) => {
+  console.log('--- STRIPE WEBHOOK RECEIVED ---');
   const stripe = getStripe();
   const sig = req.headers['stripe-signature'] as string;
   const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;

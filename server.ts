@@ -8,15 +8,28 @@ async function startServer() {
   const app = express();
   const PORT = 3000;
 
+  // Logger middleware for API routes
+  app.use("/api", (req, res, next) => {
+    console.log(`[API REQUEST] ${req.method} ${req.url}`);
+    next();
+  });
+
+  // API Routes - IMPORTANT: mount stripe BEFORE global express.json() 
+  // because the webhook needs raw body
+  app.use("/api/stripe", stripeRouter);
+
   app.use(express.json());
 
-  // API Routes
-  app.use("/api/stripe", stripeRouter);
   app.use("/api", stackAnalysisRouter);
 
   // Health check
   app.get("/api/health", (req, res) => {
-    res.json({ status: "ok", timestamp: new Date().toISOString() });
+    res.json({ 
+      status: "ok", 
+      timestamp: new Date().toISOString(),
+      env: process.env.NODE_ENV,
+      stripeConfigured: !!process.env.STRIPE_SECRET_KEY
+    });
   });
 
   // Vite integration
