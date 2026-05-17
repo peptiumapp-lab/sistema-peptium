@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import Layout from './components/Layout';
+import ErrorBoundary from './components/ErrorBoundary';
 import Hero from './components/Hero';
 import StartHere from './components/StartHere';
 import ProtocolCard from './components/ProtocolCard';
@@ -301,15 +302,17 @@ function AppContent() {
 
         <Layout currentView={currentView} setCurrentView={setCurrentView} theme={theme} setTheme={setTheme} isPremium={isPremium}>
           <AnimatePresence mode="wait">
-            <motion.div
-              key={currentView}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.3 }}
-            >
-              {renderView()}
-            </motion.div>
+            <ErrorBoundary>
+              <motion.div
+                key={currentView}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.3 }}
+              >
+                {renderView()}
+              </motion.div>
+            </ErrorBoundary>
           </AnimatePresence>
           
           <SupportButton />

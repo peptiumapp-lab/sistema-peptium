@@ -1,10 +1,9 @@
 import React, { useEffect } from 'react';
 import { motion } from 'motion/react';
-import { Shield, Activity, CheckCircle2, ArrowUpRight, Star, Zap, Plus, Hexagon, ShieldAlert, ChevronRight, Beaker, Apple, Target, Users, BookOpen, ArrowLeft, Microscope, Check } from 'lucide-react';
+import { Shield, Activity, CheckCircle2, ArrowUpRight, Star, Zap, Plus, Hexagon, ShieldAlert, ChevronRight, Beaker, Apple, Target, Users, BookOpen, ArrowLeft, Microscope, Check, Lock } from 'lucide-react';
 import { SUPPORT_LINK, PROTOCOLS, TOTAL_PEPTIDES, SYNERGY_PROTOCOLS } from '../constants';
 import { View } from '../App';
 import ProtocolCard from './ProtocolCard';
-import AtlasMatch from './AtlasMatch';
 import { useAuth } from '../contexts/AuthContext';
 import { signInWithGoogle } from '../lib/firebase';
 
@@ -41,6 +40,11 @@ export default function SalesPage({ setView }: SalesPageProps) {
         }),
       });
 
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.details || errorData.error || 'Erro na comunicação com o servidor de pagamento.');
+      }
+
       const data = await response.json();
 
       if (data.url) {
@@ -54,8 +58,8 @@ export default function SalesPage({ setView }: SalesPageProps) {
     }
   };
 
-  const protocolsToShow = SYNERGY_PROTOCOLS.slice(0, 8);
-  const remainingCount = SYNERGY_PROTOCOLS.length - 8;
+  const protocolsToShow = (SYNERGY_PROTOCOLS || []).slice(0, 8);
+  const remainingCount = (SYNERGY_PROTOCOLS?.length || 0) - 8;
 
   return (
     <div className="bg-primary selection:bg-accent selection:text-black min-h-screen">

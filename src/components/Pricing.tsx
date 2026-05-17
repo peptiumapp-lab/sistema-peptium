@@ -52,6 +52,11 @@ export default function Pricing() {
         }),
       });
 
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.details || errorData.error || 'Erro na comunicação com o servidor de pagamento.');
+      }
+
       const data = await response.json();
 
       if (data.url) {

@@ -147,7 +147,7 @@ export default function Layout({ children, currentView, setCurrentView, theme, s
                   <div className={`p-1.5 rounded-xl transition-all duration-300 ${
                     isActive ? 'bg-accent/20 text-accent shadow-[0_0_10px_rgba(0,229,255,0.2)]' : 'bg-white/5 text-white/40 group-hover:bg-white/10 group-hover:text-white/80'
                   }`}>
-                    {React.cloneElement(item.icon as React.ReactElement, { size: 16 })}
+                    {item.icon}
                   </div>
                   <span className="tracking-wide text-left">{item.label}</span>
                 </button>
@@ -182,7 +182,7 @@ export default function Layout({ children, currentView, setCurrentView, theme, s
                   <div className={`p-1.5 rounded-xl transition-all duration-300 ${
                     isActive ? 'bg-accent/20 text-accent shadow-[0_0_10px_rgba(0,229,255,0.2)]' : 'bg-white/5 text-white/40 group-hover:bg-white/10 group-hover:text-white/80'
                   }`}>
-                    {React.cloneElement(item.icon as React.ReactElement, { size: 16 })}
+                    {item.icon}
                   </div>
                   <span className="tracking-wide text-left">{item.label}</span>
                 </button>
@@ -206,7 +206,7 @@ export default function Layout({ children, currentView, setCurrentView, theme, s
                 <div className={`p-1.5 rounded-xl transition-all duration-300 ${
                   item.highlight ? 'bg-accent/20 text-accent' : 'bg-white/5 text-white/40 group-hover:bg-white/10 group-hover:text-white/80'
                 }`}>
-                  {React.cloneElement(item.icon as React.ReactElement, { size: 16 })}
+                  {item.icon}
                 </div>
                 <span className="tracking-wide">{item.label}</span>
               </button>
