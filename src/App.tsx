@@ -43,10 +43,26 @@ function AppContent() {
   const [apiStatus, setApiStatus] = useState<string>('checking...');
 
   useEffect(() => {
-    fetch('/api/health')
-      .then(res => res.json())
-      .then(data => setApiStatus(data.status === 'ok' ? 'Online' : 'Error'))
-      .catch(() => setApiStatus('Offline (404/Refused)'));
+    const checkApi = async () => {
+      try {
+        const start = Date.now();
+        const res = await fetch('/api/health');
+        const end = Date.now();
+        
+        if (res.ok) {
+          const data = await res.json();
+          setApiStatus(`Online (${end - start}ms)`);
+          console.log('✅ API Neural Activo:', data);
+        } else {
+          setApiStatus(`Error ${res.status}`);
+          console.error('❌ API Error:', res.status);
+        }
+      } catch (err) {
+        setApiStatus('Offline (404/Refused)');
+        console.error('❌ API Inalcanzable:', err);
+      }
+    };
+    checkApi();
   }, []);
 
   useEffect(() => {
@@ -396,7 +412,7 @@ function AppContent() {
                   Build v5.0.3-Prime | Status:
                 </p>
                 <span className={`text-[6px] font-black uppercase tracking-widest ${
-                  apiStatus === 'Online' ? 'text-accent' : 'text-red-500'
+                  apiStatus.startsWith('Online') ? 'text-accent' : 'text-red-500'
                 }`}>
                   {apiStatus}
                 </span>

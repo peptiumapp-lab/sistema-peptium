@@ -8,41 +8,44 @@ async function startServer() {
   const app = express();
   const PORT = 3000;
 
-  // Combined API Router
-  const apiRouter = express.Router();
-
-  // Logger middleware for API
-  apiRouter.use((req, res, next) => {
-    console.log(`[API] ${req.method} ${req.url}`);
+  // GLOBAL LOGGER
+  app.use((req, res, next) => {
+    console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
     next();
   });
 
-  // Health check route
-  apiRouter.get("/health", (req, res) => {
+  // API ROUTES
+  // 1. Stripe (handles its own body parsing)
+  app.use("/api/stripe", stripeRouter);
+
+  // 2. JSON Parser for other routes
+  app.use("/api", express.json());
+
+  // 3. Health check
+  app.get("/api/health", (req, res) => {
     res.json({ 
       status: "ok", 
       timestamp: new Date().toISOString(),
       env: process.env.NODE_ENV,
-      stripe: !!process.env.STRIPE_SECRET_KEY
+      stripe: !!process.env.STRIPE_SECRET_KEY,
+      gemini: !!process.env.GEMINI_API_KEY
     });
   });
 
-  // Stripe routes - stripeRouter handles its own body parsing (json/raw)
-  apiRouter.use("/stripe", stripeRouter);
+  // 4. Analysis
+  app.use("/api", stackAnalysisRouter);
 
-  // Other API routes - need JSON parsing
-  apiRouter.use(express.json());
-  apiRouter.use("/", stackAnalysisRouter);
+  // 5. Catch-all API
+  app.all("/api/*", (req, res) => {
+    res.status(404).json({ error: "Route not found", path: req.url });
+  });
 
-  // Mount the API
-  app.use("/api", apiRouter);
-
-  // Diagnostic route
+  // 6. Debug
   app.get("/api-debug", (req, res) => {
     res.json({ message: "API Mount point reached", path: req.path });
   });
 
-  // Vite integration
+  // VITE INTEGRATION
   if (process.env.NODE_ENV !== "production") {
     const vite = await createViteServer({
       server: { middlewareMode: true },
