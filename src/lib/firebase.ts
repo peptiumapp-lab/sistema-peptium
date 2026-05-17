@@ -20,8 +20,13 @@ export async function signInWithGoogle() {
       const user = result.user;
       await syncUser(user);
     }
-  } catch (error) {
+  } catch (error: any) {
     console.error('Erro no login:', error);
+    if (error.code === 'auth/unauthorized-domain') {
+      alert('Domínio não autorizado no Firebase. Por favor, adicione este endereço nas configurações de domínios autorizados do seu console Firebase.');
+    } else {
+      alert(`Erro no login: ${error.message}`);
+    }
     throw error;
   }
 }
