@@ -6,6 +6,13 @@ import fs from 'fs';
 
 const router = express.Router();
 
+console.log('[STRIPE] Router module loaded');
+
+// Test route
+router.get('/test', (req, res) => {
+  res.json({ message: 'Stripe router is reachable' });
+});
+
 // Load Firebase config for project ID
 const configPath = path.join(process.cwd(), 'firebase-applet-config.json');
 let projectId = '';

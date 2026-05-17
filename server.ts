@@ -15,44 +15,52 @@ async function startServer() {
   });
 
   // API ROUTES
-  // 1. Health check - HIGH PRIORITY
-  app.get("/api/health", (req, res) => {
-    console.log('[API] Health check requested');
-    res.json({ 
-      status: "ok", 
-      timestamp: new Date().toISOString(),
-      env: process.env.NODE_ENV,
-      stripe: !!process.env.STRIPE_SECRET_KEY,
-      gemini: !!process.env.GEMINI_API_KEY
-    });
+  const api = express.Router();
+
+  // 1. Logging for all API requests
+  api.use((req, res, next) => {
+    console.log(`[API REQUEST] ${req.method} ${req.url}`);
+    next();
   });
 
-  // 2. Stripe (handles its own body parsing)
-  app.use("/api/stripe", stripeRouter);
+  // 2. Health check
+  api.get("/health", (req, res) => {
+    res.json({ status: "ok", timestamp: new Date().toISOString() });
+  });
 
-  // 3. Middlewares for other API routes
-  app.use("/api", express.json());
+  // 3. Stripe mounting
+  api.use("/stripe", stripeRouter);
 
-  // 4. Analysis
-  app.use("/api", stackAnalysisRouter);
+  // 4. Other API Middlewares
+  api.use(express.json());
 
-  // 5. Catch-all for unknown /api routes
-  app.all("/api/*", (req, res) => {
+  // 5. Analysis
+  api.use("/", stackAnalysisRouter);
+
+  // 6. 404 for API
+  api.all("*", (req, res) => {
     console.warn(`[API 404] ${req.method} ${req.url}`);
-    res.status(404).json({ 
-      error: "API route not found", 
-      method: req.method,
-      path: req.url 
-    });
+    res.status(404).json({ error: "API Route Not Found" });
   });
+
+  // Mount the API router
+  app.use("/api", api);
 
   // 6. Debug route
-  app.get("/api-debug", (req, res) => {
-    res.json({ 
-      message: "API System Reachable", 
-      env: process.env.NODE_ENV,
-      headers: req.headers
+  app.get("/api-routes", (req, res) => {
+    const routes = [];
+    app._router.stack.forEach((middleware) => {
+      if (middleware.route) {
+        routes.push(middleware.route.path);
+      } else if (middleware.name === 'router') {
+        middleware.handle.stack.forEach((handler) => {
+          if (handler.route) {
+            routes.push(handler.route.path);
+          }
+        });
+      }
     });
+    res.json({ routes });
   });
 
   // VITE INTEGRATION

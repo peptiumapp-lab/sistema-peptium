@@ -42,12 +42,12 @@ export default function SalesPage({ setView }: SalesPageProps) {
 
       const contentType = response.headers.get('content-type');
       if (contentType && contentType.includes('text/html')) {
-        throw new Error('O servidor de API não foi encontrado (404). Verifique se o backend está configurado no domínio.');
+        throw new Error(`O servidor de API não foi encontrado (404) na URL: ${response.url}. O backend pode não estar rodando neste domínio.`);
       }
 
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({}));
-        throw new Error(errorData.details || errorData.error || `Erro HTTP ${response.status}`);
+        throw new Error(errorData.details || errorData.error || `Erro HTTP ${response.status} ao acessar ${response.url}`);
       }
 
       const data = await response.json();

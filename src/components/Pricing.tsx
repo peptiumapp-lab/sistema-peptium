@@ -54,12 +54,12 @@ export default function Pricing() {
 
       const contentType = response.headers.get('content-type');
       if (contentType && contentType.includes('text/html')) {
-        throw new Error('Servidor de API não encontrado (404). Verifique as configurações do domínio.');
+        throw new Error(`Servidor de API não encontrado (404) na URL: ${response.url}. O servidor retornou a página HTML principal em vez de uma resposta da API.`);
       }
 
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({}));
-        throw new Error(errorData.details || errorData.error || `Erro HTTP ${response.status}`);
+        throw new Error(errorData.details || errorData.error || `Erro HTTP ${response.status} ao acessar ${response.url}`);
       }
 
       const data = await response.json();
