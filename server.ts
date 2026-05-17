@@ -15,10 +15,9 @@ async function startServer() {
   });
 
   // API ROUTES
-  const apiRouter = express.Router();
-
-  // 1. Health check (at the top of /api)
-  apiRouter.get("/health", (req, res) => {
+  // 1. Health check - HIGH PRIORITY
+  app.get("/api/health", (req, res) => {
+    console.log('[API] Health check requested');
     res.json({ 
       status: "ok", 
       timestamp: new Date().toISOString(),
@@ -29,16 +28,16 @@ async function startServer() {
   });
 
   // 2. Stripe (handles its own body parsing)
-  apiRouter.use("/stripe", stripeRouter);
+  app.use("/api/stripe", stripeRouter);
 
   // 3. Middlewares for other API routes
-  apiRouter.use(express.json());
+  app.use("/api", express.json());
 
   // 4. Analysis
-  apiRouter.use("/", stackAnalysisRouter);
+  app.use("/api", stackAnalysisRouter);
 
-  // 5. Catch-all for /api
-  apiRouter.all("*", (req, res) => {
+  // 5. Catch-all for unknown /api routes
+  app.all("/api/*", (req, res) => {
     console.warn(`[API 404] ${req.method} ${req.url}`);
     res.status(404).json({ 
       error: "API route not found", 
@@ -47,14 +46,11 @@ async function startServer() {
     });
   });
 
-  // Mount the API router
-  app.use("/api", apiRouter);
-
-  // 6. Debug outside /api
+  // 6. Debug route
   app.get("/api-debug", (req, res) => {
     res.json({ 
-      message: "API Mount point reached", 
-      base: "/api",
+      message: "API System Reachable", 
+      env: process.env.NODE_ENV,
       headers: req.headers
     });
   });
