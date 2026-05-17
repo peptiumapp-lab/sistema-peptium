@@ -34,7 +34,7 @@ async function startServer() {
     res.json({ success: true, message: 'Direct route hit' });
   });
 
-  // 3. Stripe mounting - explicit
+  // 3. Stripe mounting - properly mount the router
   app.use("/api/stripe", stripeRouter);
   console.log('[SERVER] Stripe router mounted at /api/stripe');
 
