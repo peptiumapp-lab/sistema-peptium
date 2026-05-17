@@ -10,7 +10,9 @@ async function startServer() {
 
   // GLOBAL LOGGER
   app.use((req, res, next) => {
-    console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
+    if (!req.url.startsWith('/src/') && !req.url.startsWith('/@vite/')) {
+        console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
+    }
     next();
   });
 
@@ -19,7 +21,9 @@ async function startServer() {
   
   // 1. Logging
   app.use((req, res, next) => {
-    console.log(`[API REQUEST] ${req.method} ${req.url}`);
+    if (!req.url.startsWith('/src/') && !req.url.startsWith('/@vite/')) {
+      console.log(`[API REQUEST] ${req.method} ${req.url}`);
+    }
     next();
   });
 
@@ -28,18 +32,11 @@ async function startServer() {
     res.json({ status: "ok", timestamp: new Date().toISOString() });
   });
 
-  // Explicit route definition for testing (bypassing router)
-  app.post("/api/stripe/create-checkout-session-test", (req, res) => {
-    console.log('[DEBUG] Direct route reached');
-    res.json({ success: true, message: 'Direct route hit' });
-  });
-
-  // 3. Stripe mounting - properly mount the router
-  console.log('[SERVER] Preparing to mount Stripe router');
+  // 3. Stripe mounting
   app.use("/api/stripe", (req, res, next) => {
-    console.log('[SERVER] Stripe middleware reached');
+    console.log(`[DEBUG] Routers matching for ${req.url}`);
     next();
-  }, stripeRouter);
+  }, stripeRouter);                
   console.log('[SERVER] Stripe router mounted at /api/stripe');
 
   // 4. Analysis

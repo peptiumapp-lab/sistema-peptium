@@ -11,8 +11,6 @@ router.use((req, res, next) => {
   next();
 });
 
-router.use(express.json());
-
 console.log('[STRIPE] Router module loaded');
 
 // Test route
