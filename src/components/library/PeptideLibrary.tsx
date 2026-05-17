@@ -125,22 +125,30 @@ export default function PeptideLibrary({ setView, isPremium }: PeptideLibraryPro
                   <img src={protocol.image} alt={protocol.name} className={`w-full h-full object-cover grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-60 transition-all duration-700 ${isBlurred ? 'blur-[8px]' : 'blur-[2px] group-hover:blur-0'}`} />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#080808] to-transparent" />
                   
-                  {/* Access Badge Container */}
-                  <div className="absolute top-3 left-3 z-20 flex gap-2">
+                  {/* Access Badge - Top Left */}
+                  <div className="absolute top-3 left-3 z-30 flex gap-2 pointer-events-none">
                     {level === 'free' && (
-                        <span className="px-2 py-0.5 bg-green-500 text-black rounded-full text-[7px] font-black uppercase tracking-widest shadow-lg">
+                        <span className="px-2 py-0.5 bg-green-500 text-black rounded-full text-[7px] font-black uppercase tracking-widest shadow-lg border border-black/10">
                             FREE
                         </span>
                     )}
                     {(isProLocked || isBlurred) && (
-                        <span className="px-2 py-0.5 bg-accent text-black rounded-full text-[7px] font-black uppercase tracking-widest flex items-center gap-1 shadow-lg">
+                        <span className="px-2 py-0.5 bg-accent text-black rounded-full text-[7px] font-black uppercase tracking-widest flex items-center gap-1 shadow-lg border border-black/10">
                             <Lock size={8} /> PRO
                         </span>
                     )}
                   </div>
+
+                  {/* Prime Brand Badge - Top Right */}
+                  <div className="absolute top-3 right-3 flex gap-2 z-30 pointer-events-none">
+                    <div className="px-1.5 py-0.5 bg-black/40 backdrop-blur-md border border-white/10 rounded-full flex items-center gap-1">
+                      <Zap size={7} className="text-secondary/50" />
+                      <span className="text-[5px] font-black uppercase tracking-[0.2em] text-secondary/40">PRIME</span>
+                    </div>
+                  </div>
                   
-                  {/* Category Badge - Moved to bottom-right of image to avoid overlap */}
-                  <div className="absolute bottom-3 right-3 z-20 px-2 py-0.5 bg-black/50 text-white/60 rounded-full text-[7px] font-black uppercase tracking-widest border border-white/10 backdrop-blur-md">
+                  {/* Category Badge - Bottom Left */}
+                  <div className="absolute bottom-3 left-3 z-20 px-2 py-0.5 bg-black/50 text-white/60 rounded-full text-[7px] font-black uppercase tracking-widest border border-white/10 backdrop-blur-md">
                     {protocol.tag.split(' ')[0]}
                   </div>
                 </div>
