@@ -23,9 +23,9 @@ export async function signInWithGoogle() {
   } catch (error: any) {
     console.error('Erro no login:', error);
     if (error.code === 'auth/unauthorized-domain') {
-      alert('Domínio não autorizado no Firebase. Por favor, adicione este endereço nas configurações de domínios autorizados do seu console Firebase.');
+      alert(`Domínio NÃO AUTORIZADO no Firebase.\n\nComo resolver:\n1. Vá ao Console do Firebase (Authentication > Settings > Authorized Domains)\n2. Adicione "peptium.com.br"\n3. Adicione também o domínio do preview se necessário.\n\nSem isso, o login via Google não funcionará neste endereço.`);
     } else {
-      alert(`Erro no login: ${error.message}`);
+      alert(`Erro no login: ${error.message} (${error.code})`);
     }
     throw error;
   }

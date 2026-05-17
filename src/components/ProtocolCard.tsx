@@ -24,10 +24,10 @@ const ProtocolCard: React.FC<ProtocolCardProps> = ({ protocol, setView, onClick 
         <div className="absolute inset-0 bg-gradient-to-t from-[#080808] via-transparent to-transparent" />
         
         {/* Prime Brand Badge - Fixed position at top-right */}
-        <div className="absolute top-3 right-3 flex gap-2 z-20 pointer-events-none">
-           <div className="px-1.5 py-0.5 bg-black/40 backdrop-blur-md border border-white/10 rounded-full flex items-center gap-1">
-             <Zap size={7} className="text-secondary/50" />
-             <span className="text-[5px] font-black uppercase tracking-[0.2em] text-secondary/40">PRIME</span>
+        <div className="absolute top-2.5 right-2.5 flex gap-2 z-20 pointer-events-none">
+           <div className="px-1 py-0.5 bg-black/40 backdrop-blur-sm border border-white/5 rounded flex items-center gap-1">
+             <Zap size={6} className="text-secondary/30" />
+             <span className="text-[5px] font-black uppercase tracking-[0.1em] text-secondary/30">PRIME</span>
            </div>
         </div>
       </div>

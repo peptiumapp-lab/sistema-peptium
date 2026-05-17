@@ -203,14 +203,14 @@ function AppContent() {
                                 onClick={() => isLocked ? setCurrentView('plans') : setSelectedPeptide(protocol)}
                             />
                             {/* Status Badge overlay - positioned strictly left to avoid right-side brand badge */}
-                            <div className="absolute top-3 left-3 z-30 flex gap-2 pointer-events-none">
+                            <div className="absolute top-2.5 left-2.5 z-30 flex gap-1 pointer-events-none">
                                 {i < 4 ? (
-                                    <div className="px-2 py-0.5 bg-green-500 text-black rounded-full text-[7px] font-black uppercase tracking-widest shadow-lg border border-black/10">
+                                    <div className="px-1.5 py-0.5 bg-green-500/80 text-black rounded text-[6px] font-black uppercase tracking-wider shadow-lg">
                                         FREE
                                     </div>
                                 ) : (
-                                    <div className="px-2 py-0.5 bg-accent text-black rounded-full text-[7px] font-black uppercase tracking-widest flex items-center gap-1 shadow-lg border border-black/10">
-                                        <Lock size={8} /> PRO
+                                    <div className="px-1.5 py-0.5 bg-accent/80 text-black rounded text-[6px] font-black uppercase tracking-wider flex items-center gap-1 shadow-lg">
+                                        <Lock size={6} /> PRO
                                     </div>
                                 )}
                             </div>
