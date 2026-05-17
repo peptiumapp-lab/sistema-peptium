@@ -15,14 +15,10 @@ async function startServer() {
   });
 
   // API ROUTES
-  // 1. Stripe (handles its own body parsing)
-  app.use("/api/stripe", stripeRouter);
+  const apiRouter = express.Router();
 
-  // 2. JSON Parser for other routes
-  app.use("/api", express.json());
-
-  // 3. Health check
-  app.get("/api/health", (req, res) => {
+  // 1. Health check (at the top of /api)
+  apiRouter.get("/health", (req, res) => {
     res.json({ 
       status: "ok", 
       timestamp: new Date().toISOString(),
@@ -32,17 +28,35 @@ async function startServer() {
     });
   });
 
-  // 4. Analysis
-  app.use("/api", stackAnalysisRouter);
+  // 2. Stripe (handles its own body parsing)
+  apiRouter.use("/stripe", stripeRouter);
 
-  // 5. Catch-all API
-  app.all("/api/*", (req, res) => {
-    res.status(404).json({ error: "Route not found", path: req.url });
+  // 3. Middlewares for other API routes
+  apiRouter.use(express.json());
+
+  // 4. Analysis
+  apiRouter.use("/", stackAnalysisRouter);
+
+  // 5. Catch-all for /api
+  apiRouter.all("*", (req, res) => {
+    console.warn(`[API 404] ${req.method} ${req.url}`);
+    res.status(404).json({ 
+      error: "API route not found", 
+      method: req.method,
+      path: req.url 
+    });
   });
 
-  // 6. Debug
+  // Mount the API router
+  app.use("/api", apiRouter);
+
+  // 6. Debug outside /api
   app.get("/api-debug", (req, res) => {
-    res.json({ message: "API Mount point reached", path: req.path });
+    res.json({ 
+      message: "API Mount point reached", 
+      base: "/api",
+      headers: req.headers
+    });
   });
 
   // VITE INTEGRATION
