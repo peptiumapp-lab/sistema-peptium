@@ -50,7 +50,22 @@ export default function Layout({ children, currentView, setCurrentView, theme, s
 
   const contaItems = [
     ...(user ? [
-      { icon: <User size={18} />, label: user.displayName || 'Minha Conta', view: 'plans' as View },
+      { 
+        icon: <User size={18} />, 
+        label: (
+          <div className="flex items-center justify-between w-full">
+            <span className="truncate">{user.displayName || 'Minha Conta'}</span>
+            <span className={`text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full border ml-2 ${
+              isPro 
+                ? 'bg-accent/10 text-accent border-accent/20' 
+                : 'bg-white/5 text-white/40 border-white/10'
+            }`}>
+              {isPro ? 'Pro' : 'Free'}
+            </span>
+          </div>
+        ), 
+        view: 'plans' as View 
+      },
       { icon: <LogOut size={18} />, label: 'Sair', onClick: logout },
     ] : [
       { icon: <LogIn size={18} />, label: 'Entrar / Cadastrar', onClick: signInWithGoogle, highlight: true },
@@ -243,7 +258,7 @@ export default function Layout({ children, currentView, setCurrentView, theme, s
                 }`}>
                   {item.icon}
                 </div>
-                <span className="tracking-wide">{item.label}</span>
+                <div className="flex-1 w-full flex items-center">{item.label}</div>
               </button>
             ))}
           </nav>
@@ -303,13 +318,13 @@ export default function Layout({ children, currentView, setCurrentView, theme, s
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsSidebarOpen(false)}
-              className="fixed inset-0 bg-primary/90 backdrop-blur-sm z-[60] lg:hidden"
+              className="fixed inset-0 bg-primary/90 backdrop-blur-sm z-[110] lg:hidden"
             />
             <motion.div 
               initial={{ x: '-100%' }}
               animate={{ x: 0 }}
               exit={{ x: '-100%' }}
-              className="fixed top-0 left-0 h-full w-[85%] max-w-sm bg-[#050505]/95 backdrop-blur-3xl z-[70] lg:hidden border-r border-white/5 flex flex-col shadow-[20px_0_40px_rgba(0,0,0,0.6)]"
+              className="fixed top-0 left-0 h-full w-[85%] max-w-sm bg-[#050505]/95 backdrop-blur-3xl z-[120] lg:hidden border-r border-white/5 flex flex-col shadow-[20px_0_40px_rgba(0,0,0,0.6)]"
             >
               <div className="p-6 flex justify-between items-center border-b border-white/5">
                 <span className="flex items-center gap-3 cursor-pointer group">
@@ -424,7 +439,7 @@ export default function Layout({ children, currentView, setCurrentView, theme, s
                       }`}>
                         {item.icon}
                       </div>
-                      {item.label}
+                      <div className="flex-1 w-full flex items-center">{item.label}</div>
                     </button>
                   ))}
                 </nav>
