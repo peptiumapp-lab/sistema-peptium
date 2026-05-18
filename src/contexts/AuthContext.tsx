@@ -28,15 +28,24 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       
       if (user) {
         // Listen to user profile for Pro status
+        const adminEmails = ['sfimportsdf@gmail.com', 'raquel.rafen@gmail.com', 'safffnb@gmail.com'];
+        const isSuperAdmin = user.email ? adminEmails.includes(user.email.toLowerCase().trim()) : false;
+        
+        // Immediately set true if super admin, so they don't get blocked by slow DB or permission errors
+        if (isSuperAdmin) {
+          setIsPro(true);
+        }
+
         const unsubscribeProfile = onSnapshot(doc(db, 'users', user.uid), (doc) => {
-          const adminEmails = ['sfimportsdf@gmail.com', 'raquel.rafen@gmail.com', 'safffnb@gmail.com'];
-          const isSuperAdmin = user.email ? adminEmails.includes(user.email) : false;
-          
           if (doc.exists()) {
-            setIsPro(isSuperAdmin || doc.data().isPro || false);
+            setIsPro(isSuperAdmin || doc.data()?.isPro || false);
           } else {
             setIsPro(isSuperAdmin);
           }
+          setLoading(false);
+        }, (error) => {
+          console.error("Firestore user profile fetch error:", error);
+          setIsPro(isSuperAdmin);
           setLoading(false);
         });
         

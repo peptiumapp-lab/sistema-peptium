@@ -5,7 +5,7 @@ import PeptideArticle from './PeptideArticle';
 import ProGate from './ProGate';
 import ReconstitutionArticle from './articles/ReconstitutionArticle';
 import InjectionArticle from './articles/InjectionArticle';
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from '../contexts/AuthContext';
 import { signInWithGoogle } from '../lib/firebase';
 
 interface PeptideGuideProps {
@@ -17,8 +17,7 @@ export default function PeptideGuide({ setView }: PeptideGuideProps) {
   const [activeTab, setActiveTab] = useState<'guides' | 'studies' | 'safety'>('guides');
   const [safetySubTab, setSafetySubTab] = useState<'effects' | 'exams' | 'risks'>('effects');
   const [completedExams, setCompletedExams] = useState<string[]>([]);
-  const { user, profile } = useAuth();
-  const isPremium = profile?.isPro || false;
+  const { user, isPro: isPremium } = useAuth();
 
   const technicalGuides = [
     {
