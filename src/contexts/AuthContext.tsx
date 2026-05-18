@@ -28,7 +28,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       
       if (user) {
         // Listen to user profile for Pro status
-        const adminEmails = ['sfimportsdf@gmail.com', 'raquel.rafen@gmail.com', 'safffnb@gmail.com'];
+        const adminEmails = ['sfimportsdf@gmail.com', 'raquel.rafen@gmail.com', 'safffnb@gmail.com', 'safffn@gmail.com', 'sergio.franca@gmail.com'];
         const normalizedEmail = user.email ? user.email.toLowerCase().trim() : '';
         const isSuperAdmin = adminEmails.includes(normalizedEmail);
         

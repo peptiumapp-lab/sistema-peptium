@@ -53,14 +53,17 @@ export default function Layout({ children, currentView, setCurrentView, theme, s
       { 
         icon: <User size={18} />, 
         label: (
-          <div className="flex items-center justify-between w-full">
-            <span className="truncate">{user.displayName || 'Minha Conta'}</span>
-            <span className={`text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full border ml-2 ${
+          <div className="flex items-center justify-between w-full text-left overflow-hidden">
+            <div className="flex flex-col truncate max-w-[80%]">
+              <span className="truncate text-[12px]">{user.displayName || 'Minha Conta'}</span>
+              <span className="truncate text-[8px] opacity-50 font-mono mt-0.5">{user.email || ''}</span>
+            </div>
+            <span className={`text-[8px] font-black uppercase tracking-widest px-1.5 py-0.5 rounded-sm border shrink-0 ${
               isPro 
                 ? 'bg-accent/10 text-accent border-accent/20' 
                 : 'bg-white/5 text-white/40 border-white/10'
             }`}>
-              {isPro ? 'Pro' : 'Free'}
+              {isPro ? 'PRO' : 'FREE'}
             </span>
           </div>
         ), 
@@ -101,7 +104,7 @@ export default function Layout({ children, currentView, setCurrentView, theme, s
     <div className="min-h-screen bg-primary flex overflow-x-hidden pt-8">
       
       {/* Prime Market Ticker (Integrated) */}
-      <div className="bg-[#02010a] border-b border-white/5 py-1.5 md:py-2 overflow-hidden whitespace-nowrap z-[100] fixed top-0 left-0 w-full flex">
+      <div className="bg-[#02010a] border-b border-white/5 py-1.5 md:py-2 overflow-hidden whitespace-nowrap z-40 fixed top-0 left-0 w-full flex">
         <motion.div 
           animate={{ x: [0, "-50%"] }}
           transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
@@ -258,7 +261,7 @@ export default function Layout({ children, currentView, setCurrentView, theme, s
                 }`}>
                   {item.icon}
                 </div>
-                <div className="flex-1 w-full flex items-center">{item.label}</div>
+                <div className="flex-1 w-full flex items-center overflow-hidden min-w-0">{item.label}</div>
               </button>
             ))}
           </nav>
@@ -266,7 +269,7 @@ export default function Layout({ children, currentView, setCurrentView, theme, s
       </aside>
 
       {/* Mobile Header / Navbar */}
-      <nav className="lg:hidden fixed top-8 md:top-10 left-0 right-0 z-50 bg-primary/80 backdrop-blur-xl border-b border-secondary/5">
+      <nav className="lg:hidden fixed top-8 md:top-10 left-0 right-0 z-40 bg-primary/80 backdrop-blur-xl border-b border-secondary/5">
         <div className="px-4 h-14 flex justify-between items-center">
           <div className="flex items-center gap-2">
             {currentView !== 'home' ? (
@@ -318,13 +321,13 @@ export default function Layout({ children, currentView, setCurrentView, theme, s
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsSidebarOpen(false)}
-              className="fixed inset-0 bg-primary/90 backdrop-blur-sm z-[110] lg:hidden"
+              className="fixed inset-0 bg-primary/90 backdrop-blur-sm z-50 lg:hidden"
             />
             <motion.div 
               initial={{ x: '-100%' }}
               animate={{ x: 0 }}
               exit={{ x: '-100%' }}
-              className="fixed top-0 left-0 h-full w-[85%] max-w-sm bg-[#050505]/95 backdrop-blur-3xl z-[120] lg:hidden border-r border-white/5 flex flex-col shadow-[20px_0_40px_rgba(0,0,0,0.6)]"
+              className="fixed top-0 left-0 h-full w-[85%] max-w-sm bg-[#050505]/95 backdrop-blur-3xl z-50 lg:hidden border-r border-white/5 flex flex-col shadow-[20px_0_40px_rgba(0,0,0,0.6)]"
             >
               <div className="p-6 flex justify-between items-center border-b border-white/5">
                 <span className="flex items-center gap-3 cursor-pointer group">
@@ -439,7 +442,7 @@ export default function Layout({ children, currentView, setCurrentView, theme, s
                       }`}>
                         {item.icon}
                       </div>
-                      <div className="flex-1 w-full flex items-center">{item.label}</div>
+                      <div className="flex-1 w-full flex items-center overflow-hidden min-w-0">{item.label}</div>
                     </button>
                   ))}
                 </nav>
