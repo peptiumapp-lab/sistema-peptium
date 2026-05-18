@@ -293,7 +293,7 @@ function AppContent() {
       <div className="bg-primary text-secondary font-sans selection:bg-accent selection:text-white transition-colors duration-500 overflow-x-hidden min-h-screen">
         
         {/* Prime Market Ticker */}
-        <div className="bg-[#02010a] border-b border-white/5 py-1.5 md:py-2 overflow-hidden whitespace-nowrap z-[100] relative flex mt-14 lg:mt-0">
+        <div className="bg-[#02010a] border-b border-white/5 py-1.5 md:py-2 overflow-hidden whitespace-nowrap z-[100] relative flex mt-16 md:mt-20 lg:mt-0">
           <motion.div 
             animate={{ x: [0, "-50%"] }}
             transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
