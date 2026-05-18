@@ -154,7 +154,7 @@ export default function PeptideLibrary({ setView, isPremium }: PeptideLibraryPro
                 </div>
                 
                 <div className="p-4 flex flex-col flex-grow">
-                  <h3 className={`text-sm font-extrabold text-secondary mb-1.5 tracking-tight group-hover:text-accent transition-colors uppercase ${isBlurred ? 'blur-[4px] select-none' : ''}`}>
+                  <h3 className={`text-sm font-extrabold text-secondary mb-1.5 tracking-tight group-hover:text-accent transition-colors uppercase break-words line-clamp-2 ${isBlurred ? 'blur-[4px] select-none' : ''}`} style={{ wordBreak: 'break-word' }}>
                     {isBlurred ? 'XXXXXXXXXXXXX' : protocol.name}
                   </h3>
                   

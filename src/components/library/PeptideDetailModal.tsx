@@ -39,7 +39,7 @@ export default function PeptideDetailModal({ peptide, onClose }: PeptideDetailMo
               <Fingerprint size={12} />
               {peptide.category} | {peptide.class} 
             </span>
-            <h2 className="text-4xl md:text-5xl font-black text-white uppercase tracking-tighter leading-[0.9] mb-4 drop-shadow-2xl">
+            <h2 className="text-3xl md:text-4xl font-black text-white uppercase tracking-tighter leading-tight mb-4 drop-shadow-2xl break-words" style={{ wordBreak: 'break-word' }}>
               {peptide.name}
             </h2>
             {peptide.synonyms && peptide.synonyms.length > 0 && (
