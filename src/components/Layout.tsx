@@ -1,18 +1,20 @@
 import React from 'react';
-import { 
-  Menu, X, Phone, LayoutDashboard, Calculator, 
+import { motion, AnimatePresence } from 'motion/react';
+import { Menu, X, Phone, LayoutDashboard, Calculator, 
   Beaker, Library, CreditCard, MessageCircle, 
   Zap, Shield, Target, Sun, Moon,
   Hexagon, Sparkles, ArrowLeftRight, ClipboardList,
   GraduationCap, Layers, ShieldAlert, MapPin,
   Calendar, User, HelpCircle, UserPlus, BookOpen, LogOut, LogIn, Instagram, Globe, Mail, ArrowLeft
 } from 'lucide-react';
-import { motion, AnimatePresence } from 'motion/react';
-import { SUPPORT_LINK, INSTAGRAM_HANDLE, INSTAGRAM_LINK, SITE_URL, SITE_LINK } from '../constants';
+import React, { useState, useEffect } from 'react';
+import { SUPPORT_LINK, INSTAGRAM_HANDLE, INSTAGRAM_LINK, SITE_URL, SITE_LINK, PROTOCOLS } from '../constants';
 import type { View } from '../App';
 import { useAuth } from '../contexts/AuthContext';
 import { PeptiumLogo } from './Logo';
 import { signInWithGoogle, logout } from '../lib/firebase';
+
+const TOTAL_PEPTIDES = PROTOCOLS.length;
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -81,7 +83,40 @@ export default function Layout({ children, currentView, setCurrentView, theme, s
   };
 
   return (
-    <div className="min-h-screen bg-primary flex overflow-x-hidden">
+    <div className="min-h-screen bg-primary flex overflow-x-hidden pt-8">
+      
+      {/* Prime Market Ticker (Integrated) */}
+      <div className="bg-[#02010a] border-b border-white/5 py-1.5 md:py-2 overflow-hidden whitespace-nowrap z-[100] fixed top-0 left-0 w-full flex">
+        <motion.div 
+          animate={{ x: [0, "-50%"] }}
+          transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
+          className="inline-flex gap-8 md:gap-16 pr-8 md:pr-16 shrink-0"
+        >
+          {[...Array(2)].map((_, arrayIndex) => (
+            <React.Fragment key={arrayIndex}>
+              {[
+                `STATUS: ${TOTAL_PEPTIDES}+ PEPTÍDEOS REGISTRADOS`,
+                "NOVO: PROTOCOLO METABÓLICO DE RECOMPOSIÇÃO",
+                "COMUNIDADE: +700 BIOHACKERS ATIVOS NO BRASIL",
+                "ALERTA: ACESSO VITALÍCIO LIBERADO",
+                "TENDÊNCIA: GHK-CU E LONGEVIDADE CUTÂNEA",
+                "STATUS: MOTOR DE DOSAGEM IA OPERACIONAL",
+                "COFRE DE STACKS: 43 COMBINAÇÕES EXECUTADAS",
+                "MAPA: REDE NEURAL DE PEPTÍDEOS ATIVA",
+                "NOTÍCIA: BPC-157 (ARG) EM ALTA ESTA SEMANA",
+                "DESTAQUE: RECUPERAÇÃO ACELERADA COM TB-500",
+                "SISTEMA: DATABASE 99.8% SINCRONIZADA",
+              ].map((text, i) => (
+                <div key={`${arrayIndex}-${i}`} className="flex items-center gap-2.5">
+                  <div className="w-1.5 h-1.5 rounded-full bg-accent shadow-[0_0_8px_rgba(0,229,255,0.6)] animate-pulse" />
+                  <span className="text-[10px] md:text-xs font-black text-white/90 uppercase tracking-[0.2em] font-sans italic">{text}</span>
+                </div>
+              ))}
+            </React.Fragment>
+          ))}
+        </motion.div>
+      </div>
+
       {/* Desktop Sidebar (Floating UI) */}
       <aside className="hidden lg:flex flex-col w-[230px] h-[calc(100vh-2rem)] fixed left-4 top-4 bg-[#050505]/80 backdrop-blur-2xl border border-white/5 rounded-3xl z-40 shadow-[0_8px_32px_rgba(0,0,0,0.6),inset_0_0_32px_rgba(0,229,255,0.02)]">
         {/* Header */}
@@ -216,7 +251,7 @@ export default function Layout({ children, currentView, setCurrentView, theme, s
       </aside>
 
       {/* Mobile Header / Navbar */}
-      <nav className="lg:hidden fixed top-0 left-0 right-0 z-50 bg-primary/80 backdrop-blur-xl border-b border-secondary/5">
+      <nav className="lg:hidden fixed top-8 md:top-10 left-0 right-0 z-50 bg-primary/80 backdrop-blur-xl border-b border-secondary/5">
         <div className="px-4 h-14 flex justify-between items-center">
           <div className="flex items-center gap-2">
             {currentView !== 'home' ? (

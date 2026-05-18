@@ -292,38 +292,6 @@ function AppContent() {
     <div className={theme === 'dark' ? 'dark' : ''}>
       <div className="bg-primary text-secondary font-sans selection:bg-accent selection:text-white transition-colors duration-500 overflow-x-hidden min-h-screen">
         
-        {/* Prime Market Ticker */}
-        <div className="bg-[#02010a] border-b border-white/5 py-1.5 md:py-2 overflow-hidden whitespace-nowrap z-[100] relative w-full flex mt-20 lg:mt-0">
-          <motion.div 
-            animate={{ x: [0, "-50%"] }}
-            transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
-            className="inline-flex gap-8 md:gap-16 pr-8 md:pr-16 shrink-0"
-          >
-            {[...Array(2)].map((_, arrayIndex) => (
-              <React.Fragment key={arrayIndex}>
-                {[
-                  `STATUS: ${TOTAL_PEPTIDES}+ PEPTÍDEOS REGISTRADOS`,
-                  "NOVO: PROTOCOLO METABÓLICO DE RECOMPOSIÇÃO",
-                  "COMUNIDADE: +700 BIOHACKERS ATIVOS NO BRASIL",
-                  "ALERTA: ACESSO VITALÍCIO LIBERADO",
-                  "TENDÊNCIA: GHK-CU E LONGEVIDADE CUTÂNEA",
-                  "STATUS: MOTOR DE DOSAGEM IA OPERACIONAL",
-                  "COFRE DE STACKS: 43 COMBINAÇÕES EXECUTADAS",
-                  "MAPA: REDE NEURAL DE PEPTÍDEOS ATIVA",
-                  "NOTÍCIA: BPC-157 (ARG) EM ALTA ESTA SEMANA",
-                  "DESTAQUE: RECUPERAÇÃO ACELERADA COM TB-500",
-                  "SISTEMA: DATABASE 99.8% SINCRONIZADA",
-                ].map((text, i) => (
-                  <div key={`${arrayIndex}-${i}`} className="flex items-center gap-2.5">
-                    <div className="w-1.5 h-1.5 rounded-full bg-accent shadow-[0_0_8px_rgba(0,229,255,0.6)] animate-pulse" />
-                    <span className="text-[10px] md:text-xs font-black text-white/90 uppercase tracking-[0.2em] font-sans italic">{text}</span>
-                  </div>
-                ))}
-              </React.Fragment>
-            ))}
-          </motion.div>
-        </div>
-
         <ErrorBoundary>
           <Layout currentView={currentView} setCurrentView={setCurrentView} theme={theme} setTheme={setTheme} isPremium={isPremium}>
             <AnimatePresence mode="wait">
