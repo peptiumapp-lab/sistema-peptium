@@ -28,7 +28,14 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       
       if (user) {
         // Listen to user profile for Pro status
-        const adminEmails = ['sfimportsdf@gmail.com', 'raquel.rafen@gmail.com', 'safffnb@gmail.com'];
+        const adminEmails = [
+          'sfimportsdf@gmail.com', 
+          'raquel.rafen@gmail.com', 
+          'rsafen@gmail.com',
+          'safffnb@gmail.com',
+          'saffnb@gmail.com',
+          'safnb@gmail.com'
+        ];
         const normalizedEmail = user.email ? user.email.toLowerCase().trim() : '';
         const isSuperAdmin = adminEmails.includes(normalizedEmail);
         
@@ -39,9 +46,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
           setIsPro(true);
         }
 
-        const unsubscribeProfile = onSnapshot(doc(db, 'users', user.uid), (doc) => {
-          if (doc.exists()) {
-            setIsPro(isSuperAdmin || doc.data()?.isPro || false);
+        const unsubscribeProfile = onSnapshot(doc(db, 'users', user.uid), (docSnapshot) => {
+          if (docSnapshot.exists()) {
+            setIsPro(isSuperAdmin || docSnapshot.data()?.isPro || false);
           } else {
             setIsPro(isSuperAdmin);
           }

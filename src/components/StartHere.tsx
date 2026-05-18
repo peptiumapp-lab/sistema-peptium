@@ -3,6 +3,7 @@ import { motion } from 'motion/react';
 import { Hexagon, Sparkles, Calculator, Layers, Shield, ClipboardList, Zap, CreditCard, ArrowRight } from 'lucide-react';
 import type { View } from '../App';
 import { TOTAL_PEPTIDES } from '../constants';
+import { useAuth } from '../contexts/AuthContext';
 
 interface CardItem {
   icon: React.ReactNode;
@@ -10,58 +11,66 @@ interface CardItem {
   description: string;
   view: View;
   href?: string;
+  hideIfPro?: boolean;
 }
 
-const cards: CardItem[] = [
-  {
-    icon: <Hexagon size={24} />,
-    title: 'Atlas de Compostos',
-    description: `Explore ${TOTAL_PEPTIDES}+ ativos`,
-    view: 'library'
-  },
-  {
-    icon: <Sparkles size={24} />,
-    title: 'Bio-Scanner IA',
-    description: 'Encontre o ativo ideal',
-    view: 'quiz'
-  },
-  {
-    icon: <Calculator size={24} />,
-    title: 'Motor de Precisão',
-    description: 'Reconstituição molecular',
-    view: 'calculator'
-  },
-  {
-    icon: <Layers size={24} />,
-    title: 'Acervo de Protocolos',
-    description: 'Guidelines de aplicação',
-    view: 'stacks'
-  },
-  {
-    icon: <Shield size={24} />,
-    title: 'Guardião de Sinergia',
-    description: 'Verifique interações',
-    view: 'interactions'
-  },
-  {
-    icon: <CreditCard size={24} />,
-    title: 'Upgrade para Elite',
-    description: 'Domine a biologia',
-    view: 'plans'
-  },
-  {
-    icon: <ClipboardList size={24} />,
-    title: 'Centro de Comando',
-    description: 'Seus dados e históricos',
-    view: 'my-protocols'
-  }
-];
+const getCards = (isPro: boolean): CardItem[] => {
+  const cardsList: CardItem[] = [
+    {
+      icon: <Hexagon size={24} />,
+      title: 'Atlas de Compostos',
+      description: `Explore ${TOTAL_PEPTIDES}+ ativos`,
+      view: 'library'
+    },
+    {
+      icon: <Sparkles size={24} />,
+      title: 'Bio-Scanner IA',
+      description: 'Encontre o ativo ideal',
+      view: 'quiz'
+    },
+    {
+      icon: <Calculator size={24} />,
+      title: 'Motor de Precisão',
+      description: 'Reconstituição molecular',
+      view: 'calculator'
+    },
+    {
+      icon: <Layers size={24} />,
+      title: 'Acervo de Protocolos',
+      description: 'Guidelines de aplicação',
+      view: 'stacks'
+    },
+    {
+      icon: <Shield size={24} />,
+      title: 'Guardião de Sinergia',
+      description: 'Verifique interações',
+      view: 'interactions'
+    },
+    {
+      icon: <CreditCard size={24} />,
+      title: 'Upgrade para Elite',
+      description: 'Domine a biologia',
+      view: 'plans',
+      hideIfPro: true
+    },
+    {
+      icon: <ClipboardList size={24} />,
+      title: 'Centro de Comando',
+      description: 'Seus dados e históricos',
+      view: 'my-protocols'
+    }
+  ];
+  return cardsList.filter(card => !(card.hideIfPro && isPro));
+};
 
 interface StartHereProps {
   setView: (view: View) => void;
 }
 
 export default function StartHere({ setView }: StartHereProps) {
+  const { isPro } = useAuth();
+  const cards = getCards(isPro);
+
   return (
     <section className="py-10 px-6 max-w-7xl mx-auto relative overflow-hidden">
       <div className="text-center mb-6 opacity-60">
@@ -101,39 +110,41 @@ export default function StartHere({ setView }: StartHereProps) {
       </div>
 
       {/* Floating Notification - Gloss Design */}
-      <div className="fixed bottom-6 right-6 z-[100]">
-        <motion.div 
-          initial={{ y: 100, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 2, duration: 0.8, ease: "circOut" }}
-          onClick={() => setView('plans')}
-          className="group relative bg-[#050505]/40 backdrop-blur-xl border border-white/10 p-1.5 rounded-2xl cursor-pointer hover:bg-white/5 transition-all hover:scale-105 active:scale-95 shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden"
-        >
-          {/* Subtle Glow Effect */}
-          <div className="absolute inset-0 bg-accent/5 opacity-0 group-hover:opacity-100 transition-opacity" />
-          
-          <div className="flex items-center gap-3 pr-4 pl-1">
-            <div className="w-10 h-10 rounded-xl bg-accent/20 border border-accent/40 flex items-center justify-center relative">
-               <div className="absolute inset-0 bg-accent/20 blur-md rounded-full animate-pulse" />
-               <Zap size={18} className="text-accent relative z-10" fill="currentColor" />
-            </div>
+      {!isPro && (
+        <div className="fixed bottom-6 right-6 z-[100]">
+          <motion.div 
+            initial={{ y: 100, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 2, duration: 0.8, ease: "circOut" }}
+            onClick={() => setView('plans')}
+            className="group relative bg-[#050505]/40 backdrop-blur-xl border border-white/10 p-1.5 rounded-2xl cursor-pointer hover:bg-white/5 transition-all hover:scale-105 active:scale-95 shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden"
+          >
+            {/* Subtle Glow Effect */}
+            <div className="absolute inset-0 bg-accent/5 opacity-0 group-hover:opacity-100 transition-opacity" />
             
-            <div className="space-y-0.5">
-              <div className="flex items-center gap-2">
-                <span className="text-[8px] font-black text-accent uppercase tracking-[0.3em]">Neural Update</span>
-                <div className="w-1 h-1 rounded-full bg-accent animate-pulse" />
+            <div className="flex items-center gap-3 pr-4 pl-1">
+              <div className="w-10 h-10 rounded-xl bg-accent/20 border border-accent/40 flex items-center justify-center relative">
+                 <div className="absolute inset-0 bg-accent/20 blur-md rounded-full animate-pulse" />
+                 <Zap size={18} className="text-accent relative z-10" fill="currentColor" />
               </div>
-              <div className="text-[10px] font-black text-white/90 uppercase tracking-tight">
-                3 Novos Protocolos de <span className="text-accent underline decoration-accent/30">Sinergia</span>
+              
+              <div className="space-y-0.5">
+                <div className="flex items-center gap-2">
+                  <span className="text-[8px] font-black text-accent uppercase tracking-[0.3em]">Neural Update</span>
+                  <div className="w-1 h-1 rounded-full bg-accent animate-pulse" />
+                </div>
+                <div className="text-[10px] font-black text-white/90 uppercase tracking-tight">
+                  3 Novos Protocolos de <span className="text-accent underline decoration-accent/30">Sinergia</span>
+                </div>
               </div>
-            </div>
 
-            <div className="ml-4 w-6 h-6 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-accent/20 transition-all">
-              <ArrowRight size={12} className="text-white/40 group-hover:text-accent transition-all" />
+              <div className="ml-4 w-6 h-6 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-accent/20 transition-all">
+                <ArrowRight size={12} className="text-white/40 group-hover:text-accent transition-all" />
+              </div>
             </div>
-          </div>
-        </motion.div>
-      </div>
+          </motion.div>
+        </div>
+      )}
     </section>
   );
 }

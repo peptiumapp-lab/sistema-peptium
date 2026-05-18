@@ -1969,19 +1969,20 @@ export default function PeptideGuide({ setView }: PeptideGuideProps) {
               ))}
             </div>
             
-            {/* Exclusive Pro Banner */}
-            <div className="p-12 rounded-[48px] bg-accent/[0.03] border border-accent/10 text-center space-y-6">
-               <div className="text-accent text-[12px] font-black uppercase tracking-[0.5em]">Cortex Prime Exclusive</div>
-               <h3 className="text-3xl font-black text-white uppercase italic tracking-tighter">Desbloqueie todos os guias e estudos</h3>
-               <p className="text-white/40 text-sm max-w-lg mx-auto">Acesse conteúdo exclusivo com base científica para elevar seus resultados.</p>
-               <button 
-                 onClick={() => setView('plans')}
-                 className="px-10 py-5 bg-accent text-primary font-black text-[10px] uppercase tracking-widest mx-auto block hover:scale-105 active:scale-95 transition-all"
-                 style={{ clipPath: 'polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0 30%)' }}
-               >
-                 Assinar Agora
-               </button>
-            </div>
+            {!isPremium && (
+              <div className="p-12 rounded-[48px] bg-accent/[0.03] border border-accent/10 text-center space-y-6">
+                 <div className="text-accent text-[12px] font-black uppercase tracking-[0.5em]">Cortex Prime Exclusive</div>
+                 <h3 className="text-3xl font-black text-white uppercase italic tracking-tighter">Desbloqueie todos os guias e estudos</h3>
+                 <p className="text-white/40 text-sm max-w-lg mx-auto">Acesse conteúdo exclusivo com base científica para elevar seus resultados.</p>
+                 <button 
+                   onClick={() => setView('plans')}
+                   className="px-10 py-5 bg-accent text-primary font-black text-[10px] uppercase tracking-widest mx-auto block hover:scale-105 active:scale-95 transition-all"
+                   style={{ clipPath: 'polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0 30%)' }}
+                 >
+                   Assinar Agora
+                 </button>
+              </div>
+            )}
           </div>
         )}
 
@@ -2320,18 +2321,20 @@ export default function PeptideGuide({ setView }: PeptideGuideProps) {
         )}
 
         {/* CTA Section */}
-        <div className="text-center py-20 space-y-8 bg-accent/5 rounded-[64px] border border-accent/10">
-          <div className="text-accent text-[12px] font-black uppercase tracking-[0.5em] animate-pulse">Cortex Prime</div>
-          <h2 className="text-3xl md:text-5xl font-sans font-black text-white uppercase italic tracking-tighter leading-none">Domine a Biologia Molecular</h2>
-          <p className="text-white/40 text-sm font-medium max-w-lg mx-auto">Queremos levar você ao seu potencial máximo. Assine agora e desbloqueie o maior acervo de peptídeos do Brasil.</p>
-          <button 
-            onClick={() => setView('plans')}
-            className="px-12 py-6 bg-accent text-black font-black text-[11px] uppercase tracking-[0.3em] transition-all hover:scale-105 active:scale-95 mx-auto block"
-            style={{ clipPath: 'polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0 30%)' }}
-          >
-            Ver Planos e Preços
-          </button>
-        </div>
+        {!isPremium && (
+          <div className="text-center py-20 space-y-8 bg-accent/5 rounded-[64px] border border-accent/10">
+            <div className="text-accent text-[12px] font-black uppercase tracking-[0.5em] animate-pulse">Cortex Prime</div>
+            <h2 className="text-3xl md:text-5xl font-sans font-black text-white uppercase italic tracking-tighter leading-none">Domine a Biologia Molecular</h2>
+            <p className="text-white/40 text-sm font-medium max-w-lg mx-auto">Queremos levar você ao seu potencial máximo. Assine agora e desbloqueie o maior acervo de peptídeos do Brasil.</p>
+            <button 
+              onClick={() => setView('plans')}
+              className="px-12 py-6 bg-accent text-black font-black text-[11px] uppercase tracking-[0.3em] transition-all hover:scale-105 active:scale-95 mx-auto block"
+              style={{ clipPath: 'polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0 30%)' }}
+            >
+              Ver Planos e Preços
+            </button>
+          </div>
+        )}
 
       </div>
     </div>

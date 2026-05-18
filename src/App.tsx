@@ -377,7 +377,7 @@ function AppContent() {
               </p>
               <div className="flex items-center gap-2">
                 <p className="text-[6px] font-black text-accent/20 uppercase tracking-[0.3em]">
-                  Build v5.0.3-Prime | Status:
+                  Build v5.0.4-Prime | Email detectado: {user?.email || 'Nenhum'} | Usuário: {user ? (isPremium ? 'PRO' : 'FREE') : 'Não logado'} | Status:
                 </p>
                 <span className={`text-[6px] font-black uppercase tracking-widest ${
                   apiStatus.startsWith('Online') ? 'text-accent' : 'text-red-500'
