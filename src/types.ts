@@ -9,19 +9,37 @@ export interface Interaction {
   warning: string;
 }
 
+export interface ReconstitutionAlert {
+  diluent: string;
+  instruction: string;
+  reason: string;
+}
+
 export enum PeptideCategory {
-  PERFORMANCE = 'Performance',
-  LONGEVIDADE = 'Longevidade',
-  ESTETICA = 'Estética',
-  RECUPERACAO = 'Recuperação',
-  COGNICAO = 'Cognição',
-  METABOLISMO = 'Metabolismo',
-  IMUNOLOGIA = 'Imunologia',
-  CARDIOMETABÓLICO = 'Cardiometabólico',
-  CARDIOVASCULAR = 'Cardiometabólico',
-  SEXUAL = 'Sexual',
-  ONCOLOGIA = 'Oncologia',
-  OUTROS = 'Outros'
+  RECUPERACAO = 'RECUPERAÇÃO',
+  COGNICAO = 'COGNIÇÃO',
+  LONGEVIDADE = 'LONGEVIDADE',
+  PERFORMANCE = 'PERFORMANCE',
+  METABOLISMO = 'METABOLISMO',
+  ESTETICA = 'ESTÉTICA',
+  IMUNOLOGIA = 'IMUNOLOGIA',
+  SEXUAL = 'SEXUAL',
+  NEUROPROTECAO = 'NEUROPROTEÇÃO',
+  SARCOPENIA = 'SARCOPENIA',
+  CICATRIZACAO = 'CICATRIZAÇÃO',
+  SONO = 'SONO',
+  GLICEMIA = 'GLICEMIA',
+  VASCULAR = 'VASCULAR',
+  INFLAMACAO = 'INFLAMAÇÃO',
+  DOPAMINA = 'DOPAMINA',
+  FOCO_HD = 'FOCO HD',
+  MASSA_MAGRA = 'MASSA MAGRA',
+  GORDURA_VISCERAL = 'GORDURA VISCERAL',
+  BIO_REPARO = 'BIO-REPARO',
+  OSTEOGENESE = 'OSTEOGÊNESE',
+  ANTIOXIDANTE = 'ANTIOXIDANTE',
+  NEURAL = 'NEURAL',
+  DIGESTIVO = 'DIGESTIVO'
 }
 
 export interface SynergyProtocol {
@@ -49,6 +67,9 @@ export interface PeptideDossier {
   synonyms?: string[]; // Nomes alternativos ou códigos de laboratório
   class: string; // (ex: Pentadecapeptídeo Gastrostável)
   
+  // Reconstitution - ADDED
+  reconstitutionAlert?: ReconstitutionAlert;
+
   // Imagem para a UI (Retrocompatibilidade)
   image: string;
   tag: string; // Retrocompatibilidade UI

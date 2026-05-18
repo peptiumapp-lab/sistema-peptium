@@ -1,7 +1,8 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { Printer, Download, Search, ChevronRight, FileText, ExternalLink, ShieldCheck, Zap, Beaker, ArrowLeft } from 'lucide-react';
+import { Printer, Download, Search, ChevronRight, FileText, ExternalLink, ShieldCheck, Zap, Beaker, ArrowLeft, ShieldAlert } from 'lucide-react';
 import { PROTOCOLS } from '../constants';
+import { getReconstitutionAlert } from '../lib/reconstitutionUtils';
 
 interface DossierProps {
   setView?: (view: any) => void;
@@ -11,6 +12,11 @@ export default function Dossier({ setView }: DossierProps) {
   const handlePrint = () => {
     window.print();
   };
+
+  const protocolsWithAlerts = PROTOCOLS.map(p => ({
+    ...p,
+    reconstitutionAlert: getReconstitutionAlert(p.id, p.name)
+  }));
 
   return (
     <div className="space-y-8 pb-20">
@@ -75,7 +81,7 @@ export default function Dossier({ setView }: DossierProps) {
           </div>
 
           {/* Catalog of Peptides */}
-          {PROTOCOLS.map((peptide, index) => (
+          {protocolsWithAlerts.map((peptide, index) => (
             <div key={peptide.id} className="p-8 md:p-12 border-b border-white/5 last:border-0 print:break-before-page print:min-h-screen print:bg-white print:text-black print:border-gray-200">
               <div className="max-w-6xl mx-auto space-y-8">
                 
@@ -213,6 +219,66 @@ export default function Dossier({ setView }: DossierProps) {
                          </div>
                       </div>
                     </div>
+
+                    {peptide.reconstitutionAlert && (
+                      <div className="space-y-3 bg-amber-500/5 p-4 rounded-2xl border border-amber-500/20 print:bg-amber-50 print:border-amber-200">
+                        <div className="flex items-center gap-2 text-amber-500">
+                          <ShieldAlert size={16} />
+                          <h4 className="text-[9px] font-black uppercase tracking-[0.4em]">Informação Crítica de Reconstituição</h4>
+                        </div>
+                        <div className="space-y-2">
+                           <div>
+                              <span className="text-[7px] font-black text-amber-500/50 uppercase tracking-[0.2em]">Diluente Obrigatório</span>
+                              <div className="text-[10px] font-black text-amber-100 print:text-black uppercase">{peptide.reconstitutionAlert.diluent}</div>
+                           </div>
+                           <div>
+                              <span className="text-[7px] font-black text-amber-500/50 uppercase tracking-[0.2em]">Instruções</span>
+                              <div className="text-[10px] font-medium text-amber-100/80 print:text-gray-800 leading-tight">{peptide.reconstitutionAlert.instruction}</div>
+                           </div>
+                           <div className="text-[9px] font-medium text-amber-500/60 italic leading-tight pt-1">
+                              {peptide.reconstitutionAlert.reason}
+                           </div>
+                        </div>
+                      </div>
+                    )}
+
+                    {(peptide.sideEffects && peptide.sideEffects.length > 0) && (
+                      <div className="space-y-3">
+                        <h4 className="text-[9px] font-black text-yellow-500 uppercase tracking-[0.4em] print:text-black border-l-2 border-yellow-500 pl-2">
+                           V. Colaterais & Mitigação
+                        </h4>
+                        <div className="space-y-2">
+                           {peptide.sideEffects.map((se, i) => (
+                             <div key={i} className="text-[9px] print:text-gray-800">
+                                <span className="font-black text-white print:text-black uppercase tracking-tight">{se.effect}:</span>
+                                <span className="text-white/50 print:text-gray-500 ml-1 italic leading-tight">{se.mitigation}</span>
+                             </div>
+                           ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {peptide.reconstitutionAlert && (
+                      <div className="space-y-3 bg-amber-500/5 p-4 rounded-2xl border border-amber-500/20 print:bg-amber-50 print:border-amber-200">
+                        <div className="flex items-center gap-2 text-amber-500">
+                          <ShieldAlert size={16} />
+                          <h4 className="text-[9px] font-black uppercase tracking-[0.4em]">Informação Crítica de Reconstituição</h4>
+                        </div>
+                        <div className="space-y-2">
+                           <div>
+                              <span className="text-[7px] font-black text-amber-500/50 uppercase tracking-[0.2em]">Diluente Obrigatório</span>
+                              <div className="text-[10px] font-black text-amber-100 print:text-black uppercase">{peptide.reconstitutionAlert.diluent}</div>
+                           </div>
+                           <div>
+                              <span className="text-[7px] font-black text-amber-500/50 uppercase tracking-[0.2em]">Instruções</span>
+                              <div className="text-[10px] font-medium text-amber-100/80 print:text-gray-800 leading-tight">{peptide.reconstitutionAlert.instruction}</div>
+                           </div>
+                           <div className="text-[9px] font-medium text-amber-500/60 italic leading-tight pt-1">
+                              {peptide.reconstitutionAlert.reason}
+                           </div>
+                        </div>
+                      </div>
+                    )}
 
                     {(peptide.sideEffects && peptide.sideEffects.length > 0) && (
                       <div className="space-y-3">
