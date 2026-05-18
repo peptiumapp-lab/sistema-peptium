@@ -29,8 +29,11 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       if (user) {
         // Listen to user profile for Pro status
         const adminEmails = ['sfimportsdf@gmail.com', 'raquel.rafen@gmail.com', 'safffnb@gmail.com'];
-        const isSuperAdmin = user.email ? adminEmails.includes(user.email.toLowerCase().trim()) : false;
+        const normalizedEmail = user.email ? user.email.toLowerCase().trim() : '';
+        const isSuperAdmin = adminEmails.includes(normalizedEmail);
         
+        console.log("Current user email:", normalizedEmail, "isSuperAdmin:", isSuperAdmin);
+
         // Immediately set true if super admin, so they don't get blocked by slow DB or permission errors
         if (isSuperAdmin) {
           setIsPro(true);
