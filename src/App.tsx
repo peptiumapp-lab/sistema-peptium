@@ -276,7 +276,7 @@ function AppContent() {
             }} />
             
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-              <CalculatorTeaser setView={setCurrentView} />
+              <CalculatorTeaser setView={setCurrentView} isPremium={isPremium} />
             </div>
 
             <Testimonials />
