@@ -161,7 +161,7 @@ function AppContent() {
       default:
         return (
           <div className="space-y-0">
-            <Hero setView={setCurrentView} isPremium={isPremium} />
+            <Hero setView={setCurrentView} isPremium={isPremium} onSelectPeptide={setSelectedPeptide} />
             
             {/* Atlas de Compostos - Seção Principal e "Aberta" */}
             <section className="py-24 bg-primary relative overflow-hidden" id="atlas-preview">

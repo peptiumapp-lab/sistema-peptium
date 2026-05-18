@@ -1,14 +1,49 @@
-import { motion } from 'motion/react';
-import { ArrowRight, Shield, Zap, Target, ArrowUpRight, BookOpen, ChevronRight, Activity } from 'lucide-react';
-import { TOTAL_PEPTIDES } from '../constants';
+import { motion, AnimatePresence } from 'motion/react';
+import { ArrowRight, Shield, Zap, Target, ArrowUpRight, BookOpen, ChevronRight, Activity, Search } from 'lucide-react';
+import { PROTOCOLS, TOTAL_PEPTIDES } from '../constants';
 import { PeptiumLogo } from './Logo';
+import { useState, useMemo, useEffect, useRef } from 'react';
+import Fuse from 'fuse.js';
 
 interface HeroProps {
   setView: (view: any) => void;
   isPremium?: boolean;
+  onSelectPeptide?: (peptide: any) => void;
 }
 
-export default function Hero({ setView, isPremium }: HeroProps) {
+export default function Hero({ setView, isPremium, onSelectPeptide }: HeroProps) {
+  const [searchTerm, setSearchTerm] = useState('');
+  const [isFocused, setIsFocused] = useState(false);
+  const searchRef = useRef<HTMLDivElement>(null);
+
+  const fuse = useMemo(() => new Fuse(PROTOCOLS, {
+    keys: ['name', 'synonyms', 'tag', 'class'],
+    threshold: 0.3, 
+    distance: 100,
+  }), []);
+
+  const searchResults = useMemo(() => {
+    if (!searchTerm) return [];
+    return fuse.search(searchTerm).slice(0, 5).map(res => res.item);
+  }, [searchTerm, fuse]);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (searchRef.current && !searchRef.current.contains(event.target as Node)) {
+        setIsFocused(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  const handleSelect = (peptide: any) => {
+    setSearchTerm('');
+    setIsFocused(false);
+    if (onSelectPeptide) {
+      onSelectPeptide(peptide);
+    }
+  };
   return (
     <div className="relative pt-12 pb-10 lg:pt-24 lg:pb-16 overflow-hidden">
       {/* Background Orbs */}
@@ -82,6 +117,55 @@ export default function Hero({ setView, isPremium }: HeroProps) {
               A INSIGHT MOLECULAR QUE TRANSFORMA <span className="text-white">DADOS BRUTOS</span> EM <br />
               <span className="text-accent underline underline-offset-8 decoration-accent/30">PERFORMANCE HUMANA ABSOLUTA.</span>
             </p>
+
+            <div className="max-w-2xl mx-auto mb-12 relative z-50 flex items-center justify-center p-2" ref={searchRef}>
+              <div className="relative w-full">
+                <input 
+                  type="text" 
+                  placeholder="Pesquisar peptídeos ou protocolos (ex: BPC-157, Semaglutida...)"
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  onFocus={() => setIsFocused(true)}
+                  className="w-full bg-[#050505]/60 backdrop-blur-xl border border-white/10 rounded-2xl py-4 md:py-5 px-12 md:px-14 text-sm font-medium text-white placeholder:text-white/30 outline-none focus:border-accent/50 transition-all font-medium shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
+                />
+                <Search size={20} className="absolute left-4 md:left-5 top-1/2 -translate-y-1/2 text-white/40" />
+                
+                <AnimatePresence>
+                  {isFocused && searchTerm && (
+                    <motion.div 
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 10 }}
+                        className="absolute top-full left-0 right-0 mt-3 bg-[#0a0a0a]/95 backdrop-blur-2xl border border-white/10 rounded-2xl shadow-2xl overflow-hidden z-50 max-h-80 overflow-y-auto custom-scrollbar"
+                    >
+                        {searchResults.length > 0 ? (
+                            <ul className="py-2">
+                                {searchResults.map((result: any) => (
+                                    <li 
+                                        key={result.id} 
+                                        onClick={() => handleSelect(result)}
+                                        className="px-4 py-3 hover:bg-white/5 cursor-pointer border-b border-white/5 last:border-0 flex items-center gap-4 transition-colors"
+                                    >   
+                                        <div className="w-10 h-10 rounded-lg bg-black overflow-hidden shrink-0">
+                                            <img src={result.image} alt={result.name} className="w-full h-full object-cover opacity-60" />
+                                        </div>
+                                        <div>
+                                            <h4 className="text-sm font-black text-white italic tracking-tight">{result.name}</h4>
+                                            <p className="text-[10px] text-white/40 uppercase tracking-widest">{result.tag}</p>
+                                        </div>
+                                    </li>
+                                ))}
+                            </ul>
+                        ) : (
+                            <div className="px-4 py-8 text-center text-white/40 text-xs font-black uppercase tracking-widest">
+                                Nenhum resultado encontrado
+                            </div>
+                        )}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            </div>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
               <button 

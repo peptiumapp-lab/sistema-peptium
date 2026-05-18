@@ -25,16 +25,16 @@ export default function PeptideDetailModal({ peptide, onClose }: PeptideDetailMo
         initial={{ opacity: 0, scale: 0.95, y: 40 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.95, y: 40 }}
-        className="relative w-full max-w-5xl max-h-[90vh] bg-slate-950 border border-white/10 rounded-[56px] shadow-2xl overflow-hidden flex flex-col lg:flex-row"
+        className="relative w-full max-w-5xl max-h-[90vh] bg-slate-950 border border-white/10 rounded-[40px] md:rounded-[56px] shadow-2xl overflow-y-auto lg:overflow-hidden flex flex-col lg:flex-row"
       >
         {/* Left Side - Core Identity */}
-        <div className="w-full lg:w-2/5 relative min-h-[300px] lg:h-auto overflow-y-auto scrollbar-hide bg-black">
+        <div className="w-full lg:w-2/5 relative min-h-[400px] lg:h-auto lg:overflow-y-auto scrollbar-hide bg-black shrink-0 flex flex-col">
           <div className="absolute inset-0">
-             <img src={peptide.image} className="w-full h-[30vh] lg:h-full object-cover grayscale opacity-40 mix-blend-screen" alt={peptide.name} />
+             <img src={peptide.image} className="w-full h-full object-cover grayscale opacity-40 mix-blend-screen" alt={peptide.name} />
              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent lg:bg-gradient-to-r lg:from-black lg:via-black/90 lg:to-black/20" />
           </div>
           
-          <div className="relative p-10 mt-20 lg:mt-0 lg:h-full flex flex-col justify-end">
+          <div className="relative p-8 md:p-10 pb-12 lg:pb-10 pt-40 lg:pt-10 flex-grow flex flex-col justify-end">
             <span className="px-4 py-2 bg-accent/20 border border-accent/20 rounded-full text-[9px] font-black text-accent uppercase tracking-[0.2em] backdrop-blur-md mb-6 w-fit flex items-center gap-2">
               <Fingerprint size={12} />
               {peptide.category} | {peptide.class} 
@@ -67,7 +67,7 @@ export default function PeptideDetailModal({ peptide, onClose }: PeptideDetailMo
         </div>
 
         {/* Right Side - Scientific & Protocol Details */}
-        <div className="flex-1 overflow-y-auto p-10 lg:p-14 space-y-12 scrollbar-hide bg-slate-950/50 backdrop-blur-3xl relative">
+        <div className="flex-1 lg:overflow-y-auto p-8 md:p-10 lg:p-14 space-y-12 scrollbar-hide bg-slate-950/50 backdrop-blur-3xl relative">
           
           {/* Mechanism of Action */}
           <div className="space-y-6">

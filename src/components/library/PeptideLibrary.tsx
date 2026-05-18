@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
+import Fuse from 'fuse.js';
 import { Search, Filter, ArrowUpRight, Lock, Zap, ArrowLeft } from 'lucide-react';
 import { PROTOCOLS, TOTAL_PEPTIDES } from '../../constants';
 import { motion, AnimatePresence } from 'motion/react';
 import { View } from '../../App';
 import PeptideDetailModal from './PeptideDetailModal';
-import { PeptideDossier } from '../../types';
+import { PeptideCategory, PeptideDossier } from '../../types';
 
 interface PeptideLibraryProps {
   setView: (view: View) => void;
@@ -18,20 +19,27 @@ export default function PeptideLibrary({ setView, isPremium }: PeptideLibraryPro
 
   const categories = [
     'Todos', 
-    ...Array.from(new Set([
-      ...PROTOCOLS.map(p => p.tag),
-      ...PROTOCOLS.flatMap(p => p.secondaryTags || [])
-    ]))
+    ...Object.values(PeptideCategory)
   ].sort((a, b) => a === 'Todos' ? -1 : a.localeCompare(b));
 
-  const filtered = PROTOCOLS.filter(p => {
-    const matchesSearch = p.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
-                          p.description.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesCategory = activeCategory === 'Todos' || 
-                            p.tag === activeCategory || 
-                            p.secondaryTags?.includes(activeCategory);
-    return matchesSearch && matchesCategory;
-  });
+  const fuse = useMemo(() => new Fuse(PROTOCOLS, {
+    keys: ['name', 'description', 'synonyms', 'tag', 'secondaryTags', 'class'],
+    threshold: 0.3, 
+    distance: 100,
+  }), []);
+
+  const filtered = useMemo(() => {
+    let result = PROTOCOLS;
+    
+    if (searchTerm) {
+      result = fuse.search(searchTerm).map(res => res.item);
+    }
+    
+    if (activeCategory !== 'Todos') {
+      result = result.filter(p => p.category === activeCategory);
+    }
+    return result;
+  }, [searchTerm, activeCategory, fuse]);
 
   const getAccessLevel = (index: number) => {
     if (isPremium) return 'full';
@@ -93,12 +101,12 @@ export default function PeptideLibrary({ setView, isPremium }: PeptideLibraryPro
         </div>
       </div>
 
-      <div className="flex flex-wrap gap-3">
-        {categories.slice(0, 15).map((cat) => (
+      <div className="flex flex-wrap gap-2 md:gap-3 max-h-48 overflow-y-auto custom-scrollbar p-1">
+        {categories.map((cat) => (
           <button
             key={cat}
             onClick={() => setActiveCategory(cat)}
-            className={`px-6 py-2.5 rounded-full text-[10px] font-black uppercase tracking-widest transition-all ${activeCategory === cat ? 'bg-accent text-white shadow-lg shadow-accent/20' : 'bg-white/5 text-secondary/40 hover:bg-white/10'}`}
+            className={`px-4 py-2 md:px-6 md:py-2.5 rounded-full text-[9px] md:text-[10px] font-black uppercase tracking-widest transition-all ${activeCategory === cat ? 'bg-accent text-white shadow-lg shadow-accent/20' : 'bg-white/5 text-secondary/40 hover:bg-white/10'}`}
           >
             {cat}
           </button>
