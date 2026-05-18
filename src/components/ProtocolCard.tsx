@@ -12,6 +12,7 @@ interface ProtocolCardProps {
 const ProtocolCard: React.FC<ProtocolCardProps> = ({ protocol, setView, onClick }) => {
   return (
     <div 
+      role="button"
       className="group relative glass-card rounded-[20px] overflow-hidden transition-all duration-700 hover:border-accent/30 flex flex-col h-full bg-[#080808] border border-white/[0.03] cursor-pointer"
       onClick={onClick}
     >

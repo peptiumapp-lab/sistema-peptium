@@ -34,7 +34,7 @@ export default function PeptideDetailModal({ peptide, onClose }: PeptideDetailMo
              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent lg:bg-gradient-to-r lg:from-black lg:via-black/90 lg:to-black/20" />
           </div>
           
-          <div className="relative p-8 md:p-10 pb-12 lg:pb-10 pt-40 lg:pt-10 flex-grow flex flex-col justify-end">
+          <div className="relative z-10 p-8 md:p-10 pb-12 lg:pb-10 pt-40 lg:pt-10 flex-grow flex flex-col justify-end">
             <span className="px-4 py-2 bg-accent/20 border border-accent/20 rounded-full text-[9px] font-black text-accent uppercase tracking-[0.2em] backdrop-blur-md mb-6 w-fit flex items-center gap-2">
               <Fingerprint size={12} />
               {peptide.category} | {peptide.class} 

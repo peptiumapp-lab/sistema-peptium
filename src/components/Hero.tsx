@@ -143,6 +143,7 @@ export default function Hero({ setView, isPremium, onSelectPeptide }: HeroProps)
                                 {searchResults.map((result: any) => (
                                     <li 
                                         key={result.id} 
+                                        role="button"
                                         onClick={() => handleSelect(result)}
                                         className="px-4 py-3 hover:bg-white/5 cursor-pointer border-b border-white/5 last:border-0 flex items-center gap-4 transition-colors"
                                     >   
