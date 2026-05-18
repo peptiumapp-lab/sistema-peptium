@@ -60,7 +60,7 @@ const getStripe = () => {
 // In a real app, these would come from env or a database.
 const PLAN_PRICE_IDS: Record<string, string> = {
   'Pro Mensal': process.env.STRIPE_PRICE_MONTHLY || 'price_monthly_id',
-  'Pro Anual': process.env.STRIPE_PRICE_ANNUAL || 'price_annual_id',
+  'Pro Anual': process.env.STRIPE_PRICE_ANNUAL || 'price_1TYEGiBpksnIQ9D5V46jjlh4',
 };
 
 router.post('/create-checkout-session', async (req: Request, res: Response) => {

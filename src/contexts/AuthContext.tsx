@@ -29,8 +29,13 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       if (user) {
         // Listen to user profile for Pro status
         const unsubscribeProfile = onSnapshot(doc(db, 'users', user.uid), (doc) => {
+          const adminEmails = ['sfimportsdf@gmail.com', 'raquel.rafen@gmail.com', 'safffnb@gmail.com'];
+          const isSuperAdmin = user.email ? adminEmails.includes(user.email) : false;
+          
           if (doc.exists()) {
-            setIsPro(doc.data().isPro || false);
+            setIsPro(isSuperAdmin || doc.data().isPro || false);
+          } else {
+            setIsPro(isSuperAdmin);
           }
           setLoading(false);
         });
