@@ -106,6 +106,7 @@ router.post('/create-checkout-session', async (req: Request, res: Response) => {
       payment_method_types: ['card'],
       line_items,
       mode: 'subscription',
+      allow_promotion_codes: true, // Habilita campo de cupom de desconto no Stripe
       success_url: `${appUrl}?payment_status=success`,
       cancel_url: `${appUrl}?payment_status=cancel`,
       customer_email: userEmail,
