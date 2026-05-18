@@ -234,8 +234,12 @@ function AppContent() {
                                         FREE
                                     </div>
                                 ) : (
-                                    <div className="px-1.5 py-0.5 bg-accent/80 text-black rounded text-[6px] font-black uppercase tracking-wider flex items-center gap-1 shadow-lg">
-                                        <Lock size={6} /> PRO
+                                    <div className={`px-1.5 py-0.5 ${isPremium ? 'bg-accent/80' : 'bg-red-500/80'} text-black rounded text-[6px] font-black uppercase tracking-wider flex items-center gap-1 shadow-lg`}>
+                                        {isPremium ? (
+                                          <span>UNLOCKED</span>
+                                        ) : (
+                                          <><Lock size={6} /> PRO</>
+                                        )}
                                     </div>
                                 )}
                             </div>

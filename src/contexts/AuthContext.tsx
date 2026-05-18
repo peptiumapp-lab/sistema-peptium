@@ -30,13 +30,19 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         // Listen to user profile for Pro status
         const adminEmails = [
           'sfimportsdf@gmail.com', 
-          'raquel.rafen@gmail.com', 
+          'raquelrafen@gmail.com', 
           'rsafen@gmail.com',
           'safffnb@gmail.com',
           'saffnb@gmail.com',
           'safnb@gmail.com'
         ];
-        const normalizedEmail = user.email ? user.email.toLowerCase().trim() : '';
+        
+        let normalizedEmail = user.email ? user.email.toLowerCase().trim() : '';
+        if (normalizedEmail.endsWith('@gmail.com')) {
+          const [username, domain] = normalizedEmail.split('@');
+          normalizedEmail = `${username.replace(/\./g, '')}@${domain}`;
+        }
+        
         const isSuperAdmin = adminEmails.includes(normalizedEmail);
         
         console.log("Current user email:", normalizedEmail, "isSuperAdmin:", isSuperAdmin);
