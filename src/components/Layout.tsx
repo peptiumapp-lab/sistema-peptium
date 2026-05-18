@@ -5,7 +5,7 @@ import {
   Zap, Shield, Target, Sun, Moon,
   Hexagon, Sparkles, ArrowLeftRight, ClipboardList,
   GraduationCap, Layers, ShieldAlert, MapPin,
-  Calendar, User, HelpCircle, UserPlus, BookOpen, LogOut, LogIn, Instagram, Globe, Mail
+  Calendar, User, HelpCircle, UserPlus, BookOpen, LogOut, LogIn, Instagram, Globe, Mail, ArrowLeft
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { SUPPORT_LINK, INSTAGRAM_HANDLE, INSTAGRAM_LINK, SITE_URL, SITE_LINK } from '../constants';
@@ -218,18 +218,30 @@ export default function Layout({ children, currentView, setCurrentView, theme, s
       {/* Mobile Header / Navbar */}
       <nav className="lg:hidden fixed top-0 left-0 right-0 z-50 bg-primary/80 backdrop-blur-xl border-b border-secondary/5">
         <div className="px-4 h-14 flex justify-between items-center">
-          <span 
-            className="flex items-center gap-2 cursor-pointer group"
-            onClick={() => setCurrentView('home')}
-          >
-            <PeptiumLogo className="w-12 h-12" glowing />
-            <span className="font-sans font-black text-[14px] tracking-widest text-[#00E5FF] uppercase drop-shadow-[0_0_8px_rgba(0,229,255,0.4)]">
-              PEPTIUM
-            </span>
-            <span className="font-sans font-bold text-[14px] tracking-[0.3em] text-white uppercase italic opacity-90">
-              PRIME
-            </span>
-          </span>
+          <div className="flex items-center gap-2">
+            {currentView !== 'home' ? (
+              <button 
+                onClick={() => setCurrentView('home')}
+                className="p-2 text-secondary hover:text-white transition-colors"
+                aria-label="Voltar"
+              >
+                <ArrowLeft size={20} />
+              </button>
+            ) : (
+              <span 
+                className="flex items-center gap-2 cursor-pointer group"
+                onClick={() => setCurrentView('home')}
+              >
+                <PeptiumLogo className="w-8 h-8" glowing />
+                <span className="font-sans font-black text-[12px] tracking-widest text-[#00E5FF] uppercase drop-shadow-[0_0_8px_rgba(0,229,255,0.4)] hidden sm:block">
+                  PEPTIUM
+                </span>
+                <span className="font-sans font-bold text-[12px] tracking-[0.3em] text-white uppercase italic opacity-90 hidden sm:block">
+                  PRIME
+                </span>
+              </span>
+            )}
+          </div>
           <div className="flex items-center gap-2">
             <button 
               onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
