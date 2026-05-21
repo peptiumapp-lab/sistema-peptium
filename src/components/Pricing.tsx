@@ -10,8 +10,8 @@ const plans = [
     name: 'Pro Mensal',
     price: '99,99',
     period: '/mês',
-    description: 'Ideal para quem está começando sua jornada de biohacking.',
-    features: ['Calculadora Inteligente', 'Ajuste de Sensibilidade', 'Log de 30 dias', 'Suporte Básico'],
+    description: 'Acesso completo à plataforma para iniciar sua jornada.',
+    features: ['Acesso a todos os peptídios', 'Acesso aos Protocolos', 'Histórico de Uso', 'Suporte Básico'],
     icon: Zap,
     premium: false,
   },
@@ -19,8 +19,8 @@ const plans = [
     name: 'Pro Anual',
     price: '475,20',
     period: '/ano',
-    description: 'O padrão ouro para performance máxima e precisão absoluta.',
-    features: ['Tudo do Mensal', 'Protocolos Exclusivos', 'Histórico Ilimitado', 'Suporte Prime via E-mail', 'Acesso Antecipado a Novos Ativos'],
+    description: 'A experiência Prime definitiva com vantagens exclusivas.',
+    features: ['Tudo do Pro Mensal', 'Acesso antecipado a novos ativos', 'Suporte Prime Prioritário', 'Atualizações Premium Mensais'],
     icon: Crown,
     premium: true,
     tag: '60% OFF'
@@ -127,7 +127,7 @@ export default function Pricing() {
                     <span className="text-xs text-gray-400">{plan.period}</span>
                   </div>
                   {plan.name === 'Pro Anual' && (
-                    <p className="mt-1 text-[10px] text-secondary/30 line-through">R$ 1.188,00</p>
+                    <p className="mt-1 text-xs sm:text-sm font-bold text-secondary/50 line-through">R$ 1.188,00</p>
                   )}
                   <p className="mt-3 text-[10px] text-gray-400 uppercase tracking-widest leading-relaxed">{plan.description}</p>
                 </div>

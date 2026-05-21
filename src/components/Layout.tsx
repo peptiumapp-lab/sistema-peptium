@@ -7,7 +7,6 @@ import { Menu, X, Phone, LayoutDashboard, Calculator,
   GraduationCap, Layers, ShieldAlert, MapPin,
   Calendar, User, HelpCircle, UserPlus, BookOpen, LogOut, LogIn, Instagram, Globe, Mail, ArrowLeft
 } from 'lucide-react';
-import React, { useState, useEffect } from 'react';
 import { SUPPORT_LINK, INSTAGRAM_HANDLE, INSTAGRAM_LINK, SITE_URL, SITE_LINK, PROTOCOLS } from '../constants';
 import type { View } from '../App';
 import { useAuth } from '../contexts/AuthContext';
@@ -34,18 +33,18 @@ export default function Layout({ children, currentView, setCurrentView, theme, s
     { icon: <Hexagon size={18} />, label: 'Atlas de Compostos', view: 'library' as View },
     { icon: <Layers size={18} />, label: 'Biblioteca de Protocolos', view: 'synergies' as View },
     { icon: <BookOpen size={18} />, label: 'Bio-Inteligência', view: 'dossier' as View },
-    { icon: <Sparkles size={18} />, label: 'Bio-Scanner IA', view: 'home' as View, anchor: 'hero' },
+    { icon: <Sparkles size={18} />, label: 'Bio-Scanner IA', view: 'scanner' as View },
     { icon: <ArrowLeftRight size={18} />, label: 'Análise de Sinergia', view: 'stacks' as View },
-    { icon: <ClipboardList size={18} />, label: 'Meus Protocolos', view: 'home' as View, anchor: 'hero' },
+    { icon: <ClipboardList size={18} />, label: 'Meus Protocolos', view: 'my-protocols' as View },
     { icon: <GraduationCap size={18} />, label: 'Centro de Aprendizado', view: 'guide' as View },
   ];
 
   const ferramentasItems = [
-    { icon: <Calculator size={18} />, label: 'Motor de Precisão', view: 'calculator' as View },
+    { icon: <Calculator size={18} />, label: 'Calculadora Prime', view: 'calculator' as View },
     { icon: <Layers size={18} />, label: 'Cofre de Stacks', view: 'stacks' as View },
     { icon: <ShieldAlert size={18} />, label: 'Guardião de Segurança', view: 'interactions' as View },
-    { icon: <MapPin size={18} />, label: 'Mapa de Bio-Hacking', view: 'home' as View, anchor: 'extras' },
-    { icon: <Calendar size={18} />, label: 'Cronograma de Ciclo', view: 'home' as View, anchor: 'hero' },
+    { icon: <MapPin size={18} />, label: 'Mapa de Bio-Hacking', view: 'map' as View },
+    { icon: <Calendar size={18} />, label: 'Cronograma de Ciclo', view: 'schedule' as View },
   ];
 
   const contaItems = [
@@ -76,7 +75,6 @@ export default function Layout({ children, currentView, setCurrentView, theme, s
     { icon: <Instagram size={18} />, label: INSTAGRAM_HANDLE, onClick: () => window.open(INSTAGRAM_LINK, '_blank') },
     { icon: <Globe size={18} />, label: SITE_URL, onClick: () => window.open(SITE_LINK, '_blank') },
     { icon: <Mail size={18} />, label: 'Suporte', onClick: () => window.location.href = SUPPORT_LINK },
-    { icon: <Moon size={18} />, label: 'Modo Escuro', onClick: () => setTheme(theme === 'dark' ? 'light' : 'dark') },
     ...(!isPro ? [{ icon: <UserPlus size={18} />, label: 'Assinar Prime', view: 'plans' as View, highlight: true }] : []),
   ];
 
@@ -296,12 +294,6 @@ export default function Layout({ children, currentView, setCurrentView, theme, s
             )}
           </div>
           <div className="flex items-center gap-2">
-            <button 
-              onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-              className="p-2 text-secondary/40"
-            >
-              {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
-            </button>
             <button 
               onClick={() => setIsSidebarOpen(true)}
               className="p-2 text-secondary"

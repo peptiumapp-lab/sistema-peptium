@@ -21,23 +21,27 @@ import PeptideDetailModal from './components/library/PeptideDetailModal';
 import LegalModal from './components/LegalModal';
 import ProGate from './components/ProGate';
 import SupportButton from './components/SupportButton';
+import OnlineUsers from './components/OnlineUsers';
+import PlaceholderView from './components/PlaceholderView';
+import CycleSchedule from './components/CycleSchedule';
+import BioHackingMap from './components/BioHackingMap';
 import { PeptiumLogo } from './components/Logo';
 import { PROTOCOLS, SUPPORT_LINK, TOTAL_PEPTIDES, INSTAGRAM_LINK, SITE_LINK } from './constants';
-import { PeptideDossier } from './types';
+import { PeptideDossier, PeptideCategory } from './types';
 import { Shield, Truck, CreditCard, Activity, CheckCircle2, ArrowUpRight, Star, Zap, ChevronRight, ShieldAlert, X, Hexagon, Plus, GraduationCap, Microscope, BookOpen, Instagram, Globe, Mail, MapPin, Lock } from 'lucide-react';
 
 import { useAuth } from './contexts/AuthContext';
 import { signInWithGoogle, logout, upgradeToPro, handleRedirectResult } from './lib/firebase';
 import { auditInventory } from './services/atlasAuditor';
 
-export type View = 'home' | 'library' | 'calculator' | 'quiz' | 'stacks' | 'interactions' | 'my-protocols' | 'plans' | 'dossier' | 'guide' | 'synergies';
+export type View = 'home' | 'library' | 'calculator' | 'quiz' | 'stacks' | 'interactions' | 'my-protocols' | 'plans' | 'dossier' | 'guide' | 'synergies' | 'scanner' | 'map' | 'schedule';
 
 function AppContent() {
   const [currentView, setCurrentView] = useState<View>('home');
-  const [theme, setTheme] = useState<'dark' | 'light'>('dark');
   const [userPeptides, setUserPeptides] = useState<string[]>(['bpc-157', 'selank']); 
   const [selectedPeptide, setSelectedPeptide] = useState<PeptideDossier | null>(null);
   const [selectedSynergyIds, setSelectedSynergyIds] = useState<string[]>([]);
+  const [selectedCategory, setSelectedCategory] = useState<string>('Todos');
   const [legalModalType, setLegalModalType] = useState<'termos' | 'privacidade' | 'disclaimer' | null>(null);
   const { user, isPro: isPremium, loading: authLoading } = useAuth();
   const [apiStatus, setApiStatus] = useState<string>('checking...');
@@ -107,39 +111,21 @@ function AppContent() {
   }, [currentView]);
 
   useEffect(() => {
-    if (theme === 'light') {
-      document.documentElement.classList.add('light');
-    } else {
-      document.documentElement.classList.remove('light');
-    }
-  }, [theme]);
+    document.documentElement.classList.remove('light');
+  }, []);
 
   const renderView = () => {
     // Content Locking Logic
-    const premiumViews: View[] = ['calculator', 'dossier', 'interactions', 'stacks', 'synergies'];
+    const premiumViews: View[] = ['calculator', 'dossier', 'interactions', 'stacks', 'synergies', 'scanner', 'map', 'schedule', 'my-protocols', 'quiz'];
     const isRestricted = !isPremium && premiumViews.includes(currentView);
 
     if (isRestricted) {
-        const viewTitles: Record<string, string> = {
-            'calculator': 'Motor de Precisão',
-            'dossier': 'Inteligência Molecular',
-            'interactions': 'Guardião de Segurança',
-            'stacks': 'Análise de Sinergia',
-            'synergies': 'Biblioteca de Protocolos'
-        };
-
-        return (
-            <ProGate 
-                title={viewTitles[currentView] || 'Área Exclusiva'} 
-                onBack={() => setCurrentView('home')} 
-                onUpgrade={() => setCurrentView('plans')} 
-            />
-        );
+        return <SalesPage setView={setCurrentView} />;
     }
 
     switch (currentView) {
       case 'library':
-        return <div className="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto"><PeptideLibrary setView={setCurrentView} isPremium={isPremium} /></div>;
+        return <div className="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto"><PeptideLibrary setView={setCurrentView} isPremium={isPremium} initialCategory={selectedCategory} /></div>;
       case 'calculator':
         return <div className="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto"><PeptideCalculator setView={setCurrentView} /></div>;
       case 'dossier':
@@ -157,6 +143,14 @@ function AppContent() {
           setSelectedSynergyIds(ids);
           setCurrentView('stacks');
         }} isStandalone />;
+      case 'schedule':
+        return <CycleSchedule isStandalone />;
+      case 'map':
+        return <BioHackingMap isStandalone />;
+      case 'scanner':
+      case 'my-protocols':
+      case 'quiz':
+        return <PlaceholderView view={currentView} setView={setCurrentView} />;
       case 'home':
       default:
         return (
@@ -201,14 +195,15 @@ function AppContent() {
                 {/* High-Tech Categories Grid */}
                 <div className="mb-12 pb-8 border-b border-white/5">
                   <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-2">
-                    {[
-                      'Recuperação', 'Cognição', 'Longevidade', 'Performance', 'Metabolismo', 'Estética', 'Imunologia', 'Sexual',
-                      'Neuroproteção', 'Sarcopenia', 'Cicatrização', 'Sono', 'Glicemia', 'Vascular', 'Inflamação', 'Dopamina',
-                      'Foco HD', 'Massa Magra', 'Gordura Visceral', 'Bio-Reparo', 'Osteogênese', 'Antioxidante', 'Neural', 'Digestivo'
-                    ].map((cat, i) => (
+                    {Object.values(PeptideCategory).sort().map((cat, i) => (
                       <div 
                         key={i}
-                        className="px-3 py-2 bg-white/[0.02] border border-white/5 hover:border-accent/30 hover:bg-accent/5 rounded-lg transition-all group flex items-center gap-2 cursor-pointer"
+                        onClick={() => {
+                          setSelectedCategory(cat);
+                          setCurrentView('library');
+                          window.scrollTo(0, 0);
+                        }}
+                        className="px-3 py-2 bg-white/[0.02] border border-white/5 hover:border-accent/30 hover:bg-accent/5 rounded-lg transition-all group flex items-center gap-2 cursor-pointer select-none"
                       >
                         <div className="w-1 h-1 rounded-full bg-accent/30 group-hover:bg-accent animate-pulse" />
                         <span className="text-[12px] font-black text-white/40 group-hover:text-white uppercase tracking-widest truncate">{cat}</span>
@@ -293,11 +288,12 @@ function AppContent() {
   };
 
   return (
-    <div className={theme === 'dark' ? 'dark' : ''}>
+    <div className="dark">
+      <OnlineUsers />
       <div className="bg-primary text-secondary font-sans selection:bg-accent selection:text-white transition-colors duration-500 overflow-x-hidden min-h-screen">
         
         <ErrorBoundary>
-          <Layout currentView={currentView} setCurrentView={setCurrentView} theme={theme} setTheme={setTheme} isPremium={isPremium}>
+          <Layout currentView={currentView} setCurrentView={setCurrentView} theme="dark" setTheme={() => {}} isPremium={isPremium}>
             <AnimatePresence mode="wait">
               <motion.div
                 key={currentView}
@@ -344,10 +340,6 @@ function AppContent() {
                 <div className="flex items-center gap-3 text-muted text-[11px] font-medium opacity-80 group">
                   <Mail size={14} className="text-accent" />
                   <a href="mailto:peptium.app@gmail.com" className="hover:text-accent transition-colors">peptium.app@gmail.com</a>
-                </div>
-                <div className="flex gap-3 text-muted text-[11px] font-medium opacity-80">
-                  <MapPin size={14} className="text-accent shrink-0 mt-0.5" />
-                  <span>Brasília, DF - Brasil</span>
                 </div>
               </div>
             </div>

@@ -145,7 +145,7 @@ export default function PeptideCalculator({ setView }: PeptideCalculatorProps) {
           <h2 className="text-4xl font-black text-white uppercase tracking-tighter italic">
             CALCULADORA <span className="text-accent">PRIME</span>
           </h2>
-          <p className="text-[10px] text-white/40 font-bold uppercase tracking-[0.3em]">Precisão laboratorial para seus protocolos</p>
+          <p className="text-[10px] text-white/40 font-bold uppercase tracking-[0.3em]">Cálculo algorítmico e reconstituição avançada</p>
         </div>
         <div className="flex gap-2">
           {SYRINGE_TYPES.map((type) => (

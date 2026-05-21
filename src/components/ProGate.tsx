@@ -47,7 +47,7 @@ export default function ProGate({ onBack, onUpgrade, title }: ProGateProps) {
 
       <div className="grid grid-cols-2 gap-x-12 gap-y-4 text-left border-y border-white/5 py-8 w-full max-w-2xl">
         {[
-          'Motor de Precisão (Calculadora)',
+          'Calculadora Prime',
           'Algoritmo de IA Molecular',
           'Atlas com 150+ Compostos',
           'Protocolos de Recomposição',

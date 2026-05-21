@@ -182,16 +182,11 @@ export default function Hero({ setView, isPremium, onSelectPeptide }: HeroProps)
               </button>
 
               <button 
-                onClick={() => {
-                  const pricingElement = document.getElementById('pricing');
-                  if (pricingElement) {
-                    pricingElement.scrollIntoView({ behavior: 'smooth' });
-                  }
-                }}
+                onClick={() => setView('plans')}
                 className="group w-full sm:w-auto px-8 py-4 bg-transparent border-2 border-white/10 hover:border-accent/40 text-white font-black text-[10px] uppercase tracking-[0.3em] transition-all flex items-center justify-center gap-2"
                 style={{ clipPath: 'polygon(0 0, 90% 0, 100% 30%, 100% 100%, 10% 100%, 0 70%)' }}
               >
-                <span className="relative z-10">Níveis de Acesso</span>
+                <span className="relative z-10">Começar Agora</span>
                 <ArrowUpRight size={16} className="group-hover:rotate-45 transition-transform opacity-50" />
               </button>
             </div>

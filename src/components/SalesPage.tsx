@@ -94,7 +94,7 @@ export default function SalesPage({ setView }: SalesPageProps) {
                 EM PEPTÍDEOS.
               </h2>
               <p className="text-white/40 text-[10px] md:text-[11px] font-bold leading-relaxed uppercase tracking-[0.2em] max-w-xl">
-                Não é um e-book. Não é uma tabela. É o ecossistema de inteligência molecular mais avançado do mercado. O Peptium Prime Atlas entrega <span className="text-white font-black underline decoration-accent underline-offset-4">ROTAS BIOLÓGICAS</span> de cura e performance validadas.
+                Não é um e-book. Não é uma tabela. É o ecossistema de inteligência molecular mais avançado do mercado. O Peptium Prime Atlas entrega <span className="text-white font-black underline decoration-accent underline-offset-4">ROTAS BIOLÓGICAS</span> de recuperação e performance validadas.
               </p>
                 <div className="flex flex-col sm:flex-row items-center gap-4 pt-4">
                   <button 
@@ -328,7 +328,7 @@ export default function SalesPage({ setView }: SalesPageProps) {
                 { title: "Metabolismo", items: "Tirzepatida, Retatrutida, 5-Amino-1MQ", color: "accent" },
                 { title: "Longevidade", items: "Epitalon, Endoluten, SS-31, GHK-Cu", color: "blue-500" },
                 { title: "Nootrópicos", items: "Cerebrolysin, Dihexa, Semax", color: "purple-500" },
-                { title: "Cura & Reparo", items: "BPC-157, TB-500, ARA-290", color: "red-500" },
+                { title: "Recuperação & Reparo", items: "BPC-157, TB-500, ARA-290", color: "red-500" },
                 { title: "Imunidade", items: "TA1, LL-37, Vladonix", color: "green-500" },
                 { title: "Performance/GH", items: "Tesamorelin, Ipamorelina, GHRPs", color: "orange-500" },
                 { title: "Saúde Sexual", items: "PT-141, MT2, Kisspeptina", color: "pink-500" },
@@ -555,7 +555,7 @@ export default function SalesPage({ setView }: SalesPageProps) {
                     <span className="text-[10px] font-black text-white/20 uppercase ml-2 italic">/ano</span>
                   </div>
                   <div className="flex items-center gap-3 mt-4">
-                    <span className="text-[10px] font-bold text-white/20 line-through">R$ 1.188,00</span>
+                    <span className="text-sm font-bold text-white/50 line-through">R$ 1.188,00</span>
                     <span className="px-2 py-0.5 bg-accent/20 text-accent font-black text-[9px] uppercase rounded">-60% OFF</span>
                   </div>
                 </div>

@@ -30,7 +30,7 @@ const getCards = (isPro: boolean): CardItem[] => {
     },
     {
       icon: <Calculator size={24} />,
-      title: 'Motor de Precisão',
+      title: 'Calculadora Prime',
       description: 'Reconstituição molecular',
       view: 'calculator'
     },

@@ -38,10 +38,8 @@ export const PROTOCOLS: PeptideDossier[] = [
       'ghk-cu-liposomal',
       'ipamorelina'
     ],
-    category: PeptideCategory.RECUPERACAO,
-    secondaryCategories: [
-      'Recuperação'
-    ],
+    category: PeptideCategory.VASCULAR,
+    secondaryCategories: ['BIO-REPARO', 'CICATRIZAÇÃO', 'DIGESTIVO', 'DOPAMINA', 'OSTEOGÊNESE', 'RECUPERAÇÃO', 'SEXUAL', 'VASCULAR'],
     synonyms: [
       'BPC-157'
     ],
@@ -125,10 +123,8 @@ export const PROTOCOLS: PeptideDossier[] = [
       'bpc-157',
       'epitalon'
     ],
-    category: PeptideCategory.ESTETICA,
-    secondaryCategories: [
-      'Estética'
-    ],
+    category: PeptideCategory.SEXUAL,
+    secondaryCategories: ['ANTIOXIDANTE', 'ESTÉTICA', 'SEXUAL'],
     synonyms: [
       'GHK-Cu'
     ],
@@ -222,10 +218,8 @@ export const PROTOCOLS: PeptideDossier[] = [
       'thymalin',
       'pinealon'
     ],
-    category: PeptideCategory.LONGEVIDADE,
-    secondaryCategories: [
-      'Longevidade'
-    ],
+    category: PeptideCategory.SONO,
+    secondaryCategories: ['LONGEVIDADE', 'NEURAL', 'NEUROPROTEÇÃO', 'SONO'],
     synonyms: [
       'Epitalon'
     ],
@@ -358,10 +352,8 @@ export const PROTOCOLS: PeptideDossier[] = [
         warning: 'Risco de sobrecarga adrenérgica e arritmias leves devido à ativação de Glucagon.'
       }
     ],
-    category: PeptideCategory.METABOLISMO,
-    secondaryCategories: [
-      'Metabolismo'
-    ],
+    category: PeptideCategory.VASCULAR,
+    secondaryCategories: ['GLICEMIA', 'GORDURA VISCERAL', 'METABOLISMO', 'VASCULAR'],
     synonyms: [
       'Retatrutida'
     ],
@@ -446,10 +438,8 @@ export const PROTOCOLS: PeptideDossier[] = [
         url: 'https://pubmed.ncbi.nlm.nih.gov/38324484/'
       }
     ],
-    category: PeptideCategory.OUTROS,
-    secondaryCategories: [
-      'Outros'
-    ],
+    category: PeptideCategory.METABOLISMO,
+    secondaryCategories: ['IMUNOLOGIA', 'LONGEVIDADE', 'METABOLISMO'],
     synonyms: [
       'Rusfertide'
     ],
@@ -538,9 +528,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'metformina'
     ],
     category: PeptideCategory.METABOLISMO,
-    secondaryCategories: [
-      'Metabolismo'
-    ],
+    secondaryCategories: ['METABOLISMO'],
     synonyms: [
       'BAIBA'
     ],
@@ -626,9 +614,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'tesamorelin'
     ],
     category: PeptideCategory.RECUPERACAO,
-    secondaryCategories: [
-      'Recuperação'
-    ],
+    secondaryCategories: ['RECUPERAÇÃO'],
     synonyms: [
       'TB-500'
     ],
@@ -729,10 +715,8 @@ export const PROTOCOLS: PeptideDossier[] = [
       'noopept',
       'cerebrolysin'
     ],
-    category: PeptideCategory.OUTROS,
-    secondaryCategories: [
-      'Outros'
-    ],
+    category: PeptideCategory.NEUROPROTECAO,
+    secondaryCategories: ['COGNIÇÃO', 'FOCO HD', 'NEURAL', 'NEUROPROTEÇÃO'],
     synonyms: [
       'Semax'
     ],
@@ -811,10 +795,8 @@ export const PROTOCOLS: PeptideDossier[] = [
         mitigation: 'Ajuste de dosagem e monitoramento de eletrólitos.'
       }
     ],
-    category: PeptideCategory.OUTROS,
-    secondaryCategories: [
-      'Outros'
-    ],
+    category: PeptideCategory.METABOLISMO,
+    secondaryCategories: ['METABOLISMO'],
     synonyms: [
       'MOTS-c'
     ],
@@ -938,9 +920,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       }
     ],
     category: PeptideCategory.METABOLISMO,
-    secondaryCategories: [
-      'Metabolismo'
-    ],
+    secondaryCategories: ['METABOLISMO'],
     synonyms: [
       'Tirzepatida'
     ],
@@ -1058,9 +1038,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'tesofensina'
     ],
     category: PeptideCategory.METABOLISMO,
-    secondaryCategories: [
-      'Metabolismo'
-    ],
+    secondaryCategories: ['METABOLISMO'],
     synonyms: [
       'Semaglutida'
     ],
@@ -1169,9 +1147,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       }
     ],
     category: PeptideCategory.METABOLISMO,
-    secondaryCategories: [
-      'Metabolismo'
-    ],
+    secondaryCategories: ['METABOLISMO'],
     synonyms: [
       'Mazdutide'
     ],
@@ -1459,9 +1435,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       }
     ],
     category: PeptideCategory.METABOLISMO,
-    secondaryCategories: [
-      'Metabolismo'
-    ],
+    secondaryCategories: ['METABOLISMO'],
     synonyms: [
       'Survodutide'
     ],
@@ -1553,9 +1527,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       }
     ],
     category: PeptideCategory.METABOLISMO,
-    secondaryCategories: [
-      'Metabolismo'
-    ],
+    secondaryCategories: ['METABOLISMO'],
     synonyms: [
       'Orforglipron'
     ],
@@ -1909,10 +1881,8 @@ export const PROTOCOLS: PeptideDossier[] = [
         pmid: '30643250'
       }
     ],
-    category: PeptideCategory.OUTROS,
-    secondaryCategories: [
-      'Outros'
-    ],
+    category: PeptideCategory.METABOLISMO,
+    secondaryCategories: ['METABOLISMO'],
     synonyms: [
       'Akkermat'
     ],
@@ -2004,9 +1974,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       }
     ],
     category: PeptideCategory.METABOLISMO,
-    secondaryCategories: [
-      'Metabolismo'
-    ],
+    secondaryCategories: ['METABOLISMO'],
     synonyms: [
       'Danuglipron'
     ],
@@ -2108,9 +2076,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       }
     ],
     category: PeptideCategory.METABOLISMO,
-    secondaryCategories: [
-      'Metabolismo'
-    ],
+    secondaryCategories: ['METABOLISMO'],
     synonyms: [
       'Tesofensina'
     ],
@@ -2205,9 +2171,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       }
     ],
     category: PeptideCategory.METABOLISMO,
-    secondaryCategories: [
-      'Metabolismo'
-    ],
+    secondaryCategories: ['METABOLISMO'],
     synonyms: [
       '5-Amino-1MQ'
     ],
@@ -2314,9 +2278,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'fragment-176-191'
     ],
     category: PeptideCategory.METABOLISMO,
-    secondaryCategories: [
-      'Metabolismo'
-    ],
+    secondaryCategories: ['METABOLISMO'],
     synonyms: [
       'AOD-9604'
     ],
@@ -2414,9 +2376,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       }
     ],
     category: PeptideCategory.METABOLISMO,
-    secondaryCategories: [
-      'Metabolismo'
-    ],
+    secondaryCategories: ['METABOLISMO'],
     synonyms: [
       'Adipotide'
     ],
@@ -2512,9 +2472,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'aod-9604'
     ],
     category: PeptideCategory.METABOLISMO,
-    secondaryCategories: [
-      'Metabolismo'
-    ],
+    secondaryCategories: ['METABOLISMO'],
     synonyms: [
       'HGH Frag 176-191'
     ],
@@ -2694,9 +2652,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       }
     ],
     category: PeptideCategory.PERFORMANCE,
-    secondaryCategories: [
-      'Performance'
-    ],
+    secondaryCategories: ['PERFORMANCE'],
     synonyms: [
       'Tesamorelina'
     ],
@@ -2775,10 +2731,8 @@ export const PROTOCOLS: PeptideDossier[] = [
         mitigation: 'Não exceder os tempos de ciclo recomendados.'
       }
     ],
-    category: PeptideCategory.PERFORMANCE,
-    secondaryCategories: [
-      'Performance'
-    ],
+    category: PeptideCategory.SARCOPENIA,
+    secondaryCategories: ['MASSA MAGRA', 'SARCOPENIA'],
     synonyms: [
       'IGF-1 LR3'
     ],
@@ -2857,9 +2811,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       }
     ],
     category: PeptideCategory.PERFORMANCE,
-    secondaryCategories: [
-      'Performance'
-    ],
+    secondaryCategories: ['PERFORMANCE'],
     synonyms: [
       'GHRP-2'
     ],
@@ -2933,9 +2885,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       }
     ],
     category: PeptideCategory.PERFORMANCE,
-    secondaryCategories: [
-      'Performance'
-    ],
+    secondaryCategories: ['PERFORMANCE'],
     synonyms: [
       'GHRP-6'
     ],
@@ -3167,10 +3117,8 @@ export const PROTOCOLS: PeptideDossier[] = [
         url: 'https://pubmed.ncbi.nlm.nih.gov/23136261/'
       }
     ],
-    category: PeptideCategory.PERFORMANCE,
-    secondaryCategories: [
-      'Performance'
-    ],
+    category: PeptideCategory.MASSA_MAGRA,
+    secondaryCategories: ['MASSA MAGRA'],
     synonyms: [
       'ACE-031'
     ],
@@ -3405,10 +3353,8 @@ export const PROTOCOLS: PeptideDossier[] = [
         warning: 'Pode elevar a glicemia e antagonizar o efeito da medicação.'
       }
     ],
-    category: PeptideCategory.PERFORMANCE,
-    secondaryCategories: [
-      'Performance'
-    ],
+    category: PeptideCategory.SARCOPENIA,
+    secondaryCategories: ['MASSA MAGRA', 'SARCOPENIA'],
     synonyms: [
       'MK-677'
     ],
@@ -3476,10 +3422,8 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Crescimento Ilimitado',
       'Genética'
     ],
-    category: PeptideCategory.PERFORMANCE,
-    secondaryCategories: [
-      'Performance'
-    ],
+    category: PeptideCategory.MASSA_MAGRA,
+    secondaryCategories: ['MASSA MAGRA'],
     synonyms: [
       'Myostatin Propeptide'
     ],
@@ -3759,10 +3703,8 @@ export const PROTOCOLS: PeptideDossier[] = [
       'mk-677',
       'rad140'
     ],
-    category: PeptideCategory.PERFORMANCE,
-    secondaryCategories: [
-      'Performance'
-    ],
+    category: PeptideCategory.MASSA_MAGRA,
+    secondaryCategories: ['MASSA MAGRA'],
     synonyms: [
       'Ligandrol'
     ],
@@ -3852,10 +3794,8 @@ export const PROTOCOLS: PeptideDossier[] = [
       'cardarine',
       'bpc-157'
     ],
-    category: PeptideCategory.PERFORMANCE,
-    secondaryCategories: [
-      'Performance'
-    ],
+    category: PeptideCategory.SARCOPENIA,
+    secondaryCategories: ['MASSA MAGRA', 'SARCOPENIA'],
     synonyms: [
       'Ostarine'
     ],
@@ -4010,10 +3950,8 @@ export const PROTOCOLS: PeptideDossier[] = [
       'bpc-157',
       'larazotida'
     ],
-    category: PeptideCategory.OUTROS,
-    secondaryCategories: [
-      'Outros'
-    ],
+    category: PeptideCategory.IMUNOLOGIA,
+    secondaryCategories: ['IMUNOLOGIA'],
     synonyms: [
       'KPV'
     ],
@@ -4085,10 +4023,8 @@ export const PROTOCOLS: PeptideDossier[] = [
     dosage: '1mg a 4mg SC.',
     administration: 'Subcutânea.',
     protocol: 'Uso diário em ciclos de 28 dias. Essencial para pacientes que não respondem a gabapentinoides.',
-    category: PeptideCategory.RECUPERACAO,
-    secondaryCategories: [
-      'Recuperação'
-    ],
+    category: PeptideCategory.INFLAMACAO,
+    secondaryCategories: ['INFLAMAÇÃO'],
     synonyms: [
       'ARA-290'
     ],
@@ -4157,7 +4093,7 @@ export const PROTOCOLS: PeptideDossier[] = [
     dosage: '0.25mg a 1mg (Oral).',
     administration: 'Oral.',
     protocol: 'Administrar 3x ao dia (Pré-refeições). Ponto de Reset para inchaço e fadiga em 14 dias.',
-    category: PeptideCategory.OUTROS,
+    category: PeptideCategory.METABOLISMO,
     secondaryCategories: [
       'Outros'
     ],
@@ -4233,10 +4169,8 @@ export const PROTOCOLS: PeptideDossier[] = [
     dosage: '100mcg a 250mcg SC.',
     administration: 'Subcutânea ou Tópica.',
     protocol: 'Uso diário em pulsos de 5 a 10 dias. Ponto de Reset para infecções localizado em 48-72h.',
-    category: PeptideCategory.OUTROS,
-    secondaryCategories: [
-      'Outros'
-    ],
+    category: PeptideCategory.IMUNOLOGIA,
+    secondaryCategories: ['IMUNOLOGIA'],
     synonyms: [
       'LL-37'
     ],
@@ -4310,10 +4244,8 @@ export const PROTOCOLS: PeptideDossier[] = [
     dosage: '50mcg a 200mcg.',
     administration: 'Intranasal.',
     protocol: 'Administrado em spray nasal até 4x ao dia. Essencial em protocolos de CIRS (toxicidade por mofo). Ponto de Reset em 2-4 meses.',
-    category: PeptideCategory.OUTROS,
-    secondaryCategories: [
-      'Outros'
-    ],
+    category: PeptideCategory.VASCULAR,
+    secondaryCategories: ['VASCULAR'],
     synonyms: [
       'VIP'
     ],
@@ -4393,9 +4325,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       }
     ],
     category: PeptideCategory.CARDIOMETABÓLICO,
-    secondaryCategories: [
-      'Cardiometabólico'
-    ],
+    secondaryCategories: ['LONGEVIDADE'],
     synonyms: [
       'SS-31'
     ],
@@ -4534,10 +4464,8 @@ export const PROTOCOLS: PeptideDossier[] = [
     dosage: '100mcg a 500mcg SC.',
     administration: 'Subcutânea ou Oral.',
     protocol: 'Uso diário em ciclos curtos de 10 dias. Ponto de Reset epigenético consolidado após o ciclo.',
-    category: PeptideCategory.RECUPERACAO,
-    secondaryCategories: [
-      'Recuperação'
-    ],
+    category: PeptideCategory.IMUNOLOGIA,
+    secondaryCategories: ['IMUNOLOGIA'],
     synonyms: [
       'Vilon'
     ],
@@ -4606,10 +4534,8 @@ export const PROTOCOLS: PeptideDossier[] = [
     dosage: '1mg a 2mg SC.',
     administration: 'Subcutânea.',
     protocol: 'Administração semanal ou conforme necessidade profilática. Vital garantir níveis séricos ótimos de zinco.',
-    category: PeptideCategory.RECUPERACAO,
-    secondaryCategories: [
-      'Recuperação'
-    ],
+    category: PeptideCategory.IMUNOLOGIA,
+    secondaryCategories: ['IMUNOLOGIA'],
     synonyms: [
       'Thymulin'
     ],
@@ -4773,9 +4699,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'resveratrol'
     ],
     category: PeptideCategory.LONGEVIDADE,
-    secondaryCategories: [
-      'Longevidade'
-    ],
+    secondaryCategories: ['LONGEVIDADE'],
     synonyms: [
       'NAD+'
     ],
@@ -4914,9 +4838,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Citoproteção'
     ],
     category: PeptideCategory.LONGEVIDADE,
-    secondaryCategories: [
-      'Longevidade'
-    ],
+    secondaryCategories: ['LONGEVIDADE'],
     synonyms: [
       'Humanin'
     ],
@@ -4982,9 +4904,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Regeneração'
     ],
     category: PeptideCategory.RECUPERACAO,
-    secondaryCategories: [
-      'Recuperação'
-    ],
+    secondaryCategories: ['RECUPERAÇÃO'],
     synonyms: [
       'Cartalax'
     ],
@@ -5050,9 +4970,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Longevidade'
     ],
     category: PeptideCategory.LONGEVIDADE,
-    secondaryCategories: [
-      'Longevidade'
-    ],
+    secondaryCategories: ['LONGEVIDADE'],
     synonyms: [
       'Endoluten'
     ],
@@ -5143,10 +5061,8 @@ export const PROTOCOLS: PeptideDossier[] = [
       'semax',
       'adamax'
     ],
-    category: PeptideCategory.OUTROS,
-    secondaryCategories: [
-      'Outros'
-    ],
+    category: PeptideCategory.NEUROPROTECAO,
+    secondaryCategories: ['COGNIÇÃO', 'FOCO HD', 'NEURAL', 'NEUROPROTEÇÃO'],
     synonyms: [
       'Selank'
     ],
@@ -5241,10 +5157,8 @@ export const PROTOCOLS: PeptideDossier[] = [
         mitigation: 'Garantir sono reparador e hidratação. Pode ocorrer devido ao excesso de sinaptogênese inicial.'
       }
     ],
-    category: PeptideCategory.OUTROS,
-    secondaryCategories: [
-      'Outros'
-    ],
+    category: PeptideCategory.NEUROPROTECAO,
+    secondaryCategories: ['COGNIÇÃO', 'FOCO HD', 'NEURAL', 'NEUROPROTEÇÃO'],
     synonyms: [
       'Dihexa'
     ],
@@ -5320,10 +5234,8 @@ export const PROTOCOLS: PeptideDossier[] = [
         url: 'https://pubmed.ncbi.nlm.nih.gov/18342471/'
       }
     ],
-    category: PeptideCategory.OUTROS,
-    secondaryCategories: [
-      'Outros'
-    ],
+    category: PeptideCategory.COGNICAO,
+    secondaryCategories: ['COGNIÇÃO'],
     synonyms: [
       'Cerebrolysin'
     ],
@@ -5396,7 +5308,7 @@ export const PROTOCOLS: PeptideDossier[] = [
         url: 'https://pubmed.ncbi.nlm.nih.gov/21081134/'
       }
     ],
-    category: PeptideCategory.OUTROS,
+    category: PeptideCategory.METABOLISMO,
     secondaryCategories: [
       'Outros'
     ],
@@ -5466,10 +5378,8 @@ export const PROTOCOLS: PeptideDossier[] = [
     dosage: '100mcg a 300mcg.',
     administration: 'Spray Nasal ou Subcutânea.',
     protocol: 'Uso diário (Manhã). Ponto de Reset de vigília inabalável percebido rapidamente.',
-    category: PeptideCategory.OUTROS,
-    secondaryCategories: [
-      'Outros'
-    ],
+    category: PeptideCategory.COGNICAO,
+    secondaryCategories: ['COGNIÇÃO'],
     synonyms: [
       'Adamax'
     ],
@@ -5538,7 +5448,7 @@ export const PROTOCOLS: PeptideDossier[] = [
     dosage: '100mcg a 500mcg.',
     administration: 'Intranasal ou Subcutânea.',
     protocol: 'Uso conforme necessidade ou profilático. Ponto de Reset de estabilidade emocional é persistente.',
-    category: PeptideCategory.OUTROS,
+    category: PeptideCategory.METABOLISMO,
     secondaryCategories: [
       'Outros'
     ],
@@ -5610,7 +5520,7 @@ export const PROTOCOLS: PeptideDossier[] = [
     dosage: '200mcg a 600mcg.',
     administration: 'Spray Nasal ou Subcutânea.',
     protocol: 'Preferencialmente pela manhã. Ponto de Reset de autoridade executiva imediato.',
-    category: PeptideCategory.OUTROS,
+    category: PeptideCategory.METABOLISMO,
     secondaryCategories: [
       'Outros'
     ],
@@ -5688,7 +5598,7 @@ export const PROTOCOLS: PeptideDossier[] = [
         url: 'https://pubmed.ncbi.nlm.nih.gov/30948512/'
       }
     ],
-    category: PeptideCategory.OUTROS,
+    category: PeptideCategory.METABOLISMO,
     secondaryCategories: [
       'Outros'
     ],
@@ -5764,10 +5674,8 @@ export const PROTOCOLS: PeptideDossier[] = [
         url: 'https://pubmed.ncbi.nlm.nih.gov/12514336/'
       }
     ],
-    category: PeptideCategory.OUTROS,
-    secondaryCategories: [
-      'Outros'
-    ],
+    category: PeptideCategory.NEUROPROTECAO,
+    secondaryCategories: ['COGNIÇÃO', 'FOCO HD', 'NEURAL', 'NEUROPROTEÇÃO'],
     synonyms: [
       'Noopept'
     ],
@@ -5840,7 +5748,7 @@ export const PROTOCOLS: PeptideDossier[] = [
         url: 'https://pubmed.ncbi.nlm.nih.gov/15764020/'
       }
     ],
-    category: PeptideCategory.OUTROS,
+    category: PeptideCategory.METABOLISMO,
     secondaryCategories: [
       'Outros'
     ],
@@ -5910,7 +5818,7 @@ export const PROTOCOLS: PeptideDossier[] = [
     dosage: 'Requer avaliação clínica.',
     administration: 'Subcutânea ou Intranasal.',
     protocol: 'Uso estratégico para foco e vigilância agudos.',
-    category: PeptideCategory.OUTROS,
+    category: PeptideCategory.METABOLISMO,
     secondaryCategories: [
       'Outros'
     ],
@@ -5988,10 +5896,8 @@ export const PROTOCOLS: PeptideDossier[] = [
         url: 'https://pubmed.ncbi.nlm.nih.gov/20608035/'
       }
     ],
-    category: PeptideCategory.OUTROS,
-    secondaryCategories: [
-      'Outros'
-    ],
+    category: PeptideCategory.COGNICAO,
+    secondaryCategories: ['COGNIÇÃO'],
     synonyms: [
       'Cortexin'
     ],
@@ -6076,9 +5982,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       }
     ],
     category: PeptideCategory.SEXUAL,
-    secondaryCategories: [
-      'Sexual'
-    ],
+    secondaryCategories: ['SEXUAL'],
     synonyms: [
       'PT-141'
     ],
@@ -6149,9 +6053,7 @@ export const PROTOCOLS: PeptideDossier[] = [
     administration: 'Subcutânea.',
     protocol: 'Carga diária por 2 semanas. Ponto de Reset de fotoproteção atingido após a carga. Manutenção 2x na semana.',
     category: PeptideCategory.ESTETICA,
-    secondaryCategories: [
-      'Estética'
-    ],
+    secondaryCategories: ['ESTÉTICA'],
     synonyms: [
       'Melanotan I'
     ],
@@ -6224,9 +6126,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'pt-141'
     ],
     category: PeptideCategory.ESTETICA,
-    secondaryCategories: [
-      'Estética'
-    ],
+    secondaryCategories: ['ESTÉTICA'],
     synonyms: [
       'Melanotan II'
     ],
@@ -6370,9 +6270,7 @@ export const PROTOCOLS: PeptideDossier[] = [
     administration: 'Tópica.',
     protocol: 'Uso diário. Aumenta elasticidade e reduz rugas.',
     category: PeptideCategory.ESTETICA,
-    secondaryCategories: [
-      'Estética'
-    ],
+    secondaryCategories: ['ESTÉTICA'],
     synonyms: [
       'Matrixyl 3000'
     ],
@@ -6510,9 +6408,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Botox-like'
     ],
     category: PeptideCategory.ESTETICA,
-    secondaryCategories: [
-      'Estética'
-    ],
+    secondaryCategories: ['ESTÉTICA'],
     synonyms: [
       'SNAP-8'
     ],
@@ -6578,9 +6474,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Suavização'
     ],
     category: PeptideCategory.ESTETICA,
-    secondaryCategories: [
-      'Estética'
-    ],
+    secondaryCategories: ['ESTÉTICA'],
     synonyms: [
       'Argireline'
     ],
@@ -6645,10 +6539,8 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Fadiga',
       'Hormonal'
     ],
-    category: PeptideCategory.RECUPERACAO,
-    secondaryCategories: [
-      'Recuperação'
-    ],
+    category: PeptideCategory.PERFORMANCE,
+    secondaryCategories: ['PERFORMANCE'],
     synonyms: [
       'Glandokort'
     ],
@@ -6713,10 +6605,8 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Síntese Proteica',
       'Atletas'
     ],
-    category: PeptideCategory.PERFORMANCE,
-    secondaryCategories: [
-      'Performance'
-    ],
+    category: PeptideCategory.MASSA_MAGRA,
+    secondaryCategories: ['MASSA MAGRA'],
     synonyms: [
       'Gotratix'
     ],
@@ -6781,10 +6671,8 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Glicose',
       'Enzimas'
     ],
-    category: PeptideCategory.LONGEVIDADE,
-    secondaryCategories: [
-      'Longevidade'
-    ],
+    category: PeptideCategory.METABOLISMO,
+    secondaryCategories: ['METABOLISMO'],
     synonyms: [
       'Pancragen'
     ],
@@ -6985,10 +6873,8 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Detox',
       'Hepatócitos'
     ],
-    category: PeptideCategory.RECUPERACAO,
-    secondaryCategories: [
-      'Recuperação'
-    ],
+    category: PeptideCategory.DIGESTIVO,
+    secondaryCategories: ['DIGESTIVO'],
     synonyms: [
       'Ovagen'
     ],
@@ -7130,9 +7016,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Melatonina'
     ],
     category: PeptideCategory.COGNICAO,
-    secondaryCategories: [
-      'Cognição'
-    ],
+    secondaryCategories: ['COGNIÇÃO'],
     synonyms: [
       'Pinealon'
     ],
@@ -7197,10 +7081,8 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Elasticidade',
       'Vascular'
     ],
-    category: PeptideCategory.OUTROS,
-    secondaryCategories: [
-      'Outros'
-    ],
+    category: PeptideCategory.VASCULAR,
+    secondaryCategories: ['VASCULAR'],
     synonyms: [
       'Ventfort'
     ],
@@ -7266,9 +7148,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Estrutura'
     ],
     category: PeptideCategory.RECUPERACAO,
-    secondaryCategories: [
-      'Recuperação'
-    ],
+    secondaryCategories: ['RECUPERAÇÃO'],
     synonyms: [
       'Sigumir'
     ],
@@ -7333,10 +7213,8 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Visão',
       'Retina'
     ],
-    category: PeptideCategory.LONGEVIDADE,
-    secondaryCategories: [
-      'Longevidade'
-    ],
+    category: PeptideCategory.ESTETICA,
+    secondaryCategories: ['ESTÉTICA'],
     synonyms: [
       'Visoluten'
     ],
@@ -7673,10 +7551,8 @@ export const PROTOCOLS: PeptideDossier[] = [
       'GLP-2',
       'Troismo'
     ],
-    category: PeptideCategory.OUTROS,
-    secondaryCategories: [
-      'Outros'
-    ],
+    category: PeptideCategory.DIGESTIVO,
+    secondaryCategories: ['DIGESTIVO'],
     synonyms: [
       'Teduglutide'
     ],
@@ -7742,9 +7618,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'HD'
     ],
     category: PeptideCategory.COGNICAO,
-    secondaryCategories: [
-      'Cognição'
-    ],
+    secondaryCategories: ['COGNIÇÃO'],
     synonyms: [
       'Sunifiram'
     ],
@@ -8255,10 +8129,8 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Dureza',
       'Cutting'
     ],
-    category: PeptideCategory.PERFORMANCE,
-    secondaryCategories: [
-      'Performance'
-    ],
+    category: PeptideCategory.MASSA_MAGRA,
+    secondaryCategories: ['MASSA MAGRA'],
     synonyms: [
       'Andarine'
     ],
@@ -8392,9 +8264,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Recuperação'
     ],
     category: PeptideCategory.PERFORMANCE,
-    secondaryCategories: [
-      'Performance'
-    ],
+    secondaryCategories: ['PERFORMANCE'],
     synonyms: [
       'Hexarelin'
     ],
@@ -8459,10 +8329,8 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Ritmo',
       'GABA'
     ],
-    category: PeptideCategory.OUTROS,
-    secondaryCategories: [
-      'Outros'
-    ],
+    category: PeptideCategory.SONO,
+    secondaryCategories: ['SONO'],
     synonyms: [
       'DSIP'
     ],
@@ -8528,9 +8396,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Circulação'
     ],
     category: PeptideCategory.CARDIOMETABÓLICO,
-    secondaryCategories: [
-      'Cardiometabólico'
-    ],
+    secondaryCategories: ['VASCULAR'],
     synonyms: [
       'Vesugen'
     ],
@@ -8595,7 +8461,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Fator de Crescimento',
       'Cura'
     ],
-    category: PeptideCategory.OUTROS,
+    category: PeptideCategory.VASCULAR,
     secondaryCategories: [
       'Outros'
     ],
@@ -8732,9 +8598,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'DNA'
     ],
     category: PeptideCategory.LONGEVIDADE,
-    secondaryCategories: [
-      'Longevidade'
-    ],
+    secondaryCategories: ['LONGEVIDADE'],
     synonyms: [
       'FOXO4-DRI'
     ],
@@ -8799,10 +8663,8 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Massa',
       'PEG'
     ],
-    category: PeptideCategory.RECUPERACAO,
-    secondaryCategories: [
-      'Recuperação'
-    ],
+    category: PeptideCategory.MASSA_MAGRA,
+    secondaryCategories: ['MASSA MAGRA'],
     synonyms: [
       'PEG-MGF'
     ],
@@ -8867,10 +8729,8 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Memória',
       'Fácil'
     ],
-    category: PeptideCategory.OUTROS,
-    secondaryCategories: [
-      'Outros'
-    ],
+    category: PeptideCategory.NEUROPROTECAO,
+    secondaryCategories: ['COGNIÇÃO', 'FOCO HD', 'NEURAL', 'NEUROPROTEÇÃO'],
     synonyms: [
       'Dihexa Oral'
     ],
@@ -9207,7 +9067,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Gut-Healing',
       'Uso Oral'
     ],
-    category: PeptideCategory.OUTROS,
+    category: PeptideCategory.METABOLISMO,
     secondaryCategories: [
       'Outros'
     ],
@@ -9547,7 +9407,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Nasal',
       'Mente'
     ],
-    category: PeptideCategory.OUTROS,
+    category: PeptideCategory.METABOLISMO,
     secondaryCategories: [
       'Outros'
     ],
@@ -9615,7 +9475,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Intenso',
       'Foco'
     ],
-    category: PeptideCategory.OUTROS,
+    category: PeptideCategory.METABOLISMO,
     secondaryCategories: [
       'Outros'
     ],
@@ -10028,10 +9888,8 @@ export const PROTOCOLS: PeptideDossier[] = [
     dosage: '1mg sublingual diário.',
     administration: 'Sublingual.',
     protocol: 'Uso diário durante protocolos de "Gut Reset" ou crises de disbiose.',
-    category: PeptideCategory.OUTROS,
-    secondaryCategories: [
-      'Outros'
-    ],
+    category: PeptideCategory.IMUNOLOGIA,
+    secondaryCategories: ['IMUNOLOGIA'],
     synonyms: [
       'Timosina Alfa-1'
     ],
@@ -10368,7 +10226,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Focus',
       'Calm'
     ],
-    category: PeptideCategory.OUTROS,
+    category: PeptideCategory.METABOLISMO,
     secondaryCategories: [
       'Outros'
     ],
@@ -10923,9 +10781,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       }
     ],
     category: PeptideCategory.METABOLISMO,
-    secondaryCategories: [
-      'Metabolismo'
-    ],
+    secondaryCategories: ['METABOLISMO'],
     synonyms: [
       'SLU-PP-332'
     ],
@@ -10992,10 +10848,8 @@ export const PROTOCOLS: PeptideDossier[] = [
     dosage: 'Avaliação médica necessária.',
     administration: 'Subcutânea.',
     protocol: 'Ciclos de recuperação pós-isquemia ou reparo tecidual profundo.',
-    category: PeptideCategory.OUTROS,
-    secondaryCategories: [
-      'Outros'
-    ],
+    category: PeptideCategory.VASCULAR,
+    secondaryCategories: ['VASCULAR'],
     synonyms: [
       'B7-33'
     ],
@@ -11137,9 +10991,7 @@ export const PROTOCOLS: PeptideDossier[] = [
     administration: 'Subcutânea ou Intramuscular.',
     protocol: 'Uso diário ou 3x por semana. Ponto de Reset hormonal em 4-6 semanas de uso protocolado.',
     category: PeptideCategory.SEXUAL,
-    secondaryCategories: [
-      'Sexual'
-    ],
+    secondaryCategories: ['SEXUAL'],
     synonyms: [
       'Kisspeptina-10'
     ],
@@ -11500,9 +11352,7 @@ export const PROTOCOLS: PeptideDossier[] = [
     administration: 'Subcutânea.',
     protocol: 'Uso exclusivo sob supervisão para sincronização de eixo gonadal.',
     category: PeptideCategory.SEXUAL,
-    secondaryCategories: [
-      'Sexual'
-    ],
+    secondaryCategories: ['SEXUAL'],
     synonyms: [
       'MVT-602'
     ],
@@ -11572,9 +11422,7 @@ export const PROTOCOLS: PeptideDossier[] = [
     administration: 'Subcutânea.',
     protocol: 'Protocolos de proteção ocular (retina) e cognitiva.',
     category: PeptideCategory.LONGEVIDADE,
-    secondaryCategories: [
-      'Longevidade'
-    ],
+    secondaryCategories: ['LONGEVIDADE'],
     synonyms: [
       'SHLP2'
     ],
@@ -11644,9 +11492,7 @@ export const PROTOCOLS: PeptideDossier[] = [
     administration: 'Subcutânea ou Intranasal.',
     protocol: 'Ciclos preventivos para neuroproteção.',
     category: PeptideCategory.LONGEVIDADE,
-    secondaryCategories: [
-      'Longevidade'
-    ],
+    secondaryCategories: ['LONGEVIDADE'],
     synonyms: [
       'Humanin G'
     ],
@@ -11716,9 +11562,7 @@ export const PROTOCOLS: PeptideDossier[] = [
     administration: 'Tópica.',
     protocol: 'Aplicação bidiária. Redução de até 63% na profundidade de rugas em 28 dias.',
     category: PeptideCategory.ESTETICA,
-    secondaryCategories: [
-      'Estética'
-    ],
+    secondaryCategories: ['ESTÉTICA'],
     synonyms: [
       'SNAP-8'
     ],
@@ -11788,9 +11632,7 @@ export const PROTOCOLS: PeptideDossier[] = [
     administration: 'Tópica.',
     protocol: 'Uso diário. Ponto de Reset estético observado entre 15 e 20 dias.',
     category: PeptideCategory.ESTETICA,
-    secondaryCategories: [
-      'Estética'
-    ],
+    secondaryCategories: ['ESTÉTICA'],
     synonyms: [
       'Argireline'
     ],
@@ -11860,9 +11702,7 @@ export const PROTOCOLS: PeptideDossier[] = [
     administration: 'Tópica.',
     protocol: 'Pode ser usado com Argireline para potencializar o relaxamento dermo-muscular.',
     category: PeptideCategory.ESTETICA,
-    secondaryCategories: [
-      'Estética'
-    ],
+    secondaryCategories: ['ESTÉTICA'],
     synonyms: [
       'Leuphasyl'
     ],
@@ -11927,10 +11767,8 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Anabolismo',
       'Elite'
     ],
-    category: PeptideCategory.PERFORMANCE,
-    secondaryCategories: [
-      'Performance'
-    ],
+    category: PeptideCategory.SARCOPENIA,
+    secondaryCategories: ['MASSA MAGRA', 'SARCOPENIA'],
     synonyms: [
       'IGF-1 Max'
     ],
@@ -11999,10 +11837,8 @@ export const PROTOCOLS: PeptideDossier[] = [
     dosage: 'Protocolo clínico variável.',
     administration: 'Intravenosa / Intratumoral.',
     evidenceLevel: 'EXPERIMENTAL',
-    category: PeptideCategory.ONCOLOGIA,
-    secondaryCategories: [
-      'Oncologia'
-    ],
+    category: PeptideCategory.IMUNOLOGIA,
+    secondaryCategories: ['IMUNOLOGIA'],
     synonyms: [
       'PNC-27'
     ],
@@ -12071,7 +11907,7 @@ export const PROTOCOLS: PeptideDossier[] = [
     dosage: 'Micro-dosagem controlada.',
     administration: 'Subcutânea / Intratecal.',
     evidenceLevel: 'PESQUISA CLÍNICA',
-    category: PeptideCategory.OUTROS,
+    category: PeptideCategory.METABOLISMO,
     secondaryCategories: [
       'Outros'
     ],
@@ -12140,9 +11976,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'mensal'
     ],
     category: PeptideCategory.METABOLISMO,
-    secondaryCategories: [
-      'Metabolismo'
-    ],
+    secondaryCategories: ['METABOLISMO'],
     synonyms: [
       'Maridebart Cafraglutide'
     ],
@@ -12208,9 +12042,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Metabolismo'
     ],
     category: PeptideCategory.METABOLISMO,
-    secondaryCategories: [
-      'Metabolismo'
-    ],
+    secondaryCategories: ['METABOLISMO'],
     synonyms: [
       'Ecnoglutide'
     ],
@@ -12276,9 +12108,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Fronteira'
     ],
     category: PeptideCategory.METABOLISMO,
-    secondaryCategories: [
-      'Metabolismo'
-    ],
+    secondaryCategories: ['METABOLISMO'],
     synonyms: [
       'GGG3'
     ],
@@ -12344,9 +12174,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Incretina'
     ],
     category: PeptideCategory.METABOLISMO,
-    secondaryCategories: [
-      'Metabolismo'
-    ],
+    secondaryCategories: ['METABOLISMO'],
     synonyms: [
       'HRS-9531'
     ],
@@ -12412,9 +12240,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Metabolismo'
     ],
     category: PeptideCategory.METABOLISMO,
-    secondaryCategories: [
-      'Metabolismo'
-    ],
+    secondaryCategories: ['METABOLISMO'],
     synonyms: [
       'Taspoglutida'
     ],
@@ -12480,9 +12306,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Uso Local'
     ],
     category: PeptideCategory.SEXUAL,
-    secondaryCategories: [
-      'Sexual'
-    ],
+    secondaryCategories: ['SEXUAL'],
     synonyms: [
       'LIB-01'
     ],
@@ -12548,9 +12372,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Potência'
     ],
     category: PeptideCategory.SEXUAL,
-    secondaryCategories: [
-      'Sexual'
-    ],
+    secondaryCategories: ['SEXUAL'],
     synonyms: [
       'PnPP-19'
     ],
@@ -12616,9 +12438,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Tópico'
     ],
     category: PeptideCategory.ESTETICA,
-    secondaryCategories: [
-      'Estética'
-    ],
+    secondaryCategories: ['ESTÉTICA'],
     synonyms: [
       'Palmitoyl Tripeptide-38'
     ],
@@ -12683,10 +12503,8 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Macrófagos',
       'Imuno'
     ],
-    category: PeptideCategory.OUTROS,
-    secondaryCategories: [
-      'Outros'
-    ],
+    category: PeptideCategory.IMUNOLOGIA,
+    secondaryCategories: ['IMUNOLOGIA'],
     synonyms: [
       'Tuftsina'
     ],
@@ -12752,9 +12570,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'GLP-1'
     ],
     category: PeptideCategory.METABOLISMO,
-    secondaryCategories: [
-      'Metabolismo'
-    ],
+    secondaryCategories: ['METABOLISMO'],
     synonyms: [
       'Ecnoglutide Oral'
     ],
@@ -12819,10 +12635,8 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Performance',
       'Massa Magra'
     ],
-    category: PeptideCategory.PERFORMANCE,
-    secondaryCategories: [
-      'Performance'
-    ],
+    category: PeptideCategory.IMUNOLOGIA,
+    secondaryCategories: ['IMUNOLOGIA'],
     synonyms: [
       'Trevogrumab'
     ],
@@ -12887,10 +12701,8 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Força',
       'Potência'
     ],
-    category: PeptideCategory.PERFORMANCE,
-    secondaryCategories: [
-      'Performance'
-    ],
+    category: PeptideCategory.IMUNOLOGIA,
+    secondaryCategories: ['IMUNOLOGIA'],
     synonyms: [
       'Landogrozumab'
     ],
@@ -12955,10 +12767,8 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Recuperação',
       'Volume'
     ],
-    category: PeptideCategory.PERFORMANCE,
-    secondaryCategories: [
-      'Performance'
-    ],
+    category: PeptideCategory.IMUNOLOGIA,
+    secondaryCategories: ['IMUNOLOGIA'],
     synonyms: [
       'Domagrozumab'
     ],
@@ -13023,10 +12833,8 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Massa Muscular',
       'Research'
     ],
-    category: PeptideCategory.PERFORMANCE,
-    secondaryCategories: [
-      'Performance'
-    ],
+    category: PeptideCategory.IMUNOLOGIA,
+    secondaryCategories: ['IMUNOLOGIA'],
     synonyms: [
       'SRK-015'
     ],
@@ -13091,10 +12899,8 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Anabolismo',
       'Bio-Reparo'
     ],
-    category: PeptideCategory.PERFORMANCE,
-    secondaryCategories: [
-      'Performance'
-    ],
+    category: PeptideCategory.MASSA_MAGRA,
+    secondaryCategories: ['MASSA MAGRA'],
     synonyms: [
       'ACE-2494'
     ],
@@ -13159,10 +12965,8 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Pulmão',
       'Oxigenação'
     ],
-    category: PeptideCategory.PERFORMANCE,
-    secondaryCategories: [
-      'Performance'
-    ],
+    category: PeptideCategory.MASSA_MAGRA,
+    secondaryCategories: ['MASSA MAGRA'],
     synonyms: [
       'BIO101'
     ],
@@ -13228,9 +13032,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Anti-Aging'
     ],
     category: PeptideCategory.LONGEVIDADE,
-    secondaryCategories: [
-      'Longevidade'
-    ],
+    secondaryCategories: ['LONGEVIDADE'],
     synonyms: [
       'Lomecel-B'
     ],
@@ -13296,9 +13098,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Reparo'
     ],
     category: PeptideCategory.RECUPERACAO,
-    secondaryCategories: [
-      'Recuperação'
-    ],
+    secondaryCategories: ['RECUPERAÇÃO'],
     synonyms: [
       'AGLE-102'
     ],
@@ -13364,9 +13164,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Olhos'
     ],
     category: PeptideCategory.LONGEVIDADE,
-    secondaryCategories: [
-      'Longevidade'
-    ],
+    secondaryCategories: ['LONGEVIDADE'],
     synonyms: [
       'RTP801 blockers'
     ],
@@ -13432,9 +13230,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Reset'
     ],
     category: PeptideCategory.LONGEVIDADE,
-    secondaryCategories: [
-      'Longevidade'
-    ],
+    secondaryCategories: ['LONGEVIDADE'],
     synonyms: [
       'FOXO4-p53 interfering peptides'
     ],
@@ -13499,10 +13295,8 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Visão',
       'Senolítico'
     ],
-    category: PeptideCategory.LONGEVIDADE,
-    secondaryCategories: [
-      'Longevidade'
-    ],
+    category: PeptideCategory.IMUNOLOGIA,
+    secondaryCategories: ['IMUNOLOGIA'],
     synonyms: [
       'UBX1325'
     ],
@@ -13568,9 +13362,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Young Blood'
     ],
     category: PeptideCategory.LONGEVIDADE,
-    secondaryCategories: [
-      'Longevidade'
-    ],
+    secondaryCategories: ['LONGEVIDADE'],
     synonyms: [
       'E5 peptide'
     ],
@@ -13636,9 +13428,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Proteção'
     ],
     category: PeptideCategory.COGNICAO,
-    secondaryCategories: [
-      'Cognição'
-    ],
+    secondaryCategories: ['COGNIÇÃO'],
     synonyms: [
       'ATH-1105'
     ],
@@ -13703,10 +13493,8 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Potência',
       'Sistêmico'
     ],
-    category: PeptideCategory.RECUPERACAO,
-    secondaryCategories: [
-      'Recuperação'
-    ],
+    category: PeptideCategory.IMUNOLOGIA,
+    secondaryCategories: ['IMUNOLOGIA'],
     synonyms: [
       'PN-2921'
     ],
@@ -13771,10 +13559,8 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Digestão',
       'Mucosa'
     ],
-    category: PeptideCategory.OUTROS,
-    secondaryCategories: [
-      'Outros'
-    ],
+    category: PeptideCategory.ESTETICA,
+    secondaryCategories: ['ESTÉTICA'],
     synonyms: [
       'TPX-115'
     ],
@@ -13840,9 +13626,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Alzheimer'
     ],
     category: PeptideCategory.COGNICAO,
-    secondaryCategories: [
-      'Cognição'
-    ],
+    secondaryCategories: ['COGNIÇÃO'],
     synonyms: [
       'ATH-1017'
     ],
@@ -13908,9 +13692,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Research'
     ],
     category: PeptideCategory.COGNICAO,
-    secondaryCategories: [
-      'Cognição'
-    ],
+    secondaryCategories: ['COGNIÇÃO'],
     synonyms: [
       'Fosgonimeton'
     ],
@@ -13976,9 +13758,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Foco'
     ],
     category: PeptideCategory.COGNICAO,
-    secondaryCategories: [
-      'Cognição'
-    ],
+    secondaryCategories: ['COGNIÇÃO'],
     synonyms: [
       'BPN14770'
     ],
@@ -14044,9 +13824,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Proteção'
     ],
     category: PeptideCategory.COGNICAO,
-    secondaryCategories: [
-      'Cognição'
-    ],
+    secondaryCategories: ['COGNIÇÃO'],
     synonyms: [
       'LM11A-31'
     ],
@@ -14112,9 +13890,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Reparo'
     ],
     category: PeptideCategory.COGNICAO,
-    secondaryCategories: [
-      'Cognição'
-    ],
+    secondaryCategories: ['COGNIÇÃO'],
     synonyms: [
       'NNI-362'
     ],
@@ -14180,9 +13956,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Cognição'
     ],
     category: PeptideCategory.COGNICAO,
-    secondaryCategories: [
-      'Cognição'
-    ],
+    secondaryCategories: ['COGNIÇÃO'],
     synonyms: [
       'Bryostatin analog peptides'
     ],
@@ -14248,9 +14022,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'SNC'
     ],
     category: PeptideCategory.COGNICAO,
-    secondaryCategories: [
-      'Cognição'
-    ],
+    secondaryCategories: ['COGNIÇÃO'],
     synonyms: [
       'Davunetide'
     ],
@@ -14316,9 +14088,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Neuro-Reparo'
     ],
     category: PeptideCategory.COGNICAO,
-    secondaryCategories: [
-      'Cognição'
-    ],
+    secondaryCategories: ['COGNIÇÃO'],
     synonyms: [
       'Sovateltide'
     ],
@@ -14384,9 +14154,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Mitocôndria'
     ],
     category: PeptideCategory.CARDIOMETABÓLICO,
-    secondaryCategories: [
-      'Cardiometabólico'
-    ],
+    secondaryCategories: ['LONGEVIDADE'],
     synonyms: [
       'MTP-131'
     ],
@@ -14451,7 +14219,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Metabolismo',
       'Endurance'
     ],
-    category: PeptideCategory.METABOLISMO,
+    category: PeptideCategory.LONGEVIDADE,
     secondaryCategories: [
       'Metabolismo'
     ],
@@ -14587,10 +14355,8 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Lípides',
       'Emagrecimento'
     ],
-    category: PeptideCategory.METABOLISMO,
-    secondaryCategories: [
-      'Metabolismo'
-    ],
+    category: PeptideCategory.IMUNOLOGIA,
+    secondaryCategories: ['IMUNOLOGIA'],
     synonyms: [
       'NGM438'
     ],
@@ -14655,10 +14421,8 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Auto-Imune',
       'Modulação'
     ],
-    category: PeptideCategory.OUTROS,
-    secondaryCategories: [
-      'Outros'
-    ],
+    category: PeptideCategory.IMUNOLOGIA,
+    secondaryCategories: ['IMUNOLOGIA'],
     synonyms: [
       'IL-2 muteins'
     ],
@@ -14723,10 +14487,8 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Defesa',
       'Inato'
     ],
-    category: PeptideCategory.OUTROS,
-    secondaryCategories: [
-      'Outros'
-    ],
+    category: PeptideCategory.IMUNOLOGIA,
+    secondaryCategories: ['IMUNOLOGIA'],
     synonyms: [
       'Neo-2/15'
     ],
@@ -14791,10 +14553,8 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Órgãos',
       'Reparo'
     ],
-    category: PeptideCategory.RECUPERACAO,
-    secondaryCategories: [
-      'Recuperação'
-    ],
+    category: PeptideCategory.IMUNOLOGIA,
+    secondaryCategories: ['IMUNOLOGIA'],
     synonyms: [
       'MDK inhibitors'
     ],
@@ -14859,10 +14619,8 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Treg',
       'Modulação'
     ],
-    category: PeptideCategory.OUTROS,
-    secondaryCategories: [
-      'Outros'
-    ],
+    category: PeptideCategory.IMUNOLOGIA,
+    secondaryCategories: ['IMUNOLOGIA'],
     synonyms: [
       'Treg-expanding peptides'
     ],
@@ -14927,10 +14685,8 @@ export const PROTOCOLS: PeptideDossier[] = [
       'UTI',
       'Emergência'
     ],
-    category: PeptideCategory.RECUPERACAO,
-    secondaryCategories: [
-      'Recuperação'
-    ],
+    category: PeptideCategory.IMUNOLOGIA,
+    secondaryCategories: ['IMUNOLOGIA'],
     synonyms: [
       'RLS-0071'
     ],
@@ -14996,9 +14752,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Estabilidade'
     ],
     category: PeptideCategory.SEXUAL,
-    secondaryCategories: [
-      'Sexual'
-    ],
+    secondaryCategories: ['SEXUAL'],
     synonyms: [
       'Kisspeptin analog ultra-long'
     ],
@@ -15063,10 +14817,8 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Fibrose',
       'Reparo'
     ],
-    category: PeptideCategory.RECUPERACAO,
-    secondaryCategories: [
-      'Recuperação'
-    ],
+    category: PeptideCategory.IMUNOLOGIA,
+    secondaryCategories: ['IMUNOLOGIA'],
     synonyms: [
       'LPX-T'
     ],
@@ -15132,9 +14884,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Desejo'
     ],
     category: PeptideCategory.SEXUAL,
-    secondaryCategories: [
-      'Sexual'
-    ],
+    secondaryCategories: ['SEXUAL'],
     synonyms: [
       'Long-acting PT141'
     ],
@@ -15200,9 +14950,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Lípides'
     ],
     category: PeptideCategory.METABOLISMO,
-    secondaryCategories: [
-      'Metabolismo'
-    ],
+    secondaryCategories: ['METABOLISMO'],
     synonyms: [
       'FGF21 analogs'
     ],
@@ -15268,9 +15016,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Cura'
     ],
     category: PeptideCategory.CARDIOMETABÓLICO,
-    secondaryCategories: [
-      'Cardiometabólico'
-    ],
+    secondaryCategories: ['METABOLISMO'],
     synonyms: [
       'Efruxifermin'
     ],
@@ -15336,9 +15082,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Triglicerídeos'
     ],
     category: PeptideCategory.CARDIOMETABÓLICO,
-    secondaryCategories: [
-      'Cardiometabólico'
-    ],
+    secondaryCategories: ['METABOLISMO'],
     synonyms: [
       'Pegozafermin'
     ],
@@ -15404,9 +15148,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Research'
     ],
     category: PeptideCategory.CARDIOMETABÓLICO,
-    secondaryCategories: [
-      'Cardiometabólico'
-    ],
+    secondaryCategories: ['METABOLISMO'],
     synonyms: [
       'BOS-580'
     ],
@@ -15472,9 +15214,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Metabolismo'
     ],
     category: PeptideCategory.METABOLISMO,
-    secondaryCategories: [
-      'Metabolismo'
-    ],
+    secondaryCategories: ['METABOLISMO'],
     synonyms: [
       'THR-β agonists'
     ],
@@ -15539,7 +15279,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Research',
       'Elite'
     ],
-    category: PeptideCategory.ONCOLOGIA,
+    category: PeptideCategory.IMUNOLOGIA,
     secondaryCategories: [
       'Oncologia'
     ],
@@ -15607,10 +15347,8 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Radar Tumoral',
       'Elite'
     ],
-    category: PeptideCategory.ONCOLOGIA,
-    secondaryCategories: [
-      'Oncologia'
-    ],
+    category: PeptideCategory.IMUNOLOGIA,
+    secondaryCategories: ['IMUNOLOGIA'],
     synonyms: [
       'BT1718'
     ],
@@ -15675,10 +15413,8 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Precisão',
       'Citotóxico'
     ],
-    category: PeptideCategory.ONCOLOGIA,
-    secondaryCategories: [
-      'Oncologia'
-    ],
+    category: PeptideCategory.IMUNOLOGIA,
+    secondaryCategories: ['IMUNOLOGIA'],
     synonyms: [
       'Bicycle toxins'
     ],
@@ -15743,7 +15479,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Radionúclido',
       'Diagnóstico'
     ],
-    category: PeptideCategory.ONCOLOGIA,
+    category: PeptideCategory.IMUNOLOGIA,
     secondaryCategories: [
       'Oncologia'
     ],
@@ -15811,7 +15547,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Radio-Peptídeo',
       'Cura'
     ],
-    category: PeptideCategory.ONCOLOGIA,
+    category: PeptideCategory.IMUNOLOGIA,
     secondaryCategories: [
       'Oncologia'
     ],
@@ -15880,9 +15616,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Defesa'
     ],
     category: PeptideCategory.RECUPERACAO,
-    secondaryCategories: [
-      'Recuperação'
-    ],
+    secondaryCategories: ['RECUPERAÇÃO'],
     synonyms: [
       'Omiganan'
     ],
@@ -15947,10 +15681,8 @@ export const PROTOCOLS: PeptideDossier[] = [
       'GnRH',
       'Hormonal'
     ],
-    category: PeptideCategory.SEXUAL,
-    secondaryCategories: [
-      'Sexual'
-    ],
+    category: PeptideCategory.PERFORMANCE,
+    secondaryCategories: ['PERFORMANCE'],
     synonyms: [
       'HMG'
     ],
@@ -16015,10 +15747,8 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Hormonal',
       'Elite'
     ],
-    category: PeptideCategory.SEXUAL,
-    secondaryCategories: [
-      'Sexual'
-    ],
+    category: PeptideCategory.PERFORMANCE,
+    secondaryCategories: ['PERFORMANCE'],
     synonyms: [
       'FSH recombinante'
     ],
@@ -16083,10 +15813,8 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Hormonal',
       'Ciclo'
     ],
-    category: PeptideCategory.SEXUAL,
-    secondaryCategories: [
-      'Sexual'
-    ],
+    category: PeptideCategory.PERFORMANCE,
+    secondaryCategories: ['PERFORMANCE'],
     synonyms: [
       'LH recombinante'
     ],
@@ -16152,9 +15880,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Libido'
     ],
     category: PeptideCategory.SEXUAL,
-    secondaryCategories: [
-      'Sexual'
-    ],
+    secondaryCategories: ['SEXUAL'],
     synonyms: [
       'Kisspeptina-112'
     ],
@@ -16220,9 +15946,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Praticidade'
     ],
     category: PeptideCategory.SEXUAL,
-    secondaryCategories: [
-      'Sexual'
-    ],
+    secondaryCategories: ['SEXUAL'],
     synonyms: [
       'PT-141 nasal'
     ],
@@ -16288,9 +16012,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Social'
     ],
     category: PeptideCategory.SEXUAL,
-    secondaryCategories: [
-      'Sexual'
-    ],
+    secondaryCategories: ['SEXUAL'],
     synonyms: [
       'Oxytocin analogs'
     ],
@@ -16356,9 +16078,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Anti-Rugas'
     ],
     category: PeptideCategory.ESTETICA,
-    secondaryCategories: [
-      'Estética'
-    ],
+    secondaryCategories: ['ESTÉTICA'],
     synonyms: [
       'Pal-GHK'
     ],
@@ -16424,9 +16144,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Rejuvenescimento'
     ],
     category: PeptideCategory.ESTETICA,
-    secondaryCategories: [
-      'Estética'
-    ],
+    secondaryCategories: ['ESTÉTICA'],
     synonyms: [
       'SYN-COLL'
     ],
@@ -16492,9 +16210,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Botox-Like'
     ],
     category: PeptideCategory.ESTETICA,
-    secondaryCategories: [
-      'Estética'
-    ],
+    secondaryCategories: ['ESTÉTICA'],
     synonyms: [
       'SNAP-7'
     ],
@@ -16560,9 +16276,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Estética'
     ],
     category: PeptideCategory.ESTETICA,
-    secondaryCategories: [
-      'Estética'
-    ],
+    secondaryCategories: ['ESTÉTICA'],
     synonyms: [
       'Pentapeptide-3'
     ],
@@ -16628,9 +16342,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Olhos'
     ],
     category: PeptideCategory.ESTETICA,
-    secondaryCategories: [
-      'Estética'
-    ],
+    secondaryCategories: ['ESTÉTICA'],
     synonyms: [
       'Acetyl Tetrapeptide-5'
     ],
@@ -16696,9 +16408,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Melanina'
     ],
     category: PeptideCategory.ESTETICA,
-    secondaryCategories: [
-      'Estética'
-    ],
+    secondaryCategories: ['ESTÉTICA'],
     synonyms: [
       'CG-TGP2'
     ],
@@ -16764,9 +16474,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Brilho'
     ],
     category: PeptideCategory.ESTETICA,
-    secondaryCategories: [
-      'Estética'
-    ],
+    secondaryCategories: ['ESTÉTICA'],
     synonyms: [
       'Decapeptide-12'
     ],
@@ -16832,9 +16540,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Firmeza'
     ],
     category: PeptideCategory.ESTETICA,
-    secondaryCategories: [
-      'Estética'
-    ],
+    secondaryCategories: ['ESTÉTICA'],
     synonyms: [
       'Oligopeptide-20'
     ],
@@ -16899,10 +16605,8 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Pós-Procedimento',
       'EGF'
     ],
-    category: PeptideCategory.ESTETICA,
-    secondaryCategories: [
-      'Estética'
-    ],
+    category: PeptideCategory.RECUPERACAO,
+    secondaryCategories: ['RECUPERAÇÃO'],
     synonyms: [
       'EGF recombinante'
     ],
@@ -17307,10 +17011,8 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Energia',
       'Mitocôndria'
     ],
-    category: PeptideCategory.METABOLISMO,
-    secondaryCategories: [
-      'Metabolismo'
-    ],
+    category: PeptideCategory.LONGEVIDADE,
+    secondaryCategories: ['LONGEVIDADE'],
     synonyms: [
       'KL1333'
     ],
@@ -17375,10 +17077,8 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Hipertrofia',
       'Elite'
     ],
-    category: PeptideCategory.PERFORMANCE,
-    secondaryCategories: [
-      'Performance'
-    ],
+    category: PeptideCategory.MASSA_MAGRA,
+    secondaryCategories: ['MASSA MAGRA'],
     synonyms: [
       '6-Keto-MGF'
     ],
@@ -17443,10 +17143,8 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Cérebro',
       'Pesquisa'
     ],
-    category: PeptideCategory.COGNICAO,
-    secondaryCategories: [
-      'Cognição'
-    ],
+    category: PeptideCategory.RECUPERACAO,
+    secondaryCategories: ['RECUPERAÇÃO'],
     synonyms: [
       'Peptide 14'
     ],
@@ -17512,9 +17210,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Avançado'
     ],
     category: PeptideCategory.CARDIOMETABÓLICO,
-    secondaryCategories: [
-      'Cardiometabólico'
-    ],
+    secondaryCategories: ['VASCULAR'],
     synonyms: [
       'APJ agonists'
     ],
@@ -17579,10 +17275,8 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Amidado',
       'Elite'
     ],
-    category: PeptideCategory.LONGEVIDADE,
-    secondaryCategories: [
-      'Longevidade'
-    ],
+    category: PeptideCategory.VASCULAR,
+    secondaryCategories: ['LONGEVIDADE'],
     synonyms: [
       'Epithalon amidate'
     ],
@@ -17648,9 +17342,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Long-Action'
     ],
     category: PeptideCategory.METABOLISMO,
-    secondaryCategories: [
-      'Metabolismo'
-    ],
+    secondaryCategories: ['METABOLISMO'],
     synonyms: [
       'AOD9604 PEG'
     ],
@@ -17716,9 +17408,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Precisão'
     ],
     category: PeptideCategory.RECUPERACAO,
-    secondaryCategories: [
-      'Recuperação'
-    ],
+    secondaryCategories: ['RECUPERAÇÃO'],
     synonyms: [
       'TB4 Frag'
     ],
@@ -17783,10 +17473,8 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Pesquisa',
       'Gut'
     ],
-    category: PeptideCategory.OUTROS,
-    secondaryCategories: [
-      'Outros'
-    ],
+    category: PeptideCategory.RECUPERACAO,
+    secondaryCategories: ['RECUPERAÇÃO'],
     synonyms: [
       'BPC-128'
     ],
@@ -17851,10 +17539,8 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Neuro',
       'Elite'
     ],
-    category: PeptideCategory.COGNICAO,
-    secondaryCategories: [
-      'Cognição'
-    ],
+    category: PeptideCategory.LONGEVIDADE,
+    secondaryCategories: ['LONGEVIDADE'],
     synonyms: [
       'Compound 5'
     ],
@@ -17919,10 +17605,8 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Imuno',
       'Respiração'
     ],
-    category: PeptideCategory.OUTROS,
-    secondaryCategories: [
-      'Outros'
-    ],
+    category: PeptideCategory.IMUNOLOGIA,
+    secondaryCategories: ['IMUNOLOGIA'],
     synonyms: [
       'TSLP inhibitors'
     ],
@@ -17988,9 +17672,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Energia'
     ],
     category: PeptideCategory.METABOLISMO,
-    secondaryCategories: [
-      'Metabolismo'
-    ],
+    secondaryCategories: ['METABOLISMO'],
     synonyms: [
       'Adropin'
     ],
@@ -18056,9 +17738,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Boost'
     ],
     category: PeptideCategory.METABOLISMO,
-    secondaryCategories: [
-      'Metabolismo'
-    ],
+    secondaryCategories: ['METABOLISMO'],
     synonyms: [
       'Irisin mimetics'
     ],
@@ -18124,9 +17804,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Cardio'
     ],
     category: PeptideCategory.CARDIOMETABÓLICO,
-    secondaryCategories: [
-      'Cardiometabólico'
-    ],
+    secondaryCategories: ['VASCULAR'],
     synonyms: [
       'ANG-(1-7)'
     ],
@@ -18191,10 +17869,8 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Precisão',
       'Rare Diseases'
     ],
-    category: PeptideCategory.OUTROS,
-    secondaryCategories: [
-      'Outros'
-    ],
+    category: PeptideCategory.VASCULAR,
+    secondaryCategories: ['VASCULAR'],
     synonyms: [
       'CNP analogs'
     ],
@@ -18260,9 +17936,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Suporte'
     ],
     category: PeptideCategory.CARDIOMETABÓLICO,
-    secondaryCategories: [
-      'Cardiometabólico'
-    ],
+    secondaryCategories: ['VASCULAR'],
     synonyms: [
       'BNP fragments'
     ],
@@ -18328,9 +18002,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Vascular'
     ],
     category: PeptideCategory.CARDIOMETABÓLICO,
-    secondaryCategories: [
-      'Cardiometabólico'
-    ],
+    secondaryCategories: ['VASCULAR'],
     synonyms: [
       'Serelaxin'
     ],
@@ -18395,10 +18067,8 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Pulmão',
       'DPOC'
     ],
-    category: PeptideCategory.RECUPERACAO,
-    secondaryCategories: [
-      'Recuperação'
-    ],
+    category: PeptideCategory.VASCULAR,
+    secondaryCategories: ['VASCULAR'],
     synonyms: [
       'PEGylated VIP'
     ],
@@ -18464,9 +18134,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Precisão'
     ],
     category: PeptideCategory.METABOLISMO,
-    secondaryCategories: [
-      'Metabolismo'
-    ],
+    secondaryCategories: ['METABOLISMO'],
     synonyms: [
       'CT-868'
     ],
@@ -18532,9 +18200,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Peso'
     ],
     category: PeptideCategory.METABOLISMO,
-    secondaryCategories: [
-      'Metabolismo'
-    ],
+    secondaryCategories: ['METABOLISMO'],
     synonyms: [
       'CT-996'
     ],
@@ -18600,9 +18266,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Cardiovascular'
     ],
     category: PeptideCategory.CARDIOMETABÓLICO,
-    secondaryCategories: [
-      'Cardiometabólico'
-    ],
+    secondaryCategories: ['MASSA MAGRA'],
     synonyms: [
       'AMG-786'
     ],
@@ -18667,10 +18331,8 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Fígado',
       'Metabolismo'
     ],
-    category: PeptideCategory.METABOLISMO,
-    secondaryCategories: [
-      'Metabolismo'
-    ],
+    category: PeptideCategory.MASSA_MAGRA,
+    secondaryCategories: ['METABOLISMO'],
     synonyms: [
       'LY3841136'
     ],
@@ -18736,9 +18398,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Evolução'
     ],
     category: PeptideCategory.METABOLISMO,
-    secondaryCategories: [
-      'Metabolismo'
-    ],
+    secondaryCategories: ['METABOLISMO'],
     synonyms: [
       'ECC5004'
     ],
@@ -18804,9 +18464,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Viking'
     ],
     category: PeptideCategory.METABOLISMO,
-    secondaryCategories: [
-      'Metabolismo'
-    ],
+    secondaryCategories: ['METABOLISMO'],
     synonyms: [
       'VK2735 oral'
     ],
@@ -18872,9 +18530,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Peso Max'
     ],
     category: PeptideCategory.METABOLISMO,
-    secondaryCategories: [
-      'Metabolismo'
-    ],
+    secondaryCategories: ['METABOLISMO'],
     synonyms: [
       'BI 3034701'
     ],
@@ -18939,10 +18595,8 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Ativação',
       'Pró-Miostatina'
     ],
-    category: PeptideCategory.PERFORMANCE,
-    secondaryCategories: [
-      'Performance'
-    ],
+    category: PeptideCategory.MASSA_MAGRA,
+    secondaryCategories: ['MASSA MAGRA'],
     synonyms: [
       'Apitegromab'
     ],
@@ -19008,9 +18662,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Novo'
     ],
     category: PeptideCategory.METABOLISMO,
-    secondaryCategories: [
-      'Metabolismo'
-    ],
+    secondaryCategories: ['METABOLISMO'],
     synonyms: [
       'Amycretin'
     ],
@@ -19076,9 +18728,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Elite'
     ],
     category: PeptideCategory.METABOLISMO,
-    secondaryCategories: [
-      'Metabolismo'
-    ],
+    secondaryCategories: ['METABOLISMO'],
     synonyms: [
       'CT-388'
     ],
@@ -19144,9 +18794,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Fígado'
     ],
     category: PeptideCategory.CARDIOMETABÓLICO,
-    secondaryCategories: [
-      'Cardiometabólico'
-    ],
+    secondaryCategories: ['METABOLISMO'],
     synonyms: [
       'VK2809'
     ],
@@ -19211,10 +18859,8 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Neuro',
       'Genética'
     ],
-    category: PeptideCategory.COGNICAO,
-    secondaryCategories: [
-      'Cognição'
-    ],
+    category: PeptideCategory.METABOLISMO,
+    secondaryCategories: ['LONGEVIDADE'],
     synonyms: [
       'VK0214'
     ],
@@ -19280,9 +18926,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Ultra-Peso'
     ],
     category: PeptideCategory.METABOLISMO,
-    secondaryCategories: [
-      'Metabolismo'
-    ],
+    secondaryCategories: ['METABOLISMO'],
     synonyms: [
       'Retatrutide Plus'
     ],
@@ -19348,9 +18992,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Estabilidade'
     ],
     category: PeptideCategory.CARDIOMETABÓLICO,
-    secondaryCategories: [
-      'Cardiometabólico'
-    ],
+    secondaryCategories: ['PERFORMANCE'],
     synonyms: [
       'LY3209590'
     ],
@@ -19415,10 +19057,8 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Genética',
       'Proteção'
     ],
-    category: PeptideCategory.OUTROS,
-    secondaryCategories: [
-      'Outros'
-    ],
+    category: PeptideCategory.PERFORMANCE,
+    secondaryCategories: ['LONGEVIDADE'],
     synonyms: [
       'Vutrisiran'
     ],
@@ -19484,9 +19124,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Bi-Anual'
     ],
     category: PeptideCategory.CARDIOMETABÓLICO,
-    secondaryCategories: [
-      'Cardiometabólico'
-    ],
+    secondaryCategories: ['VASCULAR'],
     synonyms: [
       'Inclisiran'
     ],
@@ -19551,10 +19189,8 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Articulação',
       'Bio-Reparo'
     ],
-    category: PeptideCategory.RECUPERACAO,
-    secondaryCategories: [
-      'Recuperação'
-    ],
+    category: PeptideCategory.VASCULAR,
+    secondaryCategories: ['RECUPERAÇÃO'],
     synonyms: [
       'Teserpeline'
     ],
@@ -19620,9 +19256,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Cardio'
     ],
     category: PeptideCategory.CARDIOMETABÓLICO,
-    secondaryCategories: [
-      'Cardiometabólico'
-    ],
+    secondaryCategories: ['VASCULAR'],
     synonyms: [
       'Bempedoic Acid Analog'
     ],
@@ -19688,9 +19322,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Elite'
     ],
     category: PeptideCategory.CARDIOMETABÓLICO,
-    secondaryCategories: [
-      'Cardiometabólico'
-    ],
+    secondaryCategories: ['VASCULAR'],
     synonyms: [
       'Alirocumab analogs'
     ],
@@ -19755,10 +19387,8 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Imuno',
       'Gut'
     ],
-    category: PeptideCategory.OUTROS,
-    secondaryCategories: [
-      'Outros'
-    ],
+    category: PeptideCategory.VASCULAR,
+    secondaryCategories: ['IMUNOLOGIA'],
     synonyms: [
       'Tiziana Peptides'
     ],
@@ -19824,9 +19454,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Elite'
     ],
     category: PeptideCategory.PERFORMANCE,
-    secondaryCategories: [
-      'Performance'
-    ],
+    secondaryCategories: ['PERFORMANCE'],
     synonyms: [
       'GH Releaser Elite'
     ],
@@ -19892,9 +19520,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Reset'
     ],
     category: PeptideCategory.LONGEVIDADE,
-    secondaryCategories: [
-      'Longevidade'
-    ],
+    secondaryCategories: ['LONGEVIDADE'],
     synonyms: [
       'Prime Bio-Reset'
     ],
@@ -19959,10 +19585,8 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Gut Health',
       'Emagrecimento'
     ],
-    category: PeptideCategory.OUTROS,
-    secondaryCategories: [
-      'Outros'
-    ],
+    category: PeptideCategory.DIGESTIVO,
+    secondaryCategories: ['DIGESTIVO'],
     synonyms: [
       'GLP-1 + GLP-2 Combo'
     ],
@@ -20028,9 +19652,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'NASH'
     ],
     category: PeptideCategory.METABOLISMO,
-    secondaryCategories: [
-      'Metabolismo'
-    ],
+    secondaryCategories: ['METABOLISMO'],
     synonyms: [
       'DD01'
     ],
@@ -20096,9 +19718,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Diabetes'
     ],
     category: PeptideCategory.METABOLISMO,
-    secondaryCategories: [
-      'Metabolismo'
-    ],
+    secondaryCategories: ['METABOLISMO'],
     synonyms: [
       'IcoSema'
     ],
@@ -20164,9 +19784,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Novo'
     ],
     category: PeptideCategory.METABOLISMO,
-    secondaryCategories: [
-      'Metabolismo'
-    ],
+    secondaryCategories: ['METABOLISMO'],
     synonyms: [
       'Amycretin Oral'
     ],
@@ -20300,9 +19918,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Hepático'
     ],
     category: PeptideCategory.METABOLISMO,
-    secondaryCategories: [
-      'Metabolismo'
-    ],
+    secondaryCategories: ['METABOLISMO'],
     synonyms: [
       'HM15211'
     ],
@@ -20368,9 +19984,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'GLP-1'
     ],
     category: PeptideCategory.METABOLISMO,
-    secondaryCategories: [
-      'Metabolismo'
-    ],
+    secondaryCategories: ['METABOLISMO'],
     synonyms: [
       'GSBR-1290'
     ],
@@ -20504,9 +20118,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Recuperação'
     ],
     category: PeptideCategory.PERFORMANCE,
-    secondaryCategories: [
-      'Performance'
-    ],
+    secondaryCategories: ['PERFORMANCE'],
     synonyms: [
       'Alexamorelin'
     ],
@@ -20572,9 +20184,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Elite'
     ],
     category: PeptideCategory.PERFORMANCE,
-    secondaryCategories: [
-      'Performance'
-    ],
+    secondaryCategories: ['PERFORMANCE'],
     synonyms: [
       'PEGylated GHRP-2'
     ],
@@ -20640,9 +20250,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Stability'
     ],
     category: PeptideCategory.PERFORMANCE,
-    secondaryCategories: [
-      'Performance'
-    ],
+    secondaryCategories: ['PERFORMANCE'],
     synonyms: [
       'Ipamorelina DAC'
     ],
@@ -20844,9 +20452,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Visceral'
     ],
     category: PeptideCategory.METABOLISMO,
-    secondaryCategories: [
-      'Metabolismo'
-    ],
+    secondaryCategories: ['METABOLISMO'],
     synonyms: [
       'PEG-HGH Frag'
     ],
@@ -20980,9 +20586,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Tissue'
     ],
     category: PeptideCategory.RECUPERACAO,
-    secondaryCategories: [
-      'Recuperação'
-    ],
+    secondaryCategories: ['RECUPERAÇÃO'],
     synonyms: [
       'ARA-3000'
     ],
@@ -21048,9 +20652,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Protection'
     ],
     category: PeptideCategory.CARDIOMETABÓLICO,
-    secondaryCategories: [
-      'Cardiometabólico'
-    ],
+    secondaryCategories: ['VASCULAR'],
     synonyms: [
       'Norleu3-A(1-7)'
     ],
@@ -21115,10 +20717,8 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Corneal',
       'Repair'
     ],
-    category: PeptideCategory.RECUPERACAO,
-    secondaryCategories: [
-      'Recuperação'
-    ],
+    category: PeptideCategory.VASCULAR,
+    secondaryCategories: ['RECUPERAÇÃO'],
     synonyms: [
       'RGN-259'
     ],
@@ -21251,7 +20851,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Innate Immunity',
       'Defense'
     ],
-    category: PeptideCategory.OUTROS,
+    category: PeptideCategory.METABOLISMO,
     secondaryCategories: [
       'Outros'
     ],
@@ -21319,10 +20919,8 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Protection',
       'Organs'
     ],
-    category: PeptideCategory.RECUPERACAO,
-    secondaryCategories: [
-      'Recuperação'
-    ],
+    category: PeptideCategory.IMUNOLOGIA,
+    secondaryCategories: ['IMUNOLOGIA'],
     synonyms: [
       'RTP004'
     ],
@@ -21388,9 +20986,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Tissue'
     ],
     category: PeptideCategory.RECUPERACAO,
-    secondaryCategories: [
-      'Recuperação'
-    ],
+    secondaryCategories: ['RECUPERAÇÃO'],
     synonyms: [
       'TP508'
     ],
@@ -21455,10 +21051,8 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Necrosis',
       'Selective'
     ],
-    category: PeptideCategory.ONCOLOGIA,
-    secondaryCategories: [
-      'Oncologia'
-    ],
+    category: PeptideCategory.IMUNOLOGIA,
+    secondaryCategories: ['IMUNOLOGIA'],
     synonyms: [
       'PNC-28'
     ],
@@ -21592,9 +21186,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Growth'
     ],
     category: PeptideCategory.RECUPERACAO,
-    secondaryCategories: [
-      'Recuperação'
-    ],
+    secondaryCategories: ['RECUPERAÇÃO'],
     synonyms: [
       'OGP'
     ],
@@ -21660,9 +21252,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Cognition'
     ],
     category: PeptideCategory.COGNICAO,
-    secondaryCategories: [
-      'Cognição'
-    ],
+    secondaryCategories: ['COGNIÇÃO'],
     synonyms: [
       'Cerebroprotein Hydrolysate'
     ],
@@ -21728,9 +21318,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'GABA'
     ],
     category: PeptideCategory.COGNICAO,
-    secondaryCategories: [
-      'Cognição'
-    ],
+    secondaryCategories: ['COGNIÇÃO'],
     synonyms: [
       'Nefiracetam'
     ],
@@ -21796,9 +21384,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Foco'
     ],
     category: PeptideCategory.COGNICAO,
-    secondaryCategories: [
-      'Cognição'
-    ],
+    secondaryCategories: ['COGNIÇÃO'],
     synonyms: [
       'Fasoracetam'
     ],
@@ -21864,9 +21450,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Foco'
     ],
     category: PeptideCategory.COGNICAO,
-    secondaryCategories: [
-      'Cognição'
-    ],
+    secondaryCategories: ['COGNIÇÃO'],
     synonyms: [
       'PE-22-28'
     ],
@@ -21931,10 +21515,8 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Brain Protection',
       'Elite'
     ],
-    category: PeptideCategory.LONGEVIDADE,
-    secondaryCategories: [
-      'Longevidade'
-    ],
+    category: PeptideCategory.COGNICAO,
+    secondaryCategories: ['COGNIÇÃO'],
     synonyms: [
       'J-147'
     ],
@@ -22000,9 +21582,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Brain'
     ],
     category: PeptideCategory.COGNICAO,
-    secondaryCategories: [
-      'Cognição'
-    ],
+    secondaryCategories: ['COGNIÇÃO'],
     synonyms: [
       'ISRIB'
     ],
@@ -22136,9 +21716,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Cognition'
     ],
     category: PeptideCategory.COGNICAO,
-    secondaryCategories: [
-      'Cognição'
-    ],
+    secondaryCategories: ['COGNIÇÃO'],
     synonyms: [
       'BDNF Mimetics'
     ],
@@ -22203,7 +21781,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Immune',
       'Regulation'
     ],
-    category: PeptideCategory.OUTROS,
+    category: PeptideCategory.METABOLISMO,
     secondaryCategories: [
       'Outros'
     ],
@@ -22271,10 +21849,8 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Cancer',
       'Targeted'
     ],
-    category: PeptideCategory.ONCOLOGIA,
-    secondaryCategories: [
-      'Oncologia'
-    ],
+    category: PeptideCategory.IMUNOLOGIA,
+    secondaryCategories: ['IMUNOLOGIA'],
     synonyms: [
       'PNC-27 PEG'
     ],
@@ -22339,10 +21915,8 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Healing',
       'Cells'
     ],
-    category: PeptideCategory.RECUPERACAO,
-    secondaryCategories: [
-      'Recuperação'
-    ],
+    category: PeptideCategory.IMUNOLOGIA,
+    secondaryCategories: ['IMUNOLOGIA'],
     synonyms: [
       'MCP Mimetics'
     ],
@@ -22407,10 +21981,8 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Immune Modulator',
       'Anti-Infection'
     ],
-    category: PeptideCategory.OUTROS,
-    secondaryCategories: [
-      'Outros'
-    ],
+    category: PeptideCategory.IMUNOLOGIA,
+    secondaryCategories: ['IMUNOLOGIA'],
     synonyms: [
       'IDR-1018'
     ],
@@ -22475,10 +22047,8 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Anti-Sepsis',
       'Defense'
     ],
-    category: PeptideCategory.OUTROS,
-    secondaryCategories: [
-      'Outros'
-    ],
+    category: PeptideCategory.IMUNOLOGIA,
+    secondaryCategories: ['IMUNOLOGIA'],
     synonyms: [
       'RTD-1'
     ],
@@ -22951,10 +22521,8 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Estabilidade',
       'Potência'
     ],
-    category: PeptideCategory.ONCOLOGIA,
-    secondaryCategories: [
-      'Oncologia'
-    ],
+    category: PeptideCategory.IMUNOLOGIA,
+    secondaryCategories: ['IMUNOLOGIA'],
     synonyms: [
       'Stapled Peptides'
     ],
@@ -23020,9 +22588,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Kidney Protection'
     ],
     category: PeptideCategory.LONGEVIDADE,
-    secondaryCategories: [
-      'Longevidade'
-    ],
+    secondaryCategories: ['LONGEVIDADE'],
     synonyms: [
       'Klotho Mimetic'
     ],
@@ -23088,9 +22654,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Fat Burn'
     ],
     category: PeptideCategory.METABOLISMO,
-    secondaryCategories: [
-      'Metabolismo'
-    ],
+    secondaryCategories: ['METABOLISMO'],
     synonyms: [
       'AMPK Activator'
     ],
@@ -23156,9 +22720,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Detox'
     ],
     category: PeptideCategory.LONGEVIDADE,
-    secondaryCategories: [
-      'Longevidade'
-    ],
+    secondaryCategories: ['LONGEVIDADE'],
     synonyms: [
       'Autophagy Activator'
     ],
@@ -23224,9 +22786,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Heart'
     ],
     category: PeptideCategory.CARDIOMETABÓLICO,
-    secondaryCategories: [
-      'Cardiometabólico'
-    ],
+    secondaryCategories: ['LONGEVIDADE'],
     synonyms: [
       'Mitophagy Activator'
     ],
@@ -23291,10 +22851,8 @@ export const PROTOCOLS: PeptideDossier[] = [
       'NRF2',
       'Protection'
     ],
-    category: PeptideCategory.RECUPERACAO,
-    secondaryCategories: [
-      'Recuperação'
-    ],
+    category: PeptideCategory.LONGEVIDADE,
+    secondaryCategories: ['LONGEVIDADE'],
     synonyms: [
       'NRF2 Activator'
     ],
@@ -23360,9 +22918,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Longevity'
     ],
     category: PeptideCategory.LONGEVIDADE,
-    secondaryCategories: [
-      'Longevidade'
-    ],
+    secondaryCategories: ['LONGEVIDADE'],
     synonyms: [
       'FOXO3a Activator'
     ],
@@ -23428,9 +22984,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Mitocôndria'
     ],
     category: PeptideCategory.METABOLISMO,
-    secondaryCategories: [
-      'Metabolismo'
-    ],
+    secondaryCategories: ['METABOLISMO'],
     synonyms: [
       'BAIBA'
     ],
@@ -23495,10 +23049,8 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Hepcidina',
       'Elite'
     ],
-    category: PeptideCategory.RECUPERACAO,
-    secondaryCategories: [
-      'Recuperação'
-    ],
+    category: PeptideCategory.METABOLISMO,
+    secondaryCategories: ['IMUNOLOGIA', 'LONGEVIDADE', 'METABOLISMO'],
     synonyms: [
       'Rusfertide'
     ],
@@ -23631,7 +23183,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Pesquisa',
       'Onco'
     ],
-    category: PeptideCategory.ONCOLOGIA,
+    category: PeptideCategory.IMUNOLOGIA,
     secondaryCategories: [
       'Oncologia'
     ],
@@ -23699,7 +23251,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'IGF',
       'Avançado'
     ],
-    category: PeptideCategory.ONCOLOGIA,
+    category: PeptideCategory.IMUNOLOGIA,
     secondaryCategories: [
       'Oncologia'
     ],
@@ -23767,7 +23319,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Target',
       'Research'
     ],
-    category: PeptideCategory.ONCOLOGIA,
+    category: PeptideCategory.IMUNOLOGIA,
     secondaryCategories: [
       'Oncologia'
     ],
@@ -23835,7 +23387,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'IGF-1R',
       'Clinica'
     ],
-    category: PeptideCategory.OUTROS,
+    category: PeptideCategory.METABOLISMO,
     secondaryCategories: [
       'Outros'
     ],
@@ -23903,7 +23455,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Dual Block',
       'Elite'
     ],
-    category: PeptideCategory.ONCOLOGIA,
+    category: PeptideCategory.IMUNOLOGIA,
     secondaryCategories: [
       'Oncologia'
     ],
@@ -23971,7 +23523,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Hepatócito',
       'Cura'
     ],
-    category: PeptideCategory.ONCOLOGIA,
+    category: PeptideCategory.IMUNOLOGIA,
     secondaryCategories: [
       'Oncologia'
     ],
@@ -24039,7 +23591,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Pureza',
       'Target'
     ],
-    category: PeptideCategory.ONCOLOGIA,
+    category: PeptideCategory.IMUNOLOGIA,
     secondaryCategories: [
       'Oncologia'
     ],
@@ -24107,7 +23659,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Onco',
       'Avançado'
     ],
-    category: PeptideCategory.ONCOLOGIA,
+    category: PeptideCategory.IMUNOLOGIA,
     secondaryCategories: [
       'Oncologia'
     ],
@@ -24175,7 +23727,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'High Affinity',
       'Onco'
     ],
-    category: PeptideCategory.ONCOLOGIA,
+    category: PeptideCategory.IMUNOLOGIA,
     secondaryCategories: [
       'Oncologia'
     ],
@@ -24243,7 +23795,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Avançado',
       'Target'
     ],
-    category: PeptideCategory.ONCOLOGIA,
+    category: PeptideCategory.IMUNOLOGIA,
     secondaryCategories: [
       'Oncologia'
     ],
@@ -24311,7 +23863,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Specfic',
       'Pure'
     ],
-    category: PeptideCategory.ONCOLOGIA,
+    category: PeptideCategory.IMUNOLOGIA,
     secondaryCategories: [
       'Oncologia'
     ],
@@ -24379,7 +23931,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Receptor',
       'Cura'
     ],
-    category: PeptideCategory.ONCOLOGIA,
+    category: PeptideCategory.IMUNOLOGIA,
     secondaryCategories: [
       'Oncologia'
     ],
@@ -24447,7 +23999,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Precisão',
       'Onco'
     ],
-    category: PeptideCategory.ONCOLOGIA,
+    category: PeptideCategory.IMUNOLOGIA,
     secondaryCategories: [
       'Oncologia'
     ],
@@ -24515,7 +24067,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'ADC',
       'GPNMB'
     ],
-    category: PeptideCategory.ONCOLOGIA,
+    category: PeptideCategory.IMUNOLOGIA,
     secondaryCategories: [
       'Oncologia'
     ],
@@ -24583,7 +24135,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Mieloma',
       'Target'
     ],
-    category: PeptideCategory.ONCOLOGIA,
+    category: PeptideCategory.IMUNOLOGIA,
     secondaryCategories: [
       'Oncologia'
     ],
@@ -24651,7 +24203,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Onco',
       'Avançado'
     ],
-    category: PeptideCategory.ONCOLOGIA,
+    category: PeptideCategory.IMUNOLOGIA,
     secondaryCategories: [
       'Oncologia'
     ],
@@ -24719,7 +24271,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'ADC',
       'Onco'
     ],
-    category: PeptideCategory.ONCOLOGIA,
+    category: PeptideCategory.IMUNOLOGIA,
     secondaryCategories: [
       'Oncologia'
     ],
@@ -24787,7 +24339,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Hematologia',
       'Research'
     ],
-    category: PeptideCategory.ONCOLOGIA,
+    category: PeptideCategory.IMUNOLOGIA,
     secondaryCategories: [
       'Oncologia'
     ],
@@ -24855,7 +24407,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Lúpus',
       'Imuno'
     ],
-    category: PeptideCategory.ONCOLOGIA,
+    category: PeptideCategory.IMUNOLOGIA,
     secondaryCategories: [
       'Oncologia'
     ],
@@ -24923,7 +24475,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Linfoma',
       'Upgrade'
     ],
-    category: PeptideCategory.ONCOLOGIA,
+    category: PeptideCategory.IMUNOLOGIA,
     secondaryCategories: [
       'Oncologia'
     ],
@@ -24991,7 +24543,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Neuro',
       'MS'
     ],
-    category: PeptideCategory.OUTROS,
+    category: PeptideCategory.METABOLISMO,
     secondaryCategories: [
       'Outros'
     ],
@@ -25059,7 +24611,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Onco',
       'Elite'
     ],
-    category: PeptideCategory.ONCOLOGIA,
+    category: PeptideCategory.IMUNOLOGIA,
     secondaryCategories: [
       'Oncologia'
     ],
@@ -25127,7 +24679,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'ADC',
       'Deruxtecan'
     ],
-    category: PeptideCategory.ONCOLOGIA,
+    category: PeptideCategory.IMUNOLOGIA,
     secondaryCategories: [
       'Oncologia'
     ],
@@ -25195,7 +24747,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Onco',
       'Pureza'
     ],
-    category: PeptideCategory.ONCOLOGIA,
+    category: PeptideCategory.IMUNOLOGIA,
     secondaryCategories: [
       'Oncologia'
     ],
@@ -25263,7 +24815,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Sinergia',
       'Avançado'
     ],
-    category: PeptideCategory.ONCOLOGIA,
+    category: PeptideCategory.IMUNOLOGIA,
     secondaryCategories: [
       'Oncologia'
     ],
@@ -25331,7 +24883,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Onco',
       'Target'
     ],
-    category: PeptideCategory.ONCOLOGIA,
+    category: PeptideCategory.IMUNOLOGIA,
     secondaryCategories: [
       'Oncologia'
     ],
@@ -26419,7 +25971,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Fibrose',
       'Pulmão'
     ],
-    category: PeptideCategory.OUTROS,
+    category: PeptideCategory.METABOLISMO,
     secondaryCategories: [
       'Outros'
     ],
@@ -26487,7 +26039,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Pulmão',
       'Cura'
     ],
-    category: PeptideCategory.OUTROS,
+    category: PeptideCategory.METABOLISMO,
     secondaryCategories: [
       'Outros'
     ],
@@ -26555,7 +26107,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'CFTR',
       'Elite'
     ],
-    category: PeptideCategory.OUTROS,
+    category: PeptideCategory.METABOLISMO,
     secondaryCategories: [
       'Outros'
     ],
@@ -26623,7 +26175,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Quinase',
       'Pulmão'
     ],
-    category: PeptideCategory.OUTROS,
+    category: PeptideCategory.METABOLISMO,
     secondaryCategories: [
       'Outros'
     ],
@@ -26691,7 +26243,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Seguro',
       'Ar'
     ],
-    category: PeptideCategory.OUTROS,
+    category: PeptideCategory.METABOLISMO,
     secondaryCategories: [
       'Outros'
     ],
@@ -26759,7 +26311,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Coração',
       'Avançado'
     ],
-    category: PeptideCategory.OUTROS,
+    category: PeptideCategory.METABOLISMO,
     secondaryCategories: [
       'Outros'
     ],
@@ -26827,7 +26379,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Vascular',
       'Elite'
     ],
-    category: PeptideCategory.OUTROS,
+    category: PeptideCategory.METABOLISMO,
     secondaryCategories: [
       'Outros'
     ],
@@ -26895,7 +26447,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Cardio',
       'Pureza'
     ],
-    category: PeptideCategory.OUTROS,
+    category: PeptideCategory.METABOLISMO,
     secondaryCategories: [
       'Outros'
     ],
@@ -26963,7 +26515,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Target',
       'Life'
     ],
-    category: PeptideCategory.OUTROS,
+    category: PeptideCategory.METABOLISMO,
     secondaryCategories: [
       'Outros'
     ],
@@ -27031,7 +26583,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Vascular',
       'Safe'
     ],
-    category: PeptideCategory.OUTROS,
+    category: PeptideCategory.METABOLISMO,
     secondaryCategories: [
       'Outros'
     ],
@@ -27099,7 +26651,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Vaso-Dilatação',
       'Elite'
     ],
-    category: PeptideCategory.OUTROS,
+    category: PeptideCategory.METABOLISMO,
     secondaryCategories: [
       'Outros'
     ],
@@ -27167,7 +26719,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'sGC',
       'Life'
     ],
-    category: PeptideCategory.OUTROS,
+    category: PeptideCategory.METABOLISMO,
     secondaryCategories: [
       'Outros'
     ],
@@ -27235,7 +26787,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Potência',
       'Coração'
     ],
-    category: PeptideCategory.OUTROS,
+    category: PeptideCategory.METABOLISMO,
     secondaryCategories: [
       'Outros'
     ],
@@ -27711,7 +27263,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Rim',
       'Coração'
     ],
-    category: PeptideCategory.OUTROS,
+    category: PeptideCategory.METABOLISMO,
     secondaryCategories: [
       'Outros'
     ],
@@ -27779,7 +27331,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Viral',
       'Mestre'
     ],
-    category: PeptideCategory.OUTROS,
+    category: PeptideCategory.METABOLISMO,
     secondaryCategories: [
       'Outros'
     ],
@@ -27847,7 +27399,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Defesa',
       'Upgrade'
     ],
-    category: PeptideCategory.OUTROS,
+    category: PeptideCategory.METABOLISMO,
     secondaryCategories: [
       'Outros'
     ],
@@ -27915,7 +27467,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Viral',
       'Elite'
     ],
-    category: PeptideCategory.OUTROS,
+    category: PeptideCategory.METABOLISMO,
     secondaryCategories: [
       'Outros'
     ],
@@ -28188,9 +27740,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Reparo'
     ],
     category: PeptideCategory.COGNICAO,
-    secondaryCategories: [
-      'Cognição'
-    ],
+    secondaryCategories: ['COGNIÇÃO'],
     synonyms: [
       'FGL'
     ],
@@ -28255,10 +27805,8 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Massa',
       'Elite'
     ],
-    category: PeptideCategory.PERFORMANCE,
-    secondaryCategories: [
-      'Performance'
-    ],
+    category: PeptideCategory.MASSA_MAGRA,
+    secondaryCategories: ['MASSA MAGRA'],
     synonyms: [
       'Trevogrumab Elite'
     ],
@@ -28323,10 +27871,8 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Hipertrofia',
       'Fase 2'
     ],
-    category: PeptideCategory.PERFORMANCE,
-    secondaryCategories: [
-      'Performance'
-    ],
+    category: PeptideCategory.MASSA_MAGRA,
+    secondaryCategories: ['MASSA MAGRA'],
     synonyms: [
       'Landogrozumab Pro'
     ],
@@ -28391,10 +27937,8 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Sarcopenia',
       'Elite'
     ],
-    category: PeptideCategory.PERFORMANCE,
-    secondaryCategories: [
-      'Performance'
-    ],
+    category: PeptideCategory.MASSA_MAGRA,
+    secondaryCategories: ['MASSA MAGRA'],
     synonyms: [
       'Domagrozumab Elite'
     ],
@@ -28459,10 +28003,8 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Seletividade',
       'Músculo'
     ],
-    category: PeptideCategory.PERFORMANCE,
-    secondaryCategories: [
-      'Performance'
-    ],
+    category: PeptideCategory.IMUNOLOGIA,
+    secondaryCategories: ['IMUNOLOGIA'],
     synonyms: [
       'SRK-015'
     ],
@@ -28527,10 +28069,8 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Anabolismo',
       'Ligante'
     ],
-    category: PeptideCategory.PERFORMANCE,
-    secondaryCategories: [
-      'Performance'
-    ],
+    category: PeptideCategory.MASSA_MAGRA,
+    secondaryCategories: ['MASSA MAGRA'],
     synonyms: [
       'ACE-2494 Elite'
     ],
@@ -28595,10 +28135,8 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Massa',
       'Poder'
     ],
-    category: PeptideCategory.PERFORMANCE,
-    secondaryCategories: [
-      'Performance'
-    ],
+    category: PeptideCategory.MASSA_MAGRA,
+    secondaryCategories: ['MASSA MAGRA'],
     synonyms: [
       'Taldefgrobep Alfa'
     ],
@@ -28663,10 +28201,8 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Função',
       'Atleta'
     ],
-    category: PeptideCategory.PERFORMANCE,
-    secondaryCategories: [
-      'Performance'
-    ],
+    category: PeptideCategory.MASSA_MAGRA,
+    secondaryCategories: ['MASSA MAGRA'],
     synonyms: [
       'BIO101'
     ],
@@ -28732,9 +28268,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Prime'
     ],
     category: PeptideCategory.LONGEVIDADE,
-    secondaryCategories: [
-      'Longevidade'
-    ],
+    secondaryCategories: ['LONGEVIDADE'],
     synonyms: [
       'Lomecel-B Pro'
     ],
@@ -28800,9 +28334,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Pulmão'
     ],
     category: PeptideCategory.RECUPERACAO,
-    secondaryCategories: [
-      'Recuperação'
-    ],
+    secondaryCategories: ['RECUPERAÇÃO'],
     synonyms: [
       'AGLE-102'
     ],
@@ -28868,9 +28400,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Bloqueio'
     ],
     category: PeptideCategory.LONGEVIDADE,
-    secondaryCategories: [
-      'Longevidade'
-    ],
+    secondaryCategories: ['LONGEVIDADE'],
     synonyms: [
       'RTP801 Blocker'
     ],
@@ -28936,9 +28466,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Elite'
     ],
     category: PeptideCategory.LONGEVIDADE,
-    secondaryCategories: [
-      'Longevidade'
-    ],
+    secondaryCategories: ['LONGEVIDADE'],
     synonyms: [
       'FOXO4-p53 Interceptor'
     ],
@@ -29004,9 +28532,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Visão'
     ],
     category: PeptideCategory.LONGEVIDADE,
-    secondaryCategories: [
-      'Longevidade'
-    ],
+    secondaryCategories: ['LONGEVIDADE'],
     synonyms: [
       'UBX1325 Pro'
     ],
@@ -29072,9 +28598,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Fase 1'
     ],
     category: PeptideCategory.LONGEVIDADE,
-    secondaryCategories: [
-      'Longevidade'
-    ],
+    secondaryCategories: ['LONGEVIDADE'],
     synonyms: [
       'E5 Peptide'
     ],
@@ -29140,9 +28664,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Proteção'
     ],
     category: PeptideCategory.COGNICAO,
-    secondaryCategories: [
-      'Cognição'
-    ],
+    secondaryCategories: ['COGNIÇÃO'],
     synonyms: [
       'ATH-1105 Elite'
     ],
@@ -29208,9 +28730,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Imuno'
     ],
     category: PeptideCategory.IMUNOLOGIA,
-    secondaryCategories: [
-      'Imunologia'
-    ],
+    secondaryCategories: ['IMUNOLOGIA'],
     synonyms: [
       'PN-2921 Pro'
     ],
@@ -29275,10 +28795,8 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Epitélio',
       'Cura'
     ],
-    category: PeptideCategory.OUTROS,
-    secondaryCategories: [
-      'Outros'
-    ],
+    category: PeptideCategory.DIGESTIVO,
+    secondaryCategories: ['DIGESTIVO'],
     synonyms: [
       'TPX-115 Elite'
     ],
@@ -29344,9 +28862,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Cognitivo'
     ],
     category: PeptideCategory.COGNICAO,
-    secondaryCategories: [
-      'Cognição'
-    ],
+    secondaryCategories: ['COGNIÇÃO'],
     synonyms: [
       'Fosgonimeton'
     ],
@@ -29412,9 +28928,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Foco'
     ],
     category: PeptideCategory.COGNICAO,
-    secondaryCategories: [
-      'Cognição'
-    ],
+    secondaryCategories: ['COGNIÇÃO'],
     synonyms: [
       'BPN14770'
     ],
@@ -29480,9 +28994,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Mente'
     ],
     category: PeptideCategory.COGNICAO,
-    secondaryCategories: [
-      'Cognição'
-    ],
+    secondaryCategories: ['COGNIÇÃO'],
     synonyms: [
       'LM11A-31 Elite'
     ],
@@ -29548,9 +29060,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Foco'
     ],
     category: PeptideCategory.COGNICAO,
-    secondaryCategories: [
-      'Cognição'
-    ],
+    secondaryCategories: ['COGNIÇÃO'],
     synonyms: [
       'NNI-362 Pro'
     ],
@@ -29616,9 +29126,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Elite'
     ],
     category: PeptideCategory.COGNICAO,
-    secondaryCategories: [
-      'Cognição'
-    ],
+    secondaryCategories: ['COGNIÇÃO'],
     synonyms: [
       'Bryostatin Analog Peptides'
     ],
@@ -29684,9 +29192,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'NAP'
     ],
     category: PeptideCategory.COGNICAO,
-    secondaryCategories: [
-      'Cognição'
-    ],
+    secondaryCategories: ['COGNIÇÃO'],
     synonyms: [
       'Davunetide'
     ],
@@ -29752,9 +29258,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Regeneração'
     ],
     category: PeptideCategory.COGNICAO,
-    secondaryCategories: [
-      'Cognição'
-    ],
+    secondaryCategories: ['COGNIÇÃO'],
     synonyms: [
       'Sovateltide Elite'
     ],
@@ -29956,9 +29460,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Elite'
     ],
     category: PeptideCategory.LONGEVIDADE,
-    secondaryCategories: [
-      'Longevidade'
-    ],
+    secondaryCategories: ['LONGEVIDADE'],
     synonyms: [
       'SHLP6 Analog Elite'
     ],
@@ -30092,9 +29594,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Imuno'
     ],
     category: PeptideCategory.IMUNOLOGIA,
-    secondaryCategories: [
-      'Imunologia'
-    ],
+    secondaryCategories: ['IMUNOLOGIA'],
     synonyms: [
       'NGM438 Elite'
     ],
@@ -30160,9 +29660,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Autoimune'
     ],
     category: PeptideCategory.IMUNOLOGIA,
-    secondaryCategories: [
-      'Imunologia'
-    ],
+    secondaryCategories: ['IMUNOLOGIA'],
     synonyms: [
       'IL-2 Muteins Elite'
     ],
@@ -30228,9 +29726,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Elite'
     ],
     category: PeptideCategory.IMUNOLOGIA,
-    secondaryCategories: [
-      'Imunologia'
-    ],
+    secondaryCategories: ['IMUNOLOGIA'],
     synonyms: [
       'Neo-2/15 Elite'
     ],
@@ -30295,10 +29791,8 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Senescência',
       'Pro-Longevidade'
     ],
-    category: PeptideCategory.LONGEVIDADE,
-    secondaryCategories: [
-      'Longevidade'
-    ],
+    category: PeptideCategory.IMUNOLOGIA,
+    secondaryCategories: ['IMUNOLOGIA'],
     synonyms: [
       'MDK Inhibitor Peptide'
     ],
@@ -30432,9 +29926,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Agudo'
     ],
     category: PeptideCategory.IMUNOLOGIA,
-    secondaryCategories: [
-      'Imunologia'
-    ],
+    secondaryCategories: ['IMUNOLOGIA'],
     synonyms: [
       'RLS-0071 Elite'
     ],
@@ -30500,9 +29992,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Sexual'
     ],
     category: PeptideCategory.SEXUAL,
-    secondaryCategories: [
-      'Sexual'
-    ],
+    secondaryCategories: ['SEXUAL'],
     synonyms: [
       'Kisspeptin Analog'
     ],
@@ -30568,9 +30058,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Elite'
     ],
     category: PeptideCategory.SEXUAL,
-    secondaryCategories: [
-      'Sexual'
-    ],
+    secondaryCategories: ['SEXUAL'],
     synonyms: [
       'LPX-T Elite'
     ],
@@ -30636,9 +30124,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Feminino'
     ],
     category: PeptideCategory.SEXUAL,
-    secondaryCategories: [
-      'Sexual'
-    ],
+    secondaryCategories: ['SEXUAL'],
     synonyms: [
       'Ovaprene Peptides'
     ],
@@ -30772,9 +30258,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Gasto'
     ],
     category: PeptideCategory.METABOLISMO,
-    secondaryCategories: [
-      'Metabolismo'
-    ],
+    secondaryCategories: ['METABOLISMO'],
     synonyms: [
       'FGF21 Analog Elite'
     ],
@@ -30840,9 +30324,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Metabólico'
     ],
     category: PeptideCategory.METABOLISMO,
-    secondaryCategories: [
-      'Metabolismo'
-    ],
+    secondaryCategories: ['METABOLISMO'],
     synonyms: [
       'Efruxifermin'
     ],
@@ -30908,9 +30390,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Vascular'
     ],
     category: PeptideCategory.METABOLISMO,
-    secondaryCategories: [
-      'Metabolismo'
-    ],
+    secondaryCategories: ['METABOLISMO'],
     synonyms: [
       'Pegozafermin Elite'
     ],
@@ -30976,9 +30456,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Poder'
     ],
     category: PeptideCategory.METABOLISMO,
-    secondaryCategories: [
-      'Metabolismo'
-    ],
+    secondaryCategories: ['METABOLISMO'],
     synonyms: [
       'BOS-580 Pro'
     ],
@@ -31111,7 +30589,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Contenção',
       'Defesa'
     ],
-    category: PeptideCategory.OUTROS,
+    category: PeptideCategory.METABOLISMO,
     secondaryCategories: [
       'Outros'
     ],
@@ -31179,10 +30657,8 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Precisão',
       'Carga'
     ],
-    category: PeptideCategory.OUTROS,
-    secondaryCategories: [
-      'Outros'
-    ],
+    category: PeptideCategory.IMUNOLOGIA,
+    secondaryCategories: ['IMUNOLOGIA'],
     synonyms: [
       'BT1718'
     ],
@@ -31247,10 +30723,8 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Diagnóstico',
       'Avançado'
     ],
-    category: PeptideCategory.OUTROS,
-    secondaryCategories: [
-      'Outros'
-    ],
+    category: PeptideCategory.IMUNOLOGIA,
+    secondaryCategories: ['IMUNOLOGIA'],
     synonyms: [
       'Radiolabeled Peptide Pro'
     ],
@@ -31315,7 +30789,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Alvo',
       'Molecular'
     ],
-    category: PeptideCategory.OUTROS,
+    category: PeptideCategory.METABOLISMO,
     secondaryCategories: [
       'Outros'
     ],
@@ -31384,9 +30858,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Defesa'
     ],
     category: PeptideCategory.RECUPERACAO,
-    secondaryCategories: [
-      'Recuperação'
-    ],
+    secondaryCategories: ['RECUPERAÇÃO'],
     synonyms: [
       'Omiganan Elite'
     ],
@@ -31451,10 +30923,8 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Fertilidade',
       'Hormonal'
     ],
-    category: PeptideCategory.SEXUAL,
-    secondaryCategories: [
-      'Sexual'
-    ],
+    category: PeptideCategory.PERFORMANCE,
+    secondaryCategories: ['PERFORMANCE'],
     synonyms: [
       'HMG'
     ],
@@ -31860,9 +31330,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Bio-Penetração'
     ],
     category: PeptideCategory.ESTETICA,
-    secondaryCategories: [
-      'Estética'
-    ],
+    secondaryCategories: ['ESTÉTICA'],
     synonyms: [
       'Pal-GHK'
     ],
@@ -33015,7 +32483,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Coração',
       'Cardio'
     ],
-    category: PeptideCategory.OUTROS,
+    category: PeptideCategory.METABOLISMO,
     secondaryCategories: [
       'Outros'
     ],
@@ -33288,9 +32756,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Vascular'
     ],
     category: PeptideCategory.RECUPERACAO,
-    secondaryCategories: [
-      'Recuperação'
-    ],
+    secondaryCategories: ['RECUPERAÇÃO'],
     synonyms: [
       'TB4 Frag'
     ],
@@ -33423,10 +32889,8 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Mito',
       'Ativação'
     ],
-    category: PeptideCategory.METABOLISMO,
-    secondaryCategories: [
-      'Metabolismo'
-    ],
+    category: PeptideCategory.LONGEVIDADE,
+    secondaryCategories: ['LONGEVIDADE'],
     synonyms: [
       'Compound 5'
     ],
@@ -34547,7 +34011,7 @@ export const PROTOCOLS: PeptideDossier[] = [
     administration: 'Supervisão médica necessária.',
     mechanism: 'Otimização avançada de vias hormonais e metabólicas, recrutando receptores de altíssima afinidade.',
     evidenceLevel: 'Base de Elite / Fase 3',
-    category: PeptideCategory.OUTROS,
+    category: PeptideCategory.METABOLISMO,
     secondaryCategories: [
       'Outros'
     ],
@@ -34691,7 +34155,7 @@ export const PROTOCOLS: PeptideDossier[] = [
     administration: 'Supervisão médica necessária.',
     mechanism: 'Otimização avançada de vias hormonais e metabólicas, recrutando receptores de altíssima afinidade.',
     evidenceLevel: 'Base de Elite / Fase 3',
-    category: PeptideCategory.ONCOLOGIA,
+    category: PeptideCategory.IMUNOLOGIA,
     secondaryCategories: [
       'Oncologia'
     ],
@@ -35339,7 +34803,7 @@ export const PROTOCOLS: PeptideDossier[] = [
     administration: 'Supervisão médica necessária.',
     mechanism: 'Otimização avançada de vias hormonais e metabólicas, recrutando receptores de altíssima afinidade.',
     evidenceLevel: 'Base de Elite / Fase 3',
-    category: PeptideCategory.OUTROS,
+    category: PeptideCategory.METABOLISMO,
     secondaryCategories: [
       'Outros'
     ],
@@ -35483,7 +34947,7 @@ export const PROTOCOLS: PeptideDossier[] = [
     administration: 'Supervisão médica necessária.',
     mechanism: 'Otimização avançada de vias hormonais e metabólicas, recrutando receptores de altíssima afinidade.',
     evidenceLevel: 'Base de Elite / Fase 3',
-    category: PeptideCategory.ONCOLOGIA,
+    category: PeptideCategory.IMUNOLOGIA,
     secondaryCategories: [
       'Oncologia'
     ],
@@ -36131,7 +35595,7 @@ export const PROTOCOLS: PeptideDossier[] = [
     administration: 'Supervisão médica necessária.',
     mechanism: 'Otimização avançada de vias hormonais e metabólicas, recrutando receptores de altíssima afinidade.',
     evidenceLevel: 'Base de Elite / Fase 3',
-    category: PeptideCategory.OUTROS,
+    category: PeptideCategory.METABOLISMO,
     secondaryCategories: [
       'Outros'
     ],
@@ -36275,7 +35739,7 @@ export const PROTOCOLS: PeptideDossier[] = [
     administration: 'Supervisão médica necessária.',
     mechanism: 'Otimização avançada de vias hormonais e metabólicas, recrutando receptores de altíssima afinidade.',
     evidenceLevel: 'Base de Elite / Fase 3',
-    category: PeptideCategory.ONCOLOGIA,
+    category: PeptideCategory.IMUNOLOGIA,
     secondaryCategories: [
       'Oncologia'
     ],
@@ -36923,7 +36387,7 @@ export const PROTOCOLS: PeptideDossier[] = [
     administration: 'Supervisão médica necessária.',
     mechanism: 'Otimização avançada de vias hormonais e metabólicas, recrutando receptores de altíssima afinidade.',
     evidenceLevel: 'Base de Elite / Fase 3',
-    category: PeptideCategory.OUTROS,
+    category: PeptideCategory.METABOLISMO,
     secondaryCategories: [
       'Outros'
     ],
@@ -37067,7 +36531,7 @@ export const PROTOCOLS: PeptideDossier[] = [
     administration: 'Supervisão médica necessária.',
     mechanism: 'Otimização avançada de vias hormonais e metabólicas, recrutando receptores de altíssima afinidade.',
     evidenceLevel: 'Base de Elite / Fase 3',
-    category: PeptideCategory.ONCOLOGIA,
+    category: PeptideCategory.IMUNOLOGIA,
     secondaryCategories: [
       'Oncologia'
     ],
@@ -37715,7 +37179,7 @@ export const PROTOCOLS: PeptideDossier[] = [
     administration: 'Supervisão médica necessária.',
     mechanism: 'Otimização avançada de vias hormonais e metabólicas, recrutando receptores de altíssima afinidade.',
     evidenceLevel: 'Base de Elite / Fase 3',
-    category: PeptideCategory.OUTROS,
+    category: PeptideCategory.METABOLISMO,
     secondaryCategories: [
       'Outros'
     ],
@@ -37859,7 +37323,7 @@ export const PROTOCOLS: PeptideDossier[] = [
     administration: 'Supervisão médica necessária.',
     mechanism: 'Otimização avançada de vias hormonais e metabólicas, recrutando receptores de altíssima afinidade.',
     evidenceLevel: 'Base de Elite / Fase 3',
-    category: PeptideCategory.ONCOLOGIA,
+    category: PeptideCategory.IMUNOLOGIA,
     secondaryCategories: [
       'Oncologia'
     ],
@@ -38507,7 +37971,7 @@ export const PROTOCOLS: PeptideDossier[] = [
     administration: 'Supervisão médica necessária.',
     mechanism: 'Otimização avançada de vias hormonais e metabólicas, recrutando receptores de altíssima afinidade.',
     evidenceLevel: 'Base de Elite / Fase 3',
-    category: PeptideCategory.OUTROS,
+    category: PeptideCategory.METABOLISMO,
     secondaryCategories: [
       'Outros'
     ],
@@ -38651,7 +38115,7 @@ export const PROTOCOLS: PeptideDossier[] = [
     administration: 'Supervisão médica necessária.',
     mechanism: 'Otimização avançada de vias hormonais e metabólicas, recrutando receptores de altíssima afinidade.',
     evidenceLevel: 'Base de Elite / Fase 3',
-    category: PeptideCategory.ONCOLOGIA,
+    category: PeptideCategory.IMUNOLOGIA,
     secondaryCategories: [
       'Oncologia'
     ],
@@ -39299,7 +38763,7 @@ export const PROTOCOLS: PeptideDossier[] = [
     administration: 'Supervisão médica necessária.',
     mechanism: 'Otimização avançada de vias hormonais e metabólicas, recrutando receptores de altíssima afinidade.',
     evidenceLevel: 'Base de Elite / Fase 3',
-    category: PeptideCategory.OUTROS,
+    category: PeptideCategory.METABOLISMO,
     secondaryCategories: [
       'Outros'
     ],
@@ -39443,7 +38907,7 @@ export const PROTOCOLS: PeptideDossier[] = [
     administration: 'Supervisão médica necessária.',
     mechanism: 'Otimização avançada de vias hormonais e metabólicas, recrutando receptores de altíssima afinidade.',
     evidenceLevel: 'Base de Elite / Fase 3',
-    category: PeptideCategory.ONCOLOGIA,
+    category: PeptideCategory.IMUNOLOGIA,
     secondaryCategories: [
       'Oncologia'
     ],

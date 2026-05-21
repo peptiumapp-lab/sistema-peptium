@@ -10,17 +10,21 @@ import { PeptideCategory, PeptideDossier } from '../../types';
 interface PeptideLibraryProps {
   setView: (view: View) => void;
   isPremium?: boolean;
+  initialCategory?: string;
 }
 
-export default function PeptideLibrary({ setView, isPremium }: PeptideLibraryProps) {
+export default function PeptideLibrary({ setView, isPremium, initialCategory = 'Todos' }: PeptideLibraryProps) {
   const [searchTerm, setSearchTerm] = useState('');
-  const [activeCategory, setActiveCategory] = useState('Todos');
+  const [activeCategory, setActiveCategory] = useState(initialCategory);
+
   const [selectedPeptide, setSelectedPeptide] = useState<PeptideDossier | null>(null);
 
-  const categories = [
-    'Todos', 
-    ...Object.values(PeptideCategory)
-  ].sort((a, b) => a === 'Todos' ? -1 : a.localeCompare(b));
+  const categories = useMemo(() => {
+    return [
+      'Todos', 
+      ...Object.values(PeptideCategory)
+    ].sort((a, b) => a === 'Todos' ? -1 : a.localeCompare(b));
+  }, []);
 
   const fuse = useMemo(() => new Fuse(PROTOCOLS, {
     keys: ['name', 'description', 'synonyms', 'tag', 'secondaryTags', 'class'],
@@ -36,7 +40,7 @@ export default function PeptideLibrary({ setView, isPremium }: PeptideLibraryPro
     }
     
     if (activeCategory !== 'Todos') {
-      result = result.filter(p => p.category === activeCategory);
+      result = result.filter(p => p.category === activeCategory || (p.secondaryCategories && p.secondaryCategories.includes(activeCategory)));
     }
     return result;
   }, [searchTerm, activeCategory, fuse]);
