@@ -13,13 +13,25 @@ interface SalesPageProps {
 
 export default function SalesPage({ setView }: SalesPageProps) {
   const { user, isPro } = useAuth();
+  const [couponCode, setCouponCode] = React.useState<string | null>(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    const params = new URLSearchParams(window.location.search);
+    const code = params.get('coupon');
+    if (code) {
+      setCouponCode(code);
+      sessionStorage.setItem('pendingCoupon', code);
+    } else {
+      const pendingCoupon = sessionStorage.getItem('pendingCoupon');
+      if (pendingCoupon) setCouponCode(pendingCoupon);
+    }
   }, []);
 
   const handlePurchase = async (planName: string) => {
     if (!user) {
+      sessionStorage.setItem('pendingCheckout', planName);
+      if (couponCode) sessionStorage.setItem('pendingCoupon', couponCode);
       await signInWithGoogle();
       return;
     }
@@ -37,6 +49,7 @@ export default function SalesPage({ setView }: SalesPageProps) {
           planName: planName,
           userId: user.uid,
           userEmail: user.email,
+          coupon: couponCode || undefined,
         }),
       });
 

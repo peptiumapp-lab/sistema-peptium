@@ -69,7 +69,7 @@ router.post('/create-checkout-session', async (req: Request, res: Response) => {
   console.log('Path:', req.path);
   console.log('Body:', JSON.stringify(req.body));
   try {
-    const { planName, userId, userEmail } = req.body;
+    const { planName, userId, userEmail, coupon } = req.body;
     
     if (!userId || !planName) {
       return res.status(400).json({ 
@@ -110,19 +110,28 @@ router.post('/create-checkout-session', async (req: Request, res: Response) => {
     const referer = req.headers.referer || req.headers.origin || 'http://localhost:3000';
     const baseUrl = new URL(referer).origin;
 
+    const baseSessionConfig: any = {
+      payment_method_types: ['card'],
+      mode: 'subscription',
+      success_url: `${baseUrl}?payment_status=success`,
+      cancel_url: `${baseUrl}?payment_status=cancel`,
+      customer_email: userEmail,
+      metadata: {
+        userId: userId,
+        planName: planName,
+      },
+    };
+
+    if (coupon) {
+      baseSessionConfig.discounts = [{ coupon }];
+    } else {
+      baseSessionConfig.allow_promotion_codes = true;
+    }
+
     try {
       session = await stripe.checkout.sessions.create({
-        payment_method_types: ['card'],
+        ...baseSessionConfig,
         line_items,
-        mode: 'subscription',
-        allow_promotion_codes: true,
-        success_url: `${baseUrl}?payment_status=success`,
-        cancel_url: `${baseUrl}?payment_status=cancel`,
-        customer_email: userEmail,
-        metadata: {
-          userId: userId,
-          planName: planName,
-        },
       });
     } catch (createError: any) {
       if (createError.code === 'resource_missing' && createError.message.includes('No such price')) {
@@ -145,17 +154,8 @@ router.post('/create-checkout-session', async (req: Request, res: Response) => {
         }];
 
         session = await stripe.checkout.sessions.create({
-          payment_method_types: ['card'],
+          ...baseSessionConfig,
           line_items: fallback_line_items,
-          mode: 'subscription',
-          allow_promotion_codes: true,
-          success_url: `${baseUrl}?payment_status=success`,
-          cancel_url: `${baseUrl}?payment_status=cancel`,
-          customer_email: userEmail,
-          metadata: {
-            userId: userId,
-            planName: planName,
-          },
         });
       } else {
         throw createError;

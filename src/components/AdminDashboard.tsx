@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../contexts/AuthContext';
-import { collection, query, onSnapshot, doc, setDoc, deleteDoc } from 'firebase/firestore';
+import { collection, query, onSnapshot, doc, setDoc, deleteDoc, getDoc } from 'firebase/firestore';
 import { db } from '../lib/firebase';
 import { Shield, Plus, Trash2, Clock, Calendar, CheckCircle } from 'lucide-react';
 
@@ -19,6 +19,33 @@ export default function AdminDashboard() {
 
   useEffect(() => {
     if (!isAdmin) return;
+
+    // Auto-migrate hardcoded users to Firestore if they don't exist yet
+    const seedInitialUsers = async () => {
+      const tempUsers = {
+        'peptidiopro@gmail.com': new Date('2026-06-27T23:59:59Z').getTime(),
+        'abraaoalvesdesa18@gmail.com': new Date('2026-06-27T23:59:59Z').getTime()
+      };
+      
+      for (const [email, expiresAt] of Object.entries(tempUsers)) {
+        try {
+          const docRef = doc(db, 'pro_grants', email);
+          const snap = await getDoc(docRef);
+          if (!snap.exists()) {
+            await setDoc(docRef, {
+              email,
+              expiresAt,
+              createdAt: Date.now(),
+              type: 'monthly'
+            });
+          }
+        } catch (e) {
+          console.error("Error seeding user:", e);
+        }
+      }
+    };
+    
+    seedInitialUsers();
 
     const q = query(collection(db, 'pro_grants'));
     const unsubscribe = onSnapshot(q, (snapshot) => {

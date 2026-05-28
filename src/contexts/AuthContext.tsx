@@ -40,12 +40,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
           'safnb@gmail.com'
         ];
 
-        // Temp users that expire after 30 days from May 28, 2026 -> June 27, 2026
-        const tempProUsers: Record<string, number> = {
-          'peptidiopro@gmail.com': new Date('2026-06-27T23:59:59Z').getTime(),
-          'abraaoalvesdesa18@gmail.com': new Date('2026-06-27T23:59:59Z').getTime()
-        };
-        
         let normalizedEmail = user.email ? user.email.toLowerCase().trim() : '';
         if (normalizedEmail.endsWith('@gmail.com')) {
           const [username, domain] = normalizedEmail.split('@');
@@ -55,26 +49,17 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         const isSuperAdmin = adminEmails.includes(normalizedEmail);
         setIsAdmin(isSuperAdmin);
         
-        let isTempPro = false;
-        if (tempProUsers[normalizedEmail]) {
-          if (Date.now() < tempProUsers[normalizedEmail]) {
-            isTempPro = true;
-          }
-        }
-        
-        const hasDirectCodeAccess = isSuperAdmin || isTempPro;
-        
-        console.log("Current user email:", normalizedEmail, "hasDirectCodeAccess:", hasDirectCodeAccess);
+        console.log("Current user email:", normalizedEmail, "isSuperAdmin:", isSuperAdmin);
 
         let proFromDb = false;
         let proFromGrant = false;
 
         const evaluatePro = () => {
-          setIsPro(hasDirectCodeAccess || proFromDb || proFromGrant);
+          setIsPro(isSuperAdmin || proFromDb || proFromGrant);
         }
 
-        // Immediately set true if super admin or valid temp pro, so they don't get blocked by slow DB or permission errors
-        if (hasDirectCodeAccess) {
+        // Immediately set true if super admin, so they don't get blocked by slow DB or permission errors
+        if (isSuperAdmin) {
           setIsPro(true);
         }
 

@@ -29,9 +29,56 @@ const plans = [
 
 export default function Pricing() {
   const { user, isPro } = useAuth();
+  const [couponCode, setCouponCode] = React.useState<string | null>(null);
+  const [autoCheckout, setAutoCheckout] = React.useState<string | null>(null);
 
-  const handlePurchase = async (planName: string) => {
+  React.useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const code = params.get('coupon');
+    const checkoutPlan = params.get('checkout');
+    
+    if (code) {
+      setCouponCode(code);
+      // Persist in session storage in case they need to log in
+      sessionStorage.setItem('pendingCoupon', code);
+    } else {
+      const pendingCoupon = sessionStorage.getItem('pendingCoupon');
+      if (pendingCoupon) setCouponCode(pendingCoupon);
+    }
+
+    if (checkoutPlan) {
+      setAutoCheckout(checkoutPlan);
+      sessionStorage.setItem('pendingCheckout', checkoutPlan);
+    } else {
+      const pendingCheckout = sessionStorage.getItem('pendingCheckout');
+      if (pendingCheckout) setAutoCheckout(pendingCheckout);
+    }
+  }, []);
+
+  React.useEffect(() => {
+    if (autoCheckout) {
+      const plan = plans.find(p => p.name === autoCheckout || p.name.includes(autoCheckout));
+      if (plan) {
+        if (!user) {
+           sessionStorage.setItem('pendingCheckout', plan.name);
+           if (couponCode) sessionStorage.setItem('pendingCoupon', couponCode);
+           // We can't auto-popup Google Auth easily as it might block popups, but we can try!
+        } else if (!isPro) {
+           setAutoCheckout(null);
+           sessionStorage.removeItem('pendingCheckout');
+           setTimeout(() => {
+             handlePurchase(plan.name, couponCode);
+           }, 500);
+        }
+      }
+    }
+  }, [user, isPro, autoCheckout, couponCode]);
+
+  const handlePurchase = async (planName: string, explicitCoupon?: string | null) => {
+    const finalCoupon = explicitCoupon || couponCode;
     if (!user) {
+      sessionStorage.setItem('pendingCheckout', planName);
+      if (finalCoupon) sessionStorage.setItem('pendingCoupon', finalCoupon);
       await signInWithGoogle();
       return;
     }
@@ -49,6 +96,7 @@ export default function Pricing() {
           planName: planName,
           userId: user.uid,
           userEmail: user.email,
+          coupon: finalCoupon || undefined,
         }),
       });
 
