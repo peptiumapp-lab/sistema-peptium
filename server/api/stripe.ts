@@ -105,23 +105,62 @@ router.post('/create-checkout-session', async (req: Request, res: Response) => {
       }];
     }
 
+    let session;
     const stripe = getStripe();
     const referer = req.headers.referer || req.headers.origin || 'http://localhost:3000';
     const baseUrl = new URL(referer).origin;
 
-    const session = await stripe.checkout.sessions.create({
-      payment_method_types: ['card'],
-      line_items,
-      mode: 'subscription',
-      allow_promotion_codes: true,
-      success_url: `${baseUrl}?payment_status=success`,
-      cancel_url: `${baseUrl}?payment_status=cancel`,
-      customer_email: userEmail,
-      metadata: {
-        userId: userId,
-        planName: planName,
-      },
-    });
+    try {
+      session = await stripe.checkout.sessions.create({
+        payment_method_types: ['card'],
+        line_items,
+        mode: 'subscription',
+        allow_promotion_codes: true,
+        success_url: `${baseUrl}?payment_status=success`,
+        cancel_url: `${baseUrl}?payment_status=cancel`,
+        customer_email: userEmail,
+        metadata: {
+          userId: userId,
+          planName: planName,
+        },
+      });
+    } catch (createError: any) {
+      if (createError.code === 'resource_missing' && createError.message.includes('No such price')) {
+        console.warn('Fallback: Invalid price ID provided, using dynamic price instead.', createError.message);
+        // Fallback: Dynamic price creation
+        const amount = planName === 'Pro Anual' ? 47520 : 9999; // in cents
+        const fallback_line_items = [{
+          price_data: {
+            currency: 'brl',
+            product_data: {
+              name: `Assinatura Peptium Prime - ${planName}`,
+              description: `Acesso total à plataforma Peptium Prime (${planName}).`,
+            },
+            unit_amount: amount,
+            recurring: {
+              interval: planName === 'Pro Anual' ? 'year' : 'month',
+            },
+          },
+          quantity: 1,
+        }];
+
+        session = await stripe.checkout.sessions.create({
+          payment_method_types: ['card'],
+          line_items: fallback_line_items,
+          mode: 'subscription',
+          allow_promotion_codes: true,
+          success_url: `${baseUrl}?payment_status=success`,
+          cancel_url: `${baseUrl}?payment_status=cancel`,
+          customer_email: userEmail,
+          metadata: {
+            userId: userId,
+            planName: planName,
+          },
+        });
+      } else {
+        throw createError;
+      }
+    }
 
     return res.status(200).json({ 
       success: true, 
