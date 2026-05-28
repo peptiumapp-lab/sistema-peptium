@@ -54,9 +54,14 @@ function AppContent() {
         const end = Date.now();
         
         if (res.ok) {
-          const data = await res.json();
-          setApiStatus(`Online (${end - start}ms)`);
-          console.log('✅ API Neural Activo:', data);
+          const body = await res.json();
+          if (body.success) {
+            setApiStatus(`Online (${end - start}ms)`);
+            console.log('✅ API Neural Activo:', body.data);
+          } else {
+            setApiStatus(`Error ${res.status}`);
+            console.error('❌ API Error:', body.error);
+          }
         } else {
           setApiStatus(`Error ${res.status}`);
           console.error('❌ API Error:', res.status);

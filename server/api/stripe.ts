@@ -59,8 +59,8 @@ const getStripe = () => {
 // Map plan names to Stripe prices (IDs from dashboard)
 // In a real app, these would come from env or a database.
 const PLAN_PRICE_IDS: Record<string, string> = {
-  'Pro Mensal': process.env.STRIPE_PRICE_MONTHLY || 'price_monthly_id',
-  'Pro Anual': process.env.STRIPE_PRICE_ANNUAL || 'price_1TYEGiBpksnIQ9D5V46jjlh4',
+  'Pro Mensal': process.env.STRIPE_PRICE_MONTHLY === 'price_monthly_id' ? '' : (process.env.STRIPE_PRICE_MONTHLY || ''),
+  'Pro Anual': process.env.STRIPE_PRICE_ANNUAL === 'price_1TYEGiBpksnIQ9D5V46jjlh4' ? '' : (process.env.STRIPE_PRICE_ANNUAL || ''),
 };
 
 router.post('/create-checkout-session', async (req: Request, res: Response) => {
@@ -72,13 +72,19 @@ router.post('/create-checkout-session', async (req: Request, res: Response) => {
     const { planName, userId, userEmail } = req.body;
     
     if (!userId || !planName) {
-      return res.status(400).json({ error: 'Informações de usuário ou plano ausentes.' });
+      return res.status(400).json({ 
+        success: false,
+        error: {
+          code: 'VALIDATION_ERROR',
+          message: 'Informações de usuário ou plano ausentes.'
+        }
+      });
     }
 
     // Determine line items
     let line_items: any[] = [];
     
-    if (PLAN_PRICE_IDS[planName] && PLAN_PRICE_IDS[planName] !== 'price_monthly_id' && PLAN_PRICE_IDS[planName] !== 'price_annual_id') {
+    if (PLAN_PRICE_IDS[planName]) {
       line_items = [{ price: PLAN_PRICE_IDS[planName], quantity: 1 }];
     } else {
       // Fallback: Dynamic price creation for developers who haven't set up Price IDs yet
@@ -100,15 +106,16 @@ router.post('/create-checkout-session', async (req: Request, res: Response) => {
     }
 
     const stripe = getStripe();
-    const appUrl = process.env.APP_URL || 'http://localhost:3000';
+    const referer = req.headers.referer || req.headers.origin || 'http://localhost:3000';
+    const baseUrl = new URL(referer).origin;
 
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
       line_items,
       mode: 'subscription',
-      allow_promotion_codes: true, // Habilita campo de cupom de desconto no Stripe
-      success_url: `${appUrl}?payment_status=success`,
-      cancel_url: `${appUrl}?payment_status=cancel`,
+      allow_promotion_codes: true,
+      success_url: `${baseUrl}?payment_status=success`,
+      cancel_url: `${baseUrl}?payment_status=cancel`,
       customer_email: userEmail,
       metadata: {
         userId: userId,
@@ -116,10 +123,20 @@ router.post('/create-checkout-session', async (req: Request, res: Response) => {
       },
     });
 
-    res.json({ url: session.url });
+    return res.status(200).json({ 
+      success: true, 
+      data: { url: session.url } 
+    });
   } catch (error: any) {
     console.error('Stripe Session Error:', error);
-    res.status(500).json({ error: 'Erro ao iniciar checkout', details: error.message });
+    return res.status(500).json({ 
+      success: false,
+      error: {
+        code: 'STRIPE_ERROR',
+        message: error.message || 'Erro ao iniciar checkout',
+        details: error.message
+      }
+    });
   }
 });
 

@@ -29,7 +29,13 @@ async function startServer() {
 
   // 2. Health check
   app.get("/api/health", (req, res) => {
-    res.json({ status: "ok", timestamp: new Date().toISOString() });
+    res.json({ 
+      success: true, 
+      data: {
+        status: "ok", 
+        timestamp: new Date().toISOString()
+      }
+    });
   });
 
   // 3. Stripe mounting
@@ -45,7 +51,7 @@ async function startServer() {
 
   // 6. Debug route
   app.get("/api/test-direct", (req, res) => {
-    res.json({ success: true });
+    res.json({ success: true, data: { status: "reachable" } });
   });
   
   app.get("/api-routes", (req, res) => {

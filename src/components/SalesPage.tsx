@@ -45,17 +45,16 @@ export default function SalesPage({ setView }: SalesPageProps) {
         throw new Error(`O servidor de API não foi encontrado (404) na URL: ${response.url}. O backend pode não estar rodando neste domínio.`);
       }
 
-      if (!response.ok) {
-        const errorData = await response.json().catch(() => ({}));
-        throw new Error(errorData.details || errorData.error || `Erro HTTP ${response.status} ao acessar ${response.url}`);
+      const body = await response.json().catch(() => ({}));
+
+      if (!response.ok || !body.success) {
+        throw new Error(body.error?.message || body.error?.details || `Erro HTTP ${response.status} ao acessar ${response.url}`);
       }
 
-      const data = await response.json();
-
-      if (data.url) {
-        window.location.href = data.url;
+      if (body.data?.url) {
+        window.location.href = body.data.url;
       } else {
-        throw new Error(data.error || 'Falha ao criar sessão de checkout');
+        throw new Error('Falha ao criar sessão de checkout ou URL ausente');
       }
     } catch (error: any) {
       console.error('Erro no checkout:', error);

@@ -26,7 +26,13 @@ router.post('/analyze-stack', async (req: Request, res: Response) => {
     const { peptides } = req.body;
 
     if (!peptides || !Array.isArray(peptides) || peptides.length === 0) {
-      return res.status(400).json({ error: 'Nenhum peptídeo selecionado para análise.' });
+      return res.status(400).json({ 
+        success: false, 
+        error: {
+          code: 'VALIDATION_ERROR',
+          message: 'Nenhum peptídeo selecionado para análise.'
+        }
+      });
     }
 
     console.log('--- INICIANDO AUDITORIA ATLAS V3.1 ---');
@@ -49,27 +55,58 @@ router.post('/analyze-stack', async (req: Request, res: Response) => {
       Responda APENAS o JSON em Português do Brasil.
     `;
 
-    const response = await ai.models.generateContent({
-      model: "gemini-3-flash-preview",
-      contents: prompt,
-      config: {
-        responseMimeType: "application/json",
-      }
-    });
+    let response;
+    try {
+      response = await ai.models.generateContent({
+        model: "gemini-3-flash-preview",
+        contents: prompt,
+        config: {
+          responseMimeType: "application/json",
+        }
+      });
+    } catch (aiError: any) {
+      console.error('AI Generation Error:', aiError);
+      return res.status(502).json({
+        success: false,
+        error: {
+          code: 'AI_SERVICE_ERROR',
+          message: 'Falha ao se comunicar com o serviço de inteligência artificial.',
+          details: aiError.message
+        }
+      });
+    }
 
     const text = response.text;
     console.log('Atlas Neural: Análise Concluída.');
     
     // Pequena limpeza caso o modelo retorne markdown ```json
     const cleanedText = text.replace(/```json\n?|```/g, '').trim();
-    const analysis = JSON.parse(cleanedText);
+    let analysis;
+    try {
+      analysis = JSON.parse(cleanedText);
+    } catch (parseError: any) {
+      return res.status(500).json({
+        success: false,
+        error: {
+          code: 'PARSE_ERROR',
+          message: 'Falha ao processar a resposta da inteligência artificial.'
+        }
+      });
+    }
 
-    res.json(analysis);
+    return res.status(200).json({
+      success: true,
+      data: analysis
+    });
   } catch (error: any) {
     console.error('Atlas Analysis Error:', error);
-    res.status(500).json({ 
-      error: 'FALHA NA TRANSMISSÃO NEURAL',
-      details: error.message 
+    return res.status(500).json({ 
+      success: false,
+      error: {
+        code: 'INTERNAL_SERVER_ERROR',
+        message: 'FALHA NA TRANSMISSÃO NEURAL',
+        details: error.message
+      }
     });
   }
 });

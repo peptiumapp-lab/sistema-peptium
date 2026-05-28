@@ -44,14 +44,14 @@ export default function StackAnalysis({ selectedPeptides, onAddRequest }: StackA
         body: JSON.stringify({ peptides: selectedPeptides }),
       });
 
-      const data = await response.json().catch(() => ({}));
+      const body = await response.json().catch(() => ({}));
 
-      if (!response.ok) {
-        throw new Error(data.details || data.error || 'Falha na análise neural Atlas.');
+      if (!response.ok || !body.success) {
+        throw new Error(body.error?.message || body.error?.details || 'Falha na análise neural Atlas.');
       }
       
-      console.log('Audit Atlas concluído:', data);
-      setAnalysis(data);
+      console.log('Audit Atlas concluído:', body.data);
+      setAnalysis(body.data);
     } catch (err: any) {
       setError(err.message || 'Erro crítico na conexão neural molecular.');
       console.error('Stack Analysis Error:', err);
