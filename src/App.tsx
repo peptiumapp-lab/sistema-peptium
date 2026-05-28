@@ -25,6 +25,7 @@ import OnlineUsers from './components/OnlineUsers';
 import PlaceholderView from './components/PlaceholderView';
 import CycleSchedule from './components/CycleSchedule';
 import BioHackingMap from './components/BioHackingMap';
+import AdminDashboard from './components/AdminDashboard';
 import { PeptiumLogo } from './components/Logo';
 import { PROTOCOLS, SUPPORT_LINK, TOTAL_PEPTIDES, INSTAGRAM_LINK, SITE_LINK } from './constants';
 import { PeptideDossier, PeptideCategory } from './types';
@@ -34,7 +35,7 @@ import { useAuth } from './contexts/AuthContext';
 import { signInWithGoogle, logout, upgradeToPro, handleRedirectResult } from './lib/firebase';
 import { auditInventory } from './services/atlasAuditor';
 
-export type View = 'home' | 'library' | 'calculator' | 'quiz' | 'stacks' | 'interactions' | 'my-protocols' | 'plans' | 'dossier' | 'guide' | 'synergies' | 'scanner' | 'map' | 'schedule';
+export type View = 'home' | 'library' | 'calculator' | 'quiz' | 'stacks' | 'interactions' | 'my-protocols' | 'plans' | 'dossier' | 'guide' | 'synergies' | 'scanner' | 'map' | 'schedule' | 'admin';
 
 function AppContent() {
   const [currentView, setCurrentView] = useState<View>('home');
@@ -156,6 +157,8 @@ function AppContent() {
       case 'my-protocols':
       case 'quiz':
         return <PlaceholderView view={currentView} setView={setCurrentView} />;
+      case 'admin':
+        return <AdminDashboard />;
       case 'home':
       default:
         return (

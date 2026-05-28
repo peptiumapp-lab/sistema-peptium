@@ -26,7 +26,7 @@ interface LayoutProps {
 
 export default function Layout({ children, currentView, setCurrentView, theme, setTheme, isPremium }: LayoutProps) {
   const [isSidebarOpen, setIsSidebarOpen] = React.useState(false);
-  const { user, isPro } = useAuth();
+  const { user, isPro, isAdmin } = useAuth();
 
   const bibliotecaItems = [
     { icon: <LayoutDashboard size={18} />, label: 'Painel Central', view: 'home' as View },
@@ -45,6 +45,7 @@ export default function Layout({ children, currentView, setCurrentView, theme, s
     { icon: <ShieldAlert size={18} />, label: 'Guardião de Segurança', view: 'interactions' as View },
     { icon: <MapPin size={18} />, label: 'Mapa de Bio-Hacking', view: 'map' as View },
     { icon: <Calendar size={18} />, label: 'Cronograma de Ciclo', view: 'schedule' as View },
+    ...(isAdmin ? [{ icon: <Shield size={18} />, label: 'Painel Admin', view: 'admin' as View }] : [])
   ];
 
   const contaItems = [

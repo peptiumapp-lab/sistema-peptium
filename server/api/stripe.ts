@@ -129,7 +129,7 @@ router.post('/create-checkout-session', async (req: Request, res: Response) => {
         console.warn('Fallback: Invalid price ID provided, using dynamic price instead.', createError.message);
         // Fallback: Dynamic price creation
         const amount = planName === 'Pro Anual' ? 47520 : 9999; // in cents
-        const fallback_line_items = [{
+        const fallback_line_items: any[] = [{
           price_data: {
             currency: 'brl',
             product_data: {
@@ -138,7 +138,7 @@ router.post('/create-checkout-session', async (req: Request, res: Response) => {
             },
             unit_amount: amount,
             recurring: {
-              interval: planName === 'Pro Anual' ? 'year' : 'month',
+              interval: (planName === 'Pro Anual' ? 'year' : 'month') as 'year' | 'month',
             },
           },
           quantity: 1,

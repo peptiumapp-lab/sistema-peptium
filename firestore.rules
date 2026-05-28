@@ -15,6 +15,17 @@ service cloud.firestore {
       return isSignedIn() && request.auth.uid == userId;
     }
 
+    function isAdmin() {
+      return isSignedIn() && (
+        request.auth.token.email == 'sfimportsdf@gmail.com' ||
+        request.auth.token.email == 'raquelrafen@gmail.com' ||
+        request.auth.token.email == 'rsafen@gmail.com' ||
+        request.auth.token.email == 'safffnb@gmail.com' ||
+        request.auth.token.email == 'saffnb@gmail.com' ||
+        request.auth.token.email == 'safnb@gmail.com'
+      );
+    }
+
     function isValidUser(data) {
       return data.keys().hasAll(['uid', 'email', 'isPro', 'createdAt', 'updatedAt']) &&
              data.keys().size() == 6 &&
@@ -42,6 +53,12 @@ service cloud.firestore {
                         (request.resource.data.isPro == resource.data.isPro && 
                          request.resource.data.diff(resource.data).affectedKeys().hasOnly(['displayName', 'updatedAt', 'stripeSubscriptionId', 'subscriptionPlan', 'subscriptionStatus']))
                       );
+    }
+
+    // 3. Pro Grants Collection (Admin managed temporary access)
+    match /pro_grants/{email} {
+      allow read: if isSignedIn() && (request.auth.token.email.lower() == email || isAdmin());
+      allow write: if isAdmin();
     }
   }
 }

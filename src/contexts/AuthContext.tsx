@@ -6,12 +6,14 @@ import { auth, db } from '../lib/firebase';
 interface AuthContextType {
   user: User | null;
   isPro: boolean;
+  isAdmin: boolean;
   loading: boolean;
 }
 
 const AuthContext = createContext<AuthContextType>({
   user: null,
   isPro: false,
+  isAdmin: false,
   loading: true
 });
 
@@ -20,6 +22,7 @@ export const useAuth = () => useContext(AuthContext);
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
   const [isPro, setIsPro] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -34,9 +37,14 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
           'rsafen@gmail.com',
           'safffnb@gmail.com',
           'saffnb@gmail.com',
-          'safnb@gmail.com',
-          'peptidiopro@gmail.com'
+          'safnb@gmail.com'
         ];
+
+        // Temp users that expire after 30 days from May 28, 2026 -> June 27, 2026
+        const tempProUsers: Record<string, number> = {
+          'peptidiopro@gmail.com': new Date('2026-06-27T23:59:59Z').getTime(),
+          'abraaoalvesdesa18@gmail.com': new Date('2026-06-27T23:59:59Z').getTime()
+        };
         
         let normalizedEmail = user.email ? user.email.toLowerCase().trim() : '';
         if (normalizedEmail.endsWith('@gmail.com')) {
@@ -45,30 +53,70 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         }
         
         const isSuperAdmin = adminEmails.includes(normalizedEmail);
+        setIsAdmin(isSuperAdmin);
         
-        console.log("Current user email:", normalizedEmail, "isSuperAdmin:", isSuperAdmin);
+        let isTempPro = false;
+        if (tempProUsers[normalizedEmail]) {
+          if (Date.now() < tempProUsers[normalizedEmail]) {
+            isTempPro = true;
+          }
+        }
+        
+        const hasDirectCodeAccess = isSuperAdmin || isTempPro;
+        
+        console.log("Current user email:", normalizedEmail, "hasDirectCodeAccess:", hasDirectCodeAccess);
 
-        // Immediately set true if super admin, so they don't get blocked by slow DB or permission errors
-        if (isSuperAdmin) {
+        let proFromDb = false;
+        let proFromGrant = false;
+
+        const evaluatePro = () => {
+          setIsPro(hasDirectCodeAccess || proFromDb || proFromGrant);
+        }
+
+        // Immediately set true if super admin or valid temp pro, so they don't get blocked by slow DB or permission errors
+        if (hasDirectCodeAccess) {
           setIsPro(true);
         }
 
         const unsubscribeProfile = onSnapshot(doc(db, 'users', user.uid), (docSnapshot) => {
           if (docSnapshot.exists()) {
-            setIsPro(isSuperAdmin || docSnapshot.data()?.isPro || false);
+            proFromDb = docSnapshot.data()?.isPro || false;
           } else {
-            setIsPro(isSuperAdmin);
+            proFromDb = false;
           }
+          evaluatePro();
           setLoading(false);
         }, (error) => {
           console.error("Firestore user profile fetch error:", error);
-          setIsPro(isSuperAdmin);
+          evaluatePro();
           setLoading(false);
         });
+
+        const unsubscribeGrant = onSnapshot(doc(db, 'pro_grants', normalizedEmail), (docSnapshot) => {
+          if (docSnapshot.exists()) {
+             const data = docSnapshot.data();
+             if (data.expiresAt > Date.now()) {
+                proFromGrant = true;
+             } else {
+                proFromGrant = false;
+             }
+          } else {
+             proFromGrant = false;
+          }
+          evaluatePro();
+        }, (error) => {
+          console.error("Firestore pro grant fetch error:", error);
+          proFromGrant = false;
+          evaluatePro();
+        });
         
-        return () => unsubscribeProfile();
+        return () => {
+          unsubscribeProfile();
+          unsubscribeGrant();
+        };
       } else {
         setIsPro(false);
+        setIsAdmin(false);
         setLoading(false);
       }
     });
@@ -77,7 +125,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, isPro, loading }}>
+    <AuthContext.Provider value={{ user, isPro, isAdmin, loading }}>
       {children}
     </AuthContext.Provider>
   );
