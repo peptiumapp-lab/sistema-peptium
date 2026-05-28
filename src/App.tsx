@@ -81,6 +81,14 @@ function AppContent() {
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
+    const view = params.get('view') as View;
+    if (view && ['home', 'library', 'calculator', 'quiz', 'stacks', 'interactions', 'my-protocols', 'plans', 'dossier', 'guide', 'synergies', 'scanner', 'map', 'schedule', 'admin'].includes(view)) {
+      setCurrentView(view);
+    }
+  }, []);
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
     const paymentStatus = params.get('payment_status');
     
     if (paymentStatus === 'success') {

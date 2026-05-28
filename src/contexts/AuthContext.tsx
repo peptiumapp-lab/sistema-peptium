@@ -42,7 +42,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
         // Temp users that expire after 30 days from May 28, 2026 -> June 27, 2026
         const tempProUsers: Record<string, number> = {
-          'peptidiopro@gmail.com': new Date('2026-06-27T23:59:59Z').getTime(),
+          'peptideopro@gmail.com': new Date('2026-06-27T23:59:59Z').getTime(),
           'abraaoalvesdesa18@gmail.com': new Date('2026-06-27T23:59:59Z').getTime()
         };
 

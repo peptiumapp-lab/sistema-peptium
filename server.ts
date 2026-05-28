@@ -74,6 +74,14 @@ async function startServer() {
   app.post("/test-api", express.json(), (req, res) => {
       res.json({ success: true });
   });
+
+  // Short Links Promo
+  app.get("/anual", (req, res) => {
+    res.redirect("/?view=plans&coupon=Anual20#planos-vendas");
+  });
+  app.get("/mensal", (req, res) => {
+    res.redirect("/?view=plans&coupon=Mensal20#planos-vendas");
+  });
   
   if (process.env.NODE_ENV !== "production") {
     const vite = await createViteServer({
