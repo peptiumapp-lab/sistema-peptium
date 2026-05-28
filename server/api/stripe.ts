@@ -59,8 +59,8 @@ const getStripe = () => {
 // Map plan names to Stripe prices (IDs from dashboard)
 // In a real app, these would come from env or a database.
 const PLAN_PRICE_IDS: Record<string, string> = {
-  'Pro Mensal': process.env.STRIPE_PRICE_MONTHLY === 'price_monthly_id' ? '' : (process.env.STRIPE_PRICE_MONTHLY || ''),
-  'Pro Anual': process.env.STRIPE_PRICE_ANNUAL === 'price_1TYEGiBpksnIQ9D5V46jjlh4' ? '' : (process.env.STRIPE_PRICE_ANNUAL || ''),
+  'Pro Mensal': process.env.STRIPE_PRICE_MONTHLY && process.env.STRIPE_PRICE_MONTHLY !== 'price_monthly_id' ? process.env.STRIPE_PRICE_MONTHLY : 'price_1TbvMOPILxs1IOY4Cnrl6BeR',
+  'Pro Anual': process.env.STRIPE_PRICE_ANNUAL && process.env.STRIPE_PRICE_ANNUAL !== 'price_1TYEGiBpksnIQ9D5V46jjlh4' ? process.env.STRIPE_PRICE_ANNUAL : 'price_1TbvNOPILxs1IOY4ocF7PUUG',
 };
 
 router.post('/create-checkout-session', async (req: Request, res: Response) => {

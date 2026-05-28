@@ -34,7 +34,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
           'rsafen@gmail.com',
           'safffnb@gmail.com',
           'saffnb@gmail.com',
-          'safnb@gmail.com'
+          'safnb@gmail.com',
+          'peptidiopro@gmail.com'
         ];
         
         let normalizedEmail = user.email ? user.email.toLowerCase().trim() : '';

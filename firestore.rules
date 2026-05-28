@@ -40,11 +40,7 @@ service cloud.firestore {
                       (
                         // Profile update (no Pro change)
                         (request.resource.data.isPro == resource.data.isPro && 
-                         request.resource.data.diff(resource.data).affectedKeys().hasOnly(['displayName', 'updatedAt'])) ||
-                        // Pro status can ONLY be updated by a cloud function or admin in a real app,
-                        // for this demo we might keep it client-side but restricted. 
-                        // In a real Prime app, this would be server-authoritative via Stripe webhook.
-                        (request.resource.data.diff(resource.data).affectedKeys().hasOnly(['isPro', 'updatedAt']))
+                         request.resource.data.diff(resource.data).affectedKeys().hasOnly(['displayName', 'updatedAt', 'stripeSubscriptionId', 'subscriptionPlan', 'subscriptionStatus']))
                       );
     }
   }
