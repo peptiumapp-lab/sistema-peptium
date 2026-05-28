@@ -118,7 +118,13 @@ export default function Pricing() {
       }
     } catch (error: any) {
       console.error('Erro no checkout:', error);
-      alert(`Erro: ${error.message}`);
+      if (error.message?.includes('coupon cannot be redeemed') || error.message?.includes('does not apply')) {
+        alert('O cupom informado é inválido para este pedido ou está configurado para "produtos específicos" no painel do Stripe.');
+        setCouponCode(null);
+        sessionStorage.removeItem('pendingCoupon');
+      } else {
+        alert(`Erro: ${error.message}`);
+      }
     }
   };
 

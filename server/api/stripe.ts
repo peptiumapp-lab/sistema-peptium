@@ -60,7 +60,7 @@ const getStripe = () => {
 // In a real app, these would come from env or a database.
 const PLAN_PRICE_IDS: Record<string, string> = {
   'Pro Mensal': process.env.STRIPE_PRICE_MONTHLY && process.env.STRIPE_PRICE_MONTHLY !== 'price_monthly_id' ? process.env.STRIPE_PRICE_MONTHLY : 'price_1TbvMOPILxs1IOY4Cnrl6BeR',
-  'Pro Anual': process.env.STRIPE_PRICE_ANNUAL && process.env.STRIPE_PRICE_ANNUAL !== 'price_1TYEGiBpksnIQ9D5V46jjlh4' ? process.env.STRIPE_PRICE_ANNUAL : 'price_1TbvNOPILxs1IOY4ocF7PUUG',
+  'Pro Anual': process.env.STRIPE_PRICE_ANNUAL && process.env.STRIPE_PRICE_ANNUAL !== 'price_1TYEGiBpksnIQ9D5V46jjlh4' ? process.env.STRIPE_PRICE_ANNUAL : 'price_1TcAl6PILxs1IOY4uXUEnv2Y',
 };
 
 router.post('/create-checkout-session', async (req: Request, res: Response) => {
@@ -123,7 +123,23 @@ router.post('/create-checkout-session', async (req: Request, res: Response) => {
     };
 
     if (coupon) {
-      baseSessionConfig.discounts = [{ coupon }];
+      if (coupon.startsWith('promo_')) {
+        baseSessionConfig.discounts = [{ promotion_code: coupon }];
+      } else {
+        // Look up if this is a promotion code string first (e.g. "Anual20")
+        const promoCodes = await stripe.promotionCodes.list({
+          code: coupon,
+          active: true,
+          limit: 1,
+        });
+        
+        if (promoCodes.data.length > 0) {
+          baseSessionConfig.discounts = [{ promotion_code: promoCodes.data[0].id }];
+        } else {
+          // Fallback to treating it as a raw Coupon ID (e.g. "Oh6LMH1J")
+          baseSessionConfig.discounts = [{ coupon }];
+        }
+      }
     } else {
       baseSessionConfig.allow_promotion_codes = true;
     }
