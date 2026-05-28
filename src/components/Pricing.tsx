@@ -139,6 +139,15 @@ export default function Pricing() {
           <p className="text-secondary/40 max-w-2xl mx-auto text-[11px] font-bold uppercase tracking-widest leading-relaxed">
             Invista na precisão que o seu corpo merece. Protocolos validados e tecnologia de ponta.
           </p>
+          {couponCode && (
+            <motion.div
+               initial={{ opacity: 0, scale: 0.9 }}
+               animate={{ opacity: 1, scale: 1 }}
+               className="mt-6 inline-block animate-pulse bg-accent/20 border border-accent/50 text-accent px-6 py-2 rounded-full text-xs font-black uppercase tracking-widest"
+            >
+               🎉 Cupom de Desconto Ativado!
+            </motion.div>
+          )}
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">

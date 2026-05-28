@@ -96,6 +96,11 @@ export default function SalesPage({ setView }: SalesPageProps) {
           <div className="max-w-7xl mx-auto px-4 relative z-10">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <div className="space-y-8">
+                {couponCode && (
+                  <div className="inline-block bg-accent/20 border border-accent/50 text-accent px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-widest animate-pulse">
+                     🎉 Cupom de Desconto Ativado!
+                  </div>
+                )}
                 <div className="inline-flex items-center gap-2 px-3 py-1 bg-accent/10 border border-accent/20 rounded-full">
                   <span className="w-1.5 h-1.5 bg-accent rounded-full animate-pulse" />
                   <span className="text-[9px] font-black text-accent uppercase tracking-[0.4em]">Atlas Clínico Interativo V5.0</span>
