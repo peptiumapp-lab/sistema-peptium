@@ -23,8 +23,11 @@ export default function AdminDashboard() {
     // Auto-migrate hardcoded users to Firestore if they don't exist yet
     const seedInitialUsers = async () => {
       const tempUsers = {
-        'peptideopro@gmail.com': new Date('2026-06-27T23:59:59Z').getTime(),
-        'abraaoalvesdesa18@gmail.com': new Date('2026-06-27T23:59:59Z').getTime()
+        'peptideopro@gmail.com': new Date('2026-06-30T23:59:59Z').getTime(),
+        'abraaoalvesdesa18@gmail.com': new Date('2026-06-27T23:59:59Z').getTime(),
+        'ailton_cbj@hotmail.com': new Date('2026-06-30T23:59:59Z').getTime(),
+        'fredericopagidis@gmail.com': new Date('2027-05-29T23:59:59Z').getTime(),
+        'frederico.pagidis@gmail.com': new Date('2027-05-29T23:59:59Z').getTime()
       };
       
       for (const [email, expiresAt] of Object.entries(tempUsers)) {

@@ -42,8 +42,11 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
         // Temp users that expire after 30 days from May 28, 2026 -> June 27, 2026
         const tempProUsers: Record<string, number> = {
-          'peptideopro@gmail.com': new Date('2026-06-27T23:59:59Z').getTime(),
-          'abraaoalvesdesa18@gmail.com': new Date('2026-06-27T23:59:59Z').getTime()
+          'peptideopro@gmail.com': new Date('2026-06-30T23:59:59Z').getTime(),
+          'abraaoalvesdesa18@gmail.com': new Date('2026-06-27T23:59:59Z').getTime(),
+          'ailton_cbj@hotmail.com': new Date('2026-06-30T23:59:59Z').getTime(),
+          'fredericopagidis@gmail.com': new Date('2027-05-29T23:59:59Z').getTime(),
+          'frederico.pagidis@gmail.com': new Date('2027-05-29T23:59:59Z').getTime()
         };
 
         let normalizedEmail = user.email ? user.email.toLowerCase().trim() : '';
