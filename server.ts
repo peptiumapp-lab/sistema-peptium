@@ -2,6 +2,7 @@ import express from "express";
 import path from "path";
 import { createServer as createViteServer } from "vite";
 import stackAnalysisRouter from "./server/api/stackAnalysis";
+import protocolAssistantRouter from "./server/api/protocolAssistant";
 import stripeRouter from "./server/api/stripe";
 
 async function startServer() {
@@ -48,6 +49,10 @@ async function startServer() {
   // 4. Analysis
   app.use("/api/analyze-stack", stackAnalysisRouter);
   console.log('[SERVER] Stack analysis router mounted at /api/analyze-stack');
+
+  // 5. AI Protocol Builder
+  app.use("/api/protocol-assistant", protocolAssistantRouter);
+  console.log('[SERVER] AI Protocol Builder router mounted at /api/protocol-assistant');
 
   // 6. Debug route
   app.get("/api/test-direct", (req, res) => {

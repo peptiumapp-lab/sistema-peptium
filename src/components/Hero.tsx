@@ -191,52 +191,83 @@ export default function Hero({ setView, isPremium, onSelectPeptide }: HeroProps)
               </button>
             </div>
 
-            <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+            <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
               <motion.div 
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.4 }}
                 onClick={() => setView('guide')}
-                className="flex items-center gap-6 p-6 rounded-[32px] bg-secondary/[0.02] border border-white/5 hover:border-accent/40 cursor-pointer transition-all group text-left"
+                className="flex flex-col p-6 rounded-[32px] bg-secondary/[0.02] border border-white/5 hover:border-accent/40 cursor-pointer transition-all group text-left relative overflow-hidden"
               >
-                <div className="w-16 h-16 rounded-2xl bg-accent/10 flex items-center justify-center text-accent group-hover:scale-110 transition-transform shrink-0">
-                  <BookOpen size={28} />
-                </div>
-                <div className="flex-grow">
-                  <div className="flex items-center gap-2 mb-1">
-                    <h4 className="text-lg font-black text-white italic uppercase tracking-tight">O que são Peptídeos?</h4>
-                    <span className="px-2 py-0.5 rounded-full bg-accent text-primary text-[8px] font-black uppercase tracking-widest">Início</span>
+                <div className="flex items-center gap-4 mb-4 relative z-10">
+                  <div className="w-12 h-12 rounded-2xl bg-accent/10 flex items-center justify-center text-accent group-hover:scale-110 transition-transform shrink-0">
+                    <BookOpen size={24} />
                   </div>
-                  <p className="text-white/30 text-[10px] font-bold uppercase tracking-widest leading-relaxed">
-                    Comece por aqui — entenda a ciência, os mecanismos e a revolução na saúde molecular.
-                  </p>
+                  <div>
+                    <div className="flex items-center gap-2 mb-1">
+                      <h4 className="text-sm font-black text-white italic uppercase tracking-tight">O que são Peptídeos?</h4>
+                    </div>
+                    <span className="text-[8px] text-accent font-black uppercase tracking-widest bg-accent/10 px-2 py-0.5 rounded-full inline-block">Início</span>
+                  </div>
                 </div>
-                <div className="w-10 h-10 rounded-full border border-white/5 flex items-center justify-center text-white/20 group-hover:text-accent group-hover:border-accent/40 transition-all shrink-0">
-                  <ChevronRight size={20} />
+                <p className="text-white/30 text-[10px] font-bold uppercase tracking-widest leading-relaxed flex-grow relative z-10">
+                  Comece por aqui — entenda a ciência, os mecanismos e a revolução na saúde molecular.
+                </p>
+                <div className="absolute bottom-4 right-4 w-8 h-8 rounded-full border border-white/5 flex items-center justify-center text-white/20 group-hover:text-accent group-hover:border-accent/40 transition-all z-10">
+                  <ChevronRight size={16} />
                 </div>
               </motion.div>
 
               <motion.div 
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.4 }}
-                onClick={() => setView('stacks')}
-                className="flex items-center gap-6 p-6 rounded-[32px] bg-secondary/[0.02] border border-white/5 hover:border-accent/40 cursor-pointer transition-all group text-left"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.5 }}
+                onClick={() => setView('ai-generator')}
+                className="flex flex-col p-6 rounded-[32px] bg-accent/5 border border-accent/20 hover:border-accent/60 cursor-pointer transition-all group text-left relative overflow-hidden shadow-[0_0_30px_rgba(0,229,255,0.05)] hover:shadow-[0_0_40px_rgba(0,229,255,0.15)]"
               >
-                <div className="w-16 h-16 rounded-2xl bg-blue-500/10 flex items-center justify-center text-blue-400 group-hover:scale-110 transition-transform shrink-0">
-                  <Activity size={28} />
-                </div>
-                <div className="flex-grow">
-                  <div className="flex items-center gap-2 mb-1">
-                    <h4 className="text-lg font-black text-white italic uppercase tracking-tight">Molecular Sandbox</h4>
-                    <span className="px-2 py-0.5 rounded-full bg-blue-500 text-white text-[8px] font-black uppercase tracking-widest">Bancada Livre</span>
+                <div className="absolute inset-0 bg-gradient-to-br from-accent/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="flex items-center gap-4 mb-4 relative z-10">
+                  <div className="w-12 h-12 rounded-2xl bg-accent/20 flex items-center justify-center text-accent group-hover:scale-110 transition-transform shrink-0">
+                    <Activity size={24} />
                   </div>
-                  <p className="text-white/30 text-[10px] font-bold uppercase tracking-widest leading-relaxed">
-                    Combine múltiplas moléculas, simule sinergias e construa sua própria arquitetura de performance.
-                  </p>
+                  <div>
+                    <div className="flex items-center gap-2 mb-1">
+                      <h4 className="text-sm font-black text-white italic uppercase tracking-tight">Atlas AI Builder</h4>
+                    </div>
+                    <span className="text-[8px] text-primary font-black uppercase tracking-widest bg-accent px-2 py-0.5 rounded-full inline-block">Novo Motor Neural</span>
+                  </div>
                 </div>
-                <div className="w-10 h-10 rounded-full border border-white/5 flex items-center justify-center text-white/20 group-hover:text-blue-400 group-hover:border-blue-400/40 transition-all shrink-0">
-                  <ChevronRight size={20} />
+                <p className="text-accent/60 text-[10px] font-bold uppercase tracking-widest leading-relaxed flex-grow relative z-10">
+                  Converse com a inteligência artificial para gerar protocolos moleculares sob medida.
+                </p>
+                <div className="absolute bottom-4 right-4 w-8 h-8 rounded-full border border-accent/20 flex items-center justify-center text-accent/50 group-hover:text-accent group-hover:border-accent transition-all z-10">
+                  <ChevronRight size={16} />
+                </div>
+              </motion.div>
+
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.6 }}
+                onClick={() => setView('stacks')}
+                className="flex flex-col p-6 rounded-[32px] bg-secondary/[0.02] border border-white/5 hover:border-blue-400/40 cursor-pointer transition-all group text-left relative overflow-hidden"
+              >
+                <div className="flex items-center gap-4 mb-4 relative z-10">
+                  <div className="w-12 h-12 rounded-2xl bg-blue-500/10 flex items-center justify-center text-blue-400 group-hover:scale-110 transition-transform shrink-0">
+                    <Target size={24} />
+                  </div>
+                  <div>
+                    <div className="flex items-center gap-2 mb-1">
+                      <h4 className="text-sm font-black text-white italic uppercase tracking-tight">Molecular Sandbox</h4>
+                    </div>
+                    <span className="text-[8px] text-blue-400 font-black uppercase tracking-widest bg-blue-500/10 px-2 py-0.5 rounded-full inline-block">Bancada Livre</span>
+                  </div>
+                </div>
+                <p className="text-white/30 text-[10px] font-bold uppercase tracking-widest leading-relaxed flex-grow relative z-10">
+                  Combine múltiplas moléculas, simule sinergias e construa sua própria arquitetura.
+                </p>
+                <div className="absolute bottom-4 right-4 w-8 h-8 rounded-full border border-white/5 flex items-center justify-center text-white/20 group-hover:text-blue-400 group-hover:border-blue-400/40 transition-all z-10">
+                  <ChevronRight size={16} />
                 </div>
               </motion.div>
             </div>

@@ -20,10 +20,8 @@ export default function PeptideLibrary({ setView, isPremium, initialCategory = '
   const [selectedPeptide, setSelectedPeptide] = useState<PeptideDossier | null>(null);
 
   const categories = useMemo(() => {
-    return [
-      'Todos', 
-      ...Object.values(PeptideCategory)
-    ].sort((a, b) => a === 'Todos' ? -1 : a.localeCompare(b));
+    const uniqueCats = Array.from(new Set(['Todos', ...Object.values(PeptideCategory)]));
+    return uniqueCats.sort((a, b) => a === 'Todos' ? -1 : a.localeCompare(b));
   }, []);
 
   const fuse = useMemo(() => new Fuse(PROTOCOLS, {

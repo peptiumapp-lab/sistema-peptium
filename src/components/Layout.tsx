@@ -41,6 +41,7 @@ export default function Layout({ children, currentView, setCurrentView, theme, s
 
   const ferramentasItems = [
     { icon: <Calculator size={18} />, label: 'Calculadora Prime', view: 'calculator' as View },
+    { icon: <Sparkles size={18} />, label: 'Atlas AI Builder', view: 'ai-generator' as View },
     { icon: <Layers size={18} />, label: 'Cofre de Stacks', view: 'stacks' as View },
     { icon: <ShieldAlert size={18} />, label: 'Guardião de Segurança', view: 'interactions' as View },
     { icon: <MapPin size={18} />, label: 'Mapa de Bio-Hacking', view: 'map' as View },

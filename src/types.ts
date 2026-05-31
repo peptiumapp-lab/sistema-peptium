@@ -40,8 +40,7 @@ export enum PeptideCategory {
   ANTIOXIDANTE = 'ANTIOXIDANTE',
   NEURAL = 'NEURAL',
   DIGESTIVO = 'DIGESTIVO',
-  CARDIOMETABOLICO = 'CARDIOMETABÓLICO',
-  CARDIOMETABÓLICO = 'CARDIOMETABÓLICO'
+  CARDIOMETABOLICO = 'CARDIOMETABÓLICO'
 }
 
 export interface SynergyProtocol {
@@ -88,23 +87,29 @@ export interface PeptideDossier {
     titration: string[];
     maintenance?: string;
     reconstitution: string;
+    shelfLifeReconstituted?: string;
   };
 
   // Detalhes Operacionais
   administrationWay: string;
   cycleAndDuration: string;
   stacksAndCombinations?: string[]; // IDs de Peptídeos Sinergistas
+  advancedClinicalProtocol?: string; // Protocolos táticos fechados (e.g. Protocolo RE-SET)
 
   // Farmacologia Avançada
   pharmacologyAndPharmacokinetics: {
     halfLife: string;
     bioavailability: string;
     metabolism: string;
+    sinalizacao?: string;
+    picoClinico?: string;
+    picoBiologico?: string;
     notes?: string[];
   };
 
   // Evidências e Efeitos Adversos
   adverseEffects: string[];
+  sideEffectsAndMitigation?: { effect: string; mitigation: string; risk?: 'low' | 'medium' | 'high' }[];
   scientificEvidence: string[];
   pmids: string[];
   

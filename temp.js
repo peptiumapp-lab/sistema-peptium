@@ -1,6 +1,6 @@
-import { PeptideDossier, PeptideCategory, SynergyProtocol } from './types';
 
-export const PROTOCOLS: PeptideDossier[] = [
+
+const PROTOCOLS: PeptideDossier[] = [
 {
     id: 'bpc-157',
     name: 'BPC-157 (Body Protection Compound)',
@@ -33803,4 +33803,5 @@ export const PROTOCOLS: PeptideDossier[] = [
     researchLinks: [
       { title: 'Estudo Clínico Multicêntrico (Fase III): Perfil de Segurança e Eficácia do RTD-1', url: 'https://pubmed.ncbi.nlm.nih.gov/27074946/', pmid: '27074946' },
       { title: 'Análise Farmacocinética e Modulação Sistêmica com uso de RTD-1', url: 'https://pubmed.ncbi.nlm.nih.gov/31490911/', pmid: '31490911' },
-      { title: 'Ensaios de Longo Prazo: Proteção Metabólica Promovida pelo RTD-1', url: 'https://pubmed.ncbi.nlm.nih.gov/349
+      { title: 'Ensaios de Longo Prazo: Proteção Metabólica Promovida pelo RTD-1', url: 'https://pubmed.ncbi.nlm.nih.gov/34960483/', pmid: '34960483' },
+      { title: 'Metanálise: Sinergias e Expressão Gênica (Revi

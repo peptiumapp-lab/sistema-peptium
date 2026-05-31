@@ -12,8 +12,9 @@ interface AnalysisData {
   score: number;
   compatibility: string;
   synergySummary: string;
-  detailedAnalysis: string;
-  risks: string[];
+  receptorSynergy: string;
+  redFlags: string[];
+  mitigationMatrix: string[];
   advice: string;
 }
 
@@ -233,25 +234,45 @@ export default function StackAnalysis({ selectedPeptides, onAddRequest }: StackA
                    </p>
                  </div>
 
-                 <p className="text-white/60 text-sm leading-relaxed font-medium">
-                   {analysis.detailedAnalysis}
-                 </p>
+                 <div className="space-y-4">
+                   <div className="text-accent font-black text-[10px] uppercase tracking-[0.2em] flex items-center gap-2">
+                     <Zap size={14} /> Sinergia de Receptores
+                   </div>
+                   <p className="text-white/60 text-sm leading-relaxed font-medium bg-white/[0.01] p-4 rounded-2xl border border-white/5">
+                     {analysis.receptorSynergy}
+                   </p>
+                 </div>
 
                  <div className="h-px bg-gradient-to-r from-white/10 to-transparent" />
 
                  <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-                   <div className="space-y-4">
-                      <div className="text-red-500 font-black text-[10px] uppercase tracking-[0.2em] flex items-center gap-2">
-                        <ShieldAlert size={14} /> Protocolo de Risco
-                      </div>
-                      <div className="space-y-2">
-                        {analysis.risks.map((risk, i) => (
-                          <div key={i} className="flex gap-3 text-[10px] text-white/60 font-bold uppercase leading-tight bg-red-500/5 p-3 rounded-xl border border-red-500/10">
-                            <span className="text-red-500">•</span>
-                            {risk}
-                          </div>
-                        ))}
-                      </div>
+                   <div className="space-y-6">
+                     <div className="space-y-4">
+                        <div className="text-red-500 font-black text-[10px] uppercase tracking-[0.2em] flex items-center gap-2">
+                          <ShieldAlert size={14} /> Red-Flags & Colisão de Vias
+                        </div>
+                        <div className="space-y-2">
+                          {analysis.redFlags.map((flag, i) => (
+                            <div key={i} className="flex gap-3 text-[10px] text-white/60 font-bold uppercase leading-tight bg-red-500/5 p-3 rounded-xl border border-red-500/10 hover:border-red-500/30 transition-colors">
+                              <span className="text-red-500">•</span>
+                              {flag}
+                            </div>
+                          ))}
+                        </div>
+                     </div>
+                     <div className="space-y-4">
+                        <div className="text-emerald-400 font-black text-[10px] uppercase tracking-[0.2em] flex items-center gap-2">
+                          <ShieldCheck size={14} /> Matriz de Mitigação Combinada
+                        </div>
+                        <div className="space-y-2">
+                          {analysis.mitigationMatrix.map((mitigation, i) => (
+                            <div key={i} className="flex gap-3 text-[10px] text-white/60 font-bold uppercase leading-tight bg-emerald-500/5 p-3 rounded-xl border border-emerald-500/10 hover:border-emerald-500/30 transition-colors">
+                              <span className="text-emerald-400">•</span>
+                              {mitigation}
+                            </div>
+                          ))}
+                        </div>
+                     </div>
                    </div>
                    <div className="bg-accent shadow-[0_20px_50px_rgba(0,229,255,0.15)] rounded-[32px] p-6 flex flex-col justify-between">
                       <div className="space-y-2">

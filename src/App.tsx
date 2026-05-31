@@ -26,6 +26,7 @@ import PlaceholderView from './components/PlaceholderView';
 import CycleSchedule from './components/CycleSchedule';
 import BioHackingMap from './components/BioHackingMap';
 import AdminDashboard from './components/AdminDashboard';
+import AiGenerator from './components/AiGenerator';
 import { PeptiumLogo } from './components/Logo';
 import { PROTOCOLS, SUPPORT_LINK, TOTAL_PEPTIDES, INSTAGRAM_LINK, SITE_LINK } from './constants';
 import { PeptideDossier, PeptideCategory } from './types';
@@ -35,7 +36,7 @@ import { useAuth } from './contexts/AuthContext';
 import { signInWithGoogle, logout, upgradeToPro, handleRedirectResult } from './lib/firebase';
 import { auditInventory } from './services/atlasAuditor';
 
-export type View = 'home' | 'library' | 'calculator' | 'quiz' | 'stacks' | 'interactions' | 'my-protocols' | 'plans' | 'dossier' | 'guide' | 'synergies' | 'scanner' | 'map' | 'schedule' | 'admin';
+export type View = 'home' | 'library' | 'calculator' | 'quiz' | 'stacks' | 'interactions' | 'my-protocols' | 'plans' | 'dossier' | 'guide' | 'synergies' | 'scanner' | 'map' | 'schedule' | 'admin' | 'ai-generator';
 
 function AppContent() {
   const [currentView, setCurrentView] = useState<View>('home');
@@ -82,7 +83,7 @@ function AppContent() {
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const view = params.get('view') as View;
-    if (view && ['home', 'library', 'calculator', 'quiz', 'stacks', 'interactions', 'my-protocols', 'plans', 'dossier', 'guide', 'synergies', 'scanner', 'map', 'schedule', 'admin'].includes(view)) {
+    if (view && ['home', 'library', 'calculator', 'quiz', 'stacks', 'interactions', 'my-protocols', 'plans', 'dossier', 'guide', 'synergies', 'scanner', 'map', 'schedule', 'admin', 'ai-generator'].includes(view)) {
       setCurrentView(view);
     }
   }, []);
@@ -130,7 +131,7 @@ function AppContent() {
 
   const renderView = () => {
     // Content Locking Logic
-    const premiumViews: View[] = ['calculator', 'dossier', 'interactions', 'stacks', 'synergies', 'scanner', 'map', 'schedule', 'my-protocols', 'quiz'];
+    const premiumViews: View[] = ['calculator', 'dossier', 'interactions', 'stacks', 'synergies', 'scanner', 'map', 'schedule', 'my-protocols', 'quiz', 'ai-generator'];
     const isRestricted = !isPremium && premiumViews.includes(currentView);
 
     if (isRestricted) {
@@ -167,6 +168,8 @@ function AppContent() {
         return <PlaceholderView view={currentView} setView={setCurrentView} />;
       case 'admin':
         return <AdminDashboard />;
+      case 'ai-generator':
+        return <AiGenerator />;
       case 'home':
       default:
         return (
