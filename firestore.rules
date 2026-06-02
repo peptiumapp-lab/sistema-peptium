@@ -35,6 +35,15 @@ service cloud.firestore {
              data.createdAt is timestamp &&
              data.updatedAt is timestamp;
     }
+    
+    function isValidProtocol(data) {
+      return data.keys().hasAll(['userId', 'protocolName', 'data', 'createdAt']) &&
+             data.keys().size() == 4 &&
+             data.userId is string &&
+             data.protocolName is string &&
+             data.data is map &&
+             data.createdAt is timestamp;
+    }
 
     // 2. Users Collection
     match /users/{userId} {
@@ -60,5 +69,15 @@ service cloud.firestore {
       allow read: if isSignedIn() && (request.auth.token.email.lower() == email || isAdmin());
       allow write: if isAdmin();
     }
+    
+    // 4. Protocols Collection
+    match /protocols/{protocolId} {
+      allow read: if isOwner(resource.data.userId);
+      allow create: if isOwner(request.resource.data.userId) && 
+                       isValidProtocol(request.resource.data) && 
+                       request.resource.data.createdAt == request.time;
+      allow delete: if isOwner(resource.data.userId);
+    }
   }
 }
+

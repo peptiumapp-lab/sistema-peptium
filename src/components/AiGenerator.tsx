@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
-import { Shield, Sparkles, Brain, Code2, AlertTriangle, Play, ChevronRight, Activity, Terminal, CheckCircle2, Clock, Calendar } from 'lucide-react';
+import { Shield, Sparkles, Brain, Code2, AlertTriangle, Play, ChevronRight, Activity, Terminal, CheckCircle2, Clock, Calendar, Save, Check } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import type { View } from '../App';
+import { db } from '../lib/firebase';
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import { useAuth } from '../contexts/AuthContext';
 
 interface ProtocolResponse {
   protocolName: string;
@@ -12,6 +15,7 @@ interface ProtocolResponse {
   mitigationMatrix: { risk: string; mitigation: string }[];
   structuralTactics: string;
   receptorSynergy: string;
+  applicationManual: string;
 }
 
 export default function AiGenerator() {
@@ -19,6 +23,30 @@ export default function AiGenerator() {
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<ProtocolResponse | null>(null);
   const [error, setError] = useState('');
+  
+  const { user } = useAuth();
+  const [isSaving, setIsSaving] = useState(false);
+  const [saveSuccess, setSaveSuccess] = useState(false);
+
+  const saveToVault = async () => {
+    if (!user || !result) return;
+    
+    setIsSaving(true);
+    try {
+      await addDoc(collection(db, 'protocols'), {
+        userId: user.uid,
+        protocolName: result.protocolName,
+        data: result,
+        createdAt: serverTimestamp()
+      });
+      setSaveSuccess(true);
+      setTimeout(() => setSaveSuccess(false), 3000);
+    } catch (err: any) {
+      setError(`Erro ao salvar no cofre: ${err.message}`);
+    } finally {
+      setIsSaving(false);
+    }
+  };
 
   const generateProtocol = async () => {
     if (!intent.trim()) {
@@ -252,6 +280,49 @@ export default function AiGenerator() {
                   ))}
                </div>
             </div>
+
+            {/* Manual Tático de Aplicação */}
+            {result.applicationManual && (
+               <div className="space-y-6 pt-8 border-t border-white/5 mt-8">
+                  <div className="flex items-center gap-2 text-white text-sm font-black uppercase tracking-widest mb-6 pb-4">
+                     <AlertTriangle className="text-fuchsia-500" size={18}/> Manual Prático de Aplicação
+                  </div>
+                  
+                  <div className="bg-gradient-to-br from-fuchsia-900/20 to-[#050505] border border-fuchsia-500/20 rounded-2xl p-6 lg:p-8">
+                     <p className="text-sm font-medium text-white/80 leading-relaxed whitespace-pre-line">
+                        {result.applicationManual}
+                     </p>
+                  </div>
+               </div>
+            )}
+
+            {/* Ações / Cofre */}
+            {user && (
+               <div className="pt-8 mt-8 border-t border-white/5 flex flex-col md:flex-row justify-center md:justify-end gap-4">
+                  <button 
+                     onClick={saveToVault}
+                     disabled={isSaving || saveSuccess}
+                     className="px-6 py-4 flex items-center justify-center gap-2 font-black uppercase tracking-widest text-xs rounded-xl bg-accent text-black hover:bg-white hover:text-black transition-all disabled:opacity-50 disabled:cursor-not-allowed group"
+                  >
+                     {isSaving ? (
+                        <div className="w-4 h-4 border-2 border-black border-r-transparent rounded-full animate-spin" />
+                     ) : saveSuccess ? (
+                        <>
+                           <Check size={16} /> Salvo no Cofre 
+                        </>
+                     ) : (
+                        <>
+                           <Save size={16} /> Salvar no Cofre
+                        </>
+                     )}
+                  </button>
+               </div>
+            )}
+            {!user && (
+               <div className="pt-8 mt-8 border-t border-white/5 text-center">
+                  <p className="text-xs text-white/50 uppercase tracking-widest font-bold">Autentique-se para salvar no Cofre Atlas</p>
+               </div>
+            )}
 
           </div>
         </motion.div>

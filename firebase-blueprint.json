@@ -13,12 +13,28 @@
         "updatedAt": { "type": "string", "format": "date-time" }
       },
       "required": ["uid", "email", "isPro"]
+    },
+    "Protocol": {
+      "title": "Saved Protocol",
+      "description": "User's saved generated protocol",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "description": "User who owns this protocol" },
+        "protocolName": { "type": "string" },
+        "data": { "type": "object", "description": "Raw JSON object with protocol data" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "protocolName", "data", "createdAt"]
     }
   },
   "firestore": {
     "users/{userId}": {
       "schema": "User",
       "description": "User profile document"
+    },
+    "protocols/{protocolId}": {
+      "schema": "Protocol",
+      "description": "Saved AI generated protocols"
     }
   }
 }

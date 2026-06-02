@@ -32,8 +32,11 @@ import { CyclePlanner } from './components/CyclePlanner';
 import { GenomeAnalyzer } from './components/GenomeAnalyzer';
 import { MicrobiomeTracker } from './components/MicrobiomeTracker';
 import { NeuroMatrix } from './components/NeuroMatrix';
+import { CommandPalette } from './components/CommandPalette';
 import AdminDashboard from './components/AdminDashboard';
 import AiGenerator from './components/AiGenerator';
+import CofreAtlas from './components/CofreAtlas';
+import HowToUse from './components/HowToUse';
 import { PeptiumLogo } from './components/Logo';
 import { PROTOCOLS, SUPPORT_LINK, TOTAL_PEPTIDES, INSTAGRAM_LINK, SITE_LINK } from './constants';
 import { PeptideDossier, PeptideCategory } from './types';
@@ -43,16 +46,18 @@ import { useAuth } from './contexts/AuthContext';
 import { signInWithGoogle, logout, upgradeToPro, handleRedirectResult } from './lib/firebase';
 import { auditInventory } from './services/atlasAuditor';
 
-export type View = 'home' | 'library' | 'calculator' | 'quiz' | 'stacks' | 'interactions' | 'my-protocols' | 'plans' | 'dossier' | 'guide' | 'synergies' | 'scanner' | 'map' | 'schedule' | 'admin' | 'ai-generator' | 'lab-scanner' | 'longevity-clock' | 'fasting-tracker' | 'cycle-planner' | 'genome-analyzer' | 'microbiome-tracker' | 'neuro-matrix';
+export type View = 'home' | 'library' | 'calculator' | 'quiz' | 'stacks' | 'interactions' | 'my-protocols' | 'plans' | 'dossier' | 'guide' | 'synergies' | 'scanner' | 'map' | 'schedule' | 'admin' | 'ai-generator' | 'lab-scanner' | 'longevity-clock' | 'fasting-tracker' | 'cycle-planner' | 'genome-analyzer' | 'microbiome-tracker' | 'neuro-matrix' | 'cofre-atlas' | 'manual';
 
 function AppContent() {
   const [currentView, setCurrentView] = useState<View>('home');
+  const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState(false);
   const [userPeptides, setUserPeptides] = useState<string[]>(['bpc-157', 'selank']); 
   const [selectedPeptide, setSelectedPeptide] = useState<PeptideDossier | null>(null);
   const [selectedSynergyIds, setSelectedSynergyIds] = useState<string[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string>('Todos');
   const [legalModalType, setLegalModalType] = useState<'termos' | 'privacidade' | 'disclaimer' | null>(null);
-  const { user, isPro: isPremium, loading: authLoading } = useAuth();
+  const { user, loading: authLoading } = useAuth();
+  const isPremium = true; // ALL FEATURES UNLOCKED FOR NATIVE TESTING
   const [apiStatus, setApiStatus] = useState<string>('checking...');
 
   useEffect(() => {
@@ -183,6 +188,10 @@ function AppContent() {
         return <div className="py-24"><MicrobiomeTracker /></div>;
       case 'neuro-matrix':
         return <div className="py-24"><NeuroMatrix /></div>;
+      case 'cofre-atlas':
+        return <CofreAtlas />;
+      case 'manual':
+        return <HowToUse />;
       case 'scanner':
       case 'my-protocols':
       case 'quiz':
@@ -329,6 +338,7 @@ function AppContent() {
 
   return (
     <div className="dark">
+      <CommandPalette isOpen={isCommandPaletteOpen} setIsOpen={setIsCommandPaletteOpen} setView={setCurrentView} />
       <OnlineUsers />
       <div className="bg-primary text-secondary font-sans selection:bg-accent selection:text-white transition-colors duration-500 overflow-x-hidden min-h-screen">
         

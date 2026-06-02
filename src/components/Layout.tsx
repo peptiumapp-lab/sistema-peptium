@@ -5,7 +5,7 @@ import { Menu, X, Phone, LayoutDashboard, Calculator,
   Zap, Shield, Target, Sun, Moon,
   Hexagon, Sparkles, ArrowLeftRight, ClipboardList,
   GraduationCap, Layers, ShieldAlert, MapPin,
-  Calendar, User, HelpCircle, UserPlus, BookOpen, LogOut, LogIn, Instagram, Globe, Mail, ArrowLeft
+  Calendar, User, HelpCircle, UserPlus, BookOpen, LogOut, LogIn, Instagram, Globe, Mail, ArrowLeft, BookText
 } from 'lucide-react';
 import { SUPPORT_LINK, INSTAGRAM_HANDLE, INSTAGRAM_LINK, SITE_URL, SITE_LINK, PROTOCOLS } from '../constants';
 import type { View } from '../App';
@@ -41,6 +41,7 @@ export default function Layout({ children, currentView, setCurrentView, theme, s
 
   const ferramentasItems = [
     { icon: <Calculator size={18} />, label: 'Calculadora Prime', view: 'calculator' as View },
+    { icon: <BookText size={18} />, label: 'Manual de Uso Tático', view: 'manual' as View },
     { icon: <Sparkles size={18} />, label: 'Atlas AI Builder', view: 'ai-generator' as View },
     { icon: <Layers size={18} />, label: 'Cofre de Stacks', view: 'stacks' as View },
     { icon: <ShieldAlert size={18} />, label: 'Guardião de Segurança', view: 'interactions' as View },
@@ -77,6 +78,7 @@ export default function Layout({ children, currentView, setCurrentView, theme, s
         ), 
         view: 'plans' as View 
       },
+      { icon: <ShieldAlert size={18} />, label: 'Cofre Atlas', view: 'cofre-atlas' as View },
       { icon: <LogOut size={18} />, label: 'Sair', onClick: logout },
     ] : [
       { icon: <LogIn size={18} />, label: 'Entrar / Cadastrar', onClick: signInWithGoogle, highlight: true },
