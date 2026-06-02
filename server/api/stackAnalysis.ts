@@ -31,7 +31,7 @@ interface StackAnalysisResponse {
   advice: string;
 }
 
-router.post('/analyze-stack', async (req: Request, res: Response) => {
+router.post('/', async (req: Request, res: Response) => {
   try {
     const { peptides } = req.body;
 
@@ -66,23 +66,35 @@ router.post('/analyze-stack', async (req: Request, res: Response) => {
       Responda APENAS com o JSON documentado em Português do Brasil.
     `;
 
+    const modelsToTry = ["gemini-3.5-flash", "gemini-3.1-pro-preview", "gemini-3.1-flash-lite", "gemini-flash-latest"];
     let response;
-    try {
-      response = await ai.models.generateContent({
-        model: "gemini-3-flash-preview",
-        contents: prompt,
-        config: {
-          responseMimeType: "application/json",
-        }
-      });
-    } catch (aiError: any) {
-      console.error('AI Generation Error:', aiError);
-      return res.status(502).json({
+    let lastError: any;
+
+    for (const model of modelsToTry) {
+      try {
+        console.log(`Tentando análise com o modelo: ${model}`);
+        response = await ai.models.generateContent({
+          model: model,
+          contents: prompt,
+          config: {
+            responseMimeType: "application/json",
+          }
+        });
+        break; // Success!
+      } catch (aiError: any) {
+        console.warn(`Aviso: Tentativa com ${model} falhou:`, aiError.message);
+        lastError = aiError;
+      }
+    }
+
+    if (!response) {
+      console.error('AI Analysis Error após tentar todos os modelos:', lastError?.message);
+      return res.status(503).json({
         success: false,
         error: {
           code: 'AI_SERVICE_ERROR',
-          message: 'Falha ao se comunicar com o serviço de inteligência artificial.',
-          details: aiError.message
+          message: 'Atlas Neural Engine temporariamente sobrecarregado (Alta Demanda). Os modelos de contingência também falharam. Tente novamente em instantes.',
+          details: lastError?.message
         }
       });
     }

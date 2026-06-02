@@ -84,7 +84,7 @@ export default function SynergySection({ setView, onSelectProtocol, isStandalone
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {(isStandalone ? SYNERGY_PROTOCOLS : SYNERGY_PROTOCOLS.slice(0, 3)).map((protocol, i) => (
+          {(isStandalone ? (SYNERGY_PROTOCOLS || []) : (SYNERGY_PROTOCOLS || []).slice(0, 3)).map((protocol, i) => (
             <motion.div
               key={protocol.id}
               initial={{ opacity: 0, y: 20 }}
@@ -162,7 +162,7 @@ export default function SynergySection({ setView, onSelectProtocol, isStandalone
               <div className="text-left">
                 <span className="block text-[8px] font-black uppercase tracking-widest opacity-40 italic">Explore Mais</span>
                 <span className="text-[11px] font-black uppercase tracking-[0.2em] text-white">
-                  Ver Coleção Completa ({SYNERGY_PROTOCOLS.length})
+                  Ver Coleção Completa ({(SYNERGY_PROTOCOLS || []).length})
                 </span>
               </div>
               <ArrowRight size={16} className="text-accent opacity-0 group-hover:opacity-100 group-hover:translate-x-2 transition-all" />

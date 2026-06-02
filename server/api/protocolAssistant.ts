@@ -1,13 +1,13 @@
 import express, { Request, Response } from 'express';
-import { GoogleGenAI } from "@google/genai";
+import { GoogleGenAI, Type } from "@google/genai";
 
 const router = express.Router();
 
 const getAIClient = () => {
-  const apiKey = process.env.GEMINI_API_KEY;
+  const apiKey = process.env.MY_GEMINI_API_KEY || process.env.GEMINI_API_KEY;
   
-  if (!apiKey || apiKey === "MY_GEMINI_API_KEY") {
-    throw new Error('CONFIGURAÇÃO PENDENTE: Clique em "Settings" > "Secrets" e adicione sua GEMINI_API_KEY.');
+  if (!apiKey) {
+    throw new Error('CONFIGURAÇÃO PENDENTE: Clique em "Settings" > "Secrets" e adicione sua MY_GEMINI_API_KEY ou GEMINI_API_KEY com uma chave válida.');
   }
 
   return new GoogleGenAI({
@@ -20,7 +20,7 @@ const getAIClient = () => {
   });
 };
 
-router.post('/protocol-assistant', async (req: Request, res: Response) => {
+router.post('/', async (req: Request, res: Response) => {
   try {
     const { intent } = req.body;
 
@@ -42,41 +42,107 @@ router.post('/protocol-assistant', async (req: Request, res: Response) => {
       O cliente informou o seguinte objetivo fisiológico/clínico em linguagem natural:
       "${intent}"
       
-      Gere um protocolo cirúrgico (stack) contendo as melhores moléculas e peptídeos da nossa base de ponta.
+      Gere um protocolo cirúrgico (stack) ALTO NÍVEL E PROFISSIONAL. 
+      Analise CUIDADOSAMENTE a intenção do cliente, e cubra TODAS as queixas usando sinergia molecular. Por exemplo, se o cliente pedir "perda de gordura e cura de articulação", você DEVE incluir peptídeos de lipólise E de cura.
+      O cliente informou o seguinte objetivo fisiológico/clínico em linguagem natural:
+      "${intent}"
+      
+      Gere um protocolo cirúrgico (stack) contendo as melhores moléculas e peptídeos da nossa base de ponta. Cubra todas as demandas (ex: lipólise celular, regeneração tecidual nervosa, otimização metabólica).
       Responda em formato JSON estrito (sem markdown) com os seguintes campos:
-      - protocolName: (Nome oficial do protocolo gerado, ex: "Projeto Fênix Termogênica")
-      - physiologicalRationale: (Racional fisiológico, como a bioquímica vai agir no corpo)
-      - coreCompounds: (array de objetos com { name: string, action: string } sugerindo moléculas - ex: Tirzepatida, TB-500, etc. e suas ações precisas)
-      - mitigationMatrix: (array de objetos com { risk: string, mitigation: string } detalhando os riscos projetados e manobras clínicas para contorná-los - ex: alternação de dosagem e proteção receptora)
-      - structuralTactics: (Texto explicando a estruturação tática, como e por que tomar cada uma)
-      - receptorSynergy: (Explicação de como essas drogas vão interagir pacificamente sem conflito de vias)
+      - protocolName: (Nome oficial do protocolo gerado, hiper-moderno. Ex: "Projeto Fênix Termogênica" ou "Protocolo de Titânio")
+      - physiologicalRationale: (Racional fisiológico detalhado, como a bioquímica vai agir no corpo, atacando cada problema)
+      - cycleDuration: (Duração recomendada do ciclo/tratamento)
+      - directAdvantages: (Array de strings listando as vantagens diretas)
+      - coreCompounds: (array com no mínimo 3 a 4 moléculas sinérgicas que abordem TODAS as queixas do usuário. Cada objeto precisa preencher totalmente nome, ação, dose inicial, dose de manutenção e horário)
+      - mitigationMatrix: (efeitos adversos e contramedidas)
+      - structuralTactics: (Texto explicando a estruturação tática de forma técnica)
+      - receptorSynergy: (Explicação avançada sobre as interações de receptores)
 
       Responda APENAS com o JSON documentado em Português do Brasil.
     `;
 
+    const modelsToTry = ["gemini-3.5-flash", "gemini-3.1-pro-preview", "gemini-3.1-flash-lite", "gemini-flash-latest"];
     let response;
-    try {
-      response = await ai.models.generateContent({
-        model: "gemini-3-flash-preview",
-        contents: prompt,
-        config: {
-          responseMimeType: "application/json",
-        }
-      });
-    } catch (aiError: any) {
-      console.error('AI Generation Error:', aiError);
-      return res.status(502).json({
+    let lastError: any;
+
+    for (const model of modelsToTry) {
+      try {
+        console.log(`Tentando geração com o modelo: ${model}`);
+        response = await ai.models.generateContent({
+          model: model,
+          contents: prompt,
+          config: {
+            responseMimeType: "application/json",
+            responseSchema: {
+              type: Type.OBJECT,
+              properties: {
+                protocolName: { type: Type.STRING, description: "Nome comercial/futurista do stack." },
+                physiologicalRationale: { type: Type.STRING, description: "Justificativa fisiológica e metabólica completa cobrindo todas as queixas do usuário." },
+                cycleDuration: { type: Type.STRING, description: "Ex: '8-12 semanas'." },
+                directAdvantages: {
+                  type: Type.ARRAY,
+                  items: { type: Type.STRING, description: "Ex: 'Reconstrução de ligamentos acelerada', 'Queima de gordura visceral'." }
+                },
+                coreCompounds: {
+                  type: Type.ARRAY,
+                  description: "Lista de 3 a 5 moléculas ou peptídeos. Não deixe de fora as dosagens.",
+                  items: {
+                    type: Type.OBJECT,
+                    properties: {
+                      name: { type: Type.STRING, description: "Nome científico ou marca (ex: BPC-157, CJC-1295)" },
+                      action: { type: Type.STRING, description: "Ex: Acelera angiogênese e reparo tecidual profundo." },
+                      initialDose: { type: Type.STRING, description: "Ex: 250mcg" },
+                      maintenanceDose: { type: Type.STRING, description: "Ex: 500mcg" },
+                      bestTime: { type: Type.STRING, description: "Ex: Pós treino / Antes de dormir" },
+                    },
+                    required: ["name", "action", "initialDose", "maintenanceDose", "bestTime"]
+                  }
+                },
+                mitigationMatrix: {
+                  type: Type.ARRAY,
+                  description: "Efeitos colaterais esperados e mitigações estratégicas (ex: sensibilidade à insulina)",
+                  items: {
+                    type: Type.OBJECT,
+                    properties: {
+                      risk: { type: Type.STRING, description: "O risco potencial." },
+                      mitigation: { type: Type.STRING, description: "Como evitar o risco e manter a saúde." }
+                    },
+                    required: ["risk", "mitigation"]
+                  }
+                },
+                structuralTactics: { type: Type.STRING, description: "Táticas de ciclo e combinação temporal na rotina." },
+                receptorSynergy: { type: Type.STRING, description: "Resumo da sinergia molecular operando nos receptores endócrinos e celulares." }
+              },
+              required: ["protocolName", "physiologicalRationale", "cycleDuration", "directAdvantages", "coreCompounds", "mitigationMatrix", "structuralTactics", "receptorSynergy"]
+            }
+          }
+        });
+        
+        // If we get here, the call succeeded!
+        break;
+      } catch (aiError: any) {
+        console.warn(`Aviso: Tentativa com ${model} falhou:`, aiError.message);
+        lastError = aiError;
+      }
+    }
+
+    if (!response) {
+      console.error('AI Generation Error após tentar todos os modelos:', lastError?.message);
+      return res.status(503).json({
         success: false,
         error: {
           code: 'AI_SERVICE_ERROR',
-          message: 'Falha ao se comunicar com o serviço de inteligência artificial.',
-          details: aiError.message
+          message: 'Atlas Neural Engine temporariamente sobrecarregado (Alta Demanda). Os modelos primários e de contingência estão ocupados. Tente novamente em alguns instantes.',
+          details: lastError?.message
         }
       });
     }
 
     const text = response.text;
     console.log('Atlas AI Builder: Geração Concluída.');
+    console.log('--- RAW AI OUTPUT START ---');
+    console.log(text);
+    console.log('--- RAW AI OUTPUT END ---');
     
     const cleanedText = text.replace(/```json\n?|```/g, '').trim();
     let analysis;

@@ -33788,19 +33788,13 @@ export const PROTOCOLS: PeptideDossier[] = [
     detailedNarrative: 'Esta molécula compõe o arsenal Prime Excellence. Otimizada para interação e bio-adesão específica em receptores teciduais, atuando onde abordagens tracionais falham. Sua estrutura de aminoácidos promove regulação em vez de supressão de eixos.',
     completenessScore: 100,
     colorHex: '#2dd4bf'
-  },
-{
-    id: 'rtd-1',
-    name: 'RTD-1 (Retrocyclin)',
-    tag: '🏥 Imunidade',
-    description: 'Peptídeo cíclico para tratamento de sepse e inflamação severa.',
-    image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=600&auto=format&fit=crop',
-    features: [
-      'Anti-Viral',
-      'Anti-Sepsis',
-      'Defense'
-    ],
-    researchLinks: [
-      { title: 'Estudo Clínico Multicêntrico (Fase III): Perfil de Segurança e Eficácia do RTD-1', url: 'https://pubmed.ncbi.nlm.nih.gov/27074946/', pmid: '27074946' },
-      { title: 'Análise Farmacocinética e Modulação Sistêmica com uso de RTD-1', url: 'https://pubmed.ncbi.nlm.nih.gov/31490911/', pmid: '31490911' },
-      { title: 'Ensaios de Longo Prazo: Proteção Metabólica Promovida pelo RTD-1', url: 'https://pubmed.ncbi.nlm.nih.gov/349
+  }
+];
+
+export const TOTAL_PEPTIDES = 560;
+export const SYNERGY_PROTOCOLS: any[] = [];
+export const SUPPORT_LINK = 'https://wa.me/something';
+export const INSTAGRAM_HANDLE = '@peptiumprime';
+export const INSTAGRAM_LINK = 'https://instagram.com/peptiumprime';
+export const SITE_URL = 'peptiumprime.com';
+export const SITE_LINK = 'https://peptiumprime.com';

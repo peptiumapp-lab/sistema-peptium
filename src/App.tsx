@@ -25,6 +25,13 @@ import OnlineUsers from './components/OnlineUsers';
 import PlaceholderView from './components/PlaceholderView';
 import CycleSchedule from './components/CycleSchedule';
 import BioHackingMap from './components/BioHackingMap';
+import { LabScanner } from './components/LabScanner';
+import { LongevityClock } from './components/LongevityClock';
+import { FastingTracker } from './components/FastingTracker';
+import { CyclePlanner } from './components/CyclePlanner';
+import { GenomeAnalyzer } from './components/GenomeAnalyzer';
+import { MicrobiomeTracker } from './components/MicrobiomeTracker';
+import { NeuroMatrix } from './components/NeuroMatrix';
 import AdminDashboard from './components/AdminDashboard';
 import AiGenerator from './components/AiGenerator';
 import { PeptiumLogo } from './components/Logo';
@@ -36,7 +43,7 @@ import { useAuth } from './contexts/AuthContext';
 import { signInWithGoogle, logout, upgradeToPro, handleRedirectResult } from './lib/firebase';
 import { auditInventory } from './services/atlasAuditor';
 
-export type View = 'home' | 'library' | 'calculator' | 'quiz' | 'stacks' | 'interactions' | 'my-protocols' | 'plans' | 'dossier' | 'guide' | 'synergies' | 'scanner' | 'map' | 'schedule' | 'admin' | 'ai-generator';
+export type View = 'home' | 'library' | 'calculator' | 'quiz' | 'stacks' | 'interactions' | 'my-protocols' | 'plans' | 'dossier' | 'guide' | 'synergies' | 'scanner' | 'map' | 'schedule' | 'admin' | 'ai-generator' | 'lab-scanner' | 'longevity-clock' | 'fasting-tracker' | 'cycle-planner' | 'genome-analyzer' | 'microbiome-tracker' | 'neuro-matrix';
 
 function AppContent() {
   const [currentView, setCurrentView] = useState<View>('home');
@@ -131,7 +138,7 @@ function AppContent() {
 
   const renderView = () => {
     // Content Locking Logic
-    const premiumViews: View[] = ['calculator', 'dossier', 'interactions', 'stacks', 'synergies', 'scanner', 'map', 'schedule', 'my-protocols', 'quiz', 'ai-generator'];
+    const premiumViews: View[] = ['calculator', 'dossier', 'interactions', 'stacks', 'synergies', 'scanner', 'map', 'schedule', 'my-protocols', 'quiz'];
     const isRestricted = !isPremium && premiumViews.includes(currentView);
 
     if (isRestricted) {
@@ -162,6 +169,20 @@ function AppContent() {
         return <CycleSchedule isStandalone />;
       case 'map':
         return <BioHackingMap isStandalone />;
+      case 'lab-scanner':
+        return <div className="py-24"><LabScanner /></div>;
+      case 'longevity-clock':
+        return <div className="py-24"><LongevityClock /></div>;
+      case 'fasting-tracker':
+        return <div className="py-24"><FastingTracker /></div>;
+      case 'cycle-planner':
+        return <div className="py-24"><CyclePlanner /></div>;
+      case 'genome-analyzer':
+        return <div className="py-24"><GenomeAnalyzer /></div>;
+      case 'microbiome-tracker':
+        return <div className="py-24"><MicrobiomeTracker /></div>;
+      case 'neuro-matrix':
+        return <div className="py-24"><NeuroMatrix /></div>;
       case 'scanner':
       case 'my-protocols':
       case 'quiz':

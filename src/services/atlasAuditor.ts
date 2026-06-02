@@ -14,7 +14,7 @@ export interface AuditResult {
 export const auditInventory = (availablePeptideIds: string[] = []): AuditResult => {
   const ids = Array.isArray(availablePeptideIds) ? availablePeptideIds : [];
   
-  const availableSynergies = SYNERGY_PROTOCOLS.filter(protocol => 
+  const availableSynergies = (SYNERGY_PROTOCOLS || []).filter(protocol => 
     protocol && 
     protocol.peptides && 
     Array.isArray(protocol.peptides) && 

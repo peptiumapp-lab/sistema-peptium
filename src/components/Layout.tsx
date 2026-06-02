@@ -44,7 +44,14 @@ export default function Layout({ children, currentView, setCurrentView, theme, s
     { icon: <Sparkles size={18} />, label: 'Atlas AI Builder', view: 'ai-generator' as View },
     { icon: <Layers size={18} />, label: 'Cofre de Stacks', view: 'stacks' as View },
     { icon: <ShieldAlert size={18} />, label: 'Guardião de Segurança', view: 'interactions' as View },
+    { icon: <ClipboardList size={18} />, label: 'Scan De Exames (OCR)', view: 'lab-scanner' as View },
+    { icon: <Calendar size={18} />, label: 'Relógio Longevidade', view: 'longevity-clock' as View },
+    { icon: <UserPlus size={18} />, label: 'Jejum Celular', view: 'fasting-tracker' as View },
+    { icon: <BookOpen size={18} />, label: 'Macro Cycle Planner', view: 'cycle-planner' as View },
+    { icon: <LogOut size={18} />, label: 'Análise de Genoma (DNA)', view: 'genome-analyzer' as View },
+    { icon: <LogIn size={18} />, label: 'Tracker de Microbioma', view: 'microbiome-tracker' as View },
     { icon: <MapPin size={18} />, label: 'Mapa de Bio-Hacking', view: 'map' as View },
+    { icon: <Zap size={18} />, label: 'Neuro Matrix', view: 'neuro-matrix' as View },
     { icon: <Calendar size={18} />, label: 'Cronograma de Ciclo', view: 'schedule' as View },
     ...(isAdmin ? [{ icon: <Shield size={18} />, label: 'Painel Admin', view: 'admin' as View }] : [])
   ];
