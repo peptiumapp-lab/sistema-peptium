@@ -1,5 +1,8 @@
 import React from 'react';
-import { Sparkles, Calculator, ShieldAlert, Search, ChevronRight, BookText } from 'lucide-react';
+import { 
+  Sparkles, Calculator, ShieldAlert, Search, ChevronRight, BookText, 
+  Database, Layers, ClipboardList, Clock, Flame, Calendar, Dna, Activity, MapPin, Zap 
+} from 'lucide-react';
 
 export default function HowToUse() {
   const tools = [
@@ -50,6 +53,126 @@ export default function HowToUse() {
         { label: 'Aprofundamento', desc: 'Clique sobre qualquer caixa/composto selecionado para ser exposto ao dossiê completo dele.' },
         { label: 'O Dossiê Livre', desc: 'Leia e absorva todos os detalhes de meia-vida biológica, estrutura molecular, métodos padrões e os riscos associados com mitigações essenciais.' }
       ]
+    },
+    {
+      id: 'cofre-atlas',
+      icon: <Database className="w-8 h-8 text-teal-400" />,
+      title: 'Cofre Atlas (Protocol Vault)',
+      subtitle: 'Armazenamento seguro e persistência dos seus dossiês gerados pela I.A.',
+      steps: [
+        { label: 'Acesso', desc: 'Acesse o "Cofre Atlas" pelo menu lateral ou pelo atalho de busca rápida.' },
+        { label: 'Resgate', desc: 'Navegue pelos cards de histórico. O sistema lista cronologicamente todos os protocolos gerados e salvos por você, criptografados na sua conta.' },
+        { label: 'Leitura', desc: 'Clique sobre o documento desejado para abrir imediatamente a análise tática completa, a tabela de mitigações e os manuais de aplicação.' },
+        { label: 'Descarte', desc: 'Se um protocolo ficar obsoleto para seus objetivos, clique no botão de lixeira no card para purgá-lo da base de dados permanentemente.' }
+      ]
+    },
+    {
+      id: 'stacks',
+      icon: <Layers className="w-8 h-8 text-indigo-500" />,
+      title: 'Cofre de Stacks (Comunidade / Curadoria)',
+      subtitle: 'Livraria de protocolos testados e consolidados por especialistas da comunidade.',
+      steps: [
+        { label: 'Acesso', desc: 'Vá para o "Cofre de Stacks" através do painel de controle principal.' },
+        { label: 'Exploração', desc: 'Navegue pelas pastas de casos clínicos de sucesso (ex: "Protocolo Fênix (Seca)", "Protocolo Wolverine").' },
+        { label: 'Estudo do Ciclo', desc: 'Acesse o card de cada stack para visualizar precisamente as semanas de ciclo, compostos-chave acoplados e os dias recomendados para descanso.' },
+        { label: 'Aplicação', desc: 'Use como referencial anatômico na hora de testar sua própria tolerância; essas receitas já foram depuradas de interações prejudiciais.' }
+      ]
+    },
+    {
+      id: 'lab-scanner',
+      icon: <ClipboardList className="w-8 h-8 text-emerald-400" />,
+      title: 'Scan De Exames (OCR)',
+      subtitle: 'Digitalização e mapeamento inteligente dos seus marcadores sanguíneos.',
+      steps: [
+        { label: 'Acesso', desc: 'Abra o "Scan De Exames (OCR)" a partir do menu integrado de longevidade.' },
+        { label: 'Envio de Dados', desc: 'Faça o upload do seu último painel de exames de sangue ou digite manualmente os principais marcadores (Testosterona, Estradiol, Hemograma, SHBG).' },
+        { label: 'Auditoria Funcional', desc: 'O sistema converte os dados e analisa discrepâncias com os "Padrões de Longevidade Ideal", em vez de focar nas amplas margens clínicas normais.' },
+        { label: 'Diretiva', desc: 'Receba indicações diretas de quais compostos são adequados (ou perigosos) dada sua homeostase hormonal atual.' }
+      ]
+    },
+    {
+      id: 'longevity-clock',
+      icon: <Clock className="w-8 h-8 text-blue-400" />,
+      title: 'Relógio Longevidade (Epigenética)',
+      subtitle: 'Calculadora preditiva da sua verdadeira idade celular.',
+      steps: [
+        { label: 'Acesso', desc: 'Selecione "Relógio Longevidade" no painel biológico.' },
+        { label: 'Inputs Metabólicos', desc: 'Insira dados antropométricos e métricas basais atualizadas (frequência cardíaca em repouso, pressão arterial, VO2 max).' },
+        { label: 'Cálculo Geroscience', desc: 'O algoritmo cruza as variáveis com dados de regressão de telômeros, determinando quão acelerado está seu envelhecimento orgânico.' },
+        { label: 'Projeção Tática', desc: 'Utilize esses dados de antes, durante e depois da introdução dos peptídeos para verificar a desaceleração do seu relógio biológico.' }
+      ]
+    },
+    {
+      id: 'fasting-tracker',
+      icon: <Flame className="w-8 h-8 text-orange-400" />,
+      title: 'Tracker de Jejum Celular',
+      subtitle: 'Monitorador das vias de autofagia e restrição calórica inteligente.',
+      steps: [
+        { label: 'Acesso', desc: 'Clique na aba "Jejum Celular" na barra de controle.' },
+        { label: 'Início', desc: 'Defina seu alvo (16h, 18h, 24h ou prolongado) e acione o timer de privação metabólica.' },
+        { label: 'Estágios Bioquímicos', desc: 'Acompanhe graficamente em qual estágio seu corpo está: Queima de Glicogênio, Lipólise, Autofagia Profunda, ou Pico de GH.' },
+        { label: 'Sinergia', desc: 'Descubra a janela de ouro (horários ideais de jejum) para aplicar compostos termogênicos de forma otimizada.' }
+      ]
+    },
+    {
+      id: 'cycle-planner',
+      icon: <Calendar className="w-8 h-8 text-sky-400" />,
+      title: 'Macro Cycle Planner (Cronograma)',
+      subtitle: 'Planejador visual de meses de periodização (Blasting, Cruising e Resting).',
+      steps: [
+        { label: 'Acesso', desc: 'Va ao painel do "Macro Cycle Planner" para organizar sua infraestrutura anual.' },
+        { label: 'Definição Estrutural', desc: 'Diferente da agenda diária, este planner programa Fases. Selecione os meses focados em hiperbolização, e em seguida meses obrigatórios de "washout" (limpeza orgânica).' },
+        { label: 'Rastreio de Saturação', desc: 'O sistema alerta quando você planejar meses contínuos demais de uso do mesmo composto (evitando a dessensibilização dos receptores de insulina ou IGF-1).' },
+        { label: 'Visão Panorâmica', desc: 'Visualize o ano inteiro e saiba exatamente a rotação trimestral dos seus stacks.' }
+      ]
+    },
+    {
+      id: 'genome-analyzer',
+      icon: <Dna className="w-8 h-8 text-violet-500" />,
+      title: 'Análise de Genoma (DNA)',
+      subtitle: 'Predição de compatibilidade de compostos e SNPs limitantes.',
+      steps: [
+        { label: 'Acesso', desc: 'Habilite a "Análise de Genoma" na seção de Bio-Analytics Avançada.' },
+        { label: 'Importação', desc: 'Adicione suas variantes genéticas relevantes (como mutações MTHFR, COMT, APOE4).' },
+        { label: 'Pareamento', desc: 'Descubra de imediato se sua biologia é geneticamente predisposta a aromatizar de forma agressiva, ou se compostos dopaminérgicos trarão rebote.' },
+        { label: 'Arquitetura Customizada', desc: 'A ferramenta criará escudos moleculares que "bypassam" suas falhas genéticas (ex: indicação de metilados estruturais).' }
+      ]
+    },
+    {
+      id: 'microbiome-tracker',
+      icon: <Activity className="w-8 h-8 text-lime-500" />,
+      title: 'Tracker de Microbioma',
+      subtitle: 'Saúde digestiva, absorção entérica e integridade da barreira do intestino.',
+      steps: [
+        { label: 'Acesso', desc: 'Acesse o "Tracker de Microbioma" onde a imunidade biológica impera.' },
+        { label: 'Sinergia Oral', desc: 'Registre o uso associado de peptídeos como BPC-157 oral, que foca unicamente na reconstituição entérica.' },
+        { label: 'Gatilhos', desc: 'Acompanhe fatores dietéticos, inchaço e inflamações sub-clínicas. A saúde da flora determina quão bem os demais compostos sistêmicos circulam e se mantém anti-inflamatórios.' },
+        { label: 'Relatórios', desc: 'Obtenha um escore de absorção intestinal baseado na consistência do seu padrão digestivo relatado.' }
+      ]
+    },
+    {
+      id: 'map',
+      icon: <MapPin className="w-8 h-8 text-rose-500" />,
+      title: 'Mapa de Clínicas / Bio-Hacking',
+      subtitle: 'Geolocalização de pontos de acesso seguro, clínicas e laboratórios.',
+      steps: [
+        { label: 'Acesso', desc: 'Abra o menu de "Mapa de Bio-Hacking".' },
+        { label: 'Radar de Recursos', desc: 'O sistema plota no mapa geográfico referências da comunidade, laboratórios de coleta por perto, ou fornecimento validado de insumos estéreis (agulhas, seringas, água bacteriostática).' },
+        { label: 'Navegação', desc: 'Selecione o pin e acesse contato rápido ou rotas GPS para abastecer sua infraestrutura e laboratório caseiro.' },
+        { label: 'Qualificação', desc: 'Verifique ratings da comunidade indicando a pureza e discrição das clínicas marcadas no mapa.' }
+      ]
+    },
+    {
+      id: 'neuro-matrix',
+      icon: <Zap className="w-8 h-8 text-yellow-400" />,
+      title: 'Neuro Matrix',
+      subtitle: 'Mapeamento cognitivo, focus lock e gestão de Peptídeos Nootrópicos.',
+      steps: [
+        { label: 'Acesso', desc: 'Acesse o "Neuro Matrix" na aba de aprimoramento do SNC (Sistema Nervoso Central).' },
+        { label: 'Setup Cognitivo', desc: 'Mapeie suplementação e drogas com eixo de atuação cerebral (como Selank, Semax, Cerebrolysin).' },
+        { label: 'Sensoriamento de Fadiga', desc: 'Rastreie picos de fluxo cerebral versus fadiga adrenérgica. Evite empilhar excesso de estimulantes cruzando limites noradrenérgicos.' },
+        { label: 'Otimização', desc: 'Alcance o "Flow State" com relatórios de performance associada aos horários exatos da sua administração intranasal ou sub-cutânea.' }
+      ]
     }
   ];
 
@@ -63,7 +186,7 @@ export default function HowToUse() {
           Manual de <span className="text-accent">Uso Tático</span>
         </h2>
         <p className="text-white/50 text-xs md:text-sm max-w-2xl mx-auto font-medium leading-relaxed">
-          Guia de Inteligência e Procedimento Operacional: Saiba como extrair o máximo de precisão, conhecimento biológico e segurança da plataforma. Operação passo-a-passo.
+          Guia de Inteligência e Procedimento Operacional: Saiba como extrair o máximo de precisão, conhecimento biológico e segurança da plataforma. Operação passo-a-passo minuciosa para cada módulo do sistema.
         </p>
       </div>
 
