@@ -59,6 +59,29 @@ export interface SynergyProtocol {
   clinicalMarkers?: string[];
 }
 
+export interface SupplementInfo {
+  nutrient: string;
+  dose?: string;
+  reason: string;
+}
+
+export interface CofactorInfo {
+  cofactor: string;
+  reason: string;
+  importance: 'critical' | 'important' | 'moderate';
+}
+
+export interface TimelinePhase {
+  duration: string;
+  phase: string;
+  expectedEffects: string[];
+}
+
+export interface Complication {
+  effect: string;
+  description: string;
+}
+
 export interface PeptideDossier {
   // Base Identifiers
   id: string; // Slug em minúsculas (ex: bpc-157)
@@ -68,10 +91,15 @@ export interface PeptideDossier {
   synonyms?: string[]; // Nomes alternativos ou códigos de laboratório
   class: string; // (ex: Pentadecapeptídeo Gastrostável)
   
-  // Reconstitution - ADDED
+  // Visão Geral Estratégica
+  whatItIs?: string;
+  makesSenseFor?: string[];
+  doesNotMakeSenseFor?: string[];
+
+  // Reconstitution
   reconstitutionAlert?: ReconstitutionAlert;
 
-  // Imagem para a UI (Retrocompatibilidade)
+  // Imagem para a UI
   image: string;
   tag: string; // Retrocompatibilidade UI
   description: string; // Retrocompatibilidade UI
@@ -79,7 +107,11 @@ export interface PeptideDossier {
 
   // Mecanismos e Benefícios
   mechanismOfAction: string[];
+  technicalMechanism?: string; // Mecanismo técnico detalhado (nível avançado)
   clinicalBenefits: string[];
+  
+  // O Que Esperar - Linha do Tempo
+  timeline?: TimelinePhase[];
 
   // Protocolo de Dosagem Prime
   dosageProtocol: {
@@ -94,7 +126,20 @@ export interface PeptideDossier {
   administrationWay: string;
   cycleAndDuration: string;
   stacksAndCombinations?: string[]; // IDs de Peptídeos Sinergistas
+  strategicCombinations?: { name: string, reason: string }[]; // Combinações Específicas Detalhadas
   advancedClinicalProtocol?: string; // Protocolos táticos fechados (e.g. Protocolo RE-SET)
+
+  // Cofatores e Suplementação
+  requiredSupplements?: SupplementInfo[];
+  recommendedSupplements?: SupplementInfo[];
+  toAvoid?: { substance: string; reason: string }[];
+  criticalCofactors?: CofactorInfo[];
+
+  // Riscos e Mitigações
+  commonErrors?: string[];
+  mildComplications?: Complication[];
+  moderateComplications?: Complication[];
+  severeComplications?: Complication[];
 
   // Farmacologia Avançada
   pharmacologyAndPharmacokinetics: {

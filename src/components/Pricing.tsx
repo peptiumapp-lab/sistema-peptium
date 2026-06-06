@@ -3,34 +3,82 @@ import { motion } from 'motion/react';
 import { Check, Zap, Sparkles, Crown } from 'lucide-react';
 import { SUPPORT_LINK } from '../constants';
 import { useAuth } from '../contexts/AuthContext';
+import { useLanguage } from '../contexts/LanguageContext';
 import { signInWithGoogle, upgradeToPro } from '../lib/firebase';
 
-const plans = [
-  {
-    name: 'Pro Mensal',
-    price: '99,99',
-    period: '/mês',
-    description: 'Acesso completo à plataforma para iniciar sua jornada.',
-    features: ['Acesso a todos os peptídios', 'Acesso aos Protocolos', 'Histórico de Uso', 'Suporte Básico'],
-    icon: Zap,
-    premium: false,
-  },
-  {
-    name: 'Pro Anual',
-    price: '475,20',
-    period: '/ano',
-    description: 'A experiência Prime definitiva com vantagens exclusivas.',
-    features: ['Tudo do Pro Mensal', 'Acesso antecipado a novos ativos', 'Suporte Prime Prioritário', 'Atualizações Premium Mensais'],
-    icon: Crown,
-    premium: true,
-    tag: '60% OFF'
-  }
-];
+const plansData = {
+  pt: [
+    {
+      name: 'Pro Mensal',
+      price: '39,90',
+      period: '/mês',
+      description: 'Acesso completo à plataforma para iniciar sua jornada.',
+      features: ['Acesso a todos os peptídios', 'Acesso aos Protocolos', 'Histórico de Uso', 'Suporte Básico'],
+      icon: Zap,
+      premium: false,
+    },
+    {
+      name: 'Pro Anual',
+      price: '347,00',
+      period: '/ano',
+      description: 'A experiência Prime definitiva com vantagens exclusivas.',
+      features: ['Tudo do Pro Mensal', 'Acesso antecipado a novos ativos', 'Suporte Prime Prioritário', 'Atualizações Premium Mensais'],
+      icon: Crown,
+      premium: true,
+      tag: 'CUSTO EQUIVALENTE A R$ 28,90/MÊS'
+    }
+  ],
+  en: [
+    {
+      name: 'Pro Monthly',
+      price: '29.99',
+      period: '/month',
+      description: 'Complete platform access to start your journey.',
+      features: ['Access to all peptides', 'Protocol Access', 'Usage History', 'Basic Support'],
+      icon: Zap,
+      premium: false,
+    },
+    {
+      name: 'Pro Annual',
+      price: '249.00',
+      period: '/year',
+      description: 'The ultimate Prime experience with exclusive perks.',
+      features: ['Everything in Monthly', 'Early access to new compounds', 'Priority Prime Support', 'Monthly Premium Updates'],
+      icon: Crown,
+      premium: true,
+      tag: 'EQUIVALENT TO $20.75/MONTH'
+    }
+  ],
+  es: [
+    {
+      name: 'Pro Mensual',
+      price: '29.99',
+      period: '/mes',
+      description: 'Acceso completo a la plataforma para iniciar tu viaje.',
+      features: ['Acceso a todos los péptidos', 'Acceso a Protocolos', 'Historial de Uso', 'Soporte Básico'],
+      icon: Zap,
+      premium: false,
+    },
+    {
+      name: 'Pro Anual',
+      price: '249.00',
+      period: '/año',
+      description: 'La experiencia Prime definitiva con ventajas exclusivas.',
+      features: ['Todo en Mensual', 'Acceso anticipado a activos', 'Soporte Prime Prioritario', 'Actualizaciones Premium'],
+      icon: Crown,
+      premium: true,
+      tag: 'EQUIVALENTE A $20.75/MES'
+    }
+  ]
+};
 
 export default function Pricing() {
   const { user, isPro } = useAuth();
+  const { language, currency, t } = useLanguage();
   const [couponCode, setCouponCode] = React.useState<string | null>(null);
   const [autoCheckout, setAutoCheckout] = React.useState<string | null>(null);
+
+  const plans = plansData[language] || plansData.en;
 
   React.useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -140,10 +188,10 @@ export default function Pricing() {
             viewport={{ once: true }}
             className="text-2xl md:text-3xl font-bold mb-2 uppercase italic tracking-tighter"
           >
-            Escolha seu Nível de <span className="text-accent">Excelência</span>
+            {t('pricing.title')}
           </motion.h2>
           <p className="text-secondary/40 max-w-2xl mx-auto text-[11px] font-bold uppercase tracking-widest leading-relaxed">
-            Invista na precisão que o seu corpo merece. Protocolos validados e tecnologia de ponta.
+            {t('pricing.subtitle')}
           </p>
           {couponCode && (
             <motion.div
@@ -151,7 +199,7 @@ export default function Pricing() {
                animate={{ opacity: 1, scale: 1 }}
                className="mt-6 inline-block animate-pulse bg-accent/20 border border-accent/50 text-accent px-6 py-2 rounded-full text-xs font-black uppercase tracking-widest"
             >
-               🎉 Cupom de Desconto Ativado!
+               🎉 {t('pricing.coupon')}
             </motion.div>
           )}
         </div>
@@ -184,14 +232,17 @@ export default function Pricing() {
                   </div>
                   <h3 className="text-lg font-bold mb-1 uppercase tracking-tight">{plan.name}</h3>
                   <div className="flex items-baseline justify-center sm:justify-start gap-1">
-                    <span className="text-xs font-medium text-gray-400">R$</span>
+                    <span className="text-xs font-medium text-gray-400">{currency === 'BRL' ? 'R$' : '$'}</span>
                     <span className="text-3xl font-bold">{plan.price}</span>
                     <span className="text-xs text-gray-400">{plan.period}</span>
                   </div>
-                  {plan.name === 'Pro Anual' && (
-                    <p className="mt-1 text-xs sm:text-sm font-bold text-secondary/50 line-through">R$ 1.188,00</p>
+                  {plan.name.includes('Anual') && (
+                    <p className="mt-1 text-xs sm:text-sm font-bold text-secondary/50 line-through">
+                      {currency === 'BRL' ? 'R$ 478,80' : '$ 359.88'}
+                    </p>
                   )}
                   <p className="mt-3 text-[10px] text-gray-400 uppercase tracking-widest leading-relaxed">{plan.description}</p>
+
                 </div>
 
                 <div className="space-y-4 mb-8 flex-grow">
@@ -211,7 +262,7 @@ export default function Pricing() {
                     : 'bg-secondary/10 hover:bg-secondary/20 border border-secondary/20'
                   }`}
                 >
-                  {isPro ? 'Plano Ativo' : user ? `Adquirir ${plan.name}` : 'Entrar para Adquirir'}
+                  {isPro ? t('pricing.currentPlan') : user ? t('pricing.subscribe') : t('common.login')}
                 </button>
               </div>
             </motion.div>

@@ -10,6 +10,7 @@ import { Menu, X, Phone, LayoutDashboard, Calculator,
 import { SUPPORT_LINK, INSTAGRAM_HANDLE, INSTAGRAM_LINK, SITE_URL, SITE_LINK, PROTOCOLS } from '../constants';
 import type { View } from '../App';
 import { useAuth } from '../contexts/AuthContext';
+import { useLanguage, Language } from '../contexts/LanguageContext';
 import { PeptiumLogo } from './Logo';
 import { signInWithGoogle, logout } from '../lib/firebase';
 
@@ -27,33 +28,34 @@ interface LayoutProps {
 export default function Layout({ children, currentView, setCurrentView, theme, setTheme, isPremium }: LayoutProps) {
   const [isSidebarOpen, setIsSidebarOpen] = React.useState(false);
   const { user, isPro, isAdmin } = useAuth();
+  const { language, setLanguage, t } = useLanguage();
 
   const bibliotecaItems = [
-    { icon: <LayoutDashboard size={18} />, label: 'Painel Central', view: 'home' as View },
-    { icon: <Hexagon size={18} />, label: 'Atlas de Compostos', view: 'library' as View },
-    { icon: <Layers size={18} />, label: 'Biblioteca de Protocolos', view: 'synergies' as View },
-    { icon: <BookOpen size={18} />, label: 'Bio-Inteligência', view: 'dossier' as View },
+    { icon: <LayoutDashboard size={18} />, label: t('nav.dashboard'), view: 'home' as View },
+    { icon: <Hexagon size={18} />, label: t('nav.dossier'), view: 'library' as View },
+    { icon: <Layers size={18} />, label: t('nav.synergy'), view: 'synergies' as View },
+    { icon: <BookOpen size={18} />, label: t('nav.dossier'), view: 'dossier' as View },
     { icon: <Sparkles size={18} />, label: 'Bio-Scanner IA', view: 'scanner' as View },
-    { icon: <ArrowLeftRight size={18} />, label: 'Análise de Sinergia', view: 'stacks' as View },
+    { icon: <ArrowLeftRight size={18} />, label: t('nav.compare'), view: 'stacks' as View },
     { icon: <ClipboardList size={18} />, label: 'Meus Protocolos', view: 'my-protocols' as View },
-    { icon: <GraduationCap size={18} />, label: 'Centro de Aprendizado', view: 'guide' as View },
+    { icon: <GraduationCap size={18} />, label: t('nav.guide'), view: 'guide' as View },
   ];
 
   const ferramentasItems = [
-    { icon: <Calculator size={18} />, label: 'Calculadora Prime', view: 'calculator' as View },
+    { icon: <Calculator size={18} />, label: t('nav.cycle'), view: 'calculator' as View },
     { icon: <BookText size={18} />, label: 'Manual de Uso Tático', view: 'manual' as View },
     { icon: <Sparkles size={18} />, label: 'Atlas AI Builder', view: 'ai-generator' as View },
     { icon: <Layers size={18} />, label: 'Cofre de Stacks', view: 'stacks' as View },
     { icon: <ShieldAlert size={18} />, label: 'Guardião de Segurança', view: 'interactions' as View },
-    { icon: <ClipboardList size={18} />, label: 'Scan De Exames (OCR)', view: 'lab-scanner' as View },
-    { icon: <Calendar size={18} />, label: 'Relógio Longevidade', view: 'longevity-clock' as View },
-    { icon: <UserPlus size={18} />, label: 'Jejum Celular', view: 'fasting-tracker' as View },
-    { icon: <BookOpen size={18} />, label: 'Macro Cycle Planner', view: 'cycle-planner' as View },
-    { icon: <LogOut size={18} />, label: 'Análise de Genoma (DNA)', view: 'genome-analyzer' as View },
-    { icon: <LogIn size={18} />, label: 'Tracker de Microbioma', view: 'microbiome-tracker' as View },
+    { icon: <ClipboardList size={18} />, label: t('nav.lab'), view: 'lab-scanner' as View },
+    { icon: <Calendar size={18} />, label: t('nav.longevity'), view: 'longevity-clock' as View },
+    { icon: <UserPlus size={18} />, label: t('nav.fasting'), view: 'fasting-tracker' as View },
+    { icon: <BookOpen size={18} />, label: t('nav.calendar'), view: 'cycle-planner' as View },
+    { icon: <LogOut size={18} />, label: t('nav.genome'), view: 'genome-analyzer' as View },
+    { icon: <LogIn size={18} />, label: t('nav.microbiome'), view: 'microbiome-tracker' as View },
     { icon: <MapPin size={18} />, label: 'Mapa de Bio-Hacking', view: 'map' as View },
-    { icon: <Zap size={18} />, label: 'Neuro Matrix', view: 'neuro-matrix' as View },
-    { icon: <Calendar size={18} />, label: 'Cronograma de Ciclo', view: 'schedule' as View },
+    { icon: <Zap size={18} />, label: t('nav.neuro'), view: 'neuro-matrix' as View },
+    { icon: <Calendar size={18} />, label: t('nav.calendar'), view: 'schedule' as View },
     ...(isAdmin ? [{ icon: <Shield size={18} />, label: 'Painel Admin', view: 'admin' as View }] : [])
   ];
 
@@ -79,14 +81,14 @@ export default function Layout({ children, currentView, setCurrentView, theme, s
         view: 'plans' as View 
       },
       { icon: <ShieldAlert size={18} />, label: 'Cofre Atlas', view: 'cofre-atlas' as View },
-      { icon: <LogOut size={18} />, label: 'Sair', onClick: logout },
+      { icon: <LogOut size={18} />, label: t('common.logout'), onClick: logout },
     ] : [
-      { icon: <LogIn size={18} />, label: 'Entrar / Cadastrar', onClick: signInWithGoogle, highlight: true },
+      { icon: <LogIn size={18} />, label: t('common.login'), onClick: signInWithGoogle, highlight: true },
     ]),
     { icon: <Instagram size={18} />, label: INSTAGRAM_HANDLE, onClick: () => window.open(INSTAGRAM_LINK, '_blank') },
     { icon: <Globe size={18} />, label: SITE_URL, onClick: () => window.open(SITE_LINK, '_blank') },
-    { icon: <Mail size={18} />, label: 'Suporte', onClick: () => window.location.href = SUPPORT_LINK },
-    ...(!isPro ? [{ icon: <UserPlus size={18} />, label: 'Assinar Prime', view: 'plans' as View, highlight: true }] : []),
+    { icon: <Mail size={18} />, label: t('nav.support'), onClick: () => window.location.href = SUPPORT_LINK },
+    ...(!isPro ? [{ icon: <UserPlus size={18} />, label: t('common.upgrade'), view: 'plans' as View, highlight: true }] : []),
   ];
 
   const handleNavClick = (view: View, anchor?: string) => {
@@ -147,7 +149,7 @@ export default function Layout({ children, currentView, setCurrentView, theme, s
       {/* Desktop Sidebar (Floating UI) */}
       <aside className="hidden lg:flex flex-col w-[230px] h-[calc(100vh-2rem)] fixed left-4 top-4 bg-[#050505]/80 backdrop-blur-2xl border border-white/5 rounded-3xl z-40 shadow-[0_8px_32px_rgba(0,0,0,0.6),inset_0_0_32px_rgba(0,229,255,0.02)]">
         {/* Header */}
-        <div className="p-5 pb-4">
+        <div className="p-5 pb-4 flex justify-between items-center">
           <span 
             className="flex items-center gap-3 cursor-pointer group"
             onClick={() => setCurrentView('home')}
@@ -165,6 +167,15 @@ export default function Layout({ children, currentView, setCurrentView, theme, s
               </span>
             </div>
           </span>
+          <select 
+            value={language} 
+            onChange={(e) => setLanguage(e.target.value as Language)}
+            className="bg-white/5 border border-white/10 rounded-md text-[10px] text-white/70 p-1 outline-none uppercase font-bold tracking-widest cursor-pointer"
+          >
+            <option value="pt">PT</option>
+            <option value="en">EN</option>
+            <option value="es">ES</option>
+          </select>
         </div>
         
         <div className="flex-grow overflow-y-auto px-3 py-2 custom-scrollbar">
@@ -305,6 +316,15 @@ export default function Layout({ children, currentView, setCurrentView, theme, s
             )}
           </div>
           <div className="flex items-center gap-2">
+            <select 
+              value={language} 
+              onChange={(e) => setLanguage(e.target.value as Language)}
+              className="bg-white/5 border border-white/10 rounded-md text-[10px] text-white/70 p-1 px-2 outline-none uppercase font-bold tracking-widest cursor-pointer mr-2"
+            >
+              <option value="pt">PT</option>
+              <option value="en">EN</option>
+              <option value="es">ES</option>
+            </select>
             <button 
               onClick={() => setIsSidebarOpen(true)}
               className="p-2 text-secondary"

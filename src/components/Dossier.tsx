@@ -169,10 +169,37 @@ export default function Dossier({ setView }: DossierProps) {
                       </p>
                     </div>
 
+                    {peptide.whatItIs && (
+                      <div className="space-y-3">
+                        <h4 className="text-[9px] font-black text-accent uppercase tracking-[0.4em] print:text-black border-l-2 border-accent pl-2">
+                           II. Base Biológica
+                        </h4>
+                        <p className="text-[10px] text-white/60 leading-relaxed print:text-gray-800 text-justify">
+                           {peptide.whatItIs}
+                        </p>
+                      </div>
+                    )}
+
+                    {peptide.timeline && peptide.timeline.length > 0 && (
+                      <div className="space-y-3">
+                        <h4 className="text-[9px] font-black text-accent uppercase tracking-[0.4em] print:text-black border-l-2 border-accent pl-2">
+                           III. Timeline de Efeitos
+                        </h4>
+                        <div className="space-y-2">
+                           {peptide.timeline.map((phase, i) => (
+                             <div key={i} className="flex gap-3 text-[9px] p-2 bg-white/5 border border-white/5 rounded-lg">
+                                <div className="font-black text-accent w-16 shrink-0">{phase.phase}</div>
+                                <div className="text-white/60 print:text-gray-700">{phase.expectedEffects.join(', ')}</div>
+                             </div>
+                           ))}
+                        </div>
+                      </div>
+                    )}
+
                     {peptide.clinicalEfficacy && (
                       <div className="space-y-3">
                         <h4 className="text-[9px] font-black text-accent uppercase tracking-[0.4em] print:text-black border-l-2 border-accent pl-2">
-                           II. Eficácia Clínica
+                           Eficácia Clínica
                         </h4>
                         <ul className="space-y-2">
                            {peptide.clinicalEfficacy.map((item, i) => (
@@ -186,7 +213,7 @@ export default function Dossier({ setView }: DossierProps) {
 
                     <div className="space-y-3">
                       <h4 className="text-[9px] font-black text-accent uppercase tracking-[0.4em] print:text-black border-l-2 border-accent pl-2">
-                         III. Status Regulatório
+                         Status Regulatório
                       </h4>
                       <div className="grid grid-cols-3 gap-2">
                          <div className="bg-white/5 p-1.5 rounded-lg border border-white/5 print:bg-gray-50 print:border-gray-100">

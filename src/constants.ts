@@ -5471,108 +5471,146 @@ export const PROTOCOLS: PeptideDossier[] = [
 {
     id: 'nad-plus',
     name: 'NAD+',
-    tag: 'Longevidade ⏱️',
-    description: 'Essencial para o reparo de DNA e produção de energia em todas as células.',
-    image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=600&auto=format&fit=crop',
+    tag: 'Longevidade / Metabólico ⏱️',
+    description: 'Nicotinamida Adenina Dinucleotídeo. Uma molécula fundamental da vida, essencial para gerar energia e reparar o DNA.',
+    image: 'https://images.unsplash.com/photo-1532187863486-abf9db090db0?q=80&w=800&auto=format&fit=crop',
     features: [
-      'Reparo DNA',
-      'Energia Celular',
-      'Sirtuínas'
+      'Sirtuínas',
+      'NADH',
+      'IV / Oral'
     ],
-    mechanism: 'Coenzima central em reações redox mitocondriais. Ativa as Sirtuínas (proteínas de longevidade) e as enzimas PARP para reparo massivo de danos no DNA celular. Essencial para a comunicação núcleo-mitocondrial.',
-    dosage: '100mg a 500mg por dose.',
-    administration: 'Subcutânea (diário) ou IV (Infusão Lenta).',
-    protocol: 'Protocolo de Carga: 250mg a 500mg diários por 10 dias. Protocolo de Manutenção: 100mg a 200mg 2-3x por semana. Insuflação nasal também é uma opção para neuro-otimização.',
-    cycle: 'Protocolos de carga de 10-14 dias ou uso contínuo em dosagens baixas.',
-        sideEffects: [
-      {
-        effect: 'Opressão Torácica Momentânea',
-        mitigation: 'Administração lenta. Se for subcutâneo, aplicar em doses fracionadas se houver náusea.'
-      },
-      {
-        effect: ' Flushing/Calor',
-        mitigation: 'Efeito rápido que desaparece em minutos; sinal de ativação metabólica.'
-      }
-    ],
-    synergies: [
-      'ss-31',
-      'mots-c',
-      'resveratrol'
-    ],
-    researchLinks: [
-      { title: 'Estudo Clínico Multicêntrico (Fase III): Perfil de Segurança e Eficácia do NAD+', url: 'https://pubmed.ncbi.nlm.nih.gov/21533954/', pmid: '21533954' },
-      { title: 'Análise Farmacocinética e Modulação Sistêmica com uso de NAD+', url: 'https://pubmed.ncbi.nlm.nih.gov/32081809/', pmid: '32081809' },
-      { title: 'Ensaios de Longo Prazo: Proteção Metabólica Promovida pelo NAD+', url: 'https://pubmed.ncbi.nlm.nih.gov/31830361/', pmid: '31830361' },
-      { title: 'Metanálise: Sinergias e Expressão Gênica (Revisão de 5 Anos) - NAD+', url: 'https://pubmed.ncbi.nlm.nih.gov/34204504/', pmid: '34204504' },
-      { title: 'Toxicidade e Tolerabilidade Dose-Dependente em Protocolos com NAD+', url: 'https://pubmed.ncbi.nlm.nih.gov/17876966/', pmid: '17876966' }
-    ],
+    mechanism: 'O NAD+ age como um "dinheiro" que as células usam para produzir energia e ativar as sirtuinas.',
+    dosage: 'NMN oral: 250–1000 mg/dia. NR oral: 250–500 mg/dia. NAD+ IV: 250–1000 mg/sessão.',
+    administration: 'Oral (NMN/NR) / IV (Clínico)',
+    protocol: 'Estudos orais: até 12 semanas. IV: sessões esporádicas a semanais.',
+    halfLife: 'Não estabelecido controle fixo',
+    bioavailability: 'Alta via IV, Baixa a Moderada via Orais precursores',
+    evidenceLevel: 'ESTUDO CLÍNICO',
+    insight: 'A reposição de NAD+ tem retorno diminuído se as mitocôndrias e sirtuinas estiverem comprometidas.',
+    regulatoryStatus: {
+      fda: 'Suplemento (NMN/NR)',
+      anvisa: 'Suplemento',
+      ema: 'Suplemento'
+    },
+    molecularTarget: 'Sirtuínas, PARPs, Mitocôndrias',
     category: PeptideCategory.LONGEVIDADE,
-    secondaryCategories: ['LONGEVIDADE', 'BIO-REPARO'],
-    synonyms: [
-      'NAD+'
+    secondaryCategories: ['METABOLICO', 'NEURO_MIND'],
+    synonyms: ['Nicotinamida Adenina Dinucleotídeo', 'NMN', 'NR'],
+    class: 'Coenzima Metabólica',
+    
+    whatItIs: 'Uma das moléculas mais fundamentais da vida. O NAD+ está presente em todas as células e é essencial para gerar energia e reparar o DNA. O problema: seus níveis caem drasticamente com o envelhecimento. Recompor o NAD+ é uma das estratégias mais estudadas no campo da longevidade.',
+    makesSenseFor: [
+      'Adultos acima de 40 anos interessados em otimização metabólica e longevidade',
+      'Pessoas com fadiga crônica ou declínio de energia associado ao envelhecimento',
+      'Clínicas de longevidade com supervisão médica para versão IV'
     ],
-    class: 'Modulador Elite',
+    doesNotMakeSenseFor: [
+      'Pessoas esperando resultados imediatos e garantidos',
+      'Uso de NAD+ IV sem monitoramento médico',
+      'Gestantes e lactantes (dado insuficiente)'
+    ],
+
     mechanismOfAction: [
-      'Coenzima central em reações redox mitocondriais. Ativa as Sirtuínas (proteínas de longevidade) e as enzimas PARP para reparo massivo de danos no DNA celular. Essencial para a comunicação núcleo-mitocondrial.',
-      'Ativação de vias intracelulares de sinalização celular.',
-      'Melhora na expressão gênica e resiliência tecidual.'
+      'O NAD+ age como um "dinheiro" que as células usam para pagar duas operações vitais: produzir energia (via mitocôndrias) e ativar as sirtuinas.',
+      'Sirtuinas são enzimas que reparam DNA, combatem inflamação e regulam o envelhecimento celular.',
+      'Aumenta a via metabólica; precursores como NMN e NR aumentam níveis de forma oral, e a versão IV de forma aguda.'
     ],
+    technicalMechanism: 'Contexto biológico: O NAD+ funciona como "dinheiro" celular — mas dinheiro só tem valor se os "bancos" (mitocôndrias, sirtuinas, PARPs) estiverem funcionando para usá-lo. Em organismos com disfunção mitocondrial severa ou sirtuinas comprometidas, a reposição de NAD+ tem retorno diminuído. Além disso, a queda de NAD+ com a idade é apenas um dos muitos processos do envelhecimento — atacar apenas esse fator tem impacto parcial.',
     clinicalBenefits: [
-      'Modulação da senescência celular e apoptose',
-      'Preservação de telômeros e redução de danos oxidativos nucleares',
-      'Ativação do metabolismo mitocondrial (UPRmt e mitofagia)',
-      'Diminuição de processos inflamatórios cronificados (inflammaging)',
-      'Manutenção prolongada do efeito de base sistêmica após a interrupção de ciclo',
-      'Compatibilidade sinérgica avançada com ativadores da mesma via celular',
-      'Manutenção prolongada do efeito de base sistêmica após a interrupção de ciclo',
-      'Compatibilidade sinérgica avançada com ativadores da mesma via celular'
+      'Aumento documentado de NAD+ celular com NR e NMN em estudos humanos',
+      'Ativação de sirtuinas — enzimas associadas a longevidade e reparo celular',
+      'Melhora de função mitocondrial e metabolismo energético',
+      'Potencial neuroprotetor e antienvelhecimento em modelos animais',
+      'NAD+ IV: relatos de melhora de energia e clareza mental em clínicas de longevidade'
     ],
+
+    timeline: [
+      { phase: 'Semana 1–4', duration: 'Dias 1–7 (oral NMN/NR)', expectedEffects: ['Aumento mensurável de NAD+ em sangue', 'Sensação de maior energia e disposição relatada'] },
+      { phase: 'Curto Prazo', duration: 'Sessão IV', expectedEffects: ['Efeito imediato e intenso', 'Energia, clareza mental e sensação de bem-estar'] },
+      { phase: 'Longo Prazo', duration: 'Semanas 4–12', expectedEffects: ['Melhora progressiva em marcadores metabólicos', 'Maior sensibilidade glicêmica'] }
+    ],
+
     dosageProtocol: {
-      standard: '100mg a 500mg por dose.',
-      titration: [
-        'Semana 1: 50% da dose alvo para adaptação',
-        'Semana 2+: Dose clínica completa'
-      ],
-      maintenance: 'Dose reduzida para uso contínuo (se aplicável)',
-      reconstitution: 'Reconstituir pó liofilizado com 2mL a 3mL de Água Bacteriostática.'
+      standard: 'NMN oral: 250–1000 mg/dia. NR oral: 250–500 mg/dia.',
+      titration: ['Dose inicial baixa e aumento gradual com a tolerância gástrica/metabólica.'],
+      maintenance: 'Uso crônico oral parece seguro até 12 semanas confirmadas.',
+      reconstitution: 'Para IV: Uso de soluções diluentes estritas em clínicas e com gotejamento supervisionado.'
     },
-    administrationWay: 'Subcutânea (diário) ou IV (Infusão Lenta).',
-    cycleAndDuration: 'Protocolos de carga de 10-14 dias ou uso contínuo em dosagens baixas.',
-    stacksAndCombinations: [
-      'ss-31',
-      'mots-c',
-      'resveratrol'
+    administrationWay: 'Oral (NMN/NR) / IV (Clínico - gotejamento muito lento 1-2h).',
+    cycleAndDuration: 'Oral: meses (crônico validado até 12 semanas) / IV: sessões semanais temporárias.',
+    
+    strategicCombinations: [
+      { name: 'NMN oral + Resveratrol', reason: 'Ativação sinérgica: NMN fornece o substrato (NAD+), resveratrol ativa as sirtuínas. Amplamente documentado.' },
+      { name: 'NAD+ IV + Exercício Aeróbico', reason: 'Exercício é o maior ativador natural, a infusão IV amplifica o processo.' },
+      { name: 'NMN oral + Sono de Qualidade', reason: 'O reparo de DNA celular dependente de NAD+ atinge pico funcional durante restauro do sono.' }
     ],
+
+    requiredSupplements: [
+      { nutrient: 'Magnésio (glicinato ou malato)', dose: '300–400 mg/dia à noite', reason: 'Essencial para mais de 300 reações enzimáticas. Deficiência paralisa a cascata respiratória onde o NAD atua.' },
+      { nutrient: 'Vitamina B3 (Niacina)', dose: 'Via suplementos NMN', reason: 'Fornece infraestrutura para via de salvamento.' }
+    ],
+    recommendedSupplements: [
+      { nutrient: 'Resveratrol ou Pterostilbeno', dose: '250–500 mg/dia', reason: 'Ativador alostérico de SIRT1 — potencializando a ação massiva do NAD+ livre.' },
+      { nutrient: 'Coenzima Q10 (Ubiquinol)', dose: '200 mg/dia', reason: 'Atua cruzado ali na cadeia mitocondrial onde o NADH entra.' }
+    ],
+    toAvoid: [
+      { substance: 'Álcool em excesso', reason: 'Consome vorazmente todo NAD+ no fígado ao ser metabolizado pela enzima ALDH, anulando o poder para sistema circulatório.' },
+      { substance: 'Doses agressivas de Niacina genérica (>1g)', reason: 'Causa vasodilatação intensa (flush) mas não eleva o pull orgânico livre com estabilidade de NR ou NMN.' }
+    ],
+    criticalCofactors: [
+      { cofactor: 'Exercício aeróbico regular', importance: 'critical', reason: 'O exercício cria a "esponja" celular para absorver este investimento metabólico via AMPK ativado.' },
+      { cofactor: 'Sincronia e Qualidade do Sono', importance: 'critical', reason: 'Sono fragmentado bloqueia reparo de telômeros, desperdiçando o NAD+ reposto.' },
+      { cofactor: 'Jejum Intermitente / Restrição calórica', importance: 'important', reason: 'Gera sinalização severa para as sirtuínas utilizarem em peso a via NAD+.' }
+    ],
+    
+    commonErrors: [
+      'Tomar NAD+ IV sem supervisão médica rigorosa – infusão rápida pode causar fortíssimo rubor, tremores e náusea extrema.',
+      'Acreditar dogmaticamente que o NAD+ IV a curto prazo seja magicamente superior aos compostos orais sustentados para longevidade intrínseca.',
+      'Suprir NAD+ enquanto destrói homeostase corporal com drogas, nicotina, privação de sono crónica e hipercaloria de lixo.'
+    ],
+
+    mildComplications: [
+      { effect: 'Flush / Rubor Cutâneo Massivo', description: 'Ondas intensas de queimação epidérmica se IV não for gotejado goteja muito, muito lentamente.' },
+      { effect: 'Desconforto Abdominal / Náusea', description: 'Surge por agressão aos receptores gástricos no suplemento oral mal posicionado ou choque osmótico venoso.' }
+    ],
+    moderateComplications: [
+      { effect: 'Hipoglicemia Reativa / Relativa', description: 'Diabéticos e pacientes com pré-insulínicas podem ter "quedas" severas de açúcar no sangue devida exarcebação sensitiva do sistema.' },
+      { effect: 'Agitação / Insônia Geração 1', description: 'Ativação cerebral extrema após final de tarde. Sempre consumir NR/NMN pela manhã.' }
+    ],
+    severeComplications: [
+      { effect: 'Estimulação de crescimento tumoral (TEÓRICO e GRAVE)', description: 'NAD+ é combustível supremo vital para todas as células. Células oncológicas usam reparo de DNA para crescer sem freios e burlar apoptose: Uso estritamente vetado sem onco-clearance.' }
+    ],
+
     pharmacologyAndPharmacokinetics: {
-      halfLife: 'Variável (horas a dias)',
-      bioavailability: 'Alta biodisponibilidade nas vias parentéricas',
-      metabolism: 'Degradação proteolítica hepática/renal',
-      sinalizacao: 'Receptor Alvo Modulador / Transdução Intracelular',
-      picoClinico: '4 a 6 semanas',
-      picoBiologico: '3 a 8 dias',
-      notes: [
-        'Monitoramento clínico recomendado para melhores resultados.'
-      ]
+      halfLife: 'Muito complexo precificar (minutos no plasma até internalização em co-enzimas estáveis)',
+      bioavailability: 'Orais via salvamento enzimático, parenteral via absorção plena porém de metabolização abrupta.',
+      metabolism: 'Ciclo biológico da NAMPT',
+      sinalizacao: 'Ativação AMPK, PARP-1, e complexos SIRT 1,2 e 3.',
     },
+    
     adverseEffects: [
-      'Opressão Torácica Momentânea',
-       'Flushing/Calor'
+      'Opressão Torácica Momentânea (IV)',
+       'Flushing/Calor Severo (Agudo)'
     ],
     scientificEvidence: [
-      'Fase III ou uso off-label com dados consolidados'
+      'Estudos com precursores NMN/NR validados clinicamente em voluntários da 3º idade.',
+      'Uso Anti-Fadiga IV fortemente empirizado e corroborado por Medicina Funcional.'
     ],
-    pmids: [],
+    pmids: [
+      '29874564', 
+      '33633578'
+    ],
     evidenceMatrix: {
       humanStudies: 4,
       animalStudies: 5,
       inVitroStudies: 5,
-      safetyScore: 5,
+      safetyScore: 4,
       efficacyScore: 5
     },
-    importantNote: 'Aviso: Peptídeos são biomoléculas ativas, procedência garantida é mandatória.',
-    detailedNarrative: 'Esta molécula compõe o arsenal Prime Excellence. Otimizada para interação e bio-adesão específica em receptores teciduais, atuando onde abordagens tracionais falham. Sua estrutura de aminoácidos promove regulação em vez de supressão de eixos.',
+    importantNote: 'Peptídeos e Coenzimas como NAD+ são substratos. Eles precisam de contexto fisiológico limpo (Exercício, Sono) para ativar a vida e não apenas ser purgados.',
+    detailedNarrative: 'NAD+ transcende a categoria de suplemento. Ele é o bilhete monetário da biologia mitocondrial profunda. Essencial contra todas as vertentes do envelhecimento moderno.',
     completenessScore: 100,
-    colorHex: '#2dd4bf'
+    colorHex: '#14b8a6'
   },
 {
     id: 'gdf11',
