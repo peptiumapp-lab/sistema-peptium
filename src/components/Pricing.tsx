@@ -10,7 +10,7 @@ const plansData = {
   pt: [
     {
       name: 'Pro Mensal',
-      price: '39,90',
+      price: '49,90',
       period: '/mês',
       description: 'Acesso completo à plataforma para iniciar sua jornada.',
       features: ['Acesso a todos os peptídios', 'Acesso aos Protocolos', 'Histórico de Uso', 'Suporte Básico'],
@@ -19,19 +19,20 @@ const plansData = {
     },
     {
       name: 'Pro Anual',
-      price: '347,00',
+      price: '449,10',
       period: '/ano',
       description: 'A experiência Prime definitiva com vantagens exclusivas.',
       features: ['Tudo do Pro Mensal', 'Acesso antecipado a novos ativos', 'Suporte Prime Prioritário', 'Atualizações Premium Mensais'],
       icon: Crown,
       premium: true,
-      tag: 'CUSTO EQUIVALENTE A R$ 28,90/MÊS'
+      tag: '3 MESES GRÁTIS',
+      originalPrice: '598,80'
     }
   ],
   en: [
     {
       name: 'Pro Monthly',
-      price: '29.99',
+      price: '29.90',
       period: '/month',
       description: 'Complete platform access to start your journey.',
       features: ['Access to all peptides', 'Protocol Access', 'Usage History', 'Basic Support'],
@@ -40,19 +41,20 @@ const plansData = {
     },
     {
       name: 'Pro Annual',
-      price: '249.00',
+      price: '269.10',
       period: '/year',
       description: 'The ultimate Prime experience with exclusive perks.',
       features: ['Everything in Monthly', 'Early access to new compounds', 'Priority Prime Support', 'Monthly Premium Updates'],
       icon: Crown,
       premium: true,
-      tag: 'EQUIVALENT TO $20.75/MONTH'
+      tag: '3 MONTHS FREE',
+      originalPrice: '358.80'
     }
   ],
   es: [
     {
       name: 'Pro Mensual',
-      price: '29.99',
+      price: '29.90',
       period: '/mes',
       description: 'Acceso completo a la plataforma para iniciar tu viaje.',
       features: ['Acceso a todos los péptidos', 'Acceso a Protocolos', 'Historial de Uso', 'Soporte Básico'],
@@ -61,13 +63,14 @@ const plansData = {
     },
     {
       name: 'Pro Anual',
-      price: '249.00',
+      price: '269.10',
       period: '/año',
       description: 'La experiencia Prime definitiva con ventajas exclusivas.',
       features: ['Todo en Mensual', 'Acceso anticipado a activos', 'Soporte Prime Prioritario', 'Actualizaciones Premium'],
       icon: Crown,
       premium: true,
-      tag: 'EQUIVALENTE A $20.75/MES'
+      tag: '3 MESES GRATIS',
+      originalPrice: '358.80'
     }
   ]
 };
@@ -236,9 +239,9 @@ export default function Pricing() {
                     <span className="text-3xl font-bold">{plan.price}</span>
                     <span className="text-xs text-gray-400">{plan.period}</span>
                   </div>
-                  {plan.name.includes('Anual') && (
+                  {plan.originalPrice && (
                     <p className="mt-1 text-xs sm:text-sm font-bold text-secondary/50 line-through">
-                      {currency === 'BRL' ? 'R$ 478,80' : '$ 359.88'}
+                      {currency === 'BRL' ? 'R$' : '$'} {plan.originalPrice}
                     </p>
                   )}
                   <p className="mt-3 text-[10px] text-gray-400 uppercase tracking-widest leading-relaxed">{plan.description}</p>
