@@ -4,6 +4,7 @@ import { PROTOCOLS, TOTAL_PEPTIDES } from '../constants';
 import { PeptiumLogo } from './Logo';
 import { useState, useMemo, useEffect, useRef } from 'react';
 import Fuse from 'fuse.js';
+import { useLanguage } from '../contexts/LanguageContext';
 
 interface HeroProps {
   setView: (view: any) => void;
@@ -15,6 +16,7 @@ export default function Hero({ setView, isPremium, onSelectPeptide }: HeroProps)
   const [searchTerm, setSearchTerm] = useState('');
   const [isFocused, setIsFocused] = useState(false);
   const searchRef = useRef<HTMLDivElement>(null);
+  const { t } = useLanguage();
 
   const fuse = useMemo(() => new Fuse(PROTOCOLS, {
     keys: ['name', 'synonyms', 'tag', 'class'],
@@ -77,11 +79,11 @@ export default function Hero({ setView, isPremium, onSelectPeptide }: HeroProps)
                 </div>
                 <div className="flex items-center gap-4">
                   <span className="text-[13px] font-black tracking-[0.4em] text-accent uppercase">
-                    O maior acervo de peptídeos do mundo
+                    {t('hero.acervo')}
                   </span>
                   <div className="h-4 w-[1px] bg-accent/20" />
                   <span className="text-[10px] font-bold tracking-[0.2em] text-white/40 uppercase">
-                    Core Intelligence v4.0
+                    {t('hero.core')}
                   </span>
                 </div>
               </motion.div>
@@ -99,30 +101,22 @@ export default function Hero({ setView, isPremium, onSelectPeptide }: HeroProps)
                     <span className="text-accent text-3xl md:text-5xl mt-2 md:mt-4 animate-pulse">+</span>
                   </div>
                 </div>
-                <div className="flex items-center gap-3 mt-2 md:mt-4">
-                  <div className="w-8 h-[1px] bg-accent/30" />
-                  <span className="text-[10px] md:text-[12px] font-black uppercase tracking-[0.5em] text-accent/80">
-                    Compostos de Elite
-                  </span>
-                  <div className="w-8 h-[1px] bg-accent/30" />
-                </div>
               </motion.div>
 
             <h1 className="text-3xl md:text-5xl font-sans font-black mb-8 leading-[0.95] tracking-tighter text-white uppercase italic">
-              DECODIFIQUE O CÓDIGO DA <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-br from-accent via-white to-accent text-glow">FISIOLOGIA DE ELITE</span>
+              {t('hero.title')} <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-br from-accent via-white to-accent text-glow">{t('hero.subtitle')}</span>
             </h1>
             
             <p className="max-w-3xl mx-auto text-[9px] md:text-[11px] text-white/40 mb-10 font-bold leading-relaxed uppercase tracking-[0.25em]">
-              A INSIGHT MOLECULAR QUE TRANSFORMA <span className="text-white">DADOS BRUTOS</span> EM <br />
-              <span className="text-accent underline underline-offset-8 decoration-accent/30">PERFORMANCE HUMANA ABSOLUTA.</span>
+              {t('hero.description')}
             </p>
 
             <div className="max-w-2xl mx-auto mb-12 relative z-50 flex items-center justify-center p-2" ref={searchRef}>
               <div className="relative w-full">
                 <input 
                   type="text" 
-                  placeholder="Pesquisar peptídeos ou protocolos (ex: BPC-157, Semaglutida...)"
+                  placeholder={t('hero.searchPlaceholder')}
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   onFocus={() => setIsFocused(true)}
@@ -159,7 +153,7 @@ export default function Hero({ setView, isPremium, onSelectPeptide }: HeroProps)
                             </ul>
                         ) : (
                             <div className="px-4 py-8 text-center text-white/40 text-xs font-black uppercase tracking-widest">
-                                Nenhum resultado encontrado
+                                {t('hero.noResults')}
                             </div>
                         )}
                     </motion.div>
@@ -176,7 +170,7 @@ export default function Hero({ setView, isPremium, onSelectPeptide }: HeroProps)
               >
                 <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
                 <div className="relative z-10 flex items-center justify-center gap-3">
-                  <span>Iniciar Operação</span>
+                  <span>{t('hero.btnStartOps')}</span>
                   <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
                 </div>
               </button>
@@ -186,7 +180,7 @@ export default function Hero({ setView, isPremium, onSelectPeptide }: HeroProps)
                 className="group w-full sm:w-auto px-8 py-4 bg-transparent border-2 border-white/10 hover:border-accent/40 text-white font-black text-[10px] uppercase tracking-[0.3em] transition-all flex items-center justify-center gap-2"
                 style={{ clipPath: 'polygon(0 0, 90% 0, 100% 30%, 100% 100%, 10% 100%, 0 70%)' }}
               >
-                <span className="relative z-10">Começar Agora</span>
+                <span className="relative z-10">{t('hero.btnStartNow')}</span>
                 <ArrowUpRight size={16} className="group-hover:rotate-45 transition-transform opacity-50" />
               </button>
             </div>
@@ -205,13 +199,13 @@ export default function Hero({ setView, isPremium, onSelectPeptide }: HeroProps)
                   </div>
                   <div>
                     <div className="flex items-center gap-2 mb-1">
-                      <h4 className="text-sm font-black text-white italic uppercase tracking-tight">O que são Peptídeos?</h4>
+                      <h4 className="text-sm font-black text-white italic uppercase tracking-tight">{t('hero.box1Title')}</h4>
                     </div>
-                    <span className="text-[8px] text-accent font-black uppercase tracking-widest bg-accent/10 px-2 py-0.5 rounded-full inline-block">Início</span>
+                    <span className="text-[8px] text-accent font-black uppercase tracking-widest bg-accent/10 px-2 py-0.5 rounded-full inline-block">{t('hero.box1Tag')}</span>
                   </div>
                 </div>
                 <p className="text-white/30 text-[10px] font-bold uppercase tracking-widest leading-relaxed flex-grow relative z-10">
-                  Comece por aqui — entenda a ciência, os mecanismos e a revolução na saúde molecular.
+                  {t('hero.box1Desc')}
                 </p>
                 <div className="absolute bottom-4 right-4 w-8 h-8 rounded-full border border-white/5 flex items-center justify-center text-white/20 group-hover:text-accent group-hover:border-accent/40 transition-all z-10">
                   <ChevronRight size={16} />
@@ -232,13 +226,13 @@ export default function Hero({ setView, isPremium, onSelectPeptide }: HeroProps)
                   </div>
                   <div>
                     <div className="flex items-center gap-2 mb-1">
-                      <h4 className="text-sm font-black text-white italic uppercase tracking-tight">Atlas AI Builder</h4>
+                      <h4 className="text-sm font-black text-white italic uppercase tracking-tight">{t('hero.box2Title')}</h4>
                     </div>
-                    <span className="text-[8px] text-primary font-black uppercase tracking-widest bg-accent px-2 py-0.5 rounded-full inline-block">Novo Motor Neural</span>
+                    <span className="text-[8px] text-primary font-black uppercase tracking-widest bg-accent px-2 py-0.5 rounded-full inline-block">{t('hero.box2Tag')}</span>
                   </div>
                 </div>
                 <p className="text-accent/60 text-[10px] font-bold uppercase tracking-widest leading-relaxed flex-grow relative z-10">
-                  Converse com a inteligência artificial para gerar protocolos moleculares sob medida.
+                  {t('hero.box2Desc')}
                 </p>
                 <div className="absolute bottom-4 right-4 w-8 h-8 rounded-full border border-accent/20 flex items-center justify-center text-accent/50 group-hover:text-accent group-hover:border-accent transition-all z-10">
                   <ChevronRight size={16} />
@@ -258,13 +252,13 @@ export default function Hero({ setView, isPremium, onSelectPeptide }: HeroProps)
                   </div>
                   <div>
                     <div className="flex items-center gap-2 mb-1">
-                      <h4 className="text-sm font-black text-white italic uppercase tracking-tight">Molecular Sandbox</h4>
+                      <h4 className="text-sm font-black text-white italic uppercase tracking-tight">{t('hero.box3Title')}</h4>
                     </div>
-                    <span className="text-[8px] text-blue-400 font-black uppercase tracking-widest bg-blue-500/10 px-2 py-0.5 rounded-full inline-block">Bancada Livre</span>
+                    <span className="text-[8px] text-blue-400 font-black uppercase tracking-widest bg-blue-500/10 px-2 py-0.5 rounded-full inline-block">{t('hero.box3Tag')}</span>
                   </div>
                 </div>
                 <p className="text-white/30 text-[10px] font-bold uppercase tracking-widest leading-relaxed flex-grow relative z-10">
-                  Combine múltiplas moléculas, simule sinergias e construa sua própria arquitetura.
+                  {t('hero.box3Desc')}
                 </p>
                 <div className="absolute bottom-4 right-4 w-8 h-8 rounded-full border border-white/5 flex items-center justify-center text-white/20 group-hover:text-blue-400 group-hover:border-blue-400/40 transition-all z-10">
                   <ChevronRight size={16} />
@@ -281,9 +275,9 @@ export default function Hero({ setView, isPremium, onSelectPeptide }: HeroProps)
             className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6"
           >
             {[
-              { icon: <Shield size={24} className="text-accent" />, title: 'BIOTECNOLOGIA', desc: 'Peptídeos com pureza laboratorial superior a 99.8%.' },
-              { icon: <Zap size={24} className="text-accent" />, title: 'BIOAVAILABILITY', desc: 'Protocolos de absorção otimizados para ROI biológico.' },
-              { icon: <Target size={24} className="text-accent" />, title: 'PRECISION CORE', desc: 'Dosagens calculadas por algoritmos fisiológicos.' }
+              { icon: <Shield size={24} className="text-accent" />, title: t('hero.feat1Title' as any), desc: t('hero.feat1Desc' as any) },
+              { icon: <Zap size={24} className="text-accent" />, title: t('hero.feat2Title' as any), desc: t('hero.feat2Desc' as any) },
+              { icon: <Target size={24} className="text-accent" />, title: t('hero.feat3Title' as any), desc: t('hero.feat3Desc' as any) }
             ].map((item, i) => (
               <div key={i} className="glass-card p-6 rounded-[24px] text-left border-white/5 bg-white/[0.01] hover:border-accent/20 transition-all duration-500 group">
                 <div className="mb-6 p-3 w-fit bg-accent/5 rounded-xl group-hover:bg-accent group-hover:text-black transition-colors">{item.icon}</div>

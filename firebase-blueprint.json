@@ -1,40 +1,56 @@
 {
   "entities": {
     "User": {
-      "title": "User Profile",
-      "description": "User account details and membership status",
+      "title": "User",
+      "description": "User profile document",
       "type": "object",
       "properties": {
-        "uid": { "type": "string", "description": "Firebase Auth UID" },
-        "email": { "type": "string", "description": "User email" },
-        "displayName": { "type": "string", "description": "User display name" },
-        "isPro": { "type": "boolean", "description": "Subscription status" },
-        "createdAt": { "type": "string", "format": "date-time" },
-        "updatedAt": { "type": "string", "format": "date-time" }
+        "uid": { "type": "string" },
+        "email": { "type": "string" },
+        "displayName": { "type": "string" },
+        "isPro": { "type": "boolean" },
+        "createdAt": { "type": "timestamp" },
+        "updatedAt": { "type": "timestamp" }
       },
-      "required": ["uid", "email", "isPro"]
+      "required": ["uid", "createdAt", "updatedAt"]
+    },
+    "ProGrant": {
+      "title": "ProGrant",
+      "description": "Document tracking manual pro grants by admins",
+      "type": "object",
+      "properties": {
+        "grantedBy": { "type": "string" },
+        "grantedAt": { "type": "number" },
+        "expiresAt": { "type": "number" },
+        "email": { "type": "string" }
+      },
+      "required": ["grantedBy", "grantedAt", "expiresAt", "email"]
     },
     "Protocol": {
-      "title": "Saved Protocol",
-      "description": "User's saved generated protocol",
+      "title": "Protocol",
+      "description": "User generated protocols by AI",
       "type": "object",
       "properties": {
-        "userId": { "type": "string", "description": "User who owns this protocol" },
+        "userId": { "type": "string" },
         "protocolName": { "type": "string" },
-        "data": { "type": "object", "description": "Raw JSON object with protocol data" },
-        "createdAt": { "type": "string", "format": "date-time" }
+        "data": { "type": "object" },
+        "createdAt": { "type": "timestamp" }
       },
-      "required": ["userId", "protocolName", "data", "createdAt"]
+      "required": ["userId", "protocolName", "createdAt"]
     }
   },
   "firestore": {
-    "users/{userId}": {
-      "schema": "User",
-      "description": "User profile document"
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/User" },
+      "description": "User profiles"
     },
-    "protocols/{protocolId}": {
-      "schema": "Protocol",
-      "description": "Saved AI generated protocols"
+    "/pro_grants/{emailId}": {
+      "schema": { "$ref": "#/entities/ProGrant" },
+      "description": "Pro grants for users by email. Accessible by admins only, and readable by the user"
+    },
+    "/protocols/{protocolId}": {
+      "schema": { "$ref": "#/entities/Protocol" },
+      "description": "AI generated protocols stored by users"
     }
   }
 }

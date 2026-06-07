@@ -1,13 +1,12 @@
 import express from "express";
 import path from "path";
-import { createServer as createViteServer } from "vite";
 import stackAnalysisRouter from "./server/api/stackAnalysis";
 import protocolAssistantRouter from "./server/api/protocolAssistant";
 import stripeRouter from "./server/api/stripe";
 
 async function startServer() {
   const app = express();
-  const PORT = 3000;
+  const PORT = process.env.PORT || 3000;
 
   // GLOBAL LOGGER
   app.use((req, res, next) => {
@@ -89,6 +88,7 @@ async function startServer() {
   });
   
   if (process.env.NODE_ENV !== "production") {
+    const { createServer: createViteServer } = await import("vite");
     const vite = await createViteServer({
       server: { middlewareMode: true },
       appType: "spa",
