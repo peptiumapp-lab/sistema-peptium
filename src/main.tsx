@@ -5,12 +5,15 @@ import './index.css';
 
 import { AuthProvider } from './contexts/AuthContext.tsx';
 import { LanguageProvider } from './contexts/LanguageContext.tsx';
+import { PayPalWrapper } from './components/PayPalWrapper.tsx';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <AuthProvider>
       <LanguageProvider>
-        <App />
+        <PayPalWrapper>
+          <App />
+        </PayPalWrapper>
       </LanguageProvider>
     </AuthProvider>
   </StrictMode>,

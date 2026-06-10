@@ -71,10 +71,6 @@ export default function AdminDashboard() {
     }
 
     let normalizedEmail = newEmail.toLowerCase().trim();
-    if (normalizedEmail.endsWith('@gmail.com')) {
-      const [username, domain] = normalizedEmail.split('@');
-      normalizedEmail = `${username.replace(/\./g, '')}@${domain}`;
-    }
 
     const durationDays = type === 'monthly' ? 30 : 365;
     const expiresAt = Date.now() + durationDays * 24 * 60 * 60 * 1000;

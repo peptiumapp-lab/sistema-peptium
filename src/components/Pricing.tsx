@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { Check, Zap, Sparkles, Crown } from 'lucide-react';
+import { PayPalButtons } from '@paypal/react-paypal-js';
 import { SUPPORT_LINK } from '../constants';
 import { useAuth } from '../contexts/AuthContext';
 import { useLanguage } from '../contexts/LanguageContext';
@@ -79,104 +80,17 @@ export default function Pricing() {
   const { user, isPro } = useAuth();
   const { language, currency, t } = useLanguage();
   const [couponCode, setCouponCode] = React.useState<string | null>(null);
-  const [autoCheckout, setAutoCheckout] = React.useState<string | null>(null);
 
   const plans = plansData[language] || plansData.en;
 
   React.useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const code = params.get('coupon');
-    const checkoutPlan = params.get('checkout');
-    
-    if (code) {
-      setCouponCode(code);
-      // Persist in session storage in case they need to log in
-      sessionStorage.setItem('pendingCoupon', code);
-    } else {
-      const pendingCoupon = sessionStorage.getItem('pendingCoupon');
-      if (pendingCoupon) setCouponCode(pendingCoupon);
-    }
-
-    if (checkoutPlan) {
-      setAutoCheckout(checkoutPlan);
-      sessionStorage.setItem('pendingCheckout', checkoutPlan);
-    } else {
-      const pendingCheckout = sessionStorage.getItem('pendingCheckout');
-      if (pendingCheckout) setAutoCheckout(pendingCheckout);
-    }
+    if (code) setCouponCode(code);
   }, []);
 
-  React.useEffect(() => {
-    if (autoCheckout) {
-      const plan = plans.find(p => p.name === autoCheckout || p.name.includes(autoCheckout));
-      if (plan) {
-        if (!user) {
-           sessionStorage.setItem('pendingCheckout', plan.name);
-           if (couponCode) sessionStorage.setItem('pendingCoupon', couponCode);
-           // We can't auto-popup Google Auth easily as it might block popups, but we can try!
-        } else if (!isPro) {
-           setAutoCheckout(null);
-           sessionStorage.removeItem('pendingCheckout');
-           setTimeout(() => {
-             handlePurchase(plan.name, couponCode);
-           }, 500);
-        }
-      }
-    }
-  }, [user, isPro, autoCheckout, couponCode]);
-
-  const handlePurchase = async (planName: string, explicitCoupon?: string | null) => {
-    const finalCoupon = explicitCoupon || couponCode;
-    if (!user) {
-      sessionStorage.setItem('pendingCheckout', planName);
-      if (finalCoupon) sessionStorage.setItem('pendingCoupon', finalCoupon);
-      await signInWithGoogle();
-      return;
-    }
-    
-    if (isPro) {
-      alert('Você já é um membro Prime!');
-      return;
-    }
-
-    try {
-      const response = await fetch('/api/stripe/create-checkout-session', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          planName: planName,
-          userId: user.uid,
-          userEmail: user.email,
-          coupon: finalCoupon || undefined,
-        }),
-      });
-
-      const contentType = response.headers.get('content-type');
-      if (contentType && contentType.includes('text/html')) {
-        throw new Error(`Servidor de API não encontrado (404) na URL: ${response.url}. O servidor retornou a página HTML principal em vez de uma resposta da API.`);
-      }
-
-      const body = await response.json().catch(() => ({}));
-
-      if (!response.ok || !body.success) {
-        throw new Error(body.error?.message || body.error?.details || `Erro HTTP ${response.status} ao acessar ${response.url}`);
-      }
-
-      if (body.data?.url) {
-        window.location.href = body.data.url;
-      } else {
-        throw new Error('Falha ao criar sessão de checkout ou URL ausente');
-      }
-    } catch (error: any) {
-      console.error('Erro no checkout:', error);
-      if (error.message?.includes('coupon cannot be redeemed') || error.message?.includes('does not apply')) {
-        alert('O cupom informado é inválido para este pedido ou está configurado para "produtos específicos" no painel do Stripe.');
-        setCouponCode(null);
-        sessionStorage.removeItem('pendingCoupon');
-      } else {
-        alert(`Erro: ${error.message}`);
-      }
-    }
+  const handleLoginClick = async () => {
+    await signInWithGoogle();
   };
 
   return (
@@ -245,7 +159,6 @@ export default function Pricing() {
                     </p>
                   )}
                   <p className="mt-3 text-[10px] text-gray-400 uppercase tracking-widest leading-relaxed">{plan.description}</p>
-
                 </div>
 
                 <div className="space-y-4 mb-8 flex-grow">
@@ -257,16 +170,64 @@ export default function Pricing() {
                   ))}
                 </div>
 
-                <button 
-                  onClick={() => handlePurchase(plan.name)}
-                  className={`w-full py-4 rounded-[12px] font-bold transition-all duration-300 text-center uppercase tracking-[0.3em] text-[10px] ${
-                    plan.premium 
-                    ? 'bg-accent text-primary hover:bg-white shadow-[0_0_20px_rgba(0,229,255,0.2)]' 
-                    : 'bg-secondary/10 hover:bg-secondary/20 border border-secondary/20'
-                  }`}
-                >
-                  {isPro ? t('pricing.currentPlan') : user ? t('pricing.subscribe') : t('common.login')}
-                </button>
+                {isPro ? (
+                  <button disabled className="w-full py-4 rounded-[12px] font-bold transition-all duration-300 text-center uppercase tracking-[0.3em] text-[10px] bg-secondary/10 border border-secondary/20 opacity-50 cursor-not-allowed">
+                    {t('pricing.currentPlan')}
+                  </button>
+                ) : !user ? (
+                   <button 
+                     onClick={handleLoginClick}
+                     className={`w-full py-4 rounded-[12px] font-bold transition-all duration-300 text-center uppercase tracking-[0.3em] text-[10px] ${
+                      plan.premium 
+                      ? 'bg-accent text-primary hover:bg-white shadow-[0_0_20px_rgba(0,229,255,0.2)]' 
+                      : 'bg-secondary/10 hover:bg-secondary/20 border border-secondary/20'
+                     }`}
+                   >
+                     {t('common.login')}
+                   </button>
+                ) : (
+                   <div style={{ position: 'relative', zIndex: 0, minHeight: '48px' }}>
+                     <PayPalButtons
+                       style={{ layout: "horizontal", color: plan.premium ? "gold" : "blue", shape: "rect", height: 48 }}
+                       createSubscription={(data, actions) => {
+                           const isAnnual = plan.premium;
+                           const isBrl = currency === 'BRL';
+                           
+                           let planId = undefined;
+                           if (isBrl) {
+                             planId = isAnnual 
+                               ? (import.meta.env.VITE_PAYPAL_PLAN_ID_ANNUAL_BRL || 'P-98557937YE021832CNIUMG3I')
+                               : (import.meta.env.VITE_PAYPAL_PLAN_ID_MONTHLY_BRL || 'P-5B76934704315025ENIUMBVI');
+                           } else {
+                             planId = isAnnual 
+                               ? (import.meta.env.VITE_PAYPAL_PLAN_ID_ANNUAL_USD || 'P-8GB03595EC748711XNIUMJTY')
+                               : (import.meta.env.VITE_PAYPAL_PLAN_ID_MONTHLY_USD || 'P-0GB37855K4264004MNIUMINY');
+                           }
+                           
+                           if (!planId || planId === "undefined") {
+                             throw new Error(`Plano do PayPal não configurado. Adicione os IDs nas variáveis de ambiente.`);
+                           }
+                           
+                           return actions.subscription.create({ plan_id: String(planId) });
+                       }}
+                       onApprove={async (data, actions) => {
+                         try {
+                           await upgradeToPro(user.uid);
+                           alert('Pagamento aprovado via PayPal! Você agora é um membro Prime.');
+                           window.location.reload();
+                         } catch (error) {
+                           console.error(error);
+                           alert('Erro ao finalizar o pagamento.');
+                         }
+                       }}
+                       onError={(err) => {
+                         console.error('PayPal Error:', err);
+                         alert('Ocorreu um erro no pagamento.');
+                       }}
+                     />
+                   </div>
+                )}
+
               </div>
             </motion.div>
           ))}

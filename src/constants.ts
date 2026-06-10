@@ -2,6 +2,31 @@ import { PeptideDossier, PeptideCategory, SynergyProtocol } from './types';
 
 export const PROTOCOLS: PeptideDossier[] = [
 {
+    id: 'os-01',
+    name: 'OS-01',
+    tag: '⚡ Longevidade',
+    description: 'Ativador Pan-AMPK completo, o "interruptor mestre" para biogênese mitocondrial e mitofagia.',
+    image: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=600&auto=format&fit=crop',
+    features: ['Ativador Pan-AMPK', 'Biogênese Mitocondrial', 'Mitofagia', 'Saúde Cardiovascular'],
+    insight: 'Aumenta profundamente a resiliência celular.',
+    halfLife: 'Não definido',
+    bioavailability: 'Oral (Cápsulas)',
+    molecularTarget: '12 isoformas da AMPK',
+    evidenceLevel: 'ESTUDO CLÍNICO INICIAL',
+    mechanism: 'Ativa todas as 12 formas de AMPK, aumentando a biogênese mitocondrial, mitofagia, oxidação de gordura e sensibilidade à insulina.',
+    dosage: '0.5 mg/kg base, cápsulas de 100mg diárias.',
+    administration: 'Oral',
+    protocol: 'Ciclos de 4 a 8 semanas, seguidos por uma pausa equivalente.',
+    sideEffects: [{ effect: 'Leve desconforto gastrointestinal', mitigation: 'Ajustar dose ou tomar com alimentos.' }],
+    synergies: ['ss-31', 'mots-c'],
+    researchLinks: [{ title: 'Estudos pré-clínicos sobre OS-01 e longevidade', url: '#', pmid: '0' }],
+    category: PeptideCategory.METABOLISM,
+    secondaryCategories: ['LONGEVITY', 'METABOLISM'],
+    synonyms: ['OS-01', 'Pan-AMPK Activator'],
+    class: 'AMPK Activator',
+    mechanismOfAction: ['Ativa todas as 12 isoformas da AMPK.', 'Acelera a mitofagia e biogênese mitocondrial.']
+  },
+{
     id: 'bpc-157',
     name: 'BPC-157 (Body Protection Compound)',
     tag: 'Recuperação & Reparo Tecidual 🦾',
@@ -331,7 +356,7 @@ export const PROTOCOLS: PeptideDossier[] = [
     molecularTarget: 'Incretina Triagonista',
     evidenceLevel: 'RCT HUMANO',
     mechanism: 'retatrutida é um peptídeo sintético de ação tripla que ativa simultaneamente três receptores hormonais: GIP, GLP-1 e o receptor de glucagon. Essa combinação diferencia a retatrutida de todos os medicamentos anteriores, produzindo resultados de emagrecimento, melhora metabólica e benefícios sistêmicos sem precedentes.',
-    dosage: 'Titulação semanal: 2mg -> 4mg -> 8mg -> 12mg.',
+    dosage: '0.5mg/semana inicial. Aumentar 0.5-1mg a cada 2-4 semanas. Máximo 12mg/semana.',
     administration: 'Subcutânea.',
     protocol: 'O protocolo de 62 semanas é considerado o "Ponto de Reset Metabólico": descontinuar antes deste prazo compromete a consolidação do novo set-point hipotalâmico e aumenta o risco de efeito rebote (yo-yo). Monitoramento de frequência cardíaca é recomendado.',
     clinicalEfficacy: [
@@ -1433,9 +1458,9 @@ export const PROTOCOLS: PeptideDossier[] = [
     molecularTarget: 'Terapia Combinada GLP-1 + Amilina',
     evidenceLevel: 'TRANSLACIONAL',
     mechanism: 'CagriSema aproveita a sinalização hipotalâmica da Semaglutida para silenciar o "food noise" e a sinalização de tronco encefálico da Cagrilintida para garantir saciedade mecânica e sensorial. Resulta em um particionamento metabólico que prioriza a perda de gordura profunda.',
-    dosage: 'Conforme titulação dos componentes (Base 2.4mg/2.4mg).',
+    dosage: '100 a 150 mcg de cada composto por semana. Iniciando em 50-100 mcg de cada composto.',
     administration: 'Subcutânea.',
-    protocol: 'Dose única semanal. Considerado o futuro da medicina metabólica para obesidade mórbida refratária. O "Ponto de Reset" ponderal é atingido com velocidade superior à Tirzepatida.',
+    protocol: 'Dose única semanal. Comece com 50-100 mcg de cada composto e ajuste lentamente para minimizar as náuseas. Pode ser combinado com Tesamorelin, HGH Frag ou AOD-9604 durante recomposição agressiva.',
     clinicalEfficacy: [
       'Projeções de perda superior a 25% do peso corporal.',
       'Sinergia poderosa na redução de HbA1c.',
@@ -2441,7 +2466,7 @@ export const PROTOCOLS: PeptideDossier[] = [
     molecularTarget: 'Enzima NNMT (Nicotinamida N-Metiltransferase)',
     evidenceLevel: 'TRANSLACIONAL',
     mechanism: 'Bloqueia a enzima NNMT que está superexpressa em células adiposas após dietas hipercalóricas. Ao inibir a NNMT, o 5-Amino-1MQ previne o sequestro de grupos metil e preserva o NAD+ celular, forçando o adipócito a queimar ácidos graxos em vez de armazená-los.',
-    dosage: '150mg a 300mg por dia.',
+    dosage: '50 mg/dia inicial (Cápsulas). Até 100 mg/dia máximo para agressivo.',
     administration: 'Oral.',
     protocol: '50mg a 100mg, 3 vezes ao dia com refeições. Excelente para quebrar platôs de perda de gordura refratária. "Ponto de Reset" de resistência muscular após 30 dias de uso.',
     clinicalEfficacy: [
@@ -14109,7 +14134,7 @@ export const PROTOCOLS: PeptideDossier[] = [
       'Endurance'
     ],
     mechanism: 'Instrui as fibras musculares a adotarem um fenótipo de alta endurance e queima de gordura, mesmo em repouso, mimetizando os benefícios genômicos de uma maratona.',
-    dosage: '10mg a 20mg por dia (equivalente humano).',
+    dosage: 'Comece com 250 mcg/dia. Pode ser aumentado para 500-750 mcg/dia se bem tolerado.',
     administration: 'Oral ou Subcutânea.',
     protocol: 'Uso diário. Ponto de Reset de endurance percebido após 3 semanas de administração.',
         researchLinks: [
@@ -33688,149 +33713,51 @@ export const PROTOCOLS: PeptideDossier[] = [
     completenessScore: 100,
     colorHex: '#2dd4bf'
   },
-{
-    id: 'idr-1018',
-    name: 'IDR-1018',
-    tag: '🏥 Imunidade',
-    description: 'Peptídeo de defesa do hospedeiro com propriedades imuno-moduladoras.',
-    image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=600&auto=format&fit=crop',
-    features: [
-      'Defense',
-      'Immune Modulator',
-      'Anti-Infection'
-    ],
-    researchLinks: [
-      { title: 'Estudo Clínico Multicêntrico (Fase III): Perfil de Segurança e Eficácia do IDR-1018', url: 'https://pubmed.ncbi.nlm.nih.gov/33349916/', pmid: '33349916' },
-      { title: 'Análise Farmacocinética e Modulação Sistêmica com uso de IDR-1018', url: 'https://pubmed.ncbi.nlm.nih.gov/26533490/', pmid: '26533490' },
-      { title: 'Ensaios de Longo Prazo: Proteção Metabólica Promovida pelo IDR-1018', url: 'https://pubmed.ncbi.nlm.nih.gov/27810120/', pmid: '27810120' },
-      { title: 'Metanálise: Sinergias e Expressão Gênica (Revisão de 5 Anos) - IDR-1018', url: 'https://pubmed.ncbi.nlm.nih.gov/26710356/', pmid: '26710356' },
-      { title: 'Toxicidade e Tolerabilidade Dose-Dependente em Protocolos com IDR-1018', url: 'https://pubmed.ncbi.nlm.nih.gov/25202092/', pmid: '25202092' }
-    ],
-    category: PeptideCategory.IMUNOLOGIA,
-    secondaryCategories: ['IMUNOLOGIA'],
-    synonyms: [
-      'IDR-1018'
-    ],
-    class: 'Modulador Elite',
-    mechanismOfAction: [
-      'Modulação específica de receptores alvo.',
-      'Ativação de vias intracelulares de sinalização celular.',
-      'Melhora na expressão gênica e resiliência tecidual.'
-    ],
-    clinicalBenefits: [
-      'Expressão modulada da resposta citotóxica em Células T',
-      'Inibição de cascatas excessivas inflamatórias inatas',
-      'Efeito adaptógeno contra injúrias patógenas invasivas',
-      'Imunomodulação sistêmica, reestruturando senescência leucocitária',
-      'Manutenção prolongada do efeito de base sistêmica após a interrupção de ciclo',
-      'Compatibilidade sinérgica avançada com ativadores da mesma via celular',
-      'Manutenção prolongada do efeito de base sistêmica após a interrupção de ciclo',
-      'Compatibilidade sinérgica avançada com ativadores da mesma via celular',
-      'Manutenção prolongada do efeito de base sistêmica após a interrupção de ciclo',
-      'Compatibilidade sinérgica avançada com ativadores da mesma via celular',
-      'Manutenção prolongada do efeito de base sistêmica após a interrupção de ciclo',
-      'Compatibilidade sinérgica avançada com ativadores da mesma via celular',
-      'Manutenção prolongada do efeito de base sistêmica após a interrupção de ciclo',
-      'Compatibilidade sinérgica avançada com ativadores da mesma via celular',
-      'Manutenção prolongada do efeito de base sistêmica após a interrupção de ciclo',
-      'Compatibilidade sinérgica avançada com ativadores da mesma via celular',
-      'Manutenção prolongada do efeito de base sistêmica após a interrupção de ciclo',
-      'Compatibilidade sinérgica avançada com ativadores da mesma via celular',
-      'Manutenção prolongada do efeito de base sistêmica após a interrupção de ciclo',
-      'Compatibilidade sinérgica avançada com ativadores da mesma via celular',
-      'Manutenção prolongada do efeito de base sistêmica após a interrupção de ciclo',
-      'Compatibilidade sinérgica avançada com ativadores da mesma via celular',
-      'Manutenção prolongada do efeito de base sistêmica após a interrupção de ciclo',
-      'Compatibilidade sinérgica avançada com ativadores da mesma via celular',
-      'Manutenção prolongada do efeito de base sistêmica após a interrupção de ciclo',
-      'Compatibilidade sinérgica avançada com ativadores da mesma via celular',
-      'Manutenção prolongada do efeito de base sistêmica após a interrupção de ciclo',
-      'Compatibilidade sinérgica avançada com ativadores da mesma via celular',
-      'Manutenção prolongada do efeito de base sistêmica após a interrupção de ciclo',
-      'Compatibilidade sinérgica avançada com ativadores da mesma via celular',
-      'Manutenção prolongada do efeito de base sistêmica após a interrupção de ciclo',
-      'Compatibilidade sinérgica avançada com ativadores da mesma via celular',
-      'Manutenção prolongada do efeito de base sistêmica após a interrupção de ciclo',
-      'Compatibilidade sinérgica avançada com ativadores da mesma via celular',
-      'Manutenção prolongada do efeito de base sistêmica após a interrupção de ciclo',
-      'Compatibilidade sinérgica avançada com ativadores da mesma via celular',
-      'Manutenção prolongada do efeito de base sistêmica após a interrupção de ciclo',
-      'Compatibilidade sinérgica avançada com ativadores da mesma via celular',
-      'Manutenção prolongada do efeito de base sistêmica após a interrupção de ciclo',
-      'Compatibilidade sinérgica avançada com ativadores da mesma via celular',
-      'Manutenção prolongada do efeito de base sistêmica após a interrupção de ciclo',
-      'Compatibilidade sinérgica avançada com ativadores da mesma via celular',
-      'Manutenção prolongada do efeito de base sistêmica após a interrupção de ciclo',
-      'Compatibilidade sinérgica avançada com ativadores da mesma via celular',
-      'Manutenção prolongada do efeito de base sistêmica após a interrupção de ciclo',
-      'Compatibilidade sinérgica avançada com ativadores da mesma via celular',
-      'Manutenção prolongada do efeito de base sistêmica após a interrupção de ciclo',
-      'Compatibilidade sinérgica avançada com ativadores da mesma via celular',
-      'Manutenção prolongada do efeito de base sistêmica após a interrupção de ciclo',
-      'Compatibilidade sinérgica avançada com ativadores da mesma via celular',
-      'Manutenção prolongada do efeito de base sistêmica após a interrupção de ciclo',
-      'Compatibilidade sinérgica avançada com ativadores da mesma via celular',
-      'Manutenção prolongada do efeito de base sistêmica após a interrupção de ciclo',
-      'Compatibilidade sinérgica avançada com ativadores da mesma via celular',
-      'Manutenção prolongada do efeito de base sistêmica após a interrupção de ciclo',
-      'Compatibilidade sinérgica avançada com ativadores da mesma via celular',
-      'Manutenção prolongada do efeito de base sistêmica após a interrupção de ciclo',
-      'Compatibilidade sinérgica avançada com ativadores da mesma via celular',
-      'Manutenção prolongada do efeito de base sistêmica após a interrupção de ciclo',
-      'Compatibilidade sinérgica avançada com ativadores da mesma via celular',
-      'Manutenção prolongada do efeito de base sistêmica após a interrupção de ciclo',
-      'Compatibilidade sinérgica avançada com ativadores da mesma via celular',
-      'Manutenção prolongada do efeito de base sistêmica após a interrupção de ciclo',
-      'Compatibilidade sinérgica avançada com ativadores da mesma via celular',
-      'Manutenção prolongada do efeito de base sistêmica após a interrupção de ciclo',
-      'Compatibilidade sinérgica avançada com ativadores da mesma via celular'
-    ],
-    dosageProtocol: {
-      standard: 'Dose padrão baseada na meia-vida (ex: 250mcg BID)',
-      titration: [
-        'Semana 1: 50% da dose alvo para adaptação',
-        'Semana 2+: Dose clínica completa'
-      ],
-      maintenance: 'Dose reduzida para uso contínuo (se aplicável)',
-      reconstitution: 'Reconstituir pó liofilizado com 2mL a 3mL de Água Bacteriostática.'
-    },
-    administrationWay: 'Injeção Subcutânea (SC) / Intramuscular (IM) / Oral',
-    cycleAndDuration: 'Ciclo padrão de 8 a 12 semanas seguido de washout.',
-    stacksAndCombinations: [],
-    pharmacologyAndPharmacokinetics: {
-      halfLife: 'Variável (horas a dias)',
-      bioavailability: 'Alta biodisponibilidade nas vias parentéricas',
-      metabolism: 'Degradação proteolítica hepática/renal',
-      sinalizacao: 'Receptor Alvo Modulador / Transdução Intracelular',
-      picoClinico: '4 a 9 semanas',
-      picoBiologico: '3 a 8 dias',
-      notes: [
-        'Monitoramento clínico recomendado para melhores resultados.'
-      ]
-    },
-    adverseEffects: [],
-    scientificEvidence: [
-      'Fase III ou uso off-label com dados consolidados'
-    ],
-    pmids: [
-      '00000000'
-    ],
-    evidenceMatrix: {
-      humanStudies: 4,
-      animalStudies: 5,
-      inVitroStudies: 5,
-      safetyScore: 5,
-      efficacyScore: 5
-    },
-    importantNote: 'Aviso: Peptídeos são biomoléculas ativas, procedência garantida é mandatória.',
-    detailedNarrative: 'Esta molécula compõe o arsenal Prime Excellence. Otimizada para interação e bio-adesão específica em receptores teciduais, atuando onde abordagens tracionais falham. Sua estrutura de aminoácidos promove regulação em vez de supressão de eixos.',
-    completenessScore: 100,
-    colorHex: '#2dd4bf'
-  }
 ];
 
-export const TOTAL_PEPTIDES = 560;
-export const SYNERGY_PROTOCOLS: any[] = [];
+export const SYNERGY_PROTOCOLS: any[] = [
+  {
+    id: 'syn-gordura-agressiva',
+    title: 'Perda de Gordura Agressiva',
+    description: 'Combina a supressão máxima do apetite com a queima de gordura localizada e o aumento do metabolismo mitocondrial.',
+    peptides: ['retatrutida', 'aod-9604', 'mots-c'],
+    effects: ['Supressão extrema de apetite', 'Gasto basal elevado', 'Lipólise direcionada'],
+    duration: '12-16 semanas'
+  },
+  {
+    id: 'syn-reparo-avancado',
+    title: 'Reparo Avançado de Lesões',
+    description: 'Oferece reparo localizado (BPC-157), cura sistêmica (TB-500) e potente controle da inflamação (KPV).',
+    peptides: ['bpc-157', 'tb-500', 'kpv'],
+    effects: ['Regeneração acelerada', 'Controle inflamatório sistêmico e local', 'Reparo de tendões e ligamentos'],
+    duration: '4-8 semanas'
+  },
+  {
+    id: 'syn-longevidade-antiaging',
+    title: 'Antienvelhecimento & Longevidade',
+    description: 'Foca na reparação do DNA, energia celular e saúde mitocondrial para um protocolo completo de longevidade.',
+    peptides: ['epithalon', 'nad', 'ss-31'],
+    effects: ['Reparo de DNA e telômeros', 'Energia celular (ATP)', 'Vitalidade do organismo todo'],
+    duration: 'Ciclos de 10-20 dias (Epithalon) + Uso contínuo (NAD, SS-31)'
+  },
+  {
+    id: 'syn-hipertrofia-maxima',
+    title: 'Máximo Ganho Muscular',
+    description: 'Aumenta drasticamente os pulsos de GH e os níveis de IGF-1, otimizando a síntese de proteínas e reparação.',
+    peptides: ['cjc-1295-no-dac', 'ipamorelina', 'igf-1-lr3'],
+    effects: ['Hipertrofia muscular', 'Síntese de proteína máxima', 'Recuperação noturna'],
+    duration: '8-12 semanas'
+  },
+  {
+    id: 'syn-beleza-cosmetica',
+    title: 'Melhoria Cosmética (Pele & Cabelo)',
+    description: 'Estimula colágeno e folículos (GHK-Cu), repara desgaste da pele (BPC-157) e desintoxica para brilho interno.',
+    peptides: ['ghk-cu-liposomal', 'bpc-157', 'glutationa'],
+    effects: ['Brilho e viço na pele', 'Remodelação de colágeno', 'Crescimento capilar acelerado'],
+    duration: 'Uso contínuo e microagulhamento local'
+  }
+];
+export const TOTAL_PEPTIDES = 563;
 export const SUPPORT_LINK = 'https://wa.me/something';
 export const INSTAGRAM_HANDLE = '@peptiumprime';
 export const INSTAGRAM_LINK = 'https://instagram.com/peptiumprime';

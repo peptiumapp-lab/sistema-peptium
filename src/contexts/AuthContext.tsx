@@ -50,17 +50,20 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         };
 
         let normalizedEmail = user.email ? user.email.toLowerCase().trim() : '';
-        if (normalizedEmail.endsWith('@gmail.com')) {
-          const [username, domain] = normalizedEmail.split('@');
-          normalizedEmail = `${username.replace(/\./g, '')}@${domain}`;
-        }
         
-        const isSuperAdmin = adminEmails.includes(normalizedEmail);
+        const isSuperAdmin = adminEmails.includes(normalizedEmail) || adminEmails.includes(normalizedEmail.replace(/\./g, ''));
         setIsAdmin(isSuperAdmin);
         
         let isTempPro = false;
-        if (tempProUsers[normalizedEmail]) {
-          if (Date.now() < tempProUsers[normalizedEmail]) {
+        let strippedEmail = normalizedEmail;
+        if (normalizedEmail.endsWith('@gmail.com')) {
+          const [username, domain] = normalizedEmail.split('@');
+          strippedEmail = `${username.replace(/\./g, '')}@${domain}`;
+        }
+
+        if (tempProUsers[normalizedEmail] || tempProUsers[strippedEmail]) {
+          const expiration = tempProUsers[normalizedEmail] || tempProUsers[strippedEmail];
+          if (Date.now() < expiration) {
             isTempPro = true;
           }
         }
@@ -98,13 +101,28 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
              const data = docSnapshot.data();
              if (data.expiresAt > Date.now()) {
                 proFromGrant = true;
+                evaluatePro();
              } else {
                 proFromGrant = false;
+                evaluatePro();
              }
+          } else if (strippedEmail !== normalizedEmail) {
+             proFromGrant = false;
+             // Check the stripped version just in case
+             getDoc(doc(db, 'pro_grants', strippedEmail)).then(oldSnap => {
+                if (oldSnap.exists()) {
+                   const data = oldSnap.data();
+                   if (data.expiresAt > Date.now()) {
+                      proFromGrant = true;
+                      evaluatePro();
+                   }
+                }
+             }).catch(e => console.error(e));
+             evaluatePro();
           } else {
              proFromGrant = false;
+             evaluatePro();
           }
-          evaluatePro();
         }, (error) => {
           console.error("Firestore pro grant fetch error:", error);
           proFromGrant = false;

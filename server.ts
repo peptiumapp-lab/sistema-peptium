@@ -2,11 +2,10 @@ import express from "express";
 import path from "path";
 import stackAnalysisRouter from "./server/api/stackAnalysis";
 import protocolAssistantRouter from "./server/api/protocolAssistant";
-import stripeRouter from "./server/api/stripe";
 
 async function startServer() {
   const app = express();
-  const PORT = parseInt(process.env.PORT || "3000", 10);
+  const PORT = 3000;
 
   // GLOBAL LOGGER
   app.use((req, res, next) => {
@@ -37,13 +36,6 @@ async function startServer() {
       }
     });
   });
-
-  // 3. Stripe mounting
-  app.use("/api/stripe", (req, res, next) => {
-    console.log(`[DEBUG] Routers matching for ${req.url}`);
-    next();
-  }, stripeRouter);                
-  console.log('[SERVER] Stripe router mounted at /api/stripe');
 
   // 4. Analysis
   app.use("/api/analyze-stack", stackAnalysisRouter);
