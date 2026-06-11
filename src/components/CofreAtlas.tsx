@@ -107,8 +107,8 @@ export default function CofreAtlas() {
               {error}
             </div>
           ) : protocols.length === 0 ? (
-            <div className="text-center py-12 border border-white/5 bg-white/[0.02] rounded-3xl">
-              <ShieldAlert className="w-12 h-12 text-white/20 mx-auto mb-4" />
+            <div className="text-center py-12 border border-white/15 bg-white/[0.02] rounded-3xl">
+              <ShieldAlert className="w-12 h-12 text-white/40 mx-auto mb-4" />
               <p className="text-white/50 text-sm">Seu cofre está vazio.</p>
             </div>
           ) : (
@@ -117,7 +117,7 @@ export default function CofreAtlas() {
                  <div 
                    key={p.id} 
                    onClick={() => setSelectedProtocol(p)}
-                   className="bg-[#050505] border border-white/10 hover:border-accent/40 hover:bg-white/[0.02] p-6 rounded-2xl cursor-pointer transition-all flex flex-col group relative overflow-hidden"
+                   className="bg-[#050505] border border-white/20 hover:border-accent/40 hover:bg-white/[0.02] p-6 rounded-2xl cursor-pointer transition-all flex flex-col group relative overflow-hidden"
                  >
                    <div className="absolute top-0 right-0 w-32 h-32 bg-accent/5 blur-[50px]" />
                    <div className="flex justify-between items-start mb-4 relative z-10">
@@ -137,7 +137,7 @@ export default function CofreAtlas() {
                      {p.data.physiologicalRationale}
                    </p>
                    
-                   <div className="mt-6 flex items-center justify-between text-[10px] text-white/40 uppercase font-black tracking-widest relative z-10">
+                   <div className="mt-6 flex items-center justify-between text-[10px] text-white/60 uppercase font-black tracking-widest relative z-10">
                      <span className="flex items-center gap-1">
                        <Clock size={12} /> {p.createdAt ? new Date(p.createdAt.toMillis()).toLocaleDateString('pt-BR') : 'Data desconhecida'}
                      </span>
@@ -158,7 +158,7 @@ export default function CofreAtlas() {
 function ProtocolViewer({ protocol: result }: { protocol: any }) {
   if (!result) return null;
   return (
-    <div className="border border-white/10 rounded-[2.5rem] p-6 lg:p-10 relative bg-[#050505] shadow-2xl overflow-hidden">
+    <div className="border border-white/20 rounded-[2.5rem] p-6 lg:p-10 relative bg-[#050505] shadow-2xl overflow-hidden">
       {/* Copied from AiGenerator.tsx display area */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-accent/5 blur-[120px] rounded-full pointer-events-none" />
       
@@ -169,7 +169,7 @@ function ProtocolViewer({ protocol: result }: { protocol: any }) {
           </h3>
         </div>
 
-        <div className="border border-white/5 rounded-[1.5rem] p-6 lg:p-8 bg-white/[0.02]">
+        <div className="border border-white/15 rounded-[1.5rem] p-6 lg:p-8 bg-white/[0.02]">
           <div className="flex items-center gap-2 text-accent text-xs font-black uppercase tracking-widest mb-6">
             <Sparkles size={16}/> Vantagens Diretas
           </div>
@@ -196,30 +196,30 @@ function ProtocolViewer({ protocol: result }: { protocol: any }) {
         </div>
 
         <div className="space-y-6 pt-6">
-           <div className="flex items-center gap-2 text-white text-sm font-black uppercase tracking-widest mb-6 border-b border-white/5 pb-4">
+           <div className="flex items-center gap-2 text-white text-sm font-black uppercase tracking-widest mb-6 border-b border-white/15 pb-4">
               <Activity className="text-accent" size={18}/> Matriz de Compostos Core
            </div>
            
            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               {(result.coreCompounds || []).map((comp: any, idx: number) => (
-                 <div key={idx} className="p-6 rounded-[2rem] border border-white/10 bg-[#070707] flex flex-col hover:border-accent/30 transition-all">
+                 <div key={idx} className="p-6 rounded-[2rem] border border-white/20 bg-[#070707] flex flex-col hover:border-accent/30 transition-all">
                     <h4 className="text-xl font-black text-accent uppercase italic tracking-tighter mb-2">{comp.name}</h4>
                     <div className="inline-block border border-white/20 text-white/50 text-[10px] uppercase font-bold tracking-widest px-2 py-0.5 rounded mb-4 w-fit">
                        {comp.name.toLowerCase()}
                     </div>
                     <p className="text-xs text-white/70 mb-6 flex-grow">{comp.action}</p>
         
-                    <div className="mt-auto border border-white/5 rounded-xl p-4 bg-white/[0.02] space-y-3">
-                       <div className="flex justify-between items-center pb-3 border-b border-white/5">
-                          <span className="text-[10px] uppercase tracking-widest text-white/40 font-bold">Dose Inicial</span>
+                    <div className="mt-auto border border-white/15 rounded-xl p-4 bg-white/[0.02] space-y-3">
+                       <div className="flex justify-between items-center pb-3 border-b border-white/15">
+                          <span className="text-[10px] uppercase tracking-widest text-white/60 font-bold">Dose Inicial</span>
                           <span className="text-xs font-bold text-white text-right ml-4">{comp.initialDose}</span>
                        </div>
-                       <div className="flex justify-between items-center pb-3 border-b border-white/5">
-                          <span className="text-[10px] uppercase tracking-widest text-white/40 font-bold">Dose Manutenção</span>
+                       <div className="flex justify-between items-center pb-3 border-b border-white/15">
+                          <span className="text-[10px] uppercase tracking-widest text-white/60 font-bold">Dose Manutenção</span>
                           <span className="text-xs font-bold text-accent text-right ml-4">{comp.maintenanceDose}</span>
                        </div>
                        <div className="flex justify-between items-center pt-1">
-                          <span className="text-[10px] uppercase tracking-widest text-white/40 font-bold flex items-center gap-1 shrink-0"><Clock size={12}/> Horário</span>
+                          <span className="text-[10px] uppercase tracking-widest text-white/60 font-bold flex items-center gap-1 shrink-0"><Clock size={12}/> Horário</span>
                           <span className="text-[10px] font-medium text-white/80 max-w-[200px] text-right">{comp.bestTime}</span>
                        </div>
                     </div>
@@ -248,7 +248,7 @@ function ProtocolViewer({ protocol: result }: { protocol: any }) {
         </div>
 
         <div className="space-y-6 pt-8">
-           <div className="flex items-center gap-2 text-white text-sm font-black uppercase tracking-widest mb-6 border-b border-white/5 pb-4">
+           <div className="flex items-center gap-2 text-white text-sm font-black uppercase tracking-widest mb-6 border-b border-white/15 pb-4">
               <Shield className="text-orange-500" size={18}/> Matriz de Mitigação
            </div>
            
@@ -275,7 +275,7 @@ function ProtocolViewer({ protocol: result }: { protocol: any }) {
         </div>
 
         {result.applicationManual && (
-           <div className="space-y-6 pt-8 border-t border-white/5 mt-8">
+           <div className="space-y-6 pt-8 border-t border-white/15 mt-8">
               <div className="flex items-center gap-2 text-white text-sm font-black uppercase tracking-widest mb-6 pb-4">
                  <AlertTriangle className="text-fuchsia-500" size={18}/> Manual Prático de Aplicação
               </div>

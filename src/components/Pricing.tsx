@@ -107,7 +107,7 @@ export default function Pricing() {
           >
             {t('pricing.title')}
           </motion.h2>
-          <p className="text-secondary/40 max-w-2xl mx-auto text-[11px] font-bold uppercase tracking-widest leading-relaxed">
+          <p className="text-secondary/60 max-w-2xl mx-auto text-[11px] font-bold uppercase tracking-widest leading-relaxed">
             {t('pricing.subtitle')}
           </p>
           {couponCode && (
@@ -138,7 +138,7 @@ export default function Pricing() {
                   {plan.tag}
                 </div>
               )}
-              <div className={`glass-card rounded-2xl p-6 border border-secondary/10 flex flex-col h-full ${
+              <div className={`glass-card rounded-2xl p-6 border border-secondary/20 flex flex-col h-full ${
                 plan.premium ? 'ring-[1px] ring-accent shadow-[0_0_30px_rgba(20,255,180,0.05)]' : ''
               }`}>
                 <div className="mb-6 text-center sm:text-left">

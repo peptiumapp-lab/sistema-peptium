@@ -39,7 +39,7 @@ class ErrorBoundary extends React.Component<Props, State> {
             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
           </div>
           <h2 className="text-xl font-bold text-white mb-2 uppercase tracking-tighter italic">Erro no Sistema Neural</h2>
-          <p className="text-white/40 text-sm max-w-md mb-6 uppercase tracking-widest leading-relaxed">
+          <p className="text-white/60 text-sm max-w-md mb-6 uppercase tracking-widest leading-relaxed">
             Ocorreu uma falha inesperada ao processar esta visualização.
           </p>
           <div className="bg-red-500/5 p-4 rounded-xl border border-red-500/10 mb-8 w-full max-w-lg overflow-auto">

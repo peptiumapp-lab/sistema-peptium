@@ -58,13 +58,13 @@ export default function PlaceholderView({ view, setView }: PlaceholderViewProps)
 
   return (
     <div className="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto min-h-[80vh] flex flex-col items-center justify-center text-center">
-      <div className="bg-white/5 border border-white/10 rounded-3xl p-12 max-w-2xl w-full backdrop-blur-sm relative overflow-hidden">
+      <div className="bg-white/10 border border-white/20 rounded-3xl p-12 max-w-2xl w-full backdrop-blur-sm relative overflow-hidden">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[2px] bg-gradient-to-r from-transparent via-accent to-transparent opacity-50" />
         
         <div className="flex justify-center flex-col items-center">
           <div className="relative">
             <div className="absolute inset-0 bg-accent/20 blur-2xl rounded-full" />
-            <div className="relative z-10 bg-black border border-white/10 p-6 rounded-2xl mb-8">
+            <div className="relative z-10 bg-black border border-white/20 p-6 rounded-2xl mb-8">
               {details.icon}
             </div>
           </div>
@@ -80,7 +80,7 @@ export default function PlaceholderView({ view, setView }: PlaceholderViewProps)
             {details.title}
           </h2>
           
-          <p className="text-white/40 text-xs md:text-sm font-medium leading-relaxed max-w-lg mb-10">
+          <p className="text-white/60 text-xs md:text-sm font-medium leading-relaxed max-w-lg mb-10">
             {details.description}
           </p>
 

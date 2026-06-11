@@ -52,10 +52,10 @@ export default function ProtocolModal({ protocol, onClose, onViewPeptide, onLoad
           initial={{ opacity: 0, scale: 0.95, y: 30 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 30 }}
-          className="relative w-full max-w-5xl bg-[#080808] border border-white/10 rounded-[48px] overflow-hidden shadow-2xl flex flex-col max-h-[92vh]"
+          className="relative w-full max-w-5xl bg-[#080808] border border-white/20 rounded-[48px] overflow-hidden shadow-2xl flex flex-col max-h-[92vh]"
         >
           {/* Header */}
-          <div className="px-10 py-10 border-b border-white/5 flex flex-col md:flex-row md:items-center justify-between gap-8 bg-gradient-to-br from-accent/[0.03] to-transparent">
+          <div className="px-10 py-10 border-b border-white/15 flex flex-col md:flex-row md:items-center justify-between gap-8 bg-gradient-to-br from-accent/[0.03] to-transparent">
             <div className="flex items-center gap-6">
               <div className="w-16 h-16 rounded-[24px] bg-accent/10 border border-accent/20 flex items-center justify-center text-accent relative">
                 <div className="absolute inset-0 bg-accent/20 blur-2xl rounded-full" />
@@ -67,12 +67,12 @@ export default function ProtocolModal({ protocol, onClose, onViewPeptide, onLoad
               </div>
             </div>
 
-            <div className="flex bg-white/5 p-1 rounded-2xl border border-white/5">
+            <div className="flex bg-white/10 p-1 rounded-2xl border border-white/15">
               {tabs.map((tab) => (
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id as any)}
-                  className={`flex items-center gap-2 px-6 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all ${activeTab === tab.id ? 'bg-accent text-black shadow-lg' : 'text-white/40 hover:text-white'}`}
+                  className={`flex items-center gap-2 px-6 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all ${activeTab === tab.id ? 'bg-accent text-black shadow-lg' : 'text-white/60 hover:text-white'}`}
                 >
                   {tab.icon} {tab.name}
                 </button>
@@ -81,7 +81,7 @@ export default function ProtocolModal({ protocol, onClose, onViewPeptide, onLoad
 
             <button 
               onClick={onClose}
-              className="absolute top-8 right-8 w-12 h-12 rounded-full bg-white/5 flex items-center justify-center text-white/40 hover:text-white hover:bg-white/10 transition-all border border-white/5"
+              className="absolute top-8 right-8 w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white/60 hover:text-white hover:bg-white/20 transition-all border border-white/15"
             >
               <X size={24} />
             </button>
@@ -110,15 +110,15 @@ export default function ProtocolModal({ protocol, onClose, onViewPeptide, onLoad
                       </div>
 
                       <div className="grid grid-cols-2 gap-6">
-                        <div className="p-6 bg-white/[0.02] border border-white/5 rounded-3xl space-y-3">
-                          <div className="flex items-center gap-2 text-white/20">
+                        <div className="p-6 bg-white/[0.02] border border-white/15 rounded-3xl space-y-3">
+                          <div className="flex items-center gap-2 text-white/40">
                             <Clock size={14} />
                             <span className="text-[8px] font-black uppercase tracking-widest">Duração</span>
                           </div>
                           <div className="text-lg font-black text-white uppercase italic">{protocol.duration}</div>
                         </div>
-                        <div className="p-6 bg-white/[0.02] border border-white/5 rounded-3xl space-y-3">
-                          <div className="flex items-center gap-2 text-white/20">
+                        <div className="p-6 bg-white/[0.02] border border-white/15 rounded-3xl space-y-3">
+                          <div className="flex items-center gap-2 text-white/40">
                             <Shield size={14} />
                             <span className="text-[8px] font-black uppercase tracking-widest">Segurança</span>
                           </div>
@@ -130,7 +130,7 @@ export default function ProtocolModal({ protocol, onClose, onViewPeptide, onLoad
                          <h4 className="text-[10px] font-black text-white/30 uppercase tracking-[0.3em]">Impacto Sistêmico Estimado</h4>
                          <div className="space-y-3">
                             {protocol.benefits.map((benefit, i) => (
-                              <div key={i} className="flex items-center gap-4 p-5 bg-white/[0.01] border border-white/5 rounded-[20px] transition-all hover:bg-white/[0.03]">
+                              <div key={i} className="flex items-center gap-4 p-5 bg-white/[0.01] border border-white/15 rounded-[20px] transition-all hover:bg-white/[0.03]">
                                 <div className="w-8 h-8 rounded-lg bg-accent/20 flex items-center justify-center shrink-0">
                                   <CheckCircle2 size={16} className="text-accent" />
                                 </div>
@@ -144,13 +144,13 @@ export default function ProtocolModal({ protocol, onClose, onViewPeptide, onLoad
                     <div className="space-y-8">
                        <div className="flex items-center justify-between">
                          <h4 className="text-[11px] font-black text-accent uppercase tracking-[0.3em]">Compostos na Malha</h4>
-                         <span className="px-3 py-1 bg-white/5 rounded-full text-[8px] font-black text-white/40 uppercase tracking-widest">{protocol.peptides.length} Bio-Moléculas</span>
+                         <span className="px-3 py-1 bg-white/10 rounded-full text-[8px] font-black text-white/60 uppercase tracking-widest">{protocol.peptides.length} Bio-Moléculas</span>
                        </div>
                        <div className="space-y-4">
                          {protocolPeptides.map((peptide) => (
                            <div 
                              key={peptide.id}
-                             className="p-6 rounded-[24px] bg-white/[0.03] border border-white/5 hover:border-accent/40 transition-all group relative overflow-hidden"
+                             className="p-6 rounded-[24px] bg-white/[0.03] border border-white/15 hover:border-accent/40 transition-all group relative overflow-hidden"
                            >
                              <div className="absolute top-0 right-0 p-6 opacity-0 group-hover:opacity-10 transition-opacity">
                                <Zap size={48} className="text-accent" />
@@ -162,7 +162,7 @@ export default function ProtocolModal({ protocol, onClose, onViewPeptide, onLoad
                                </div>
                                <button 
                                  onClick={() => onViewPeptide(peptide.id)}
-                                 className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white/40 hover:text-white hover:bg-accent hover:text-black transition-all border border-white/5"
+                                 className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white/60 hover:text-white hover:bg-accent hover:text-black transition-all border border-white/15"
                                >
                                  <ArrowRight size={18} />
                                </button>
@@ -197,7 +197,7 @@ export default function ProtocolModal({ protocol, onClose, onViewPeptide, onLoad
                            <div className="w-1 h-8 bg-accent rounded-full" />
                            <h4 className="text-[11px] font-black text-accent uppercase tracking-[0.3em]">Dosagem Sistêmica</h4>
                         </div>
-                        <div className="p-8 bg-white/[0.02] border border-white/5 rounded-[32px] space-y-4">
+                        <div className="p-8 bg-white/[0.02] border border-white/15 rounded-[32px] space-y-4">
                            <div className="flex items-center gap-2 text-accent">
                              <Beaker size={20} />
                              <span className="text-[10px] font-black uppercase tracking-widest">Protocolo Sugerido</span>
@@ -213,8 +213,8 @@ export default function ProtocolModal({ protocol, onClose, onViewPeptide, onLoad
                            <div className="w-1 h-8 bg-accent rounded-full" />
                            <h4 className="text-[11px] font-black text-accent uppercase tracking-[0.3em]">Via de Administração</h4>
                         </div>
-                        <div className="p-8 bg-white/[0.02] border border-white/5 rounded-[32px] space-y-2">
-                           <div className="text-white/40 text-[9px] font-black uppercase tracking-widest mb-2">Padrão Operacional:</div>
+                        <div className="p-8 bg-white/[0.02] border border-white/15 rounded-[32px] space-y-2">
+                           <div className="text-white/60 text-[9px] font-black uppercase tracking-widest mb-2">Padrão Operacional:</div>
                            <p className="text-lg font-black text-white uppercase italic tracking-tight">
                              {protocol.administrationMode || 'Administração variável dependendo do objetivo clínico.'}
                            </p>
@@ -226,8 +226,8 @@ export default function ProtocolModal({ protocol, onClose, onViewPeptide, onLoad
                        <h4 className="text-[11px] font-black text-accent uppercase tracking-[0.3em]">Monitoramento de Sucesso</h4>
                        <div className="space-y-4">
                          {(protocol.clinicalMarkers || ['Marcador Bioquímico Baseline', 'Variação da Frequência Cardíaca', 'Qualidade do Sono']).map((marker, i) => (
-                           <div key={i} className="flex items-center gap-4 p-5 bg-white/[0.01] border border-white/5 rounded-2xl group">
-                             <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-white/20 group-hover:text-accent transition-colors">
+                           <div key={i} className="flex items-center gap-4 p-5 bg-white/[0.01] border border-white/15 rounded-2xl group">
+                             <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-white/40 group-hover:text-accent transition-colors">
                                <Activity size={18} />
                              </div>
                              <span className="text-[11px] font-black text-white/50 uppercase tracking-widest">{marker}</span>
@@ -240,7 +240,7 @@ export default function ProtocolModal({ protocol, onClose, onViewPeptide, onLoad
                            <Zap size={14} />
                            <span className="text-[9px] font-black uppercase tracking-widest">Otimização Prime</span>
                          </div>
-                         <p className="text-[10px] font-black text-white/40 uppercase tracking-widest leading-relaxed">
+                         <p className="text-[10px] font-black text-white/60 uppercase tracking-widest leading-relaxed">
                            Membros Prime tem acesso a consultores especialistas para ajuste fino de dosagem baseado em exames de laboratório.
                          </p>
                        </div>
@@ -264,7 +264,7 @@ export default function ProtocolModal({ protocol, onClose, onViewPeptide, onLoad
                         </div>
                         <div className="space-y-4">
                            {(protocol.scientificBasis || ['Estudos em revisão de pares no PubMed', 'Conformidade com padrões WADA de pesquisa', 'Ensaios clínicos de fase II/III de referência']).map((science, i) => (
-                             <div key={i} className="flex items-start gap-4 p-6 bg-white/[0.02] border border-white/5 rounded-3xl">
+                             <div key={i} className="flex items-start gap-4 p-6 bg-white/[0.02] border border-white/15 rounded-3xl">
                                <BookOpen size={20} className="text-accent mt-1 shrink-0" />
                                <p className="text-[11px] font-black text-white/60 uppercase tracking-widest leading-relaxed italic">
                                  {science}
@@ -289,13 +289,13 @@ export default function ProtocolModal({ protocol, onClose, onViewPeptide, onLoad
                        </div>
                        
                        <div className="grid grid-cols-2 gap-4">
-                          <div className="p-6 bg-white/[0.02] border border-white/5 rounded-3xl text-center">
+                          <div className="p-6 bg-white/[0.02] border border-white/15 rounded-3xl text-center">
                              <div className="text-2xl font-black text-accent mb-1 italic">98%</div>
-                             <div className="text-[8px] font-black text-white/20 uppercase tracking-widest">Taxa de Resposta</div>
+                             <div className="text-[8px] font-black text-white/40 uppercase tracking-widest">Taxa de Resposta</div>
                           </div>
-                          <div className="p-6 bg-white/[0.02] border border-white/5 rounded-3xl text-center">
+                          <div className="p-6 bg-white/[0.02] border border-white/15 rounded-3xl text-center">
                              <div className="text-2xl font-black text-accent mb-1 italic">1.2k</div>
-                             <div className="text-[8px] font-black text-white/20 uppercase tracking-widest">Citações PubMed</div>
+                             <div className="text-[8px] font-black text-white/40 uppercase tracking-widest">Citações PubMed</div>
                           </div>
                        </div>
                     </div>
@@ -306,7 +306,7 @@ export default function ProtocolModal({ protocol, onClose, onViewPeptide, onLoad
           </div>
 
           {/* Footer Action */}
-          <div className="px-10 py-10 border-t border-white/5 bg-black/40 backdrop-blur-xl flex flex-col md:flex-row gap-4 items-center">
+          <div className="px-10 py-10 border-t border-white/15 bg-black/40 backdrop-blur-xl flex flex-col md:flex-row gap-4 items-center">
             <button 
               onClick={() => {
                 if (onLoadProtocol) {

@@ -52,7 +52,7 @@ export default function PeptideArticle({
         </button>
 
         {/* Article Header */}
-        <div className="p-8 md:p-12 rounded-[40px] bg-secondary/[0.02] border border-white/5 space-y-6 mb-12 overflow-hidden relative">
+        <div className="p-8 md:p-12 rounded-[40px] bg-secondary/[0.02] border border-white/15 space-y-6 mb-12 overflow-hidden relative">
           {image && (
             <div className="absolute inset-0 opacity-10 grayscale hover:grayscale-0 transition-all duration-1000">
               <img src={image} alt="" className="w-full h-full object-cover" />
@@ -67,10 +67,10 @@ export default function PeptideArticle({
             
             <h1 className="text-4xl md:text-6xl font-sans font-black text-white italic tracking-tighter uppercase leading-[0.9]">
               {title.split(':')[0]} <br />
-              <span className="text-white/40">{title.split(':')[1] || ""}</span>
+              <span className="text-white/60">{title.split(':')[1] || ""}</span>
             </h1>
 
-            <div className="flex flex-wrap items-center gap-6 pt-4 border-t border-white/5">
+            <div className="flex flex-wrap items-center gap-6 pt-4 border-t border-white/15">
               <div className="flex items-center gap-2 text-white/30 text-[10px] font-bold uppercase tracking-widest">
                 <Calendar size={14} /> {date}
               </div>
@@ -90,14 +90,14 @@ export default function PeptideArticle({
                <div className="w-1.5 h-1.5 rounded-full bg-accent" />
                Resumo Analítico
              </h2>
-             <div className="p-8 rounded-[32px] bg-secondary/[0.03] border border-white/5 space-y-4">
+             <div className="p-8 rounded-[32px] bg-secondary/[0.08] border border-white/15 space-y-4">
                <p className="text-lg text-white font-medium italic leading-relaxed">
                  "{summary}"
                </p>
-               <div className="pt-6 border-t border-white/5 grid grid-cols-1 md:grid-cols-2 gap-8">
+               <div className="pt-6 border-t border-white/15 grid grid-cols-1 md:grid-cols-2 gap-8">
                  <div className="space-y-4">
                    <h4 className="text-[10px] font-black text-accent uppercase tracking-widest">Metodologia Sugerida</h4>
-                   <ul className="space-y-2 text-xs font-bold uppercase tracking-wide text-white/40">
+                   <ul className="space-y-2 text-xs font-bold uppercase tracking-wide text-white/60">
                      <li className="flex items-center gap-2"><div className="w-1 h-1 bg-accent rounded-full"/> Protocolo de 12 semanas</li>
                      <li className="flex items-center gap-2"><div className="w-1 h-1 bg-accent rounded-full"/> Monitoramento de IGF-1 basal</li>
                      <li className="flex items-center gap-2"><div className="w-1 h-1 bg-accent rounded-full"/> Administração SubQ noturna</li>
@@ -105,7 +105,7 @@ export default function PeptideArticle({
                  </div>
                  <div className="space-y-4">
                    <h4 className="text-[10px] font-black text-accent uppercase tracking-widest">Impacto Bioquímico</h4>
-                   <ul className="space-y-2 text-xs font-bold uppercase tracking-wide text-white/40">
+                   <ul className="space-y-2 text-xs font-bold uppercase tracking-wide text-white/60">
                      <li className="flex items-center gap-2"><div className="w-1 h-1 bg-accent rounded-full"/> Modulação de receptores GHRH</li>
                      <li className="flex items-center gap-2"><div className="w-1 h-1 bg-accent rounded-full"/> Otimização da reparação celular</li>
                      <li className="flex items-center gap-2"><div className="w-1 h-1 bg-accent rounded-full"/> Redução de marcadores inflamatórios</li>
@@ -123,7 +123,7 @@ export default function PeptideArticle({
                   <Beaker size={24} className="text-accent" />
                   Dados de Excelência Técnica
                 </h2>
-                <div className="px-3 py-1 rounded bg-white/5 border border-white/10 text-[9px] font-black text-white/40 tracking-[0.2em] uppercase">
+                <div className="px-3 py-1 rounded bg-white/10 border border-white/20 text-[9px] font-black text-white/60 tracking-[0.2em] uppercase">
                   Fonte: {technicals.source || 'PubMed / ClinicalTrials.gov'}
                 </div>
               </div>
@@ -135,7 +135,7 @@ export default function PeptideArticle({
                   { label: 'P-Value', value: technicals.p_value || '< 0.05', icon: <ShieldCheck size={14} /> },
                   { label: 'Confiança', value: '95% CI', icon: <ShieldCheck size={14} /> }
                 ].map((stat, i) => ( stat.value && (
-                  <div key={i} className="p-6 rounded-[24px] bg-white/[0.02] border border-white/5 space-y-2">
+                  <div key={i} className="p-6 rounded-[24px] bg-white/[0.02] border border-white/15 space-y-2">
                     <div className="text-accent">{stat.icon}</div>
                     <div className="text-[8px] font-black text-white/30 uppercase tracking-widest">{stat.label}</div>
                     <div className="text-sm font-black text-white">{stat.value}</div>
@@ -176,7 +176,7 @@ export default function PeptideArticle({
               </div>
               <div className="space-y-2">
                 {references.map((ref, i) => (
-                  <div key={i} className="p-4 rounded-2xl bg-white/[0.01] border border-white/5 text-[10px] font-mono text-white/40 hover:text-white/60 transition-colors">
+                  <div key={i} className="p-4 rounded-2xl bg-white/[0.01] border border-white/15 text-[10px] font-mono text-white/60 hover:text-white/60 transition-colors">
                     [{String(i + 1).padStart(2, '0')}] {ref}
                   </div>
                 ))}
@@ -264,15 +264,15 @@ export default function PeptideArticle({
             <div className="overflow-x-auto">
               <table className="w-full text-left border-collapse">
                 <thead>
-                  <tr className="border-b border-white/5">
-                    <th className="pb-4 text-[10px] font-black text-white/40 uppercase tracking-widest">Categoria</th>
-                    <th className="pb-4 text-[10px] font-black text-white/40 uppercase tracking-widest">Exemplos</th>
-                    <th className="pb-4 text-[10px] font-black text-white/40 uppercase tracking-widest">Principal Função</th>
+                  <tr className="border-b border-white/15">
+                    <th className="pb-4 text-[10px] font-black text-white/60 uppercase tracking-widest">Categoria</th>
+                    <th className="pb-4 text-[10px] font-black text-white/60 uppercase tracking-widest">Exemplos</th>
+                    <th className="pb-4 text-[10px] font-black text-white/60 uppercase tracking-widest">Principal Função</th>
                   </tr>
                 </thead>
                 <tbody className="text-sm">
                   {classifications.map((row, i) => (
-                    <tr key={i} className="border-b border-white/5 hover:bg-white/[0.01] transition-colors">
+                    <tr key={i} className="border-b border-white/15 hover:bg-white/[0.01] transition-colors">
                       <td className="py-6 font-black text-white uppercase italic pr-8">{row.category}</td>
                       <td className="py-6 font-mono text-xs text-accent pr-8">{row.examples}</td>
                       <td className="py-6 text-white/50 font-medium leading-tight">{row.function}</td>

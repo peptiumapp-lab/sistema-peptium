@@ -220,14 +220,14 @@ function AppContent() {
                       ATLAS DE <br/>
                       <span className="text-accent underline decoration-accent underline-offset-[8px]">COMPOSTOS</span>
                     </h2>
-                    <p className="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] max-w-2xl leading-relaxed italic">
+                    <p className="text-white/60 text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] max-w-2xl leading-relaxed italic">
                       A maior biblioteca técnica de peptídeos e SARMs do mundo. <br/>
                       <span className="text-white">Explore os 9 pilares da performance ou acesse o catálogo completo.</span>
                     </p>
                   </div>
                   
                   <div className="flex flex-col items-end gap-6">
-                    <div className="flex items-center gap-8 px-8 py-4 bg-white/5 border border-white/10 rounded-2xl backdrop-blur-sm">
+                    <div className="flex items-center gap-8 px-8 py-4 bg-white/10 border border-white/20 rounded-2xl backdrop-blur-sm">
                       <div className="text-center">
                         <div className="text-xl font-black text-white leading-none">{TOTAL_PEPTIDES}</div>
                         <div className="text-[8px] font-black text-accent uppercase tracking-widest mt-1">Moléculas</div>
@@ -242,7 +242,7 @@ function AppContent() {
                 </div>
 
                 {/* High-Tech Categories Grid */}
-                <div className="mb-12 pb-8 border-b border-white/5">
+                <div className="mb-12 pb-8 border-b border-white/15">
                   <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-2">
                     {Object.values(PeptideCategory).sort().map((cat, i) => (
                       <div 
@@ -252,10 +252,10 @@ function AppContent() {
                           setCurrentView('library');
                           window.scrollTo(0, 0);
                         }}
-                        className="px-3 py-2 bg-white/[0.02] border border-white/5 hover:border-accent/30 hover:bg-accent/5 rounded-lg transition-all group flex items-center gap-2 cursor-pointer select-none"
+                        className="px-3 py-2 bg-white/[0.02] border border-white/15 hover:border-accent/30 hover:bg-accent/5 rounded-lg transition-all group flex items-center gap-2 cursor-pointer select-none"
                       >
                         <div className="w-1 h-1 rounded-full bg-accent/30 group-hover:bg-accent animate-pulse" />
-                        <span className="text-[12px] font-black text-white/40 group-hover:text-white uppercase tracking-widest truncate">{cat}</span>
+                        <span className="text-[12px] font-black text-white/60 group-hover:text-white uppercase tracking-widest truncate">{cat}</span>
                       </div>
                     ))}
                   </div>
@@ -303,7 +303,7 @@ function AppContent() {
                     <span className="relative z-10">Explorar Catálogo {isPremium ? 'Completo' : 'Limited'}</span>
                     <div className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
                   </button>
-                  <div className="flex items-center gap-4 text-[9px] font-black text-white/20 uppercase tracking-[0.3em] italic">
+                  <div className="flex items-center gap-4 text-[9px] font-black text-white/40 uppercase tracking-[0.3em] italic">
                     <div className="w-8 h-px bg-white/10" />
                     {isPremium ? 'Acesso Total Liberado' : 'Contém Itens com Acesso Restrito'}
                     <div className="w-8 h-px bg-white/10" />
@@ -358,7 +358,7 @@ function AppContent() {
             
             <SupportButton />
             
-            <footer className="py-16 bg-primary border-t border-secondary/5 relative overflow-hidden">
+            <footer className="py-16 bg-primary border-t border-secondary/15 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
             <div className="col-span-2 space-y-6">
@@ -416,9 +416,9 @@ function AppContent() {
             </div>
           </div>
           
-          <div className="flex flex-col md:flex-row justify-between items-center gap-6 pt-10 border-t border-secondary/5">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-6 pt-10 border-t border-secondary/15">
             <div className="flex flex-col gap-1">
-              <p className="text-[8px] font-bold text-secondary/20 uppercase tracking-widest">
+              <p className="text-[8px] font-bold text-secondary/40 uppercase tracking-widest">
                 © 2026 Peptium Prime. Scientific Research Purpose Only.
               </p>
               <div className="flex items-center gap-2">

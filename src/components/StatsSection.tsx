@@ -42,7 +42,7 @@ export default function StatsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="relative group p-4 rounded-2xl bg-secondary/[0.01] border border-secondary/5 hover:border-accent/20 transition-all text-center"
+              className="relative group p-4 rounded-2xl bg-secondary/[0.01] border border-secondary/15 hover:border-accent/20 transition-all text-center"
             >
               <div className="absolute inset-0 bg-accent/5 blur-[20px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
               
@@ -73,7 +73,7 @@ export default function StatsSection() {
         >
           <div className="text-[12px] font-black text-accent/50 uppercase tracking-[0.4em] mb-2">Protocolos estruturados sob dados de:</div>
           
-          <div className="flex flex-wrap items-center justify-center gap-10 px-12 py-8 rounded-3xl bg-secondary/[0.01] border border-secondary/5">
+          <div className="flex flex-wrap items-center justify-center gap-10 px-12 py-8 rounded-3xl bg-secondary/[0.01] border border-secondary/15">
             {/* NIH */}
             <div className="flex items-center gap-4">
               <div className="px-3 py-1 bg-[#1F3E6C] rounded text-white text-xs font-bold">NIH</div>

@@ -26,11 +26,11 @@ export default function BioHackingMap({ isStandalone }: BioHackingMapProps) {
           <h2 className="text-4xl font-black text-white uppercase tracking-tighter italic">
             MAPA DE <span className="text-accent">BIO-HACKING</span>
           </h2>
-          <p className="text-[10px] text-white/40 font-bold uppercase tracking-[0.3em]">Visão interconectada de rotas biológicas e sinergias</p>
+          <p className="text-[10px] text-white/60 font-bold uppercase tracking-[0.3em]">Visão interconectada de rotas biológicas e sinergias</p>
         </div>
       </div>
 
-      <div className="bg-white/5 border border-white/10 rounded-3xl p-6 md:p-10 backdrop-blur-sm relative overflow-hidden">
+      <div className="bg-white/10 border border-white/20 rounded-3xl p-6 md:p-10 backdrop-blur-sm relative overflow-hidden">
         {/* Background Grid decorative */}
         <div className="absolute inset-0 z-0 opacity-10 pointer-events-none" 
              style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(255,255,255,0.15) 1px, transparent 0)', backgroundSize: '32px 32px' }} />
@@ -44,7 +44,7 @@ export default function BioHackingMap({ isStandalone }: BioHackingMapProps) {
                 className={`flex items-center gap-2 px-6 py-3 rounded-xl border transition-all ${
                   activePathway === p.id 
                     ? 'bg-accent/10 border-accent/30 text-accent'
-                    : 'bg-black/30 border-white/10 text-white/40 hover:bg-white/5 hover:text-white'
+                    : 'bg-black/30 border-white/20 text-white/60 hover:bg-white/20 hover:text-white'
                 }`}
               >
                 {p.icon}
@@ -53,7 +53,7 @@ export default function BioHackingMap({ isStandalone }: BioHackingMapProps) {
             ))}
           </div>
 
-          <div className="relative aspect-[2/1] md:aspect-[3/1] bg-black/50 border border-white/10 rounded-2xl flex items-center justify-center p-8">
+          <div className="relative aspect-[2/1] md:aspect-[3/1] bg-black/70 border border-white/20 rounded-2xl flex items-center justify-center p-8">
             <div className="text-center max-w-md mx-auto space-y-4">
                <Zap size={32} className="mx-auto text-accent opacity-50" />
                <h3 className="text-2xl font-black italic text-white uppercase">Mapeamento em Atualização</h3>

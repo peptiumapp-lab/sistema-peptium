@@ -192,13 +192,13 @@ export default function HowToUse() {
 
       <div className="space-y-8">
         {tools.map((tool) => (
-          <div key={tool.id} className="relative bg-[#050505] border border-white/5 rounded-[2.5rem] p-6 lg:p-10 overflow-hidden group hover:border-white/10 transition-colors duration-500">
+          <div key={tool.id} className="relative bg-[#050505] border border-white/15 rounded-[2.5rem] p-6 lg:p-10 overflow-hidden group hover:border-white/20 transition-colors duration-500">
             <div className="absolute top-0 right-0 w-64 h-64 bg-accent/5 blur-[80px] rounded-full pointer-events-none group-hover:bg-accent/10 transition-colors duration-500" />
             
             <div className="relative z-10 flex flex-col md:flex-row gap-8 lg:gap-12 items-start">
               <div className="md:w-1/3 shrink-0">
                 <div className="flex items-center gap-4 mb-4">
-                  <div className="p-3 bg-[#0a0a0a] border border-white/5 rounded-2xl">
+                  <div className="p-3 bg-[#0a0a0a] border border-white/15 rounded-2xl">
                     {tool.icon}
                   </div>
                   <div>
@@ -218,7 +218,7 @@ export default function HowToUse() {
                         {idx + 1}
                       </div>
                       {idx !== tool.steps.length - 1 && (
-                        <div className="w-px h-full bg-white/5 my-1 min-h-[30px]" />
+                        <div className="w-px h-full bg-white/10 my-1 min-h-[30px]" />
                       )}
                     </div>
                     <div className="pb-2">

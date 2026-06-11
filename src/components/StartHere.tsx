@@ -117,7 +117,7 @@ export default function StartHere({ setView }: StartHereProps) {
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 2, duration: 0.8, ease: "circOut" }}
             onClick={() => setView('plans')}
-            className="group relative bg-[#050505]/40 backdrop-blur-xl border border-white/10 p-1.5 rounded-2xl cursor-pointer hover:bg-white/5 transition-all hover:scale-105 active:scale-95 shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden"
+            className="group relative bg-[#050505]/40 backdrop-blur-xl border border-white/20 p-1.5 rounded-2xl cursor-pointer hover:bg-white/20 transition-all hover:scale-105 active:scale-95 shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden"
           >
             {/* Subtle Glow Effect */}
             <div className="absolute inset-0 bg-accent/5 opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -138,8 +138,8 @@ export default function StartHere({ setView }: StartHereProps) {
                 </div>
               </div>
 
-              <div className="ml-4 w-6 h-6 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-accent/20 transition-all">
-                <ArrowRight size={12} className="text-white/40 group-hover:text-accent transition-all" />
+              <div className="ml-4 w-6 h-6 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-accent/20 transition-all">
+                <ArrowRight size={12} className="text-white/60 group-hover:text-accent transition-all" />
               </div>
             </div>
           </motion.div>

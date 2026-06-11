@@ -26,7 +26,7 @@ const ProtocolCard: React.FC<ProtocolCardProps> = ({ protocol, setView, onClick 
         
         {/* Prime Brand Badge - Fixed position at top-right */}
         <div className="absolute top-2.5 right-2.5 flex gap-2 z-20 pointer-events-none">
-           <div className="px-1 py-0.5 bg-black/40 backdrop-blur-sm border border-white/5 rounded flex items-center gap-1">
+           <div className="px-1 py-0.5 bg-black/40 backdrop-blur-sm border border-white/15 rounded flex items-center gap-1">
              <Zap size={6} className="text-secondary/30" />
              <span className="text-[5px] font-black uppercase tracking-[0.1em] text-secondary/30">PRIME</span>
            </div>
@@ -42,11 +42,11 @@ const ProtocolCard: React.FC<ProtocolCardProps> = ({ protocol, setView, onClick 
           <h3 className="text-[13px] font-black font-sans text-white tracking-tight leading-tight uppercase group-hover:text-accent transition-colors italic">{protocol.name}</h3>
         </div>
         
-        <p className="text-white/20 text-[8px] mb-4 leading-relaxed font-bold uppercase tracking-widest line-clamp-2">
+        <p className="text-white/40 text-[8px] mb-4 leading-relaxed font-bold uppercase tracking-widest line-clamp-2">
           {protocol.description}
         </p>
         
-        <div className="mt-auto pt-3 border-t border-white/5 flex items-center justify-between">
+        <div className="mt-auto pt-3 border-t border-white/15 flex items-center justify-between">
           <span className="text-[7px] font-black text-accent uppercase tracking-widest">Acessar Dossiê</span>
           <ArrowUpRight size={12} className="text-accent/40 group-hover:text-accent transition-all" />
         </div>

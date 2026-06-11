@@ -54,7 +54,7 @@ export default function AtlasMatch() {
 
   if (isAnalyzing && step < QUESTIONS.length) {
     return (
-      <div className="min-h-[500px] flex flex-col items-center justify-center space-y-8 bg-black/40 backdrop-blur-3xl rounded-[48px] border border-white/5 p-12">
+      <div className="min-h-[500px] flex flex-col items-center justify-center space-y-8 bg-black/40 backdrop-blur-3xl rounded-[48px] border border-white/15 p-12">
         <div className="relative">
           <motion.div 
             animate={{ rotate: 360 }}
@@ -96,7 +96,7 @@ export default function AtlasMatch() {
               SEU PROTOCOLO <br />
               <span className="text-accent">MIMETIZADOR ELITE</span>
             </h2>
-            <p className="max-w-md text-xs font-bold text-white/40 uppercase tracking-widest leading-relaxed">
+            <p className="max-w-md text-xs font-bold text-white/60 uppercase tracking-widest leading-relaxed">
               Com base no seu perfil de {answers[1]} e nível {answers[2]}, identificamos uma curva de resposta ideal com o seguinte Stack Prime:
             </p>
           </div>
@@ -107,9 +107,9 @@ export default function AtlasMatch() {
                { name: 'Metabolic Key', value: 'MOTS-c Prime' },
                { name: 'Neural Gate', value: 'Selank Elite' }
              ].map((item, i) => (
-               <div key={i} className="p-6 bg-black/40 border border-white/5 rounded-3xl flex items-center justify-between group hover:border-accent/40 transition-all">
+               <div key={i} className="p-6 bg-black/40 border border-white/15 rounded-3xl flex items-center justify-between group hover:border-accent/40 transition-all">
                   <div className="space-y-1">
-                    <div className="text-[8px] font-black text-white/20 uppercase tracking-widest">{item.name}</div>
+                    <div className="text-[8px] font-black text-white/40 uppercase tracking-widest">{item.name}</div>
                     <div className="text-sm font-black text-white uppercase">{item.value}</div>
                   </div>
                   <ChevronRight size={16} className="text-accent group-hover:translate-x-1 transition-transform" />
@@ -131,11 +131,11 @@ export default function AtlasMatch() {
   const currentQuestion = QUESTIONS[step];
 
   return (
-    <div className="bg-white/[0.02] backdrop-blur-3xl rounded-[48px] border border-white/5 p-12 min-h-[500px] flex flex-col">
+    <div className="bg-white/[0.02] backdrop-blur-3xl rounded-[48px] border border-white/15 p-12 min-h-[500px] flex flex-col">
       <div className="flex items-center justify-between mb-12">
         <div className="flex items-center gap-4">
           {step > 0 && (
-            <button onClick={() => setStep(step - 1)} className="p-3 bg-white/5 border border-white/10 rounded-2xl text-white/40 hover:text-white transition-colors">
+            <button onClick={() => setStep(step - 1)} className="p-3 bg-white/10 border border-white/20 rounded-2xl text-white/60 hover:text-white transition-colors">
               <ArrowLeft size={16} />
             </button>
           )}
@@ -148,7 +148,7 @@ export default function AtlasMatch() {
             </div>
           </div>
         </div>
-        <div className="text-[10px] font-black text-white/20 uppercase tracking-widest italic font-sans">Atlas Match v5.4</div>
+        <div className="text-[10px] font-black text-white/40 uppercase tracking-widest italic font-sans">Atlas Match v5.4</div>
       </div>
 
       <AnimatePresence mode="wait">
@@ -170,10 +170,10 @@ export default function AtlasMatch() {
                 <button
                   key={opt.id}
                   onClick={() => handleSelect(String(currentQuestion.id), opt.id)}
-                  className="group relative p-6 bg-white/[0.03] border border-white/5 rounded-3xl text-left hover:border-accent/40 hover:bg-accent/[0.02] transition-all"
+                  className="group relative p-6 bg-white/[0.03] border border-white/15 rounded-3xl text-left hover:border-accent/40 hover:bg-accent/[0.02] transition-all"
                 >
                   <div className="flex items-start gap-4">
-                    <div className="p-3 bg-white/5 border border-white/10 rounded-2xl text-white/20 group-hover:bg-accent group-hover:text-black transition-all">
+                    <div className="p-3 bg-white/10 border border-white/20 rounded-2xl text-white/40 group-hover:bg-accent group-hover:text-black transition-all">
                       <Icon size={20} />
                     </div>
                     <div className="space-y-1">

@@ -61,7 +61,7 @@ export default function CalculatorTeaser({ setView, isPremium }: CalculatorTease
           >
             {/* Mockup do App - Compacted */}
             <div className="relative z-10 glass-card rounded-[40px] p-3 border-secondary/20 shadow-2xl">
-              <div className="bg-primary rounded-[32px] aspect-[9/16] overflow-hidden relative border border-secondary/10">
+              <div className="bg-primary rounded-[32px] aspect-[9/16] overflow-hidden relative border border-secondary/20">
                 <div className="absolute inset-0 bg-gradient-to-b from-accent/10 to-transparent pointer-events-none" />
                 
                 {/* Status Bar */}
@@ -76,23 +76,23 @@ export default function CalculatorTeaser({ setView, isPremium }: CalculatorTease
 
                 <div className="px-6 space-y-6">
                   <div className="space-y-1">
-                    <h4 className="text-secondary/40 text-[10px] uppercase font-bold tracking-widest">Ativo Selecionado</h4>
+                    <h4 className="text-secondary/60 text-[10px] uppercase font-bold tracking-widest">Ativo Selecionado</h4>
                     <div className="text-xl font-extrabold font-sans text-secondary uppercase tracking-tight">Semaglutida Elite</div>
                   </div>
 
-                  <div className="bg-secondary/[0.03] rounded-3xl p-6 border border-secondary/5 text-center relative overflow-hidden">
+                  <div className="bg-secondary/[0.08] rounded-3xl p-6 border border-secondary/15 text-center relative overflow-hidden">
                     <div className="absolute top-0 right-0 p-2"><Zap size={12} className="text-accent" /></div>
                     <span className="block text-4xl font-black text-secondary mb-1">0.25</span>
                     <span className="text-[8px] uppercase font-black text-accent tracking-[0.2em]">Miligramas (mg)</span>
                   </div>
 
                   <div className="space-y-4 pt-4">
-                    <div className="flex justify-between items-end border-b border-secondary/5 pb-2">
-                       <span className="text-[10px] text-secondary/40 uppercase font-bold">Unidades Seringa</span>
+                    <div className="flex justify-between items-end border-b border-secondary/15 pb-2">
+                       <span className="text-[10px] text-secondary/60 uppercase font-bold">Unidades Seringa</span>
                        <span className="text-xl font-black text-secondary">10 UI</span>
                     </div>
-                    <div className="flex justify-between items-end border-b border-secondary/5 pb-2">
-                       <span className="text-[10px] text-secondary/40 uppercase font-bold">Volume Total</span>
+                    <div className="flex justify-between items-end border-b border-secondary/15 pb-2">
+                       <span className="text-[10px] text-secondary/60 uppercase font-bold">Volume Total</span>
                        <span className="text-xl font-black text-secondary">0.10 mL</span>
                     </div>
                   </div>

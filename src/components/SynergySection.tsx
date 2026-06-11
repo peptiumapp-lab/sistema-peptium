@@ -59,14 +59,14 @@ export default function SynergySection({ setView, onSelectProtocol, isStandalone
             </div>
 
             <div className="flex flex-col md:flex-row md:items-center gap-6 pt-4">
-              <p className="text-white/40 text-[11px] md:text-sm font-bold uppercase tracking-[0.2em] max-w-2xl leading-relaxed italic">
+              <p className="text-white/60 text-[11px] md:text-sm font-bold uppercase tracking-[0.2em] max-w-2xl leading-relaxed italic">
                 Descubra os templates mais eficientes testados em campo. <br/>
                 <span className="text-white">Clique em um protocolo para ver a composição e carregar na bancada livre.</span>
               </p>
-              <div className="h-px flex-grow bg-white/5 md:block hidden" />
+              <div className="h-px flex-grow bg-white/10 md:block hidden" />
               <button 
                 onClick={() => setView('stacks')}
-                className="px-6 py-3 bg-white/5 border border-white/10 rounded-2xl flex items-center gap-3 group hover:bg-accent hover:text-black transition-all shadow-xl"
+                className="px-6 py-3 bg-white/10 border border-white/20 rounded-2xl flex items-center gap-3 group hover:bg-accent hover:text-black transition-all shadow-xl"
               >
                 <div className="w-8 h-8 rounded-full bg-accent/20 flex items-center justify-center text-accent group-hover:bg-black group-hover:text-accent transition-all">
                   <Network size={16} />
@@ -91,7 +91,7 @@ export default function SynergySection({ setView, onSelectProtocol, isStandalone
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.05 }}
               viewport={{ once: true }}
-              className="p-6 rounded-[24px] bg-white/[0.02] border border-white/5 hover:border-accent/30 transition-all group relative overflow-hidden flex flex-col justify-between"
+              className="p-6 rounded-[24px] bg-white/[0.02] border border-white/15 hover:border-accent/30 transition-all group relative overflow-hidden flex flex-col justify-between"
             >
               <div className="absolute top-0 right-0 p-6 opacity-0 group-hover:opacity-10 transition-opacity">
                 {getIcon(protocol.icon)}
@@ -108,29 +108,29 @@ export default function SynergySection({ setView, onSelectProtocol, isStandalone
                   </div>
                 </div>
 
-                <p className="text-[10px] font-bold text-white/40 uppercase tracking-widest leading-relaxed line-clamp-3">
+                <p className="text-[10px] font-bold text-white/60 uppercase tracking-widest leading-relaxed line-clamp-3">
                   {protocol.description}
                 </p>
 
                 <div className="space-y-3">
-                  <div className="text-[8px] font-black text-white/20 uppercase tracking-widest flex items-center gap-2">
+                  <div className="text-[8px] font-black text-white/40 uppercase tracking-widest flex items-center gap-2">
                     <ShieldCheck size={10} className="text-accent" /> Benefícios Chave
                   </div>
                   <div className="flex flex-wrap gap-2">
                     {protocol.benefits && Array.isArray(protocol.benefits) ? protocol.benefits.slice(0, 2).map((benefit, j) => (
-                      <span key={j} className="px-3 py-1 bg-white/5 rounded-lg text-[7px] font-black text-white/60 uppercase tracking-widest border border-white/5">
+                      <span key={j} className="px-3 py-1 bg-white/10 rounded-lg text-[7px] font-black text-white/60 uppercase tracking-widest border border-white/15">
                         {benefit}
                       </span>
                     )) : null}
                     {protocol.benefits && protocol.benefits.length > 2 && (
-                      <span className="px-2 py-1 bg-white/5 rounded-lg text-[7px] font-black text-white/40 uppercase tracking-widest">
+                      <span className="px-2 py-1 bg-white/10 rounded-lg text-[7px] font-black text-white/60 uppercase tracking-widest">
                         +{protocol.benefits.length - 2}
                       </span>
                     )}
                   </div>
                 </div>
 
-                <div className="pt-6 border-t border-white/5 flex items-center justify-between mt-auto">
+                <div className="pt-6 border-t border-white/15 flex items-center justify-between mt-auto">
                   <div className="flex items-center gap-2">
                     <Clock size={12} className="text-accent/40" />
                     <span className="text-[9px] font-black text-white/30 uppercase tracking-widest">{protocol.duration}</span>
@@ -154,7 +154,7 @@ export default function SynergySection({ setView, onSelectProtocol, isStandalone
                 setView('synergies');
                 window.scrollTo(0, 0);
               }}
-              className="px-8 py-4 bg-white/5 border border-white/10 rounded-2xl flex items-center gap-3 group hover:bg-white/10 transition-all shadow-xl"
+              className="px-8 py-4 bg-white/10 border border-white/20 rounded-2xl flex items-center gap-3 group hover:bg-white/20 transition-all shadow-xl"
             >
               <div className="w-10 h-10 rounded-full bg-accent/20 flex items-center justify-center text-accent group-hover:bg-accent group-hover:text-black transition-all">
                 <Layers size={18} />
@@ -173,7 +173,7 @@ export default function SynergySection({ setView, onSelectProtocol, isStandalone
         <div className="mt-12 p-6 rounded-[24px] bg-gradient-to-r from-accent/10 to-transparent border border-accent/20 flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="space-y-1">
             <h4 className="text-lg font-sans font-black text-white uppercase italic tracking-tighter">Precisa de um protocolo personalizado?</h4>
-            <p className="text-[9px] font-bold text-white/40 uppercase tracking-widest italic">Acesse o Guided Quiz V2.0 para uma recomendação algorítmica.</p>
+            <p className="text-[9px] font-bold text-white/60 uppercase tracking-widest italic">Acesse o Guided Quiz V2.0 para uma recomendação algorítmica.</p>
           </div>
           <button 
             onClick={() => setView('home')}

@@ -31,7 +31,7 @@ export default function PeptideComparator({ setView, initialPeptideIds = [] }: P
       {setView && (
         <button 
           onClick={() => setView('home')}
-          className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.3em] text-secondary/40 hover:text-accent transition-all group mb-4"
+          className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.3em] text-secondary/60 hover:text-accent transition-all group mb-4"
         >
           <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" />
           Voltar para a Home
@@ -54,7 +54,7 @@ export default function PeptideComparator({ setView, initialPeptideIds = [] }: P
           <h2 className="text-5xl md:text-8xl font-black text-white uppercase tracking-tighter italic leading-[0.8]">
             MODO <span className="text-accent">SANDBOX</span>
           </h2>
-          <p className="text-[12px] md:text-sm text-white/40 font-black uppercase tracking-[0.4em]">Arquitetura Bioquímica de Precisão</p>
+          <p className="text-[12px] md:text-sm text-white/60 font-black uppercase tracking-[0.4em]">Arquitetura Bioquímica de Precisão</p>
         </div>
         
         <p className="text-[12px] md:text-base text-white/50 font-medium leading-relaxed max-w-2xl mx-auto italic">
@@ -69,7 +69,7 @@ export default function PeptideComparator({ setView, initialPeptideIds = [] }: P
             <div className="h-px w-12 bg-white/10" />
           </div>
           
-          <div className="p-2 bg-white/[0.02] border border-white/5 rounded-[32px] inline-flex flex-wrap justify-center gap-2">
+          <div className="p-2 bg-white/[0.02] border border-white/15 rounded-[32px] inline-flex flex-wrap justify-center gap-2">
             {[
               { name: "Gut-Brain Reset", ids: ['bpc-157', 'selank', 'akkermat'], icon: "🧠", tag: "Frequente" },
               { name: "Metabolic Overclock", ids: ['retatrutida', '5-amino-1mq', 'tesofensina'], icon: "⚡", tag: "Queima" },
@@ -128,7 +128,7 @@ export default function PeptideComparator({ setView, initialPeptideIds = [] }: P
             </button>
           )}
           <div className="h-px w-12 bg-white/10" />
-          <div className="text-[8px] font-black text-white/20 uppercase tracking-[0.5em]">Slot {selectedPeptides.length}/3</div>
+          <div className="text-[8px] font-black text-white/40 uppercase tracking-[0.5em]">Slot {selectedPeptides.length}/3</div>
         </div>
       </div>
 
@@ -141,7 +141,7 @@ export default function PeptideComparator({ setView, initialPeptideIds = [] }: P
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              className="glass-card rounded-[48px] border-white/5 bg-white/[0.01] overflow-hidden flex flex-col group/card"
+              className="glass-card rounded-[48px] border-white/15 bg-white/[0.01] overflow-hidden flex flex-col group/card"
             >
               <div className="relative h-64">
                 <img src={p.image} className="w-full h-full object-cover grayscale opacity-40 group-hover/card:grayscale-0 group-hover/card:opacity-60 transition-all duration-700" alt={p.name} />
@@ -149,7 +149,7 @@ export default function PeptideComparator({ setView, initialPeptideIds = [] }: P
                 
                 <button 
                   onClick={() => togglePeptide(p.id)}
-                  className="absolute top-6 right-6 w-10 h-10 rounded-full bg-black/60 border border-white/10 flex items-center justify-center text-white/40 hover:bg-red-500 hover:text-white transition-all opacity-0 group-hover/card:opacity-100"
+                  className="absolute top-6 right-6 w-10 h-10 rounded-full bg-black/60 border border-white/20 flex items-center justify-center text-white/60 hover:bg-red-500 hover:text-white transition-all opacity-0 group-hover/card:opacity-100"
                 >
                   <X size={18} />
                 </button>
@@ -166,7 +166,7 @@ export default function PeptideComparator({ setView, initialPeptideIds = [] }: P
               <div className="p-8 space-y-10 flex-grow">
                 {/* Mechanism */}
                 <div className="space-y-4">
-                  <div className="flex items-center gap-3 text-white/40">
+                  <div className="flex items-center gap-3 text-white/60">
                     <Zap size={14} className="text-accent" />
                     <span className="text-[10px] font-black uppercase tracking-widest">Bio-Mecanismo</span>
                   </div>
@@ -177,12 +177,12 @@ export default function PeptideComparator({ setView, initialPeptideIds = [] }: P
 
                 {/* Dosage & Administration */}
                 <div className="grid grid-cols-2 gap-4">
-                  <div className="p-5 rounded-3xl bg-white/[0.03] border border-white/5 space-y-1.5">
-                    <span className="text-[8px] font-black text-white/20 uppercase tracking-widest block">Dose Sugerida</span>
+                  <div className="p-5 rounded-3xl bg-white/[0.03] border border-white/15 space-y-1.5">
+                    <span className="text-[8px] font-black text-white/40 uppercase tracking-widest block">Dose Sugerida</span>
                     <span className="text-[11px] font-black text-white uppercase tracking-tight">{p.dosage || 'Analítico'}</span>
                   </div>
-                  <div className="p-5 rounded-3xl bg-white/[0.03] border border-white/5 space-y-1.5">
-                    <span className="text-[8px] font-black text-white/20 uppercase tracking-widest block">Metodologia</span>
+                  <div className="p-5 rounded-3xl bg-white/[0.03] border border-white/15 space-y-1.5">
+                    <span className="text-[8px] font-black text-white/40 uppercase tracking-widest block">Metodologia</span>
                     <span className="text-[11px] font-black text-accent uppercase tracking-tight">{p.administration || 'Standard'}</span>
                   </div>
                 </div>
@@ -201,12 +201,12 @@ export default function PeptideComparator({ setView, initialPeptideIds = [] }: P
                 {/* Benefits */}
                 <div className="space-y-5">
                   <div className="flex items-center justify-between">
-                    <span className="text-[10px] font-black text-white/20 uppercase tracking-[0.4em]">Propriedades de Elite</span>
+                    <span className="text-[10px] font-black text-white/40 uppercase tracking-[0.4em]">Propriedades de Elite</span>
                     <Activity size={14} className="text-accent opacity-20" />
                   </div>
                   <div className="grid grid-cols-1 gap-3">
                     {p.features.slice(0, 3).map((f, i) => (
-                      <div key={i} className="flex items-center gap-4 bg-white/[0.01] p-3 rounded-2xl border border-white/5">
+                      <div key={i} className="flex items-center gap-4 bg-white/[0.01] p-3 rounded-2xl border border-white/15">
                         <div className="w-1.5 h-1.5 rounded-full bg-accent/40" />
                         <span className="text-[10px] font-bold text-white/50 uppercase tracking-widest">{f}</span>
                       </div>
@@ -224,12 +224,12 @@ export default function PeptideComparator({ setView, initialPeptideIds = [] }: P
               onClick={() => setShowSelector(true)}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="flex flex-col items-center justify-center py-32 rounded-[56px] border-2 border-dashed border-white/5 bg-white/[0.005] hover:bg-white/[0.015] hover:border-accent/20 transition-all group min-h-[600px]"
+              className="flex flex-col items-center justify-center py-32 rounded-[56px] border-2 border-dashed border-white/15 bg-white/[0.005] hover:bg-white/[0.015] hover:border-accent/20 transition-all group min-h-[600px]"
             >
-              <div className="w-20 h-20 bg-white/5 rounded-full flex items-center justify-center text-white/10 mb-8 group-hover:scale-110 group-hover:bg-accent/10 group-hover:text-accent transition-all duration-500">
+              <div className="w-20 h-20 bg-white/10 rounded-full flex items-center justify-center text-white/10 mb-8 group-hover:scale-110 group-hover:bg-accent/10 group-hover:text-accent transition-all duration-500">
                 <Plus size={32} />
               </div>
-              <h4 className="text-xl font-black text-white/20 uppercase tracking-tighter group-hover:text-white/40 transition-colors">Vaga Disponível</h4>
+              <h4 className="text-xl font-black text-white/40 uppercase tracking-tighter group-hover:text-white/60 transition-colors">Vaga Disponível</h4>
               <p className="text-[10px] text-white/10 font-bold uppercase tracking-[0.3em] mt-3 group-hover:text-accent/40">Integrar Nova Molécula no Stack</p>
             </motion.button>
           ))}
@@ -237,7 +237,7 @@ export default function PeptideComparator({ setView, initialPeptideIds = [] }: P
       </div>
 
       {/* Seção de Análise Automatizada por IA - Agora com mais destaque */}
-      <div className="relative pt-12 border-t border-white/5">
+      <div className="relative pt-12 border-t border-white/15">
         <div className="absolute inset-x-0 -top-24 flex justify-center pointer-events-none">
           <div className="w-1/2 h-48 bg-accent/10 blur-[100px] rounded-full opacity-50" />
         </div>
@@ -262,16 +262,16 @@ export default function PeptideComparator({ setView, initialPeptideIds = [] }: P
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9 }}
-              className="relative w-full max-w-2xl bg-slate-900 border border-white/10 rounded-[48px] shadow-2xl overflow-hidden flex flex-col max-h-[80vh]"
+              className="relative w-full max-w-2xl bg-slate-900 border border-white/20 rounded-[48px] shadow-2xl overflow-hidden flex flex-col max-h-[80vh]"
             >
-              <div className="p-10 border-b border-white/5 flex items-center justify-between sticky top-0 bg-slate-900 z-10">
+              <div className="p-10 border-b border-white/15 flex items-center justify-between sticky top-0 bg-slate-900 z-10">
                 <div>
                   <h3 className="text-2xl font-black text-white uppercase tracking-tighter italic">Selecionar Peptídeo</h3>
-                  <p className="text-[9px] text-white/40 font-bold uppercase tracking-widest mt-1">Clique para incluir na comparação</p>
+                  <p className="text-[9px] text-white/60 font-bold uppercase tracking-widest mt-1">Clique para incluir na comparação</p>
                 </div>
                 <button 
                   onClick={() => setShowSelector(false)}
-                  className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/10 transition-all"
+                  className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-all"
                 >
                   <X size={20} className="text-white" />
                 </button>
@@ -288,16 +288,16 @@ export default function PeptideComparator({ setView, initialPeptideIds = [] }: P
                     }}
                     className={`p-6 rounded-3xl border text-left transition-all flex items-center gap-4 ${
                       selectedIds.includes(p.id) 
-                        ? 'opacity-40 grayscale cursor-not-allowed border-white/5' 
-                        : 'bg-white/[0.03] border-white/10 hover:border-accent hover:bg-accent/5'
+                        ? 'opacity-40 grayscale cursor-not-allowed border-white/15' 
+                        : 'bg-white/[0.03] border-white/20 hover:border-accent hover:bg-accent/5'
                     }`}
                   >
-                    <div className="w-12 h-12 rounded-2xl overflow-hidden shrink-0 border border-white/10">
+                    <div className="w-12 h-12 rounded-2xl overflow-hidden shrink-0 border border-white/20">
                       <img src={p.image} className="w-full h-full object-cover" alt={p.name} />
                     </div>
                     <div>
                       <h4 className="text-xs font-black text-white uppercase tracking-widest">{p.name}</h4>
-                      <span className="text-[8px] font-bold text-white/20 uppercase tracking-widest">{p.tag}</span>
+                      <span className="text-[8px] font-bold text-white/40 uppercase tracking-widest">{p.tag}</span>
                     </div>
                   </button>
                 ))}

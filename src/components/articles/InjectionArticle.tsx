@@ -26,7 +26,7 @@ export default function InjectionArticle({ onBack }: InjectionGuideProps) {
 
         <div className="space-y-12">
           {/* Header */}
-          <div className="p-12 rounded-[48px] bg-secondary/[0.02] border border-white/5 relative overflow-hidden">
+          <div className="p-12 rounded-[48px] bg-secondary/[0.02] border border-white/15 relative overflow-hidden">
             <div className="absolute top-0 right-0 p-12 opacity-5">
               <Syringe size={150} />
             </div>
@@ -36,7 +36,7 @@ export default function InjectionArticle({ onBack }: InjectionGuideProps) {
               </div>
               <h1 className="text-4xl md:text-6xl font-black text-white uppercase italic tracking-tighter leading-[0.85]">
                 INJEÇÃO SUB-Q <br />
-                <span className="text-white/40">& ROTAÇÃO</span>
+                <span className="text-white/60">& ROTAÇÃO</span>
               </h1>
             </div>
           </div>
@@ -60,7 +60,7 @@ export default function InjectionArticle({ onBack }: InjectionGuideProps) {
 
             <div className="space-y-4">
               {sites.map((site, i) => (
-                <div key={i} className="p-4 rounded-2xl bg-secondary/[0.02] border border-white/5 flex items-center gap-4">
+                <div key={i} className="p-4 rounded-2xl bg-secondary/[0.02] border border-white/15 flex items-center gap-4">
                   <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center text-accent">
                     {site.icon}
                   </div>
@@ -87,15 +87,15 @@ export default function InjectionArticle({ onBack }: InjectionGuideProps) {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="p-6 rounded-3xl bg-secondary/[0.02] border border-white/5 flex flex-col items-center text-center space-y-3">
+            <div className="p-6 rounded-3xl bg-secondary/[0.02] border border-white/15 flex flex-col items-center text-center space-y-3">
               <div className="w-8 h-8 rounded-full bg-accent text-primary flex items-center justify-center text-xs font-black">1</div>
               <div className="text-[10px] font-black text-white uppercase tracking-widest">Pinçar a Pele</div>
             </div>
-            <div className="p-6 rounded-3xl bg-secondary/[0.02] border border-white/5 flex flex-col items-center text-center space-y-3">
+            <div className="p-6 rounded-3xl bg-secondary/[0.02] border border-white/15 flex flex-col items-center text-center space-y-3">
               <div className="w-8 h-8 rounded-full bg-accent text-primary flex items-center justify-center text-xs font-black">2</div>
               <div className="text-[10px] font-black text-white uppercase tracking-widest">Introdução Lenta</div>
             </div>
-            <div className="p-6 rounded-3xl bg-secondary/[0.02] border border-white/5 flex flex-col items-center text-center space-y-3">
+            <div className="p-6 rounded-3xl bg-secondary/[0.02] border border-white/15 flex flex-col items-center text-center space-y-3">
               <div className="w-8 h-8 rounded-full bg-accent text-primary flex items-center justify-center text-xs font-black">3</div>
               <div className="text-[10px] font-black text-white uppercase tracking-widest">Aguardar 5s</div>
             </div>

@@ -82,7 +82,7 @@ export default function Hero({ setView, isPremium, onSelectPeptide }: HeroProps)
                     {t('hero.acervo')}
                   </span>
                   <div className="h-4 w-[1px] bg-accent/20" />
-                  <span className="text-[10px] font-bold tracking-[0.2em] text-white/40 uppercase">
+                  <span className="text-[10px] font-bold tracking-[0.2em] text-white/60 uppercase">
                     {t('hero.core')}
                   </span>
                 </div>
@@ -108,7 +108,7 @@ export default function Hero({ setView, isPremium, onSelectPeptide }: HeroProps)
               <span className="text-transparent bg-clip-text bg-gradient-to-br from-accent via-white to-accent text-glow">{t('hero.subtitle')}</span>
             </h1>
             
-            <p className="max-w-3xl mx-auto text-[9px] md:text-[11px] text-white/40 mb-10 font-bold leading-relaxed uppercase tracking-[0.25em]">
+            <p className="max-w-3xl mx-auto text-[9px] md:text-[11px] text-white/60 mb-10 font-bold leading-relaxed uppercase tracking-[0.25em]">
               {t('hero.description')}
             </p>
 
@@ -120,9 +120,9 @@ export default function Hero({ setView, isPremium, onSelectPeptide }: HeroProps)
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   onFocus={() => setIsFocused(true)}
-                  className="w-full bg-[#050505]/60 backdrop-blur-xl border border-white/10 rounded-2xl py-4 md:py-5 px-12 md:px-14 text-sm font-medium text-white placeholder:text-white/30 outline-none focus:border-accent/50 transition-all font-medium shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
+                  className="w-full bg-[#050505]/60 backdrop-blur-xl border border-white/20 rounded-2xl py-4 md:py-5 px-12 md:px-14 text-sm font-medium text-white placeholder:text-white/30 outline-none focus:border-accent/50 transition-all font-medium shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
                 />
-                <Search size={20} className="absolute left-4 md:left-5 top-1/2 -translate-y-1/2 text-white/40" />
+                <Search size={20} className="absolute left-4 md:left-5 top-1/2 -translate-y-1/2 text-white/60" />
                 
                 <AnimatePresence>
                   {isFocused && searchTerm && (
@@ -130,7 +130,7 @@ export default function Hero({ setView, isPremium, onSelectPeptide }: HeroProps)
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: 10 }}
-                        className="absolute top-full left-0 right-0 mt-3 bg-[#0a0a0a]/95 backdrop-blur-2xl border border-white/10 rounded-2xl shadow-2xl overflow-hidden z-50 max-h-80 overflow-y-auto custom-scrollbar"
+                        className="absolute top-full left-0 right-0 mt-3 bg-[#0a0a0a]/95 backdrop-blur-2xl border border-white/20 rounded-2xl shadow-2xl overflow-hidden z-50 max-h-80 overflow-y-auto custom-scrollbar"
                     >
                         {searchResults.length > 0 ? (
                             <ul className="py-2">
@@ -139,20 +139,20 @@ export default function Hero({ setView, isPremium, onSelectPeptide }: HeroProps)
                                         key={result.id} 
                                         role="button"
                                         onClick={() => handleSelect(result)}
-                                        className="px-4 py-3 hover:bg-white/5 cursor-pointer border-b border-white/5 last:border-0 flex items-center gap-4 transition-colors"
+                                        className="px-4 py-3 hover:bg-white/20 cursor-pointer border-b border-white/15 last:border-0 flex items-center gap-4 transition-colors"
                                     >   
                                         <div className="w-10 h-10 rounded-lg bg-black overflow-hidden shrink-0">
                                             <img src={result.image} alt={result.name} className="w-full h-full object-cover opacity-60" />
                                         </div>
                                         <div>
                                             <h4 className="text-sm font-black text-white italic tracking-tight">{result.name}</h4>
-                                            <p className="text-[10px] text-white/40 uppercase tracking-widest">{result.tag}</p>
+                                            <p className="text-[10px] text-white/60 uppercase tracking-widest">{result.tag}</p>
                                         </div>
                                     </li>
                                 ))}
                             </ul>
                         ) : (
-                            <div className="px-4 py-8 text-center text-white/40 text-xs font-black uppercase tracking-widest">
+                            <div className="px-4 py-8 text-center text-white/60 text-xs font-black uppercase tracking-widest">
                                 {t('hero.noResults')}
                             </div>
                         )}
@@ -177,7 +177,7 @@ export default function Hero({ setView, isPremium, onSelectPeptide }: HeroProps)
 
               <button 
                 onClick={() => setView('plans')}
-                className="group w-full sm:w-auto px-8 py-4 bg-transparent border-2 border-white/10 hover:border-accent/40 text-white font-black text-[10px] uppercase tracking-[0.3em] transition-all flex items-center justify-center gap-2"
+                className="group w-full sm:w-auto px-8 py-4 bg-transparent border-2 border-white/20 hover:border-accent/40 text-white font-black text-[10px] uppercase tracking-[0.3em] transition-all flex items-center justify-center gap-2"
                 style={{ clipPath: 'polygon(0 0, 90% 0, 100% 30%, 100% 100%, 10% 100%, 0 70%)' }}
               >
                 <span className="relative z-10">{t('hero.btnStartNow')}</span>
@@ -191,7 +191,7 @@ export default function Hero({ setView, isPremium, onSelectPeptide }: HeroProps)
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.4 }}
                 onClick={() => setView('guide')}
-                className="flex flex-col p-6 rounded-[32px] bg-secondary/[0.02] border border-white/5 hover:border-accent/40 cursor-pointer transition-all group text-left relative overflow-hidden"
+                className="flex flex-col p-6 rounded-[32px] bg-secondary/[0.02] border border-white/15 hover:border-accent/40 cursor-pointer transition-all group text-left relative overflow-hidden"
               >
                 <div className="flex items-center gap-4 mb-4 relative z-10">
                   <div className="w-12 h-12 rounded-2xl bg-accent/10 flex items-center justify-center text-accent group-hover:scale-110 transition-transform shrink-0">
@@ -207,7 +207,7 @@ export default function Hero({ setView, isPremium, onSelectPeptide }: HeroProps)
                 <p className="text-white/30 text-[10px] font-bold uppercase tracking-widest leading-relaxed flex-grow relative z-10">
                   {t('hero.box1Desc')}
                 </p>
-                <div className="absolute bottom-4 right-4 w-8 h-8 rounded-full border border-white/5 flex items-center justify-center text-white/20 group-hover:text-accent group-hover:border-accent/40 transition-all z-10">
+                <div className="absolute bottom-4 right-4 w-8 h-8 rounded-full border border-white/15 flex items-center justify-center text-white/40 group-hover:text-accent group-hover:border-accent/40 transition-all z-10">
                   <ChevronRight size={16} />
                 </div>
               </motion.div>
@@ -244,7 +244,7 @@ export default function Hero({ setView, isPremium, onSelectPeptide }: HeroProps)
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.6 }}
                 onClick={() => setView('stacks')}
-                className="flex flex-col p-6 rounded-[32px] bg-secondary/[0.02] border border-white/5 hover:border-blue-400/40 cursor-pointer transition-all group text-left relative overflow-hidden"
+                className="flex flex-col p-6 rounded-[32px] bg-secondary/[0.02] border border-white/15 hover:border-blue-400/40 cursor-pointer transition-all group text-left relative overflow-hidden"
               >
                 <div className="flex items-center gap-4 mb-4 relative z-10">
                   <div className="w-12 h-12 rounded-2xl bg-blue-500/10 flex items-center justify-center text-blue-400 group-hover:scale-110 transition-transform shrink-0">
@@ -260,7 +260,7 @@ export default function Hero({ setView, isPremium, onSelectPeptide }: HeroProps)
                 <p className="text-white/30 text-[10px] font-bold uppercase tracking-widest leading-relaxed flex-grow relative z-10">
                   {t('hero.box3Desc')}
                 </p>
-                <div className="absolute bottom-4 right-4 w-8 h-8 rounded-full border border-white/5 flex items-center justify-center text-white/20 group-hover:text-blue-400 group-hover:border-blue-400/40 transition-all z-10">
+                <div className="absolute bottom-4 right-4 w-8 h-8 rounded-full border border-white/15 flex items-center justify-center text-white/40 group-hover:text-blue-400 group-hover:border-blue-400/40 transition-all z-10">
                   <ChevronRight size={16} />
                 </div>
               </motion.div>
@@ -279,7 +279,7 @@ export default function Hero({ setView, isPremium, onSelectPeptide }: HeroProps)
               { icon: <Zap size={24} className="text-accent" />, title: t('hero.feat2Title' as any), desc: t('hero.feat2Desc' as any) },
               { icon: <Target size={24} className="text-accent" />, title: t('hero.feat3Title' as any), desc: t('hero.feat3Desc' as any) }
             ].map((item, i) => (
-              <div key={i} className="glass-card p-6 rounded-[24px] text-left border-white/5 bg-white/[0.01] hover:border-accent/20 transition-all duration-500 group">
+              <div key={i} className="glass-card p-6 rounded-[24px] text-left border-white/15 bg-white/[0.01] hover:border-accent/20 transition-all duration-500 group">
                 <div className="mb-6 p-3 w-fit bg-accent/5 rounded-xl group-hover:bg-accent group-hover:text-black transition-colors">{item.icon}</div>
                 <h3 className="text-lg font-black mb-2 tracking-tighter uppercase italic">{item.title}</h3>
                 <p className="text-white/30 text-[10px] font-bold leading-relaxed uppercase tracking-widest">{item.desc}</p>

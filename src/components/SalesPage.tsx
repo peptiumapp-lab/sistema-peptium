@@ -5,7 +5,8 @@ import { SUPPORT_LINK, PROTOCOLS, TOTAL_PEPTIDES, SYNERGY_PROTOCOLS } from '../c
 import { View } from '../App';
 import ProtocolCard from './ProtocolCard';
 import { useAuth } from '../contexts/AuthContext';
-import { signInWithGoogle } from '../lib/firebase';
+import { signInWithGoogle, upgradeToPro } from '../lib/firebase';
+import { PayPalButtons } from '@paypal/react-paypal-js';
 
 interface SalesPageProps {
   setView: (view: View) => void;
@@ -28,57 +29,8 @@ export default function SalesPage({ setView }: SalesPageProps) {
     }
   }, []);
 
-  const handlePurchase = async (planName: string) => {
-    if (!user) {
-      sessionStorage.setItem('pendingCheckout', planName);
-      if (couponCode) sessionStorage.setItem('pendingCoupon', couponCode);
-      await signInWithGoogle();
-      return;
-    }
-    
-    if (isPro) {
-      alert('Você já é um membro Prime!');
-      return;
-    }
-
-    try {
-      const response = await fetch('/api/stripe/create-checkout-session', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          planName: planName,
-          userId: user.uid,
-          userEmail: user.email,
-          coupon: couponCode || undefined,
-        }),
-      });
-
-      const contentType = response.headers.get('content-type');
-      if (contentType && contentType.includes('text/html')) {
-        throw new Error(`O servidor de API não foi encontrado (404) na URL: ${response.url}. O backend pode não estar rodando neste domínio.`);
-      }
-
-      const body = await response.json().catch(() => ({}));
-
-      if (!response.ok || !body.success) {
-        throw new Error(body.error?.message || body.error?.details || `Erro HTTP ${response.status} ao acessar ${response.url}`);
-      }
-
-      if (body.data?.url) {
-        window.location.href = body.data.url;
-      } else {
-        throw new Error('Falha ao criar sessão de checkout ou URL ausente');
-      }
-    } catch (error: any) {
-      console.error('Erro no checkout:', error);
-      if (error.message?.includes('coupon cannot be redeemed') || error.message?.includes('does not apply')) {
-        alert('O cupom informado é inválido para este pedido ou está configurado para "produtos específicos" no painel do Stripe.');
-        setCouponCode(null);
-        sessionStorage.removeItem('pendingCoupon');
-      } else {
-        alert(`Erro: ${error.message}`);
-      }
-    }
+  const handleLoginClick = async () => {
+    await signInWithGoogle();
   };
 
   const protocolsToShow = (SYNERGY_PROTOCOLS || []).slice(0, 8);
@@ -90,14 +42,14 @@ export default function SalesPage({ setView }: SalesPageProps) {
         <div className="max-w-7xl mx-auto px-4 pt-8">
            <button 
              onClick={() => setView('home')}
-             className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.3em] text-secondary/40 hover:text-accent transition-all group"
+             className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.3em] text-secondary/60 hover:text-accent transition-all group"
            >
              <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" />
              Voltar para a Home
            </button>
         </div>
         {/* 1. HERO - POSICIONAMENTO SOFTWARE / ATLAS INTERATIVO */}
-        <section id="inicio" className="pt-16 pb-24 border-b border-white/5 relative overflow-hidden bg-gradient-to-b from-black to-[#050505]">
+        <section id="inicio" className="pt-16 pb-24 border-b border-white/15 relative overflow-hidden bg-gradient-to-b from-black to-[#050505]">
           <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-20 pointer-events-none" />
           <div className="max-w-7xl mx-auto px-4 relative z-10">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -116,7 +68,7 @@ export default function SalesPage({ setView }: SalesPageProps) {
                 <span className="text-accent underline decoration-accent/30 underline-offset-[10px]">DEFINITIVO</span> <br />
                 EM PEPTÍDEOS.
               </h2>
-              <p className="text-white/40 text-[10px] md:text-[11px] font-bold leading-relaxed uppercase tracking-[0.2em] max-w-xl">
+              <p className="text-white/60 text-[10px] md:text-[11px] font-bold leading-relaxed uppercase tracking-[0.2em] max-w-xl">
                 Não é um e-book. Não é uma tabela. É o ecossistema de inteligência molecular mais avançado do mercado. O Peptium Prime Atlas entrega <span className="text-white font-black underline decoration-accent underline-offset-4">ROTAS BIOLÓGICAS</span> de recuperação e performance validadas.
               </p>
                 <div className="flex flex-col sm:flex-row items-center gap-4 pt-4">
@@ -128,17 +80,17 @@ export default function SalesPage({ setView }: SalesPageProps) {
                   </button>
                   <button 
                     onClick={() => document.getElementById('protocolos-sinergia')?.scrollIntoView({ behavior: 'smooth' })}
-                    className="w-full sm:w-auto px-10 py-5 bg-white/5 border border-white/10 text-white rounded-2xl font-black text-[10px] uppercase tracking-[0.3em] hover:bg-white/10 transition-all"
+                    className="w-full sm:w-auto px-10 py-5 bg-white/10 border border-white/20 text-white rounded-2xl font-black text-[10px] uppercase tracking-[0.3em] hover:bg-white/20 transition-all"
                   >
                     VER PROTOCOLO DE SINERGIA
                   </button>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4">
-                  <div className="p-6 rounded-[32px] bg-white/[0.02] border border-white/5 group hover:border-accent/30 transition-all">
+                  <div className="p-6 rounded-[32px] bg-white/[0.02] border border-white/15 group hover:border-accent/30 transition-all">
                     <div className="text-4xl font-sans font-black text-white italic mb-1 group-hover:scale-105 transition-transform tracking-tighter">{TOTAL_PEPTIDES}+</div>
                     <div className="text-[7px] font-black text-white/30 uppercase tracking-[0.2em]">Moléculas Catalogadas</div>
                   </div>
-                  <div className="p-6 rounded-[32px] bg-white/[0.02] border border-white/5 group hover:border-accent/30 transition-all">
+                  <div className="p-6 rounded-[32px] bg-white/[0.02] border border-white/15 group hover:border-accent/30 transition-all">
                     <div className="text-4xl font-sans font-black text-white italic mb-1 group-hover:scale-105 transition-transform tracking-tighter">∞</div>
                     <div className="text-[7px] font-black text-white/30 uppercase tracking-[0.2em]">Sinergias Moleculares</div>
                   </div>
@@ -150,9 +102,9 @@ export default function SalesPage({ setView }: SalesPageProps) {
               </div>
               <div className="relative group lg:pl-10">
                 <div className="absolute -inset-10 bg-accent/10 blur-[120px] rounded-full opacity-50 animate-pulse" />
-                <div className="relative aspect-square bg-[#050505] border border-white/10 rounded-[64px] overflow-hidden shadow-[0_0_100px_rgba(0,0,0,0.5)] p-1">
+                <div className="relative aspect-square bg-[#050505] border border-white/20 rounded-[64px] overflow-hidden shadow-[0_0_100px_rgba(0,0,0,0.5)] p-1">
                    <div className="absolute top-0 inset-x-0 h-24 bg-gradient-to-b from-accent/10 to-transparent pointer-events-none" />
-                   <div className="h-full w-full rounded-[60px] overflow-hidden border border-white/10 bg-black flex flex-col items-center justify-center p-12 text-center space-y-8">
+                   <div className="h-full w-full rounded-[60px] overflow-hidden border border-white/20 bg-black flex flex-col items-center justify-center p-12 text-center space-y-8">
                       <div className="w-24 h-24 bg-accent/10 rounded-full flex items-center justify-center text-accent">
                         <Activity size={48} className="animate-pulse" />
                       </div>
@@ -160,7 +112,7 @@ export default function SalesPage({ setView }: SalesPageProps) {
                         <h3 className="text-2xl font-sans font-black text-white uppercase italic tracking-tighter leading-none">High-Impact <br />Summary Cards</h3>
                         <p className="text-[9px] font-bold text-white/30 uppercase tracking-widest leading-relaxed">Impacto Global, Eixos Clínicos e Mecanismos de Ação mapeados visualmente.</p>
                       </div>
-                      <div className="w-full h-[1px] bg-white/5" />
+                      <div className="w-full h-[1px] bg-white/10" />
                       <div className="grid grid-cols-2 gap-4 w-full">
                         <div className="text-left space-y-1">
                           <div className="text-[8px] font-black text-accent uppercase tracking-widest">Matriz de Evidência</div>
@@ -179,7 +131,7 @@ export default function SalesPage({ setView }: SalesPageProps) {
         </section>
 
         {/* 1.5 NOVIDADES V5.0 - A EVOLUÇÃO */}
-        <section className="py-24 bg-[#0a0a0a] border-y border-white/5 relative overflow-hidden">
+        <section className="py-24 bg-[#0a0a0a] border-y border-white/15 relative overflow-hidden">
           <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-accent/5 blur-[150px] rounded-full pointer-events-none" />
           <div className="max-w-7xl mx-auto px-4 relative z-10">
             <div className="flex flex-col lg:flex-row gap-20 items-start">
@@ -198,15 +150,15 @@ export default function SalesPage({ setView }: SalesPageProps) {
                 <div className="space-y-4 pt-4">
                   <div className="flex items-center gap-3">
                     <div className="w-1.5 h-1.5 bg-accent rounded-full" />
-                    <span className="text-[9px] font-black text-white/40 uppercase tracking-widest">NIH PubMed Audited</span>
+                    <span className="text-[9px] font-black text-white/60 uppercase tracking-widest">NIH PubMed Audited</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <div className="w-1.5 h-1.5 bg-accent rounded-full" />
-                    <span className="text-[9px] font-black text-white/40 uppercase tracking-widest">ClinicalTrials.gov Data</span>
+                    <span className="text-[9px] font-black text-white/60 uppercase tracking-widest">ClinicalTrials.gov Data</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <div className="w-1.5 h-1.5 bg-accent rounded-full" />
-                    <span className="text-[9px] font-black text-white/40 uppercase tracking-widest">WADA Compliance Ready</span>
+                    <span className="text-[9px] font-black text-white/60 uppercase tracking-widest">WADA Compliance Ready</span>
                   </div>
                 </div>
               </div>
@@ -223,7 +175,7 @@ export default function SalesPage({ setView }: SalesPageProps) {
                   { title: "Longevidade Exordial", items: "SS-31, ARA-290, Epitalon", desc: "Resgate da mitocôndria e ativação profunda de telomerase." },
                   { title: "Eixo Imuno-Endócrino", items: "TA1, LL-37, TRH", desc: "Regulação de defesa e restauração de ritmos tireoidianos." }
                 ].map((item, i) => (
-                  <div key={i} className="p-8 rounded-[32px] bg-white/[0.02] border border-white/5 hover:border-accent/20 transition-all group">
+                  <div key={i} className="p-8 rounded-[32px] bg-white/[0.02] border border-white/15 hover:border-accent/20 transition-all group">
                     <div className="text-accent mb-4 group-hover:scale-110 transition-transform">
                       <Hexagon size={24} />
                     </div>
@@ -250,7 +202,7 @@ export default function SalesPage({ setView }: SalesPageProps) {
                     </div>
                     <div>
                       <h4 className="text-[11px] font-black text-white uppercase tracking-widest mb-1">{item.title}</h4>
-                      <p className="text-[9px] font-bold text-white/40 uppercase tracking-widest">{item.desc}</p>
+                      <p className="text-[9px] font-bold text-white/60 uppercase tracking-widest">{item.desc}</p>
                     </div>
                   </div>
                 ))}
@@ -260,7 +212,7 @@ export default function SalesPage({ setView }: SalesPageProps) {
         </section>
 
         {/* 2. PROTOCOLOS DE SINERGIA - O GRANDE ARGUMENTO */}
-        <section id="protocolos-sinergia" className="py-24 bg-black border-b border-white/5 relative">
+        <section id="protocolos-sinergia" className="py-24 bg-black border-b border-white/15 relative">
           <div className="max-w-7xl mx-auto px-4">
             <div className="mb-16 space-y-4 max-w-3xl">
               <div className="inline-flex items-center gap-2 px-3 py-1 bg-accent/10 border border-accent/20 rounded-full">
@@ -271,14 +223,14 @@ export default function SalesPage({ setView }: SalesPageProps) {
                 PROTOCOLOS DE <br />
                 <span className="text-accent">SINERGIA MOLECULAR</span>
               </h2>
-              <p className="text-white/40 text-xs font-bold leading-relaxed uppercase tracking-[0.2em]">
+              <p className="text-white/60 text-xs font-bold leading-relaxed uppercase tracking-[0.2em]">
                 O Atlas não te diz apenas o que é uma molécula. Ele te entrega a <span className="text-white underline decoration-accent underline-offset-4">STACK</span> exata para tratar patologias e otimizar bio-marcadores específicos.
               </p>
             </div>
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {protocolsToShow.map((protocol, i) => (
-                <div key={i} className="p-5 rounded-[24px] bg-white/[0.02] border border-white/5 hover:border-accent/30 transition-all group relative overflow-hidden flex flex-col min-h-[160px]">
+                <div key={i} className="p-5 rounded-[24px] bg-white/[0.02] border border-white/15 hover:border-accent/30 transition-all group relative overflow-hidden flex flex-col min-h-[160px]">
                   <div className="space-y-4">
                     <div className="w-8 h-8 rounded-xl bg-accent/10 flex items-center justify-center text-accent">
                       <Zap size={16} />
@@ -287,7 +239,7 @@ export default function SalesPage({ setView }: SalesPageProps) {
                       <div className="text-[7px] font-black text-accent uppercase tracking-[0.2em] mb-1">{protocol.target}</div>
                       <h3 className="text-[12px] font-sans font-black text-white uppercase italic tracking-tighter leading-tight">{protocol.name}</h3>
                     </div>
-                    <p className="text-[8px] font-bold text-white/20 uppercase tracking-widest leading-relaxed line-clamp-2">{protocol.description}</p>
+                    <p className="text-[8px] font-bold text-white/40 uppercase tracking-widest leading-relaxed line-clamp-2">{protocol.description}</p>
                   </div>
                 </div>
               ))}
@@ -296,7 +248,7 @@ export default function SalesPage({ setView }: SalesPageProps) {
             <div className="mt-12 flex flex-col items-center gap-6">
               <button 
                 onClick={() => document.getElementById('planos-vendas')?.scrollIntoView({ behavior: 'smooth' })}
-                className="px-10 py-5 bg-white/5 border border-accent/20 rounded-2xl flex items-center gap-4 group hover:bg-white/10 transition-all shadow-[0_0_30px_rgba(0,229,255,0.1)]"
+                className="px-10 py-5 bg-white/10 border border-accent/20 rounded-2xl flex items-center gap-4 group hover:bg-white/20 transition-all shadow-[0_0_30px_rgba(0,229,255,0.1)]"
               >
                 <div className="text-left">
                   <span className="block text-[8px] font-black uppercase tracking-widest text-accent mb-0.5 italic">CONTEÚDO PRIME</span>
@@ -306,7 +258,7 @@ export default function SalesPage({ setView }: SalesPageProps) {
                 </div>
                 <Lock size={16} className="text-accent" />
               </button>
-              <p className="text-[8px] font-black text-white/20 uppercase tracking-[0.4em]">Protocolos atualizados semanalmente pela nossa IA</p>
+              <p className="text-[8px] font-black text-white/40 uppercase tracking-[0.4em]">Protocolos atualizados semanalmente pela nossa IA</p>
             </div>
 
             <div className="mt-16 p-10 rounded-[48px] bg-accent/5 border border-accent/20 relative overflow-hidden">
@@ -326,7 +278,7 @@ export default function SalesPage({ setView }: SalesPageProps) {
                   </div>
                   <div className="flex flex-wrap gap-3 justify-end italic">
                     {['Bone Fortress', 'Hepatic Detox', 'Anxiety Relief', 'Vision Repair', 'Mitochondrial Awakening'].map((p, i) => (
-                      <div key={i} className="px-5 py-3 bg-white/5 border border-white/10 rounded-2xl text-[9px] font-black text-white/40 uppercase tracking-widest">
+                      <div key={i} className="px-5 py-3 bg-white/10 border border-white/20 rounded-2xl text-[9px] font-black text-white/60 uppercase tracking-widest">
                         {p}
                       </div>
                     ))}
@@ -337,7 +289,7 @@ export default function SalesPage({ setView }: SalesPageProps) {
         </section>
 
         {/* 3. ARSENAL DE DADOS - CATEGORIAS */}
-        <section className="py-24 bg-black border-b border-white/5">
+        <section className="py-24 bg-black border-b border-white/15">
           <div className="max-w-7xl mx-auto px-4">
             <div className="text-center mb-20 space-y-4">
               <h2 className="text-3xl md:text-5xl font-sans font-black text-white uppercase italic tracking-tighter">
@@ -357,7 +309,7 @@ export default function SalesPage({ setView }: SalesPageProps) {
                 { title: "Saúde Sexual", items: "PT-141, MT2, Kisspeptina", color: "pink-500" },
                 { title: "Órgão-Específico", items: "Visoluten, Bronchogen, TRH", color: "cyan-500" }
               ].map((cat, i) => (
-                <div key={i} className="p-8 rounded-[32px] bg-white/[0.01] border border-white/5 hover:bg-white/[0.03] transition-all group">
+                <div key={i} className="p-8 rounded-[32px] bg-white/[0.01] border border-white/15 hover:bg-white/[0.03] transition-all group">
                   <div className="text-[10px] font-black text-white uppercase tracking-[0.3em] mb-4 flex items-center justify-between">
                     {cat.title}
                     <ChevronRight size={12} className="text-accent opacity-0 group-hover:opacity-100 transition-all" />
@@ -370,7 +322,7 @@ export default function SalesPage({ setView }: SalesPageProps) {
         </section>
 
         {/* 4. EVIDÊNCIA E CIÊNCIA */}
-        <section id="base-cientifica" className="py-24 bg-gradient-to-b from-transparent to-accent/[0.01] border-b border-white/5">
+        <section id="base-cientifica" className="py-24 bg-gradient-to-b from-transparent to-accent/[0.01] border-b border-white/15">
           <div className="max-w-7xl mx-auto px-4">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
               <div className="space-y-8">
@@ -381,15 +333,15 @@ export default function SalesPage({ setView }: SalesPageProps) {
                 <h2 className="text-4xl md:text-5xl font-sans font-black text-white leading-[0.9] uppercase tracking-tighter italic">
                   SEM ACHISMO.<br />SOFTWARE <span className="text-accent underline decoration-4 underline-offset-[10px]">AUDITADO.</span>
                 </h2>
-                <p className="text-white/40 text-xs font-bold leading-relaxed uppercase tracking-[0.2em]">
+                <p className="text-white/60 text-xs font-bold leading-relaxed uppercase tracking-[0.2em]">
                   A espinha dorsal de dados do Atlas é construída sob a validação científica pesada do <span className="text-white">NIH PubMed</span>, Ensaios Globais da <span className="text-white">ClinicalTrials.gov</span>, Biblioteca Química da <span className="text-white">PubChem</span> e conformidade com os padrões <span className="text-white">WADA</span>. O seu cliente não acessa palpites; acessa ciência rastreável em segundos.
                 </p>
                 <div className="grid grid-cols-2 gap-6">
-                   <div className="p-6 border border-white/5 rounded-[32px] bg-white/[0.01]">
+                   <div className="p-6 border border-white/15 rounded-[32px] bg-white/[0.01]">
                       <div className="text-3xl font-black text-white mb-1">∞</div>
                       <div className="text-[8px] font-bold text-white/30 uppercase tracking-widest">PubMed Direct Links</div>
                    </div>
-                   <div className="p-6 border border-white/5 rounded-[32px] bg-white/[0.01]">
+                   <div className="p-6 border border-white/15 rounded-[32px] bg-white/[0.01]">
                       <div className="text-3xl font-black text-white mb-1">100%</div>
                       <div className="text-[8px] font-bold text-white/30 uppercase tracking-widest">Eixos Clínicos Ativos</div>
                    </div>
@@ -397,7 +349,7 @@ export default function SalesPage({ setView }: SalesPageProps) {
               </div>
               <div className="relative group">
                 <div className="absolute inset-x-20 -inset-y-10 bg-accent/20 blur-[100px] rounded-full opacity-50 group-hover:opacity-80 transition-opacity" />
-                <div className="aspect-video bg-[#050505] border border-white/5 rounded-[48px] overflow-hidden relative shadow-2xl">
+                <div className="aspect-video bg-[#050505] border border-white/15 rounded-[48px] overflow-hidden relative shadow-2xl">
                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,229,255,0.05)_0%,transparent_70%)]" />
                    <img 
                     src="https://images.unsplash.com/photo-1579154235884-331505f562bd?q=80&w=1200&auto=format&fit=crop" 
@@ -410,14 +362,14 @@ export default function SalesPage({ setView }: SalesPageProps) {
                       </div>
                    </div>
                    <div className="absolute bottom-6 left-6 right-6">
-                      <div className="p-4 bg-black/40 backdrop-blur-md border border-white/10 rounded-2xl space-y-3">
+                      <div className="p-4 bg-black/40 backdrop-blur-md border border-white/20 rounded-2xl space-y-3">
                         <div className="flex gap-1 text-accent">
                           {[...Array(5)].map((_, i) => <Star key={i} size={10} fill="currentColor" />)}
                         </div>
                         <p className="text-[9px] font-medium text-white/70 leading-relaxed italic uppercase tracking-[0.1em]">
                           "O Peptium Prime é o único que entrega a interpretação clínica mastigada vinculada ao estudo original."
                         </p>
-                        <div className="text-[7px] font-black text-white/40 uppercase tracking-widest">Dr. Lucas V. | Neurologista</div>
+                        <div className="text-[7px] font-black text-white/60 uppercase tracking-widest">Dr. Lucas V. | Neurologista</div>
                       </div>
                    </div>
                 </div>
@@ -427,7 +379,7 @@ export default function SalesPage({ setView }: SalesPageProps) {
         </section>
 
         {/* 5. SOLUÇÕES POR PATOLOGIA - FOCO NAS DORES DO CLIENTE */}
-        <section className="py-24 bg-black border-b border-white/5 relative overflow-hidden">
+        <section className="py-24 bg-black border-b border-white/15 relative overflow-hidden">
           <div className="max-w-7xl mx-auto px-4 relative z-10">
             <div className="text-center mb-16 space-y-4">
               <h2 className="text-3xl md:text-5xl font-sans font-black text-white uppercase italic tracking-tighter">
@@ -461,7 +413,7 @@ export default function SalesPage({ setView }: SalesPageProps) {
                   icon: <Plus size={24} />
                 }
               ].map((item, i) => (
-                <div key={i} className="p-10 rounded-[48px] bg-white/[0.01] border border-white/5 hover:border-accent/30 transition-all group flex flex-col md:flex-row gap-8 items-start">
+                <div key={i} className="p-10 rounded-[48px] bg-white/[0.01] border border-white/15 hover:border-accent/30 transition-all group flex flex-col md:flex-row gap-8 items-start">
                   <div className="w-16 h-16 rounded-3xl bg-accent/10 flex items-center justify-center text-accent shrink-0 group-hover:scale-110 transition-transform">
                     {item.icon}
                   </div>
@@ -469,7 +421,7 @@ export default function SalesPage({ setView }: SalesPageProps) {
                     <h3 className="text-xl font-sans font-black text-white uppercase italic tracking-tighter leading-none group-hover:text-accent transition-colors">
                       {item.pain}
                     </h3>
-                    <p className="text-[11px] font-medium text-white/40 uppercase leading-relaxed tracking-widest">
+                    <p className="text-[11px] font-medium text-white/60 uppercase leading-relaxed tracking-widest">
                       {item.sol}
                     </p>
                   </div>
@@ -480,7 +432,7 @@ export default function SalesPage({ setView }: SalesPageProps) {
         </section>
 
         {/* 6. TESTEMUNHOS */}
-        <section className="py-24 bg-black border-b border-white/5">
+        <section className="py-24 bg-black border-b border-white/15">
           <div className="max-w-7xl mx-auto px-4">
             <div className="flex flex-col items-center mb-16 text-center">
               <div className="flex gap-1 text-yellow-500 mb-4">
@@ -509,14 +461,14 @@ export default function SalesPage({ setView }: SalesPageProps) {
                   initials: "PH"
                 }
               ].map((t, i) => (
-                <div key={i} className="p-8 rounded-[32px] bg-white/[0.02] border border-white/5 space-y-6">
+                <div key={i} className="p-8 rounded-[32px] bg-white/[0.02] border border-white/15 space-y-6">
                   <div className="flex gap-1 text-yellow-500">
                     {[...Array(5)].map((_, i) => <Star key={i} size={14} fill="currentColor" />)}
                   </div>
                   <p className="text-[11px] font-bold text-white/60 leading-relaxed uppercase tracking-widest italic leading-relaxed">
                     "{t.text}"
                   </p>
-                  <div className="flex items-center gap-4 pt-4 border-t border-white/5">
+                  <div className="flex items-center gap-4 pt-4 border-t border-white/15">
                     <div className="w-10 h-10 rounded-full bg-accent/10 border border-accent/20 flex items-center justify-center text-accent font-black text-xs">
                       {t.initials}
                     </div>
@@ -532,25 +484,25 @@ export default function SalesPage({ setView }: SalesPageProps) {
         </section>
 
         {/* 6. PLANOS DE ACESSO */}
-        <section id="planos-vendas" className="py-32 bg-black border-b border-white/5">
+        <section id="planos-vendas" className="py-32 bg-black border-b border-white/15">
           <div className="max-w-7xl mx-auto px-4 text-center">
             <div className="mb-20 space-y-4">
               <h2 className="text-4xl md:text-6xl font-sans font-black tracking-tighter uppercase text-white italic leading-none">
                 ESCOLHA SEU PLANO
               </h2>
-              <p className="text-[10px] font-bold text-white/40 uppercase tracking-[0.3em] max-w-xl mx-auto leading-relaxed">
+              <p className="text-[10px] font-bold text-white/60 uppercase tracking-[0.3em] max-w-xl mx-auto leading-relaxed">
                 Desbloqueie acesso completo à plataforma com o plano ideal para você.
               </p>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch pt-10 max-w-4xl mx-auto">
               {/* PRO MENSAL */}
-              <div className="flex flex-col p-10 rounded-[40px] bg-[#0A0A0A] border border-white/5 group hover:bg-[#111111] transition-all">
-                <h3 className="text-[10px] font-black text-white/40 tracking-[0.3em] uppercase mb-8">PRO MENSAL</h3>
+              <div className="flex flex-col p-10 rounded-[40px] bg-[#141414] border border-white/15 group hover:bg-[#1A1A1A] transition-all">
+                <h3 className="text-[10px] font-black text-white/60 tracking-[0.3em] uppercase mb-8">PRO MENSAL</h3>
                 <div className="mb-8 text-left">
                   <div className="flex items-baseline gap-1">
                     <span className="text-4xl font-sans font-black text-white italic leading-none tracking-tighter">R$ 99,99</span>
-                    <span className="text-[10px] font-black text-white/20 uppercase ml-2">/mês</span>
+                    <span className="text-[10px] font-black text-white/40 uppercase ml-2">/mês</span>
                   </div>
                 </div>
                 <ul className="space-y-5 mb-12 flex-grow text-left">
@@ -560,22 +512,52 @@ export default function SalesPage({ setView }: SalesPageProps) {
                     </li>
                   ))}
                 </ul>
-                <button 
-                  onClick={() => handlePurchase('Pro Mensal')}
-                  className="w-full py-5 bg-white/5 border border-white/10 rounded-2xl text-[10px] font-black text-white text-center uppercase tracking-[0.3em] hover:bg-white/10 transition-all"
-                >
-                  {isPro ? 'Plano Ativo' : user ? 'Assinar Agora' : 'Entrar para Assinar'}
-                </button>
+                {isPro ? (
+                  <button disabled className="w-full py-5 bg-white/10 border border-white/20 rounded-2xl text-[10px] font-black text-white text-center uppercase tracking-[0.3em] opacity-50 cursor-not-allowed">
+                    Plano Ativo
+                  </button>
+                ) : !user ? (
+                  <button 
+                    onClick={handleLoginClick}
+                    className="w-full py-5 bg-white/10 border border-white/20 rounded-2xl text-[10px] font-black text-white text-center uppercase tracking-[0.3em] hover:bg-white/20 transition-all"
+                  >
+                    Entrar para Assinar
+                  </button>
+                ) : (
+                  <div style={{ position: 'relative', zIndex: 0, minHeight: '48px' }}>
+                    <PayPalButtons
+                      style={{ layout: "horizontal", color: "blue", shape: "rect", height: 48 }}
+                      createSubscription={(data, actions) => {
+                          const planId = import.meta.env.VITE_PAYPAL_PLAN_ID_MONTHLY_BRL || 'P-5B76934704315025ENIUMBVI';
+                          return actions.subscription.create({ plan_id: String(planId) });
+                      }}
+                      onApprove={async (data, actions) => {
+                        try {
+                          await upgradeToPro(user.uid);
+                          alert('Pagamento aprovado via PayPal! Você agora é um membro Prime.');
+                          window.location.reload();
+                        } catch (error) {
+                          console.error(error);
+                          alert('Erro ao finalizar o pagamento.');
+                        }
+                      }}
+                      onError={(err) => {
+                        console.error('PayPal Error:', err);
+                        alert('Ocorreu um erro no pagamento.');
+                      }}
+                    />
+                  </div>
+                )}
               </div>
 
               {/* PRO ANUAL */}
-              <div className="flex flex-col p-10 rounded-[40px] bg-[#0A0A0A] border-2 border-accent relative sm:scale-105 z-20 shadow-2xl">
+              <div className="flex flex-col p-10 rounded-[40px] bg-[#141414] border-2 border-accent relative sm:scale-105 z-20 shadow-2xl">
                 <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-6 py-2 bg-accent text-black font-black text-[9px] uppercase tracking-widest rounded-full">Melhor Valor</div>
                 <h3 className="text-[10px] font-black text-accent tracking-[0.3em] uppercase mb-8 text-left">PRO ANUAL</h3>
                 <div className="mb-8 text-left">
                   <div className="flex items-baseline gap-1">
                     <span className="text-5xl font-sans font-black text-white italic leading-none tracking-tighter uppercase">R$ 475,20</span>
-                    <span className="text-[10px] font-black text-white/20 uppercase ml-2 italic">/ano</span>
+                    <span className="text-[10px] font-black text-white/40 uppercase ml-2 italic">/ano</span>
                   </div>
                   <div className="flex items-center gap-3 mt-4">
                     <span className="text-sm font-bold text-white/50 line-through">R$ 1.188,00</span>
@@ -589,19 +571,49 @@ export default function SalesPage({ setView }: SalesPageProps) {
                     </li>
                   ))}
                 </ul>
-                <button 
-                  onClick={() => handlePurchase('Pro Anual')}
-                  className="w-full py-7 bg-accent text-black rounded-[20px] text-[12px] font-black text-center uppercase tracking-[0.4em] shadow-xl hover:scale-[1.02] active:scale-95 transition-all"
-                >
-                  {isPro ? 'Plano Ativo' : user ? 'QUERO O ANUAL' : 'Entrar para Assinar'}
-                </button>
+                {isPro ? (
+                  <button disabled className="w-full py-7 bg-accent text-black rounded-[20px] text-[12px] font-black text-center uppercase tracking-[0.4em] opacity-50 cursor-not-allowed">
+                    Plano Ativo
+                  </button>
+                ) : !user ? (
+                  <button 
+                    onClick={handleLoginClick}
+                    className="w-full py-7 bg-accent text-black rounded-[20px] text-[12px] font-black text-center uppercase tracking-[0.4em] shadow-xl hover:scale-[1.02] active:scale-95 transition-all"
+                  >
+                    Entrar para Assinar
+                  </button>
+                ) : (
+                  <div style={{ position: 'relative', zIndex: 0, minHeight: '48px' }}>
+                    <PayPalButtons
+                      style={{ layout: "horizontal", color: "gold", shape: "rect", height: 48 }}
+                      createSubscription={(data, actions) => {
+                          const planId = import.meta.env.VITE_PAYPAL_PLAN_ID_ANNUAL_BRL || 'P-98557937YE021832CNIUMG3I';
+                          return actions.subscription.create({ plan_id: String(planId) });
+                      }}
+                      onApprove={async (data, actions) => {
+                        try {
+                          await upgradeToPro(user.uid);
+                          alert('Pagamento aprovado via PayPal! Você agora é um membro Prime.');
+                          window.location.reload();
+                        } catch (error) {
+                          console.error(error);
+                          alert('Erro ao finalizar o pagamento.');
+                        }
+                      }}
+                      onError={(err) => {
+                        console.error('PayPal Error:', err);
+                        alert('Ocorreu um erro no pagamento.');
+                      }}
+                    />
+                  </div>
+                )}
               </div>
             </div>
           </div>
         </section>
 
         {/* 7. FINAL CTA */}
-        <section className="py-24 bg-black relative border-y border-white/5 overflow-hidden">
+        <section className="py-24 bg-black relative border-y border-white/15 overflow-hidden">
           <div className="absolute inset-0 pointer-events-none">
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-[600px] bg-accent/5 blur-[120px] rounded-full" />
             <div className="absolute inset-0 tech-grid opacity-[0.03]" />
@@ -633,7 +645,7 @@ export default function SalesPage({ setView }: SalesPageProps) {
                 { q: "OS PROTOCOLOS SÃO SEGUROS?", a: "Sim, baseados 100% em literatura médica e bioquímica." },
                 { q: "POSSO CANCELAR?", a: "O plano mensal pode ser cancelado a qualquer momento." }
               ].map((item, i) => (
-                <div key={i} className="p-6 border border-white/5 bg-white/[0.01] rounded-3xl group">
+                <div key={i} className="p-6 border border-white/15 bg-white/[0.01] rounded-3xl group">
                   <h4 className="text-[10px] font-black text-white uppercase tracking-widest mb-2 flex items-center justify-between">
                     {item.q} <ChevronRight size={14} className="group-hover:rotate-90 transition-all" />
                   </h4>
@@ -645,7 +657,7 @@ export default function SalesPage({ setView }: SalesPageProps) {
         </section>
 
         <section className="py-20 text-center">
-            <button onClick={() => setView('home')} className="text-[9px] font-black text-white/20 uppercase tracking-[0.5em] hover:text-accent transition-colors italic">Voltar ao Dashboard</button>
+            <button onClick={() => setView('home')} className="text-[9px] font-black text-white/40 uppercase tracking-[0.5em] hover:text-accent transition-colors italic">Voltar ao Dashboard</button>
         </section>
       </main>
     </div>

@@ -70,7 +70,7 @@ export default function StackAnalysis({ selectedPeptides, onAddRequest }: StackA
         <p className="text-white/60 text-xs font-black uppercase tracking-[0.2em]">
           Aguardando composição de Stack...
         </p>
-        <p className="text-white/20 text-[9px] font-bold uppercase tracking-widest mt-2">
+        <p className="text-white/40 text-[9px] font-bold uppercase tracking-widest mt-2">
           Adicione pelo menos 2 compostos para ativar o Auditor de Sinergia IA
         </p>
       </div>
@@ -103,7 +103,7 @@ export default function StackAnalysis({ selectedPeptides, onAddRequest }: StackA
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95 }}
           >
-            <div className="bg-black/40 border-2 border-white/5 rounded-[48px] p-8 md:p-16 backdrop-blur-3xl relative overflow-hidden group shadow-2xl">
+            <div className="bg-black/40 border-2 border-white/15 rounded-[48px] p-8 md:p-16 backdrop-blur-3xl relative overflow-hidden group shadow-2xl">
                {/* Animated Background Grid */}
                <div className="absolute inset-0 opacity-[0.05] pointer-events-none" 
                     style={{ backgroundImage: 'linear-gradient(var(--color-accent) 1px, transparent 1px), linear-gradient(90deg, var(--color-accent) 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
@@ -117,13 +117,13 @@ export default function StackAnalysis({ selectedPeptides, onAddRequest }: StackA
                       Bancada de <span className="text-accent">Experimentos Moleculares</span>
                     </h4>
                     
-                    <p className="text-white/40 text-xs font-medium leading-relaxed max-w-xl mx-auto uppercase tracking-wide">
+                    <p className="text-white/60 text-xs font-medium leading-relaxed max-w-xl mx-auto uppercase tracking-wide">
                       Crie qualquer protocolo customizado. O motor Atlas processará sua combinação única em busca de sinergias bioquímicas, quebras de homeostase ou riscos sistêmicos.
                     </p>
                   </div>
 
                  {/* Laboratory Workbench Visualization */}
-                 <div className="w-full flex flex-wrap justify-center gap-4 bg-white/[0.02] p-8 rounded-[40px] border border-white/5">
+                 <div className="w-full flex flex-wrap justify-center gap-4 bg-white/[0.02] p-8 rounded-[40px] border border-white/15">
                    {selectedPeptides.map((p, idx) => (
                      <motion.div
                        key={p.id}
@@ -146,9 +146,9 @@ export default function StackAnalysis({ selectedPeptides, onAddRequest }: StackA
                      onClick={onAddRequest}
                      animate={{ opacity: [0.2, 0.5, 0.2] }}
                      transition={{ duration: 2, repeat: Infinity }}
-                     className="px-8 py-5 border-2 border-dashed border-white/10 rounded-2xl flex items-center justify-center min-w-[200px] hover:border-accent/40 transition-colors group/add"
+                     className="px-8 py-5 border-2 border-dashed border-white/20 rounded-2xl flex items-center justify-center min-w-[200px] hover:border-accent/40 transition-colors group/add"
                    >
-                      <span className="text-white/40 group-hover:text-accent font-black text-[10px] uppercase tracking-widest">+ Integrar Molécula</span>
+                      <span className="text-white/60 group-hover:text-accent font-black text-[10px] uppercase tracking-widest">+ Integrar Molécula</span>
                    </motion.button>
                  </div>
 
@@ -163,7 +163,7 @@ export default function StackAnalysis({ selectedPeptides, onAddRequest }: StackA
                         <span className="text-black font-black uppercase tracking-[0.3em] text-base italic">Ativar Bio-Auditoria</span>
                       </div>
                     </button>
-                    <p className="text-white/20 text-[9px] font-black uppercase tracking-[0.4em]">Processamento Atlas Neural Engine V3.1</p>
+                    <p className="text-white/40 text-[9px] font-black uppercase tracking-[0.4em]">Processamento Atlas Neural Engine V3.1</p>
                  </div>
                </div>
             </div>
@@ -180,7 +180,7 @@ export default function StackAnalysis({ selectedPeptides, onAddRequest }: StackA
             <Loader2 size={48} className="text-accent animate-spin" />
             <div className="space-y-2 text-center">
               <p className="text-xs font-black uppercase tracking-[0.5em] text-accent">Analisando Bio-Interações</p>
-              <p className="text-[9px] font-bold uppercase tracking-widest text-white/20">Calculando vetores de farmacocinética...</p>
+              <p className="text-[9px] font-bold uppercase tracking-widest text-white/40">Calculando vetores de farmacocinética...</p>
             </div>
           </motion.div>
         ) : analysis ? (
@@ -203,7 +203,7 @@ export default function StackAnalysis({ selectedPeptides, onAddRequest }: StackA
                  {analysis.score}<span className="text-accent text-3xl font-black">%</span>
                </div>
                
-               <div className="w-full h-1 bg-white/5 rounded-full mb-6 overflow-hidden">
+               <div className="w-full h-1 bg-white/10 rounded-full mb-6 overflow-hidden">
                   <motion.div 
                     initial={{ width: 0 }}
                     animate={{ width: `${analysis.score}%` }}
@@ -218,12 +218,12 @@ export default function StackAnalysis({ selectedPeptides, onAddRequest }: StackA
             </div>
 
             {/* Analysis Detail */}
-            <div className="lg:col-span-3 bg-white/[0.02] border border-white/10 rounded-[40px] p-10 backdrop-blur-sm relative overflow-hidden">
+            <div className="lg:col-span-3 bg-white/[0.02] border border-white/20 rounded-[40px] p-10 backdrop-blur-sm relative overflow-hidden">
                <div className="flex items-center justify-between mb-8">
                  <div className="text-accent font-black text-[10px] uppercase tracking-[0.3em] flex items-center gap-3">
                    <Target size={16} /> Relatório Técnico Detalhado
                  </div>
-                 <div className="text-[9px] text-white/20 font-black uppercase tracking-widest">Hash: #{analysis.score}X-PRIME</div>
+                 <div className="text-[9px] text-white/40 font-black uppercase tracking-widest">Hash: #{analysis.score}X-PRIME</div>
                </div>
 
                <div className="space-y-6">
@@ -238,7 +238,7 @@ export default function StackAnalysis({ selectedPeptides, onAddRequest }: StackA
                    <div className="text-accent font-black text-[10px] uppercase tracking-[0.2em] flex items-center gap-2">
                      <Zap size={14} /> Sinergia de Receptores
                    </div>
-                   <p className="text-white/60 text-sm leading-relaxed font-medium bg-white/[0.01] p-4 rounded-2xl border border-white/5">
+                   <p className="text-white/60 text-sm leading-relaxed font-medium bg-white/[0.01] p-4 rounded-2xl border border-white/15">
                      {analysis.receptorSynergy}
                    </p>
                  </div>
@@ -296,7 +296,7 @@ export default function StackAnalysis({ selectedPeptides, onAddRequest }: StackA
               <ShieldAlert size={48} className="text-red-500 mx-auto opacity-50" />
               <div className="space-y-2">
                 <p className="text-red-500 text-xs font-black uppercase tracking-[0.3em]">{error}</p>
-                <p className="text-white/20 text-[8px] font-mono uppercase tracking-widest leading-relaxed max-w-md mx-auto">
+                <p className="text-white/40 text-[8px] font-mono uppercase tracking-widest leading-relaxed max-w-md mx-auto">
                   Audit Log: "Molecular link failed to establish. Check API Key or connectivity."
                 </p>
               </div>

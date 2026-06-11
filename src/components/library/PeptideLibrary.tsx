@@ -69,7 +69,7 @@ export default function PeptideLibrary({ setView, isPremium, initialCategory = '
     <div className="space-y-12">
       <button 
         onClick={() => setView('home')}
-        className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.3em] text-secondary/40 hover:text-accent transition-all group mb-4"
+        className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.3em] text-secondary/60 hover:text-accent transition-all group mb-4"
       >
         <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" />
         Voltar para a Home
@@ -77,9 +77,9 @@ export default function PeptideLibrary({ setView, isPremium, initialCategory = '
 
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
         <div className="space-y-4">
-          <div className={`inline-flex items-center gap-2 px-3 py-1 border rounded-full ${isPremium ? 'bg-accent/20 border-accent/40' : 'bg-white/5 border-white/10'}`}>
-            <Zap size={10} className={`${isPremium ? 'text-accent fill-accent' : 'text-white/20'}`} />
-            <span className={`text-[9px] font-black uppercase tracking-widest ${isPremium ? 'text-accent' : 'text-white/40'}`}>
+          <div className={`inline-flex items-center gap-2 px-3 py-1 border rounded-full ${isPremium ? 'bg-accent/20 border-accent/40' : 'bg-white/10 border-white/20'}`}>
+            <Zap size={10} className={`${isPremium ? 'text-accent fill-accent' : 'text-white/40'}`} />
+            <span className={`text-[9px] font-black uppercase tracking-widest ${isPremium ? 'text-accent' : 'text-white/60'}`}>
               Status: {isPremium ? 'Acesso Prime Ativado' : 'Acesso Limitado (Free)'} • {TOTAL_PEPTIDES} Compostos
             </span>
           </div>
@@ -97,9 +97,9 @@ export default function PeptideLibrary({ setView, isPremium, initialCategory = '
             placeholder="Buscar composto..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full bg-secondary/5 border border-secondary/10 rounded-2xl py-4 px-12 text-sm font-medium text-secondary placeholder:text-secondary/40 outline-none focus:border-accent/40 transition-all font-medium"
+            className="w-full bg-secondary/5 border border-secondary/20 rounded-2xl py-4 px-12 text-sm font-medium text-secondary placeholder:text-secondary/60 outline-none focus:border-accent/40 transition-all font-medium"
           />
-          <Search size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-secondary/40" />
+          <Search size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-secondary/60" />
         </div>
       </div>
 
@@ -108,7 +108,7 @@ export default function PeptideLibrary({ setView, isPremium, initialCategory = '
           <button
             key={cat}
             onClick={() => setActiveCategory(cat)}
-            className={`px-4 py-2 md:px-6 md:py-2.5 rounded-full text-[9px] md:text-[10px] font-black uppercase tracking-widest transition-all ${activeCategory === cat ? 'bg-accent text-white shadow-lg shadow-accent/20' : 'bg-white/5 text-secondary/40 hover:bg-white/10'}`}
+            className={`px-4 py-2 md:px-6 md:py-2.5 rounded-full text-[9px] md:text-[10px] font-black uppercase tracking-widest transition-all ${activeCategory === cat ? 'bg-accent text-white shadow-lg shadow-accent/20' : 'bg-white/10 text-secondary/60 hover:bg-white/20'}`}
           >
             {cat}
           </button>
@@ -151,14 +151,14 @@ export default function PeptideLibrary({ setView, isPremium, initialCategory = '
 
                     {/* Prime Brand Badge - Shrunk and shifted */}
                     <div className="absolute top-2.5 right-2.5 flex gap-2 z-30 pointer-events-none">
-                      <div className="px-1 py-0.5 bg-black/40 backdrop-blur-sm border border-white/5 rounded flex items-center gap-1">
+                      <div className="px-1 py-0.5 bg-black/40 backdrop-blur-sm border border-white/15 rounded flex items-center gap-1">
                         <Zap size={6} className="text-secondary/30" />
                         <span className="text-[5px] font-black uppercase tracking-[0.1em] text-secondary/30">PRIME</span>
                       </div>
                     </div>
                     
                     {/* Category Badge - Bottom Right to stay clear of text */}
-                    <div className="absolute bottom-2.5 right-2.5 z-20 px-1.5 py-0.5 bg-black/50 text-white/40 rounded text-[6px] font-black uppercase tracking-widest border border-white/5 backdrop-blur-md">
+                    <div className="absolute bottom-2.5 right-2.5 z-20 px-1.5 py-0.5 bg-black/70 text-white/60 rounded text-[6px] font-black uppercase tracking-widest border border-white/15 backdrop-blur-md">
                       {protocol.tag.split(' ')[0]}
                     </div>
                 </div>
@@ -172,7 +172,7 @@ export default function PeptideLibrary({ setView, isPremium, initialCategory = '
                     {isBlurred ? 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' : protocol.description}
                   </p>
                   
-                  <div className="mt-auto flex items-center justify-between pt-3 border-t border-white/5">
+                  <div className="mt-auto flex items-center justify-between pt-3 border-t border-white/15">
                     <div className={`flex -space-x-2 ${isBlurred ? 'blur-[2px] opacity-20' : ''}`}>
                       {protocol.synergies && Array.isArray(protocol.synergies) ? (
                         protocol.synergies.slice(0, 3).map((s, j) => (
@@ -190,7 +190,7 @@ export default function PeptideLibrary({ setView, isPremium, initialCategory = '
                     </div>
                     
                     <button 
-                      className={`text-[8px] font-black uppercase tracking-widest transition-all flex items-center gap-1 ${level === 'free' || level === 'full' ? 'text-accent' : 'text-secondary/20'}`}
+                      className={`text-[8px] font-black uppercase tracking-widest transition-all flex items-center gap-1 ${level === 'free' || level === 'full' ? 'text-accent' : 'text-secondary/40'}`}
                     >
                       {level === 'free' || level === 'full' ? 'Ver Bula' : 'Bloqueado'} 
                       {level === 'free' || level === 'full' ? <ArrowUpRight size={12} /> : <Lock size={10} />}
@@ -212,10 +212,10 @@ export default function PeptideLibrary({ setView, isPremium, initialCategory = '
         </div>
       ) : (
         <div className="py-20 text-center space-y-4">
-          <div className="w-16 h-16 bg-white/5 rounded-full flex items-center justify-center mx-auto text-secondary/20">
+          <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mx-auto text-secondary/40">
             <Search size={24} />
           </div>
-          <p className="text-secondary/40 font-black uppercase tracking-widest text-[10px]">Nenhum composto encontrado</p>
+          <p className="text-secondary/60 font-black uppercase tracking-widest text-[10px]">Nenhum composto encontrado</p>
         </div>
       )}
 

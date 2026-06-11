@@ -48,7 +48,7 @@ export default function OnlineUsers() {
   }, []);
 
   return (
-    <div className="fixed top-24 right-4 sm:right-8 z-50 bg-black/80 backdrop-blur-md border border-white/10 p-3 rounded-xl flex items-center gap-3 shadow-lg shadow-black/50" style={{ clipPath: 'polygon(0 0, 85% 0, 100% 15%, 100% 100%, 15% 100%, 0 85%)' }}>
+    <div className="fixed top-24 right-4 sm:right-8 z-50 bg-black/80 backdrop-blur-md border border-white/20 p-3 rounded-xl flex items-center gap-3 shadow-lg shadow-black/50" style={{ clipPath: 'polygon(0 0, 85% 0, 100% 15%, 100% 100%, 15% 100%, 0 85%)' }}>
       <div className="relative flex items-center justify-center">
         <div className="absolute inset-0 bg-accent/20 rounded-full animate-ping" />
         <div className="bg-accent/20 p-2 rounded-full relative z-10">

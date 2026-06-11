@@ -51,18 +51,18 @@ export default function LegalModal({ type, onClose }: LegalModalProps) {
         initial={{ opacity: 0, scale: 0.95, y: 20 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.95, y: 20 }}
-        className="w-full max-w-lg bg-[#050505] border border-white/10 rounded-2xl shadow-2xl relative z-10 overflow-hidden"
+        className="w-full max-w-lg bg-[#050505] border border-white/20 rounded-2xl shadow-2xl relative z-10 overflow-hidden"
       >
-        <div className="p-5 border-b border-white/10 flex justify-between items-center bg-[#0a0a0a]">
+        <div className="p-5 border-b border-white/20 flex justify-between items-center bg-[#0a0a0a]">
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center text-secondary">
+            <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center text-secondary">
               <Scale size={16} />
             </div>
             <h3 className="text-sm font-bold text-white uppercase tracking-widest">{title}</h3>
           </div>
           <button 
             onClick={onClose}
-            className="text-white/40 hover:text-white transition-colors p-2 rounded-lg hover:bg-white/5"
+            className="text-white/60 hover:text-white transition-colors p-2 rounded-lg hover:bg-white/20"
           >
             <X size={18} />
           </button>
@@ -74,7 +74,7 @@ export default function LegalModal({ type, onClose }: LegalModalProps) {
           ))}
         </div>
         
-        <div className="p-5 border-t border-white/10 flex justify-end bg-[#0a0a0a]">
+        <div className="p-5 border-t border-white/20 flex justify-end bg-[#0a0a0a]">
           <button 
             onClick={onClose}
             className="px-6 py-2 bg-accent/20 text-accent hover:bg-accent/30 transition-colors rounded-xl text-xs font-bold uppercase tracking-widest"

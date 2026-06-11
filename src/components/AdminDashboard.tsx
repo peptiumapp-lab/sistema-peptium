@@ -114,11 +114,11 @@ export default function AdminDashboard() {
         <Shield className="w-10 h-10 text-accent" />
         <div>
           <h1 className="text-3xl font-black text-white uppercase tracking-widest">Painel Administrativo</h1>
-          <p className="text-white/40 text-sm uppercase tracking-widest">Gerencie acessos temporários Pro</p>
+          <p className="text-white/60 text-sm uppercase tracking-widest">Gerencie acessos temporários Pro</p>
         </div>
       </div>
 
-      <div className="bg-white/5 border border-white/10 p-6 rounded-2xl mb-12">
+      <div className="bg-white/10 border border-white/20 p-6 rounded-2xl mb-12">
         <h2 className="text-lg font-bold text-white mb-4 uppercase tracking-widest flex items-center gap-2">
           <Plus size={18} /> Conceder Acesso
         </h2>
@@ -129,7 +129,7 @@ export default function AdminDashboard() {
             value={newEmail}
             onChange={(e) => setNewEmail(e.target.value)}
             placeholder="Email do usuário"
-            className="flex-1 bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-accent"
+            className="flex-1 bg-black/70 border border-white/20 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-accent"
           />
           <button 
             onClick={() => handleAddGrant('monthly')}
@@ -146,8 +146,8 @@ export default function AdminDashboard() {
         </div>
       </div>
 
-      <div className="bg-white/5 border border-white/10 rounded-2xl overflow-hidden">
-        <div className="p-6 border-b border-white/10">
+      <div className="bg-white/10 border border-white/20 rounded-2xl overflow-hidden">
+        <div className="p-6 border-b border-white/20">
           <h2 className="text-lg font-bold text-white uppercase tracking-widest flex items-center gap-2">
            Acessos Ativos ({grants.length})
           </h2>
@@ -161,7 +161,7 @@ export default function AdminDashboard() {
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse">
               <thead>
-                <tr className="bg-black/20 text-white/40 text-xs font-bold uppercase tracking-widest">
+                <tr className="bg-black/20 text-white/60 text-xs font-bold uppercase tracking-widest">
                   <th className="p-4">Email</th>
                   <th className="p-4">Tipo</th>
                   <th className="p-4">Expira em</th>
@@ -194,7 +194,7 @@ export default function AdminDashboard() {
                       <td className="p-4">
                         <button 
                           onClick={() => handleRemoveGrant(grant.email)}
-                          className="p-2 text-white/40 hover:text-red-500 transition-colors rounded-lg hover:bg-red-500/10"
+                          className="p-2 text-white/60 hover:text-red-500 transition-colors rounded-lg hover:bg-red-500/10"
                         >
                           <Trash2 size={16} />
                         </button>

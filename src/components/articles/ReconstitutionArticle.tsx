@@ -43,7 +43,7 @@ export default function ReconstitutionGuide({ onBack }: ReconstitutionGuideProps
 
         <div className="space-y-12">
           {/* Header */}
-          <div className="p-12 rounded-[48px] bg-secondary/[0.02] border border-white/5 relative overflow-hidden">
+          <div className="p-12 rounded-[48px] bg-secondary/[0.02] border border-white/15 relative overflow-hidden">
             <div className="absolute top-0 right-0 p-12 opacity-5">
               <Beaker size={150} />
             </div>
@@ -53,7 +53,7 @@ export default function ReconstitutionGuide({ onBack }: ReconstitutionGuideProps
               </div>
               <h1 className="text-4xl md:text-6xl font-black text-white uppercase italic tracking-tighter leading-tight">
                 RECONSTITUIÇÃO <br />
-                <span className="text-white/40">PASSO A PASSO</span>
+                <span className="text-white/60">PASSO A PASSO</span>
               </h1>
             </div>
           </div>
@@ -61,13 +61,13 @@ export default function ReconstitutionGuide({ onBack }: ReconstitutionGuideProps
           {/* Content */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {steps.map((step, i) => (
-              <div key={i} className="p-8 rounded-3xl bg-secondary/[0.01] border border-white/5 space-y-4">
+              <div key={i} className="p-8 rounded-3xl bg-secondary/[0.01] border border-white/15 space-y-4">
                 <div className="flex items-center justify-between">
                   {step.icon}
-                  <span className="text-[10px] font-black text-white/20 italic">0{i + 1}</span>
+                  <span className="text-[10px] font-black text-white/40 italic">0{i + 1}</span>
                 </div>
                 <h3 className="text-lg font-black text-white uppercase italic tracking-tight">{step.title}</h3>
-                <p className="text-sm text-white/40 leading-relaxed font-medium">{step.desc}</p>
+                <p className="text-sm text-white/60 leading-relaxed font-medium">{step.desc}</p>
               </div>
             ))}
           </div>

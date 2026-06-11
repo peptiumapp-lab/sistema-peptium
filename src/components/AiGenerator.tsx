@@ -99,20 +99,20 @@ export default function AiGenerator() {
         </p>
       </div>
 
-      <div className="bg-[#050505] p-6 lg:p-8 rounded-[2rem] border border-white/5 shadow-2xl relative overflow-hidden">
+      <div className="bg-[#050505] p-6 lg:p-8 rounded-[2rem] border border-white/15 shadow-2xl relative overflow-hidden">
         {/* BG Glow */}
         <div className="absolute top-0 right-0 w-96 h-96 bg-accent/5 blur-[100px] pointer-events-none rounded-full" />
         
         <div className="relative z-10 space-y-6">
           <div className="space-y-4">
-            <label className="text-[10px] font-black uppercase tracking-[0.2em] text-white/40 flex items-center gap-2">
+            <label className="text-[10px] font-black uppercase tracking-[0.2em] text-white/60 flex items-center gap-2">
               <Terminal size={14} className="text-accent" /> Interface Neurolinguística 
             </label>
             <textarea 
               value={intent}
               onChange={(e) => setIntent(e.target.value)}
               placeholder="Exemplo: Quero perder gordura profunda teimosa, reconstruir ligamentos no ombro desgastados e regular meu foco diário."
-              className="w-full h-32 bg-white/[0.02] border border-white/10 rounded-2xl p-5 text-sm text-white focus:outline-none focus:border-accent/40 focus:bg-white/[0.04] transition-all resize-none shadow-inner"
+              className="w-full h-32 bg-white/[0.02] border border-white/20 rounded-2xl p-5 text-sm text-white focus:outline-none focus:border-accent/40 focus:bg-white/[0.04] transition-all resize-none shadow-inner"
             />
           </div>
 
@@ -150,7 +150,7 @@ export default function AiGenerator() {
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          className="border border-white/10 rounded-[2.5rem] p-6 lg:p-10 relative mt-8 pt-12"
+          className="border border-white/20 rounded-[2.5rem] p-6 lg:p-10 relative mt-8 pt-12"
         >
           {/* Header Badge */}
           <div className="absolute top-0 right-10 transform -translate-y-1/2">
@@ -169,7 +169,7 @@ export default function AiGenerator() {
             </div>
 
             {/* Vantagens Diretas */}
-            <div className="border border-white/5 rounded-[1.5rem] p-6 lg:p-8 bg-white/[0.02]">
+            <div className="border border-white/15 rounded-[1.5rem] p-6 lg:p-8 bg-white/[0.02]">
               <div className="flex items-center gap-2 text-accent text-xs font-black uppercase tracking-widest mb-6">
                 <Sparkles size={16}/> Vantagens Diretas
               </div>
@@ -198,30 +198,30 @@ export default function AiGenerator() {
 
             {/* Core Compounds Setup */}
             <div className="space-y-6 pt-6">
-               <div className="flex items-center gap-2 text-white text-sm font-black uppercase tracking-widest mb-6 border-b border-white/5 pb-4">
+               <div className="flex items-center gap-2 text-white text-sm font-black uppercase tracking-widest mb-6 border-b border-white/15 pb-4">
                   <Activity className="text-accent" size={18}/> Matriz de Compostos Core
                </div>
                
                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                   {result.coreCompounds.map((comp, idx) => (
-                     <div key={idx} className="p-6 rounded-[2rem] border border-white/10 bg-[#050505] flex flex-col hover:border-accent/30 transition-all">
+                     <div key={idx} className="p-6 rounded-[2rem] border border-white/20 bg-[#050505] flex flex-col hover:border-accent/30 transition-all">
                         <h4 className="text-xl font-black text-accent uppercase italic tracking-tighter mb-2">{comp.name}</h4>
                         <div className="inline-block border border-white/20 text-white/50 text-[10px] uppercase font-bold tracking-widest px-2 py-0.5 rounded mb-4 w-fit">
                            {comp.name.toLowerCase()}
                         </div>
                         <p className="text-xs text-white/70 mb-6 flex-grow">{comp.action}</p>
             
-                        <div className="mt-auto border border-white/5 rounded-xl p-4 bg-white/[0.02] space-y-3">
-                           <div className="flex justify-between items-center pb-3 border-b border-white/5">
-                              <span className="text-[10px] uppercase tracking-widest text-white/40 font-bold">Dose Inicial</span>
+                        <div className="mt-auto border border-white/15 rounded-xl p-4 bg-white/[0.02] space-y-3">
+                           <div className="flex justify-between items-center pb-3 border-b border-white/15">
+                              <span className="text-[10px] uppercase tracking-widest text-white/60 font-bold">Dose Inicial</span>
                               <span className="text-xs font-bold text-white text-right ml-4">{comp.initialDose}</span>
                            </div>
-                           <div className="flex justify-between items-center pb-3 border-b border-white/5">
-                              <span className="text-[10px] uppercase tracking-widest text-white/40 font-bold">Dose Manutenção</span>
+                           <div className="flex justify-between items-center pb-3 border-b border-white/15">
+                              <span className="text-[10px] uppercase tracking-widest text-white/60 font-bold">Dose Manutenção</span>
                               <span className="text-xs font-bold text-accent text-right ml-4">{comp.maintenanceDose}</span>
                            </div>
                            <div className="flex justify-between items-center pt-1">
-                              <span className="text-[10px] uppercase tracking-widest text-white/40 font-bold flex items-center gap-1 shrink-0"><Clock size={12}/> Horário</span>
+                              <span className="text-[10px] uppercase tracking-widest text-white/60 font-bold flex items-center gap-1 shrink-0"><Clock size={12}/> Horário</span>
                               <span className="text-[10px] font-medium text-white/80 max-w-[200px] text-right">{comp.bestTime}</span>
                            </div>
                         </div>
@@ -252,7 +252,7 @@ export default function AiGenerator() {
 
             {/* Matriz de Mitigação */}
             <div className="space-y-6 pt-8">
-               <div className="flex items-center gap-2 text-white text-sm font-black uppercase tracking-widest mb-6 border-b border-white/5 pb-4">
+               <div className="flex items-center gap-2 text-white text-sm font-black uppercase tracking-widest mb-6 border-b border-white/15 pb-4">
                   <Shield className="text-orange-500" size={18}/> Matriz de Mitigação
                </div>
                
@@ -283,7 +283,7 @@ export default function AiGenerator() {
 
             {/* Manual Tático de Aplicação */}
             {result.applicationManual && (
-               <div className="space-y-6 pt-8 border-t border-white/5 mt-8">
+               <div className="space-y-6 pt-8 border-t border-white/15 mt-8">
                   <div className="flex items-center gap-2 text-white text-sm font-black uppercase tracking-widest mb-6 pb-4">
                      <AlertTriangle className="text-fuchsia-500" size={18}/> Manual Prático de Aplicação
                   </div>
@@ -298,7 +298,7 @@ export default function AiGenerator() {
 
             {/* Ações / Cofre */}
             {user && (
-               <div className="pt-8 mt-8 border-t border-white/5 flex flex-col md:flex-row justify-center md:justify-end gap-4">
+               <div className="pt-8 mt-8 border-t border-white/15 flex flex-col md:flex-row justify-center md:justify-end gap-4">
                   <button 
                      onClick={saveToVault}
                      disabled={isSaving || saveSuccess}
@@ -319,7 +319,7 @@ export default function AiGenerator() {
                </div>
             )}
             {!user && (
-               <div className="pt-8 mt-8 border-t border-white/5 text-center">
+               <div className="pt-8 mt-8 border-t border-white/15 text-center">
                   <p className="text-xs text-white/50 uppercase tracking-widest font-bold">Autentique-se para salvar no Cofre Atlas</p>
                </div>
             )}

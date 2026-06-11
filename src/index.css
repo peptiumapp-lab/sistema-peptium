@@ -26,16 +26,16 @@
 
 @layer base {
   :root {
-    --primary: #000000;
+    --primary: #050505;
     --secondary: #ffffff;
-    --text-muted: rgba(255, 255, 255, 0.4);
-    --secondary-hover: rgba(255, 255, 255, 0.03);
+    --text-muted: rgba(255, 255, 255, 0.65);
+    --secondary-hover: rgba(255, 255, 255, 0.08);
   }
 
   .light {
     --primary: #ffffff;
     --secondary: #000000;
-    --text-muted: rgba(0, 0, 0, 0.85);
+    --text-muted: rgba(0, 0, 0, 0.7);
     --secondary-hover: rgba(0, 0, 0, 0.05);
   }
 
@@ -76,7 +76,7 @@
 }
 
 .glass-card {
-  @apply bg-secondary/[0.03] backdrop-blur-xl border border-secondary/10 shadow-[0_8px_32px_rgba(0,0,0,0.4)];
+  @apply bg-secondary/[0.08] backdrop-blur-xl border border-secondary/20 shadow-[0_8px_32px_rgba(0,0,0,0.4)];
   position: relative;
   overflow: hidden;
 }

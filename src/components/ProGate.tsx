@@ -39,13 +39,13 @@ export default function ProGate({ onBack, onUpgrade, title }: ProGateProps) {
           ACESSO <span className="text-accent">RESTRITO:</span> <br/>
           <span className="opacity-90">{title}</span>
         </h2>
-        <p className="text-white/40 text-[10px] font-bold uppercase tracking-[0.2em] max-w-md mx-auto leading-relaxed italic">
+        <p className="text-white/60 text-[10px] font-bold uppercase tracking-[0.2em] max-w-md mx-auto leading-relaxed italic">
           Esta ferramenta utiliza nossa rede neural de dados exclusivos. <br/>
           <span className="text-white opacity-80">Torne-se um membro Prime para desbloquear a inteligência molecular completa.</span>
         </p>
       </div>
 
-      <div className="grid grid-cols-2 gap-x-12 gap-y-4 text-left border-y border-white/5 py-8 w-full max-w-2xl">
+      <div className="grid grid-cols-2 gap-x-12 gap-y-4 text-left border-y border-white/15 py-8 w-full max-w-2xl">
         {[
           'Calculadora Prime',
           'Algoritmo de IA Molecular',
@@ -67,7 +67,7 @@ export default function ProGate({ onBack, onUpgrade, title }: ProGateProps) {
         >
           Seja Peptium Prime
         </button>
-        <div className="text-white/20 text-[9px] font-black uppercase tracking-[0.3em] flex items-center justify-center gap-2">
+        <div className="text-white/40 text-[9px] font-black uppercase tracking-[0.3em] flex items-center justify-center gap-2">
             <Shield size={10} /> Pagamento 100% Seguro & Criptografado
         </div>
       </div>

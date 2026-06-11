@@ -72,7 +72,7 @@ export default function Layout({ children, currentView, setCurrentView, theme, s
             <span className={`text-[8px] font-black uppercase tracking-widest px-1.5 py-0.5 rounded-sm border shrink-0 ${
               isPro 
                 ? 'bg-accent/10 text-accent border-accent/20' 
-                : 'bg-white/5 text-white/40 border-white/10'
+                : 'bg-white/15 text-white/90 border-white/20'
             }`}>
               {isPro ? 'PRO' : 'FREE'}
             </span>
@@ -115,7 +115,7 @@ export default function Layout({ children, currentView, setCurrentView, theme, s
     <div className="min-h-screen bg-primary flex overflow-x-hidden pt-8">
       
       {/* Prime Market Ticker (Integrated) */}
-      <div className="bg-[#02010a] border-b border-white/5 py-1.5 md:py-2 overflow-hidden whitespace-nowrap z-40 fixed top-0 left-0 w-full flex">
+      <div className="bg-[#02010a] border-b border-white/15 py-1.5 md:py-2 overflow-hidden whitespace-nowrap z-40 fixed top-0 left-0 w-full flex">
         <motion.div 
           animate={{ x: [0, "-50%"] }}
           transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
@@ -147,7 +147,7 @@ export default function Layout({ children, currentView, setCurrentView, theme, s
       </div>
 
       {/* Desktop Sidebar (Floating UI) */}
-      <aside className="hidden lg:flex flex-col w-[230px] h-[calc(100vh-2rem)] fixed left-4 top-4 bg-[#050505]/80 backdrop-blur-2xl border border-white/5 rounded-3xl z-40 shadow-[0_8px_32px_rgba(0,0,0,0.6),inset_0_0_32px_rgba(0,229,255,0.02)]">
+      <aside className="hidden lg:flex flex-col w-[230px] h-[calc(100vh-2rem)] fixed left-4 top-4 bg-[#050505]/80 backdrop-blur-2xl border border-white/15 rounded-3xl z-40 shadow-[0_8px_32px_rgba(0,0,0,0.6),inset_0_0_32px_rgba(0,229,255,0.02)]">
         {/* Header */}
         <div className="p-5 pb-4 flex justify-between items-center">
           <span 
@@ -170,7 +170,7 @@ export default function Layout({ children, currentView, setCurrentView, theme, s
           <select 
             value={language} 
             onChange={(e) => setLanguage(e.target.value as Language)}
-            className="bg-white/5 border border-white/10 rounded-md text-[10px] text-white/70 p-1 outline-none uppercase font-bold tracking-widest cursor-pointer"
+            className="bg-white/10 border border-white/20 rounded-md text-[10px] text-white/70 p-1 outline-none uppercase font-bold tracking-widest cursor-pointer"
           >
             <option value="pt">PT</option>
             <option value="en">EN</option>
@@ -196,7 +196,7 @@ export default function Layout({ children, currentView, setCurrentView, theme, s
           <div className="mb-3 space-y-1">
             <div className="flex items-center gap-2 px-3 mb-1.5">
               <div className="h-[1px] w-4 bg-white/10" />
-              <div className="text-[9px] font-black text-white/40 uppercase tracking-[0.3em]">
+              <div className="text-[9px] font-black text-secondary/90 uppercase tracking-[0.3em]">
                 Biblioteca
               </div>
               <div className="h-[1px] flex-grow bg-gradient-to-r from-white/10 to-transparent" />
@@ -211,14 +211,14 @@ export default function Layout({ children, currentView, setCurrentView, theme, s
                   className={`w-full flex items-center gap-3 px-3 py-1.5 rounded-xl transition-all duration-300 text-[12px] font-bold group relative overflow-hidden ${
                     isActive 
                       ? 'bg-accent/10 border border-accent/20 text-white shadow-[inset_0_0_20px_rgba(0,229,255,0.05)]' 
-                      : 'text-secondary/50 hover:text-white hover:bg-white/5 border border-transparent'
+                      : 'text-secondary/90 hover:text-white hover:bg-white/20 border border-transparent'
                   }`}
                 >
                   {isActive && (
                     <motion.div layoutId="sidebar-active" className="absolute left-0 top-1/4 bottom-1/4 w-[3px] bg-accent rounded-r-full shadow-[0_0_10px_#00E5FF]" />
                   )}
                   <div className={`p-1.5 rounded-xl transition-all duration-300 ${
-                    isActive ? 'bg-accent/20 text-accent shadow-[0_0_10px_rgba(0,229,255,0.2)]' : 'bg-white/5 text-white/40 group-hover:bg-white/10 group-hover:text-white/80'
+                    isActive ? 'bg-accent/20 text-accent shadow-[0_0_10px_rgba(0,229,255,0.2)]' : 'bg-white/15 text-white/90 group-hover:bg-white/20 group-hover:text-white'
                   }`}>
                     {item.icon}
                   </div>
@@ -231,7 +231,7 @@ export default function Layout({ children, currentView, setCurrentView, theme, s
           <div className="mb-2 space-y-1">
             <div className="flex items-center gap-2 px-3 mb-1.5">
               <div className="h-[1px] w-4 bg-white/10" />
-              <div className="text-[9px] font-black text-white/40 uppercase tracking-[0.3em]">
+              <div className="text-[9px] font-black text-secondary/90 uppercase tracking-[0.3em]">
                 Ferramentas
               </div>
               <div className="h-[1px] flex-grow bg-gradient-to-r from-white/10 to-transparent" />
@@ -246,14 +246,14 @@ export default function Layout({ children, currentView, setCurrentView, theme, s
                   className={`w-full flex items-center gap-3 px-3 py-1.5 rounded-xl transition-all duration-300 text-[12px] font-bold group relative overflow-hidden ${
                     isActive 
                       ? 'bg-accent/10 border border-accent/20 text-white shadow-[inset_0_0_20px_rgba(0,229,255,0.05)]' 
-                      : 'text-secondary/50 hover:text-white hover:bg-white/5 border border-transparent'
+                      : 'text-secondary/90 hover:text-white hover:bg-white/20 border border-transparent'
                   }`}
                 >
                   {isActive && (
                     <motion.div layoutId="sidebar-active-tools" className="absolute left-0 top-1/4 bottom-1/4 w-[3px] bg-accent rounded-r-full shadow-[0_0_10px_#00E5FF]" />
                   )}
                   <div className={`p-1.5 rounded-xl transition-all duration-300 ${
-                    isActive ? 'bg-accent/20 text-accent shadow-[0_0_10px_rgba(0,229,255,0.2)]' : 'bg-white/5 text-white/40 group-hover:bg-white/10 group-hover:text-white/80'
+                    isActive ? 'bg-accent/20 text-accent shadow-[0_0_10px_rgba(0,229,255,0.2)]' : 'bg-white/15 text-white/90 group-hover:bg-white/20 group-hover:text-white/90'
                   }`}>
                     {item.icon}
                   </div>
@@ -264,7 +264,7 @@ export default function Layout({ children, currentView, setCurrentView, theme, s
           </div>
         </div>
 
-        <div className="p-3 border-t border-white/5 mt-auto">
+        <div className="p-3 border-t border-white/15 mt-auto">
           <nav className="space-y-0">
             {contaItems.map((item, index) => (
               <button
@@ -273,11 +273,11 @@ export default function Layout({ children, currentView, setCurrentView, theme, s
                 className={`w-full flex items-center gap-3 px-3 py-1.5 rounded-xl transition-all duration-300 text-[12px] font-bold group ${
                   item.highlight 
                     ? 'bg-accent/10 text-accent border border-accent/20 hover:bg-accent/20 hover:shadow-[0_0_15px_rgba(0,229,255,0.2)]' 
-                    : 'text-secondary/50 hover:text-white hover:bg-white/5 border border-transparent'
+                    : 'text-secondary/90 hover:text-white hover:bg-white/20 border border-transparent'
                 }`}
               >
                 <div className={`p-1.5 rounded-xl transition-all duration-300 ${
-                  item.highlight ? 'bg-accent/20 text-accent' : 'bg-white/5 text-white/40 group-hover:bg-white/10 group-hover:text-white/80'
+                  item.highlight ? 'bg-accent/20 text-accent' : 'bg-white/15 text-white/90 group-hover:bg-white/20 group-hover:text-white/90'
                 }`}>
                   {item.icon}
                 </div>
@@ -289,7 +289,7 @@ export default function Layout({ children, currentView, setCurrentView, theme, s
       </aside>
 
       {/* Mobile Header / Navbar */}
-      <nav className="lg:hidden fixed top-8 md:top-10 left-0 right-0 z-40 bg-primary/80 backdrop-blur-xl border-b border-secondary/5">
+      <nav className="lg:hidden fixed top-8 md:top-10 left-0 right-0 z-40 bg-primary/80 backdrop-blur-xl border-b border-secondary/15">
         <div className="px-4 h-14 flex justify-between items-center">
           <div className="flex items-center gap-2">
             {currentView !== 'home' ? (
@@ -319,7 +319,7 @@ export default function Layout({ children, currentView, setCurrentView, theme, s
             <select 
               value={language} 
               onChange={(e) => setLanguage(e.target.value as Language)}
-              className="bg-white/5 border border-white/10 rounded-md text-[10px] text-white/70 p-1 px-2 outline-none uppercase font-bold tracking-widest cursor-pointer mr-2"
+              className="bg-white/10 border border-white/20 rounded-md text-[10px] text-white/70 p-1 px-2 outline-none uppercase font-bold tracking-widest cursor-pointer mr-2"
             >
               <option value="pt">PT</option>
               <option value="en">EN</option>
@@ -350,9 +350,9 @@ export default function Layout({ children, currentView, setCurrentView, theme, s
               initial={{ x: '-100%' }}
               animate={{ x: 0 }}
               exit={{ x: '-100%' }}
-              className="fixed top-0 left-0 h-full w-[85%] max-w-sm bg-[#050505]/95 backdrop-blur-3xl z-50 lg:hidden border-r border-white/5 flex flex-col shadow-[20px_0_40px_rgba(0,0,0,0.6)]"
+              className="fixed top-0 left-0 h-full w-[85%] max-w-sm bg-[#050505]/95 backdrop-blur-3xl z-50 lg:hidden border-r border-white/15 flex flex-col shadow-[20px_0_40px_rgba(0,0,0,0.6)]"
             >
-              <div className="p-6 flex justify-between items-center border-b border-white/5">
+              <div className="p-6 flex justify-between items-center border-b border-white/15">
                 <span className="flex items-center gap-3 cursor-pointer group">
                   <div className="relative">
                     <div className="absolute inset-0 bg-accent/20 blur-xl rounded-full" />
@@ -369,7 +369,7 @@ export default function Layout({ children, currentView, setCurrentView, theme, s
                 </span>
                 <button 
                   onClick={() => setIsSidebarOpen(false)} 
-                  className="p-2 bg-white/5 rounded-full text-white/50 hover:text-white hover:bg-white/10 transition-all"
+                  className="p-2 bg-white/10 rounded-full text-white/50 hover:text-white hover:bg-white/20 transition-all"
                 >
                   <X size={18} />
                 </button>
@@ -390,7 +390,7 @@ export default function Layout({ children, currentView, setCurrentView, theme, s
                 <div className="mb-6 space-y-2">
                   <div className="flex items-center gap-2 px-2 mb-4">
                     <div className="h-[1px] w-3 bg-white/10" />
-                    <div className="text-[10px] font-black text-white/40 uppercase tracking-[0.2em]">BIBLIOTECA</div>
+                    <div className="text-[10px] font-black text-secondary/90 uppercase tracking-[0.2em]">BIBLIOTECA</div>
                     <div className="h-[1px] flex-grow bg-gradient-to-r from-white/10 to-transparent" />
                   </div>
                   <nav className="space-y-0.5">
@@ -403,11 +403,11 @@ export default function Layout({ children, currentView, setCurrentView, theme, s
                         className={`w-full flex items-center gap-3 py-2 px-3 rounded-2xl transition-all text-[13px] font-bold ${
                           isActive 
                             ? 'bg-accent/10 border border-accent/20 text-white' 
-                            : 'text-secondary/50 hover:bg-white/5 hover:text-white border border-transparent'
+                            : 'text-secondary/90 hover:bg-white/20 hover:text-white border border-transparent'
                         }`}
                       >
                         <div className={`p-1.5 rounded-xl transition-all ${
-                          isActive ? 'bg-accent/20 text-accent' : 'bg-white/5 text-white/40'
+                          isActive ? 'bg-accent/20 text-accent' : 'bg-white/15 text-white/90'
                         }`}>
                           {item.icon}
                         </div>
@@ -420,7 +420,7 @@ export default function Layout({ children, currentView, setCurrentView, theme, s
                 <div className="mb-6 space-y-2">
                   <div className="flex items-center gap-2 px-2 mb-4">
                     <div className="h-[1px] w-3 bg-white/10" />
-                    <div className="text-[10px] font-black text-white/40 uppercase tracking-[0.2em]">FERRAMENTAS</div>
+                    <div className="text-[10px] font-black text-secondary/90 uppercase tracking-[0.2em]">FERRAMENTAS</div>
                     <div className="h-[1px] flex-grow bg-gradient-to-r from-white/10 to-transparent" />
                   </div>
                   <nav className="space-y-0.5">
@@ -433,11 +433,11 @@ export default function Layout({ children, currentView, setCurrentView, theme, s
                         className={`w-full flex items-center gap-3 py-2 px-3 rounded-2xl transition-all text-[13px] font-bold ${
                           isActive 
                             ? 'bg-accent/10 border border-accent/20 text-white' 
-                            : 'text-secondary/50 hover:bg-white/5 hover:text-white border border-transparent'
+                            : 'text-secondary/90 hover:bg-white/20 hover:text-white border border-transparent'
                         }`}
                       >
                         <div className={`p-1.5 rounded-xl transition-all ${
-                          isActive ? 'bg-accent/20 text-accent' : 'bg-white/5 text-white/40'
+                          isActive ? 'bg-accent/20 text-accent' : 'bg-white/15 text-white/90'
                         }`}>
                           {item.icon}
                         </div>
@@ -448,7 +448,7 @@ export default function Layout({ children, currentView, setCurrentView, theme, s
                 </div>
               </div>
 
-              <div className="p-4 border-t border-white/5">
+              <div className="p-4 border-t border-white/15">
                 <nav className="space-y-0.5 mb-4">
                   {contaItems.map((item, index) => (
                     <button
@@ -457,11 +457,11 @@ export default function Layout({ children, currentView, setCurrentView, theme, s
                       className={`w-full flex items-center gap-3 py-2 px-3 rounded-2xl transition-all text-[13px] font-bold ${
                         item.highlight 
                           ? 'bg-accent/10 border border-accent/20 text-accent' 
-                          : 'text-secondary/50 hover:bg-white/5 hover:text-white border border-transparent'
+                          : 'text-secondary/90 hover:bg-white/20 hover:text-white border border-transparent'
                       }`}
                     >
                       <div className={`p-1.5 rounded-xl transition-all ${
-                        item.highlight ? 'bg-accent/20 text-accent' : 'bg-white/5 text-white/40'
+                        item.highlight ? 'bg-accent/20 text-accent' : 'bg-white/15 text-white/90'
                       }`}>
                         {item.icon}
                       </div>
@@ -473,7 +473,7 @@ export default function Layout({ children, currentView, setCurrentView, theme, s
                   <a href={SUPPORT_LINK} className="flex items-center justify-center gap-3 bg-accent/20 border border-accent/40 text-accent py-4 rounded-xl font-black text-[11px] uppercase tracking-[0.2em] shadow-[0_0_20px_rgba(0,229,255,0.1)]">
                     Fale com o Suporte
                   </a>
-                  <a href={INSTAGRAM_LINK} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-3 bg-white/5 border border-white/10 text-white/80 hover:text-white hover:bg-white/10 py-4 rounded-xl font-black text-[11px] uppercase tracking-[0.2em] transition-all">
+                  <a href={INSTAGRAM_LINK} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-3 bg-white/10 border border-white/20 text-white/90 hover:text-white hover:bg-white/20 py-4 rounded-xl font-black text-[11px] uppercase tracking-[0.2em] transition-all">
                     <Instagram size={16} /> @peptium.app
                   </a>
                 </div>
