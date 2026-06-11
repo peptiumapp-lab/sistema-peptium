@@ -18,7 +18,7 @@ export default function InjectionArticle({ onBack }: InjectionGuideProps) {
       <div className="max-w-4xl mx-auto px-6 py-12">
         <button 
           onClick={onBack}
-          className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.3em] text-accent hover:text-white transition-all group mb-12"
+          className="flex items-center gap-2 text-xs font-black uppercase tracking-wider text-accent hover:text-white transition-all group mb-12"
         >
           <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
           Voltar aos Guias
@@ -31,7 +31,7 @@ export default function InjectionArticle({ onBack }: InjectionGuideProps) {
               <Syringe size={150} />
             </div>
             <div className="relative z-10 space-y-6">
-              <div className="inline-flex px-3 py-1 rounded-lg bg-accent/10 border border-accent/20 text-accent text-[10px] font-black uppercase tracking-widest">
+              <div className="inline-flex px-3 py-1 rounded-lg bg-accent/10 border border-accent/20 text-accent text-xs font-black uppercase tracking-wider">
                 Técnica Biológica v2.0
               </div>
               <h1 className="text-4xl md:text-6xl font-black text-white uppercase italic tracking-tighter leading-[0.85]">
@@ -48,7 +48,7 @@ export default function InjectionArticle({ onBack }: InjectionGuideProps) {
                 <RefreshCcw className="text-accent" />
                 A Importância da Rotação
               </h2>
-              <div className="text-white/50 text-sm leading-relaxed space-y-4 font-medium">
+              <div className="text-white/50 text-sm leading-loose space-y-4 font-medium">
                 <p>
                   A aplicação repetida no mesmo local pode causar **lipohipertrofia** (acúmulo de gordura sob a pele) ou cicatrizes internas que prejudicam a absorção do peptídeo.
                 </p>
@@ -66,7 +66,7 @@ export default function InjectionArticle({ onBack }: InjectionGuideProps) {
                   </div>
                   <div>
                     <div className="text-white font-black uppercase text-xs italic">{site.name}</div>
-                    <div className="text-white/30 text-[10px] font-medium">{site.desc}</div>
+                    <div className="text-white/50 text-xs font-medium">{site.desc}</div>
                   </div>
                 </div>
               ))}
@@ -89,15 +89,15 @@ export default function InjectionArticle({ onBack }: InjectionGuideProps) {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="p-6 rounded-3xl bg-secondary/[0.02] border border-white/15 flex flex-col items-center text-center space-y-3">
               <div className="w-8 h-8 rounded-full bg-accent text-primary flex items-center justify-center text-xs font-black">1</div>
-              <div className="text-[10px] font-black text-white uppercase tracking-widest">Pinçar a Pele</div>
+              <div className="text-xs font-black text-white uppercase tracking-wider">Pinçar a Pele</div>
             </div>
             <div className="p-6 rounded-3xl bg-secondary/[0.02] border border-white/15 flex flex-col items-center text-center space-y-3">
               <div className="w-8 h-8 rounded-full bg-accent text-primary flex items-center justify-center text-xs font-black">2</div>
-              <div className="text-[10px] font-black text-white uppercase tracking-widest">Introdução Lenta</div>
+              <div className="text-xs font-black text-white uppercase tracking-wider">Introdução Lenta</div>
             </div>
             <div className="p-6 rounded-3xl bg-secondary/[0.02] border border-white/15 flex flex-col items-center text-center space-y-3">
               <div className="w-8 h-8 rounded-full bg-accent text-primary flex items-center justify-center text-xs font-black">3</div>
-              <div className="text-[10px] font-black text-white uppercase tracking-widest">Aguardar 5s</div>
+              <div className="text-xs font-black text-white uppercase tracking-wider">Aguardar 5s</div>
             </div>
           </div>
         </div>

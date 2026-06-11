@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Shield, Sparkles, Brain, Code2, AlertTriangle, Play, ChevronRight, Activity, Terminal, CheckCircle2, Clock, Calendar, Save, Check } from 'lucide-react';
+import { Shield, Sparkles, Brain, Code2, AlertTriangle, Play, ChevronRight, Activity, Terminal, CheckCircle2, Clock, Calendar, Save, Check, ArrowLeft } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import type { View } from '../App';
 import { db } from '../lib/firebase';
@@ -18,7 +18,11 @@ interface ProtocolResponse {
   applicationManual: string;
 }
 
-export default function AiGenerator() {
+interface AiGeneratorProps {
+  setView?: (view: View) => void;
+}
+
+export default function AiGenerator({ setView }: AiGeneratorProps) {
   const [intent, setIntent] = useState('');
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<ProtocolResponse | null>(null);
@@ -82,10 +86,20 @@ export default function AiGenerator() {
 
   return (
     <div className="py-24 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto space-y-12">
+      {setView && (
+        <button 
+          onClick={() => setView('home')}
+          className="flex items-center gap-2 text-xs font-black uppercase tracking-wider text-secondary/60 hover:text-accent transition-all group mb-4"
+        >
+          <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" />
+          Voltar para a Home
+        </button>
+      )}
+
       <div className="text-center space-y-6">
         <div className="inline-flex items-center gap-2 px-3 py-1 bg-accent/10 border border-accent/20 rounded-full">
           <Brain size={12} className="text-accent" />
-          <span className="text-[10px] font-black uppercase tracking-widest text-accent">Atlas AI Builder v4.0</span>
+          <span className="text-xs font-black uppercase tracking-wider text-accent">Atlas AI Builder v4.0</span>
         </div>
         
         <h2 className="text-3xl md:text-5xl font-black text-white uppercase italic tracking-tighter leading-none flex flex-col gap-2">
@@ -93,19 +107,19 @@ export default function AiGenerator() {
           <span className="text-accent">Protocolos IA</span>
         </h2>
         
-        <p className="text-white/50 text-xs md:text-sm max-w-2xl mx-auto font-medium leading-relaxed">
+        <p className="text-white/50 text-xs md:text-sm max-w-2xl mx-auto font-medium leading-loose">
           O motor Atlas Neural avalia sua linguagem natural contra mais de 564 biomoléculas 
           e compila um dossiê de alta sinergia e mitigação inteligente para alvos extremos.
         </p>
       </div>
 
-      <div className="bg-[#050505] p-6 lg:p-8 rounded-[2rem] border border-white/15 shadow-2xl relative overflow-hidden">
+      <div className="bg-[#0B0C10] p-6 lg:p-8 rounded-[2rem] border border-white/15 shadow-2xl relative overflow-hidden">
         {/* BG Glow */}
         <div className="absolute top-0 right-0 w-96 h-96 bg-accent/5 blur-[100px] pointer-events-none rounded-full" />
         
         <div className="relative z-10 space-y-6">
           <div className="space-y-4">
-            <label className="text-[10px] font-black uppercase tracking-[0.2em] text-white/60 flex items-center gap-2">
+            <label className="text-xs font-black uppercase tracking-wider text-white/60 flex items-center gap-2">
               <Terminal size={14} className="text-accent" /> Interface Neurolinguística 
             </label>
             <textarea 
@@ -128,7 +142,7 @@ export default function AiGenerator() {
           <button
             onClick={generateProtocol}
             disabled={loading}
-            className="w-full flex items-center justify-center gap-3 py-5 bg-gradient-to-r from-accent to-accent/80 hover:from-white hover:to-white text-black rounded-xl font-black text-xs uppercase tracking-[0.2em] transition-all disabled:opacity-50 group hover:shadow-[0_0_30px_rgba(0,229,255,0.4)]"
+            className="w-full flex items-center justify-center gap-3 py-5 bg-gradient-to-r from-accent to-accent/80 hover:from-white hover:to-white text-black rounded-xl font-black text-xs uppercase tracking-wider transition-all disabled:opacity-50 group hover:shadow-[0_0_30px_rgba(0,229,255,0.4)]"
           >
             {loading ? (
               <div className="flex items-center justify-center gap-3">
@@ -154,7 +168,7 @@ export default function AiGenerator() {
         >
           {/* Header Badge */}
           <div className="absolute top-0 right-10 transform -translate-y-1/2">
-            <div className="bg-accent text-primary px-3 py-1 flex items-center gap-2 rounded-full text-[10px] font-black uppercase tracking-widest border border-accent/20 shadow-[0_0_15px_rgba(0,229,255,0.3)]">
+            <div className="bg-accent text-primary px-3 py-1 flex items-center gap-2 rounded-full text-xs font-black uppercase tracking-wider border border-accent/20 shadow-[0_0_15px_rgba(0,229,255,0.3)]">
               <Sparkles size={12}/> Gerado por IA
             </div>
           </div>
@@ -170,7 +184,7 @@ export default function AiGenerator() {
 
             {/* Vantagens Diretas */}
             <div className="border border-white/15 rounded-[1.5rem] p-6 lg:p-8 bg-white/[0.02]">
-              <div className="flex items-center gap-2 text-accent text-xs font-black uppercase tracking-widest mb-6">
+              <div className="flex items-center gap-2 text-accent text-xs font-black uppercase tracking-wider mb-6">
                 <Sparkles size={16}/> Vantagens Diretas
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
@@ -185,44 +199,44 @@ export default function AiGenerator() {
 
             {/* Racionalidade Fisiológica */}
             <div className="space-y-4 px-2">
-              <div className="flex items-center gap-2 text-accent text-xs font-black uppercase tracking-widest">
+              <div className="flex items-center gap-2 text-accent text-xs font-black uppercase tracking-wider">
                 <Brain size={16} /> Racionalidade Fisiológica
               </div>
-              <p className="text-sm text-white/80 leading-relaxed font-medium">
+              <p className="text-sm text-white/80 leading-loose font-medium">
                 {result.physiologicalRationale}
               </p>
-              <div className="mt-6 inline-flex items-center gap-2 px-4 py-2 bg-accent/10 border border-accent/20 rounded-xl text-accent text-xs font-black uppercase tracking-widest">
+              <div className="mt-6 inline-flex items-center gap-2 px-4 py-2 bg-accent/10 border border-accent/20 rounded-xl text-accent text-xs font-black uppercase tracking-wider">
                 <Calendar size={14} /> Duração: {result.cycleDuration}
               </div>
             </div>
 
             {/* Core Compounds Setup */}
             <div className="space-y-6 pt-6">
-               <div className="flex items-center gap-2 text-white text-sm font-black uppercase tracking-widest mb-6 border-b border-white/15 pb-4">
+               <div className="flex items-center gap-2 text-white text-sm font-black uppercase tracking-wider mb-6 border-b border-white/15 pb-4">
                   <Activity className="text-accent" size={18}/> Matriz de Compostos Core
                </div>
                
                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                   {result.coreCompounds.map((comp, idx) => (
-                     <div key={idx} className="p-6 rounded-[2rem] border border-white/20 bg-[#050505] flex flex-col hover:border-accent/30 transition-all">
+                     <div key={idx} className="p-6 rounded-[2rem] border border-white/20 bg-[#0B0C10] flex flex-col hover:border-accent/20 transition-all">
                         <h4 className="text-xl font-black text-accent uppercase italic tracking-tighter mb-2">{comp.name}</h4>
-                        <div className="inline-block border border-white/20 text-white/50 text-[10px] uppercase font-bold tracking-widest px-2 py-0.5 rounded mb-4 w-fit">
+                        <div className="inline-block border border-white/20 text-white/50 text-xs uppercase font-bold tracking-wider px-2 py-0.5 rounded mb-4 w-fit">
                            {comp.name.toLowerCase()}
                         </div>
                         <p className="text-xs text-white/70 mb-6 flex-grow">{comp.action}</p>
             
                         <div className="mt-auto border border-white/15 rounded-xl p-4 bg-white/[0.02] space-y-3">
                            <div className="flex justify-between items-center pb-3 border-b border-white/15">
-                              <span className="text-[10px] uppercase tracking-widest text-white/60 font-bold">Dose Inicial</span>
+                              <span className="text-xs uppercase tracking-wider text-white/60 font-bold">Dose Inicial</span>
                               <span className="text-xs font-bold text-white text-right ml-4">{comp.initialDose}</span>
                            </div>
                            <div className="flex justify-between items-center pb-3 border-b border-white/15">
-                              <span className="text-[10px] uppercase tracking-widest text-white/60 font-bold">Dose Manutenção</span>
+                              <span className="text-xs uppercase tracking-wider text-white/60 font-bold">Dose Manutenção</span>
                               <span className="text-xs font-bold text-accent text-right ml-4">{comp.maintenanceDose}</span>
                            </div>
                            <div className="flex justify-between items-center pt-1">
-                              <span className="text-[10px] uppercase tracking-widest text-white/60 font-bold flex items-center gap-1 shrink-0"><Clock size={12}/> Horário</span>
-                              <span className="text-[10px] font-medium text-white/80 max-w-[200px] text-right">{comp.bestTime}</span>
+                              <span className="text-xs uppercase tracking-wider text-white/60 font-bold flex items-center gap-1 shrink-0"><Clock size={12}/> Horário</span>
+                              <span className="text-xs font-medium text-white/80 max-w-[200px] text-right">{comp.bestTime}</span>
                            </div>
                         </div>
                      </div>
@@ -233,18 +247,18 @@ export default function AiGenerator() {
             {/* Sinergia & Táticas */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-6">
               <div className="space-y-4 px-2">
-                <div className="flex items-center gap-2 text-fuchsia-400 text-xs font-black uppercase tracking-widest">
+                <div className="flex items-center gap-2 text-fuchsia-400 text-xs font-black uppercase tracking-wider">
                   <Code2 size={16} /> Sinergia Receptorial
                 </div>
-                <p className="text-xs md:text-sm text-white/60 leading-relaxed font-medium">
+                <p className="text-xs md:text-sm text-white/60 leading-loose font-medium">
                   {result.receptorSynergy}
                 </p>
               </div>
               <div className="space-y-4 px-2">
-                <div className="flex items-center gap-2 text-emerald-400 text-xs font-black uppercase tracking-widest">
+                <div className="flex items-center gap-2 text-emerald-400 text-xs font-black uppercase tracking-wider">
                   <Play size={16} /> Estruturação Tática
                 </div>
-                <p className="text-xs md:text-sm text-white/60 leading-relaxed font-medium">
+                <p className="text-xs md:text-sm text-white/60 leading-loose font-medium">
                   {result.structuralTactics}
                 </p>
               </div>
@@ -252,18 +266,18 @@ export default function AiGenerator() {
 
             {/* Matriz de Mitigação */}
             <div className="space-y-6 pt-8">
-               <div className="flex items-center gap-2 text-white text-sm font-black uppercase tracking-widest mb-6 border-b border-white/15 pb-4">
+               <div className="flex items-center gap-2 text-white text-sm font-black uppercase tracking-wider mb-6 border-b border-white/15 pb-4">
                   <Shield className="text-orange-500" size={18}/> Matriz de Mitigação
                </div>
                
                <div className="space-y-4">
                   {result.mitigationMatrix.map((item, idx) => (
-                     <div key={idx} className="flex flex-col md:flex-row items-start md:items-center p-5 rounded-xl border border-orange-500/20 bg-[#050505] gap-4 hover:border-orange-500/40 transition-colors">
+                     <div key={idx} className="flex flex-col md:flex-row items-start md:items-center p-5 rounded-xl border border-orange-500/20 bg-[#0B0C10] gap-4 hover:border-orange-500/40 transition-colors">
                          <div className="md:w-1/3 lg:w-1/4 space-y-1">
-                             <div className="text-[10px] md:text-xs font-black uppercase text-orange-500 tracking-widest">
+                             <div className="text-xs md:text-xs font-black uppercase text-orange-500 tracking-wider">
                                 Risco: {item.risk}
                              </div>
-                             <div className="text-[8px] md:text-[10px] text-white/30 uppercase tracking-widest font-bold">
+                             <div className="text-xs md:text-xs text-white/50 uppercase tracking-wider font-bold">
                                 Manejo Inteligente
                              </div>
                          </div>
@@ -272,7 +286,7 @@ export default function AiGenerator() {
                              <ChevronRight size={16} className="text-accent"/>
                          </div>
                          <div className="md:w-2/3 lg:w-3/4">
-                             <p className="text-xs md:text-sm text-white/90 font-medium leading-relaxed">
+                             <p className="text-xs md:text-sm text-white/90 font-medium leading-loose">
                                 {item.mitigation}
                              </p>
                          </div>
@@ -284,12 +298,12 @@ export default function AiGenerator() {
             {/* Manual Tático de Aplicação */}
             {result.applicationManual && (
                <div className="space-y-6 pt-8 border-t border-white/15 mt-8">
-                  <div className="flex items-center gap-2 text-white text-sm font-black uppercase tracking-widest mb-6 pb-4">
+                  <div className="flex items-center gap-2 text-white text-sm font-black uppercase tracking-wider mb-6 pb-4">
                      <AlertTriangle className="text-fuchsia-500" size={18}/> Manual Prático de Aplicação
                   </div>
                   
                   <div className="bg-gradient-to-br from-fuchsia-900/20 to-[#050505] border border-fuchsia-500/20 rounded-2xl p-6 lg:p-8">
-                     <p className="text-sm font-medium text-white/80 leading-relaxed whitespace-pre-line">
+                     <p className="text-sm font-medium text-white/80 leading-loose whitespace-pre-line">
                         {result.applicationManual}
                      </p>
                   </div>
@@ -302,7 +316,7 @@ export default function AiGenerator() {
                   <button 
                      onClick={saveToVault}
                      disabled={isSaving || saveSuccess}
-                     className="px-6 py-4 flex items-center justify-center gap-2 font-black uppercase tracking-widest text-xs rounded-xl bg-accent text-black hover:bg-white hover:text-black transition-all disabled:opacity-50 disabled:cursor-not-allowed group"
+                     className="px-6 py-4 flex items-center justify-center gap-2 font-black uppercase tracking-wider text-xs rounded-xl bg-accent text-black hover:bg-white hover:text-black transition-all disabled:opacity-50 disabled:cursor-not-allowed group"
                   >
                      {isSaving ? (
                         <div className="w-4 h-4 border-2 border-black border-r-transparent rounded-full animate-spin" />
@@ -320,7 +334,7 @@ export default function AiGenerator() {
             )}
             {!user && (
                <div className="pt-8 mt-8 border-t border-white/15 text-center">
-                  <p className="text-xs text-white/50 uppercase tracking-widest font-bold">Autentique-se para salvar no Cofre Atlas</p>
+                  <p className="text-xs text-white/50 uppercase tracking-wider font-bold">Autentique-se para salvar no Cofre Atlas</p>
                </div>
             )}
 

@@ -1,11 +1,13 @@
+import type { View } from '../App';
 import React, { useState } from 'react';
 import { MapPin, Brain, Activity, Heart, Shield, RefreshCw, Zap } from 'lucide-react';
 
 interface BioHackingMapProps {
   isStandalone?: boolean;
+  setView?: (view: View) => void;
 }
 
-export default function BioHackingMap({ isStandalone }: BioHackingMapProps) {
+export default function BioHackingMap({ isStandalone, setView }: BioHackingMapProps) {
   const [activePathway, setActivePathway] = useState<string>('metabolism');
 
   const pathways = [
@@ -17,16 +19,26 @@ export default function BioHackingMap({ isStandalone }: BioHackingMapProps) {
 
   return (
     <div className={`space-y-6 ${!isStandalone ? "pt-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto" : ""}`}>
+      {setView && (
+        <button 
+          onClick={() => setView('home')}
+          className="flex items-center gap-2 text-xs font-black uppercase tracking-wider text-secondary/60 hover:text-accent transition-all group mb-4 px-4 pt-4 z-50 relative"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-left group-hover:-translate-x-1 transition-transform"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+          Voltar para a Home
+        </button>
+      )}
+
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
         <div className="space-y-2">
           <div className="inline-flex items-center gap-2 px-3 py-1 bg-accent/10 border border-accent/20 rounded-full mb-2">
             <MapPin size={10} className="text-accent" />
-            <span className="text-[10px] font-black uppercase tracking-widest text-accent">Satélite de Sistema</span>
+            <span className="text-xs font-black uppercase tracking-wider text-accent">Satélite de Sistema</span>
           </div>
           <h2 className="text-4xl font-black text-white uppercase tracking-tighter italic">
             MAPA DE <span className="text-accent">BIO-HACKING</span>
           </h2>
-          <p className="text-[10px] text-white/60 font-bold uppercase tracking-[0.3em]">Visão interconectada de rotas biológicas e sinergias</p>
+          <p className="text-xs text-white/60 font-bold uppercase tracking-wider">Visão interconectada de rotas biológicas e sinergias</p>
         </div>
       </div>
 
@@ -43,12 +55,12 @@ export default function BioHackingMap({ isStandalone }: BioHackingMapProps) {
                 onClick={() => setActivePathway(p.id)}
                 className={`flex items-center gap-2 px-6 py-3 rounded-xl border transition-all ${
                   activePathway === p.id 
-                    ? 'bg-accent/10 border-accent/30 text-accent'
+                    ? 'bg-accent/10 border-accent/20 text-accent'
                     : 'bg-black/30 border-white/20 text-white/60 hover:bg-white/20 hover:text-white'
                 }`}
               >
                 {p.icon}
-                <span className="text-[10px] font-black uppercase tracking-widest">{p.label}</span>
+                <span className="text-xs font-black uppercase tracking-wider">{p.label}</span>
               </button>
             ))}
           </div>
@@ -57,7 +69,7 @@ export default function BioHackingMap({ isStandalone }: BioHackingMapProps) {
             <div className="text-center max-w-md mx-auto space-y-4">
                <Zap size={32} className="mx-auto text-accent opacity-50" />
                <h3 className="text-2xl font-black italic text-white uppercase">Mapeamento em Atualização</h3>
-               <p className="text-xs text-white/50 font-bold uppercase tracking-widest leading-relaxed">
+               <p className="text-xs text-white/50 font-bold uppercase tracking-wider leading-loose">
                  O atlas interativo de vias metabólicas está sincronizando novas rotas da literatura científica para 2026. A visualização geo-biológica estará disponível na versão 5.0.
                </p>
             </div>

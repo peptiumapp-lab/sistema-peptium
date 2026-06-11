@@ -32,7 +32,7 @@ export default function SynergySection({ setView, onSelectProtocol, isStandalone
   };
 
   return (
-    <section className={`py-24 bg-[#02010a] relative overflow-hidden ${isStandalone ? 'min-h-screen pt-32' : ''}`} id="synergies">
+    <section className={`py-24 bg-[#0A0B0F] relative overflow-hidden ${isStandalone ? 'min-h-screen pt-32' : ''}`} id="synergies">
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-accent/5 blur-[150px] rounded-full pointer-events-none" />
       
       {isStandalone && (
@@ -40,11 +40,20 @@ export default function SynergySection({ setView, onSelectProtocol, isStandalone
       )}
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {isStandalone && (
+          <button 
+            onClick={() => setView('home')}
+            className="flex items-center gap-2 text-xs font-black uppercase tracking-wider text-secondary/60 hover:text-accent transition-all group mb-4 px-1"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-left group-hover:-translate-x-1 transition-transform"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+            Voltar para a Home
+          </button>
+        )}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
           <div className="space-y-6">
             <div className="inline-flex items-center gap-2 px-3 py-1 bg-accent/10 border border-accent/20 rounded-full">
               <Zap size={10} className="text-accent" />
-              <span className="text-[10px] font-black uppercase tracking-[0.3em] text-accent italic">Neural Database v4.2</span>
+              <span className="text-xs font-black uppercase tracking-wider text-accent italic">Neural Database v4.2</span>
             </div>
             
             <div className="space-y-2">
@@ -52,14 +61,14 @@ export default function SynergySection({ setView, onSelectProtocol, isStandalone
                 {isStandalone ? 'BIBLIOTECA DE' : 'PROTOCOLOS DE'} <span className="text-accent">ELITE</span>
               </h2>
               {isStandalone && (
-                <p className="text-[12px] md:text-sm text-white/60 font-medium uppercase tracking-[0.2em] italic">
+                <p className="text-[12px] md:text-sm text-white/60 font-medium uppercase tracking-wider italic">
                   Arquitetura de Sinergia Molecular Autorizada
                 </p>
               )}
             </div>
 
             <div className="flex flex-col md:flex-row md:items-center gap-6 pt-4">
-              <p className="text-white/60 text-[11px] md:text-sm font-bold uppercase tracking-[0.2em] max-w-2xl leading-relaxed italic">
+              <p className="text-white/60 text-[11px] md:text-sm font-bold uppercase tracking-wider max-w-2xl leading-loose italic">
                 Descubra os templates mais eficientes testados em campo. <br/>
                 <span className="text-white">Clique em um protocolo para ver a composição e carregar na bancada livre.</span>
               </p>
@@ -72,8 +81,8 @@ export default function SynergySection({ setView, onSelectProtocol, isStandalone
                   <Network size={16} />
                 </div>
                 <div className="text-left">
-                  <span className="block text-[8px] font-black uppercase tracking-widest opacity-40 group-hover:opacity-100 italic">Modo Expert</span>
-                  <span className="text-[10px] font-black uppercase tracking-widest whitespace-nowrap">
+                  <span className="block text-xs font-black uppercase tracking-wider opacity-40 group-hover:opacity-100 italic">Modo Expert</span>
+                  <span className="text-xs font-black uppercase tracking-wider whitespace-nowrap">
                     Bancada Molecular Livre
                   </span>
                 </div>
@@ -91,7 +100,7 @@ export default function SynergySection({ setView, onSelectProtocol, isStandalone
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.05 }}
               viewport={{ once: true }}
-              className="p-6 rounded-[24px] bg-white/[0.02] border border-white/15 hover:border-accent/30 transition-all group relative overflow-hidden flex flex-col justify-between"
+              className="p-6 rounded-[24px] bg-white/[0.02] border border-white/15 hover:border-accent/20 transition-all group relative overflow-hidden flex flex-col justify-between"
             >
               <div className="absolute top-0 right-0 p-6 opacity-0 group-hover:opacity-10 transition-opacity">
                 {getIcon(protocol.icon)}
@@ -103,27 +112,27 @@ export default function SynergySection({ setView, onSelectProtocol, isStandalone
                     {getIcon(protocol.icon)}
                   </div>
                   <div>
-                    <div className="text-[8px] font-black text-accent uppercase tracking-[0.3em]">{protocol.target}</div>
+                    <div className="text-xs font-black text-accent uppercase tracking-wider">{protocol.target}</div>
                     <h3 className="text-xl font-sans font-black text-white uppercase italic tracking-tighter leading-none">{protocol.name}</h3>
                   </div>
                 </div>
 
-                <p className="text-[10px] font-bold text-white/60 uppercase tracking-widest leading-relaxed line-clamp-3">
+                <p className="text-xs font-bold text-white/60 uppercase tracking-wider leading-loose line-clamp-3">
                   {protocol.description}
                 </p>
 
                 <div className="space-y-3">
-                  <div className="text-[8px] font-black text-white/40 uppercase tracking-widest flex items-center gap-2">
+                  <div className="text-xs font-black text-white/60 uppercase tracking-wider flex items-center gap-2">
                     <ShieldCheck size={10} className="text-accent" /> Benefícios Chave
                   </div>
                   <div className="flex flex-wrap gap-2">
                     {protocol.benefits && Array.isArray(protocol.benefits) ? protocol.benefits.slice(0, 2).map((benefit, j) => (
-                      <span key={j} className="px-3 py-1 bg-white/10 rounded-lg text-[7px] font-black text-white/60 uppercase tracking-widest border border-white/15">
+                      <span key={j} className="px-3 py-1 bg-white/10 rounded-lg text-[7px] font-black text-white/60 uppercase tracking-wider border border-white/15">
                         {benefit}
                       </span>
                     )) : null}
                     {protocol.benefits && protocol.benefits.length > 2 && (
-                      <span className="px-2 py-1 bg-white/10 rounded-lg text-[7px] font-black text-white/60 uppercase tracking-widest">
+                      <span className="px-2 py-1 bg-white/10 rounded-lg text-[7px] font-black text-white/60 uppercase tracking-wider">
                         +{protocol.benefits.length - 2}
                       </span>
                     )}
@@ -133,11 +142,11 @@ export default function SynergySection({ setView, onSelectProtocol, isStandalone
                 <div className="pt-6 border-t border-white/15 flex items-center justify-between mt-auto">
                   <div className="flex items-center gap-2">
                     <Clock size={12} className="text-accent/40" />
-                    <span className="text-[9px] font-black text-white/30 uppercase tracking-widest">{protocol.duration}</span>
+                    <span className="text-xs font-black text-white/50 uppercase tracking-wider">{protocol.duration}</span>
                   </div>
                   <button 
                     onClick={() => setSelectedProtocol(protocol)}
-                    className="flex items-center gap-2 text-[8px] font-black text-accent uppercase tracking-widest group-hover:translate-x-1 transition-transform"
+                    className="flex items-center gap-2 text-xs font-black text-accent uppercase tracking-wider group-hover:translate-x-1 transition-transform"
                   >
                     Detalhes <ArrowRight size={10} />
                   </button>
@@ -160,8 +169,8 @@ export default function SynergySection({ setView, onSelectProtocol, isStandalone
                 <Layers size={18} />
               </div>
               <div className="text-left">
-                <span className="block text-[8px] font-black uppercase tracking-widest opacity-40 italic">Explore Mais</span>
-                <span className="text-[11px] font-black uppercase tracking-[0.2em] text-white">
+                <span className="block text-xs font-black uppercase tracking-wider opacity-40 italic">Explore Mais</span>
+                <span className="text-[11px] font-black uppercase tracking-wider text-white">
                   Ver Coleção Completa ({(SYNERGY_PROTOCOLS || []).length})
                 </span>
               </div>
@@ -173,11 +182,11 @@ export default function SynergySection({ setView, onSelectProtocol, isStandalone
         <div className="mt-12 p-6 rounded-[24px] bg-gradient-to-r from-accent/10 to-transparent border border-accent/20 flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="space-y-1">
             <h4 className="text-lg font-sans font-black text-white uppercase italic tracking-tighter">Precisa de um protocolo personalizado?</h4>
-            <p className="text-[9px] font-bold text-white/60 uppercase tracking-widest italic">Acesse o Guided Quiz V2.0 para uma recomendação algorítmica.</p>
+            <p className="text-xs font-bold text-white/60 uppercase tracking-wider italic">Acesse o Guided Quiz V2.0 para uma recomendação algorítmica.</p>
           </div>
           <button 
             onClick={() => setView('home')}
-            className="px-6 py-3 bg-accent text-black rounded-xl font-black text-[9px] uppercase tracking-[0.2em] hover:scale-105 active:scale-95 transition-all shadow-lg shadow-accent/10"
+            className="px-6 py-3 bg-accent text-black rounded-xl font-black text-xs uppercase tracking-wider hover:scale-105 active:scale-95 transition-all shadow-lg shadow-accent/10"
           >
             Iniciar Diagnóstico Molecular
           </button>

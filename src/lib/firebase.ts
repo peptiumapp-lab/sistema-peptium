@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithRedirect, signOut, getRedirectResult } from 'firebase/auth';
+import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithRedirect, signOut, getRedirectResult, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
 import { getFirestore, doc, getDoc, setDoc, updateDoc, serverTimestamp } from 'firebase/firestore';
 import firebaseConfig from '../../firebase-applet-config.json';
 
@@ -27,6 +27,39 @@ export async function signInWithGoogle() {
     } else {
       alert(`Erro no login: ${error.message} (${error.code})`);
     }
+    throw error;
+  }
+}
+
+export async function signInWithEmail(email: string, pass: string) {
+  try {
+    const result = await signInWithEmailAndPassword(auth, email, pass);
+    await syncUser(result.user);
+    return result;
+  } catch (error: any) {
+    console.error('Erro no login com email:', error);
+    alert(`Erro no login: ${error.message}`);
+    throw error;
+  }
+}
+
+export async function signUpWithEmail(email: string, pass: string, name: string) {
+  try {
+    const result = await createUserWithEmailAndPassword(auth, email, pass);
+    // update profile with name could be done here if needed
+    const userDoc = doc(db, 'users', result.user.uid);
+    await setDoc(userDoc, {
+      uid: result.user.uid,
+      email: result.user.email,
+      displayName: name,
+      isPro: false,
+      createdAt: serverTimestamp(),
+      updatedAt: serverTimestamp()
+    });
+    return result;
+  } catch (error: any) {
+    console.error('Erro no cadastro com email:', error);
+    alert(`Erro no cadastro: ${error.message}`);
     throw error;
   }
 }

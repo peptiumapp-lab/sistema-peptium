@@ -62,7 +62,7 @@ export default function ProtocolModal({ protocol, onClose, onViewPeptide, onLoad
                 {getIcon(protocol.icon)}
               </div>
               <div className="space-y-1">
-                <div className="text-[10px] font-black text-accent uppercase tracking-[0.4em] mb-1">{protocol.target}</div>
+                <div className="text-xs font-black text-accent uppercase tracking-wider mb-1">{protocol.target}</div>
                 <h2 className="text-3xl font-sans font-black text-white uppercase italic tracking-tighter leading-none">{protocol.name}</h2>
               </div>
             </div>
@@ -72,7 +72,7 @@ export default function ProtocolModal({ protocol, onClose, onViewPeptide, onLoad
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id as any)}
-                  className={`flex items-center gap-2 px-6 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all ${activeTab === tab.id ? 'bg-accent text-black shadow-lg' : 'text-white/60 hover:text-white'}`}
+                  className={`flex items-center gap-2 px-6 py-3 rounded-xl text-xs font-black uppercase tracking-wider transition-all ${activeTab === tab.id ? 'bg-accent text-black shadow-lg' : 'text-white/60 hover:text-white'}`}
                 >
                   {tab.icon} {tab.name}
                 </button>
@@ -102,39 +102,39 @@ export default function ProtocolModal({ protocol, onClose, onViewPeptide, onLoad
                       <div className="space-y-6">
                         <div className="flex items-center gap-3">
                            <div className="w-1 h-8 bg-accent rounded-full" />
-                           <h4 className="text-[11px] font-black text-accent uppercase tracking-[0.3em]">Conceito de Sinergia</h4>
+                           <h4 className="text-[11px] font-black text-accent uppercase tracking-wider">Conceito de Sinergia</h4>
                         </div>
-                        <p className="text-base font-bold text-white/60 uppercase tracking-widest leading-relaxed italic">
+                        <p className="text-base font-bold text-white/60 uppercase tracking-wider leading-loose italic">
                           {protocol.description}
                         </p>
                       </div>
 
                       <div className="grid grid-cols-2 gap-6">
                         <div className="p-6 bg-white/[0.02] border border-white/15 rounded-3xl space-y-3">
-                          <div className="flex items-center gap-2 text-white/40">
+                          <div className="flex items-center gap-2 text-white/60">
                             <Clock size={14} />
-                            <span className="text-[8px] font-black uppercase tracking-widest">Duração</span>
+                            <span className="text-xs font-black uppercase tracking-wider">Duração</span>
                           </div>
                           <div className="text-lg font-black text-white uppercase italic">{protocol.duration}</div>
                         </div>
                         <div className="p-6 bg-white/[0.02] border border-white/15 rounded-3xl space-y-3">
-                          <div className="flex items-center gap-2 text-white/40">
+                          <div className="flex items-center gap-2 text-white/60">
                             <Shield size={14} />
-                            <span className="text-[8px] font-black uppercase tracking-widest">Segurança</span>
+                            <span className="text-xs font-black uppercase tracking-wider">Segurança</span>
                           </div>
                           <div className="text-lg font-black text-accent uppercase italic">Controlada</div>
                         </div>
                       </div>
 
                       <div className="space-y-6">
-                         <h4 className="text-[10px] font-black text-white/30 uppercase tracking-[0.3em]">Impacto Sistêmico Estimado</h4>
+                         <h4 className="text-xs font-black text-white/50 uppercase tracking-wider">Impacto Sistêmico Estimado</h4>
                          <div className="space-y-3">
                             {protocol.benefits.map((benefit, i) => (
                               <div key={i} className="flex items-center gap-4 p-5 bg-white/[0.01] border border-white/15 rounded-[20px] transition-all hover:bg-white/[0.03]">
                                 <div className="w-8 h-8 rounded-lg bg-accent/20 flex items-center justify-center shrink-0">
                                   <CheckCircle2 size={16} className="text-accent" />
                                 </div>
-                                <span className="text-[11px] font-black text-white/60 uppercase tracking-widest leading-tight">{benefit}</span>
+                                <span className="text-[11px] font-black text-white/60 uppercase tracking-wider leading-tight">{benefit}</span>
                               </div>
                             ))}
                          </div>
@@ -143,8 +143,8 @@ export default function ProtocolModal({ protocol, onClose, onViewPeptide, onLoad
 
                     <div className="space-y-8">
                        <div className="flex items-center justify-between">
-                         <h4 className="text-[11px] font-black text-accent uppercase tracking-[0.3em]">Compostos na Malha</h4>
-                         <span className="px-3 py-1 bg-white/10 rounded-full text-[8px] font-black text-white/60 uppercase tracking-widest">{protocol.peptides.length} Bio-Moléculas</span>
+                         <h4 className="text-[11px] font-black text-accent uppercase tracking-wider">Compostos na Malha</h4>
+                         <span className="px-3 py-1 bg-white/10 rounded-full text-xs font-black text-white/60 uppercase tracking-wider">{protocol.peptides.length} Bio-Moléculas</span>
                        </div>
                        <div className="space-y-4">
                          {protocolPeptides.map((peptide) => (
@@ -157,7 +157,7 @@ export default function ProtocolModal({ protocol, onClose, onViewPeptide, onLoad
                              </div>
                              <div className="flex justify-between items-center pr-12">
                                <div>
-                                 <div className="text-[8px] font-black text-accent/50 uppercase tracking-widest mb-1 italic">{peptide.tag}</div>
+                                 <div className="text-xs font-black text-accent/50 uppercase tracking-wider mb-1 italic">{peptide.tag}</div>
                                  <h5 className="text-[15px] font-black text-white uppercase tracking-tight group-hover:text-accent transition-colors">{peptide.name}</h5>
                                </div>
                                <button 
@@ -174,7 +174,7 @@ export default function ProtocolModal({ protocol, onClose, onViewPeptide, onLoad
                        {protocol.warning && (
                          <div className="p-6 rounded-[24px] bg-amber-500/10 border border-amber-500/20 flex gap-4">
                             <AlertTriangle size={24} className="text-amber-500 shrink-0" />
-                            <p className="text-[10px] font-black text-amber-500/80 uppercase tracking-widest leading-relaxed italic">
+                            <p className="text-xs font-black text-amber-500/80 uppercase tracking-wider leading-loose italic">
                               Aviso Crítico: {protocol.warning}
                             </p>
                          </div>
@@ -195,12 +195,12 @@ export default function ProtocolModal({ protocol, onClose, onViewPeptide, onLoad
                       <div className="space-y-6">
                         <div className="flex items-center gap-3">
                            <div className="w-1 h-8 bg-accent rounded-full" />
-                           <h4 className="text-[11px] font-black text-accent uppercase tracking-[0.3em]">Dosagem Sistêmica</h4>
+                           <h4 className="text-[11px] font-black text-accent uppercase tracking-wider">Dosagem Sistêmica</h4>
                         </div>
                         <div className="p-8 bg-white/[0.02] border border-white/15 rounded-[32px] space-y-4">
                            <div className="flex items-center gap-2 text-accent">
                              <Beaker size={20} />
-                             <span className="text-[10px] font-black uppercase tracking-widest">Protocolo Sugerido</span>
+                             <span className="text-xs font-black uppercase tracking-wider">Protocolo Sugerido</span>
                            </div>
                            <p className="text-xl font-black text-white uppercase italic tracking-tighter leading-tight">
                              {protocol.dosageInstructions || 'Dosagem calculada sob consulta no Suporte Prime.'}
@@ -211,10 +211,10 @@ export default function ProtocolModal({ protocol, onClose, onViewPeptide, onLoad
                       <div className="space-y-6">
                         <div className="flex items-center gap-3">
                            <div className="w-1 h-8 bg-accent rounded-full" />
-                           <h4 className="text-[11px] font-black text-accent uppercase tracking-[0.3em]">Via de Administração</h4>
+                           <h4 className="text-[11px] font-black text-accent uppercase tracking-wider">Via de Administração</h4>
                         </div>
                         <div className="p-8 bg-white/[0.02] border border-white/15 rounded-[32px] space-y-2">
-                           <div className="text-white/60 text-[9px] font-black uppercase tracking-widest mb-2">Padrão Operacional:</div>
+                           <div className="text-white/60 text-xs font-black uppercase tracking-wider mb-2">Padrão Operacional:</div>
                            <p className="text-lg font-black text-white uppercase italic tracking-tight">
                              {protocol.administrationMode || 'Administração variável dependendo do objetivo clínico.'}
                            </p>
@@ -223,14 +223,14 @@ export default function ProtocolModal({ protocol, onClose, onViewPeptide, onLoad
                     </div>
 
                     <div className="space-y-8">
-                       <h4 className="text-[11px] font-black text-accent uppercase tracking-[0.3em]">Monitoramento de Sucesso</h4>
+                       <h4 className="text-[11px] font-black text-accent uppercase tracking-wider">Monitoramento de Sucesso</h4>
                        <div className="space-y-4">
                          {(protocol.clinicalMarkers || ['Marcador Bioquímico Baseline', 'Variação da Frequência Cardíaca', 'Qualidade do Sono']).map((marker, i) => (
                            <div key={i} className="flex items-center gap-4 p-5 bg-white/[0.01] border border-white/15 rounded-2xl group">
-                             <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-white/40 group-hover:text-accent transition-colors">
+                             <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-white/60 group-hover:text-accent transition-colors">
                                <Activity size={18} />
                              </div>
-                             <span className="text-[11px] font-black text-white/50 uppercase tracking-widest">{marker}</span>
+                             <span className="text-[11px] font-black text-white/50 uppercase tracking-wider">{marker}</span>
                            </div>
                          ))}
                        </div>
@@ -238,9 +238,9 @@ export default function ProtocolModal({ protocol, onClose, onViewPeptide, onLoad
                        <div className="mt-8 p-6 rounded-[24px] bg-accent/5 border border-accent/20">
                          <div className="flex items-center gap-2 text-accent mb-2">
                            <Zap size={14} />
-                           <span className="text-[9px] font-black uppercase tracking-widest">Otimização Prime</span>
+                           <span className="text-xs font-black uppercase tracking-wider">Otimização Prime</span>
                          </div>
-                         <p className="text-[10px] font-black text-white/60 uppercase tracking-widest leading-relaxed">
+                         <p className="text-xs font-black text-white/60 uppercase tracking-wider leading-loose">
                            Membros Prime tem acesso a consultores especialistas para ajuste fino de dosagem baseado em exames de laboratório.
                          </p>
                        </div>
@@ -260,13 +260,13 @@ export default function ProtocolModal({ protocol, onClose, onViewPeptide, onLoad
                       <div className="space-y-6">
                         <div className="flex items-center gap-3">
                            <div className="w-1 h-8 bg-accent rounded-full" />
-                           <h4 className="text-[11px] font-black text-accent uppercase tracking-[0.3em]">Embasamento Técnico</h4>
+                           <h4 className="text-[11px] font-black text-accent uppercase tracking-wider">Embasamento Técnico</h4>
                         </div>
                         <div className="space-y-4">
                            {(protocol.scientificBasis || ['Estudos em revisão de pares no PubMed', 'Conformidade com padrões WADA de pesquisa', 'Ensaios clínicos de fase II/III de referência']).map((science, i) => (
                              <div key={i} className="flex items-start gap-4 p-6 bg-white/[0.02] border border-white/15 rounded-3xl">
                                <BookOpen size={20} className="text-accent mt-1 shrink-0" />
-                               <p className="text-[11px] font-black text-white/60 uppercase tracking-widest leading-relaxed italic">
+                               <p className="text-[11px] font-black text-white/60 uppercase tracking-wider leading-loose italic">
                                  {science}
                                </p>
                              </div>
@@ -276,26 +276,26 @@ export default function ProtocolModal({ protocol, onClose, onViewPeptide, onLoad
                     </div>
 
                     <div className="space-y-8">
-                       <h4 className="text-[11px] font-black text-accent uppercase tracking-[0.3em]">Nível de Evidência Peptium</h4>
+                       <h4 className="text-[11px] font-black text-accent uppercase tracking-wider">Nível de Evidência Peptium</h4>
                        <div className="p-10 bg-accent/5 border border-accent/20 rounded-[40px] text-center space-y-6 relative overflow-hidden">
                           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,229,255,0.1)_0%,transparent_70%)]" />
                           <div className="relative z-10">
-                            <div className="inline-flex items-center gap-2 px-3 py-1 bg-accent text-black rounded-full text-[8px] font-black uppercase tracking-widest mb-6">
+                            <div className="inline-flex items-center gap-2 px-3 py-1 bg-accent text-black rounded-full text-xs font-black uppercase tracking-wider mb-6">
                                <Microscope size={12} /> Software Auditado
                             </div>
                             <h5 className="text-5xl font-sans font-black text-white uppercase italic tracking-tighter mb-4">PLATINUM</h5>
-                            <p className="text-[10px] font-black text-white/30 uppercase tracking-[0.3em]">Sinergia validada por metanálises de alto impacto</p>
+                            <p className="text-xs font-black text-white/50 uppercase tracking-wider">Sinergia validada por metanálises de alto impacto</p>
                           </div>
                        </div>
                        
                        <div className="grid grid-cols-2 gap-4">
                           <div className="p-6 bg-white/[0.02] border border-white/15 rounded-3xl text-center">
                              <div className="text-2xl font-black text-accent mb-1 italic">98%</div>
-                             <div className="text-[8px] font-black text-white/40 uppercase tracking-widest">Taxa de Resposta</div>
+                             <div className="text-xs font-black text-white/60 uppercase tracking-wider">Taxa de Resposta</div>
                           </div>
                           <div className="p-6 bg-white/[0.02] border border-white/15 rounded-3xl text-center">
                              <div className="text-2xl font-black text-accent mb-1 italic">1.2k</div>
-                             <div className="text-[8px] font-black text-white/40 uppercase tracking-widest">Citações PubMed</div>
+                             <div className="text-xs font-black text-white/60 uppercase tracking-wider">Citações PubMed</div>
                           </div>
                        </div>
                     </div>
@@ -313,7 +313,7 @@ export default function ProtocolModal({ protocol, onClose, onViewPeptide, onLoad
                   onLoadProtocol(protocol.peptides);
                 }
               }}
-              className="w-full md:w-3/5 py-6 bg-white text-black rounded-3xl font-black text-[11px] uppercase tracking-[0.4em] hover:bg-accent hover:scale-[1.02] transition-all shadow-[0_0_30px_rgba(255,255,255,0.05)] flex items-center justify-center gap-3 active:scale-95"
+              className="w-full md:w-3/5 py-6 bg-white text-black rounded-3xl font-black text-[11px] uppercase tracking-wider hover:bg-accent hover:scale-[1.02] transition-all shadow-[0_0_30px_rgba(255,255,255,0.05)] flex items-center justify-center gap-3 active:scale-95"
             >
               <Zap size={18} fill="currentColor" /> Carregar na Bancada Atlas
             </button>
@@ -323,7 +323,7 @@ export default function ProtocolModal({ protocol, onClose, onViewPeptide, onLoad
                 const body = encodeURIComponent(`Olá, gostaria de receber consultoria especializada sobre o protocolo ${protocol.name} e como aplicá-lo de forma otimizada.`);
                 window.location.href = `mailto:peptium.app@gmail.com?subject=${subject}&body=${body}`;
               }}
-              className="w-full md:w-2/5 py-6 bg-accent/5 border border-accent/20 text-accent rounded-3xl font-black text-[11px] uppercase tracking-[0.4em] hover:bg-accent/10 transition-all active:scale-95"
+              className="w-full md:w-2/5 py-6 bg-accent/5 border border-accent/20 text-accent rounded-3xl font-black text-[11px] uppercase tracking-wider hover:bg-accent/10 transition-all active:scale-95"
             >
               Consultar Suporte Prime
             </button>

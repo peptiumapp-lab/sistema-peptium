@@ -78,11 +78,11 @@ export default function Hero({ setView, isPremium, onSelectPeptide }: HeroProps)
                   <div className="absolute w-4 h-4 rounded-full bg-accent/30 animate-ping" />
                 </div>
                 <div className="flex items-center gap-4">
-                  <span className="text-[13px] font-black tracking-[0.4em] text-accent uppercase">
+                  <span className="text-[13px] font-black tracking-wider text-accent uppercase">
                     {t('hero.acervo')}
                   </span>
                   <div className="h-4 w-[1px] bg-accent/20" />
-                  <span className="text-[10px] font-bold tracking-[0.2em] text-white/60 uppercase">
+                  <span className="text-xs font-bold tracking-wider text-white/60 uppercase">
                     {t('hero.core')}
                   </span>
                 </div>
@@ -108,7 +108,7 @@ export default function Hero({ setView, isPremium, onSelectPeptide }: HeroProps)
               <span className="text-transparent bg-clip-text bg-gradient-to-br from-accent via-white to-accent text-glow">{t('hero.subtitle')}</span>
             </h1>
             
-            <p className="max-w-3xl mx-auto text-[9px] md:text-[11px] text-white/60 mb-10 font-bold leading-relaxed uppercase tracking-[0.25em]">
+            <p className="max-w-3xl mx-auto text-xs md:text-[11px] text-white/60 mb-10 font-bold leading-loose uppercase tracking-wider">
               {t('hero.description')}
             </p>
 
@@ -120,7 +120,7 @@ export default function Hero({ setView, isPremium, onSelectPeptide }: HeroProps)
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   onFocus={() => setIsFocused(true)}
-                  className="w-full bg-[#050505]/60 backdrop-blur-xl border border-white/20 rounded-2xl py-4 md:py-5 px-12 md:px-14 text-sm font-medium text-white placeholder:text-white/30 outline-none focus:border-accent/50 transition-all font-medium shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
+                  className="w-full bg-[#0B0C10]/60 backdrop-blur-xl border border-white/20 rounded-2xl py-4 md:py-5 px-12 md:px-14 text-sm font-medium text-white placeholder:text-white/50 outline-none focus:border-accent/30 transition-all font-medium shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
                 />
                 <Search size={20} className="absolute left-4 md:left-5 top-1/2 -translate-y-1/2 text-white/60" />
                 
@@ -146,13 +146,13 @@ export default function Hero({ setView, isPremium, onSelectPeptide }: HeroProps)
                                         </div>
                                         <div>
                                             <h4 className="text-sm font-black text-white italic tracking-tight">{result.name}</h4>
-                                            <p className="text-[10px] text-white/60 uppercase tracking-widest">{result.tag}</p>
+                                            <p className="text-xs text-white/60 uppercase tracking-wider">{result.tag}</p>
                                         </div>
                                     </li>
                                 ))}
                             </ul>
                         ) : (
-                            <div className="px-4 py-8 text-center text-white/60 text-xs font-black uppercase tracking-widest">
+                            <div className="px-4 py-8 text-center text-white/60 text-xs font-black uppercase tracking-wider">
                                 {t('hero.noResults')}
                             </div>
                         )}
@@ -165,7 +165,7 @@ export default function Hero({ setView, isPremium, onSelectPeptide }: HeroProps)
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
               <button 
                 onClick={() => setView('library')}
-                className="group relative w-full sm:w-auto px-8 py-4 bg-accent text-black font-black text-[10px] uppercase tracking-[0.3em] overflow-hidden transition-all hover:scale-105 active:scale-95"
+                className="group relative w-full sm:w-auto px-8 py-4 bg-accent text-black font-black text-xs uppercase tracking-wider overflow-hidden transition-all hover:scale-105 active:scale-95"
                 style={{ clipPath: 'polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0 30%)' }}
               >
                 <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
@@ -177,7 +177,7 @@ export default function Hero({ setView, isPremium, onSelectPeptide }: HeroProps)
 
               <button 
                 onClick={() => setView('plans')}
-                className="group w-full sm:w-auto px-8 py-4 bg-transparent border-2 border-white/20 hover:border-accent/40 text-white font-black text-[10px] uppercase tracking-[0.3em] transition-all flex items-center justify-center gap-2"
+                className="group w-full sm:w-auto px-8 py-4 bg-transparent border-2 border-white/20 hover:border-accent/40 text-white font-black text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2"
                 style={{ clipPath: 'polygon(0 0, 90% 0, 100% 30%, 100% 100%, 10% 100%, 0 70%)' }}
               >
                 <span className="relative z-10">{t('hero.btnStartNow')}</span>
@@ -201,13 +201,13 @@ export default function Hero({ setView, isPremium, onSelectPeptide }: HeroProps)
                     <div className="flex items-center gap-2 mb-1">
                       <h4 className="text-sm font-black text-white italic uppercase tracking-tight">{t('hero.box1Title')}</h4>
                     </div>
-                    <span className="text-[8px] text-accent font-black uppercase tracking-widest bg-accent/10 px-2 py-0.5 rounded-full inline-block">{t('hero.box1Tag')}</span>
+                    <span className="text-xs text-accent font-black uppercase tracking-wider bg-accent/10 px-2 py-0.5 rounded-full inline-block">{t('hero.box1Tag')}</span>
                   </div>
                 </div>
-                <p className="text-white/30 text-[10px] font-bold uppercase tracking-widest leading-relaxed flex-grow relative z-10">
+                <p className="text-white/50 text-xs font-bold uppercase tracking-wider leading-loose flex-grow relative z-10">
                   {t('hero.box1Desc')}
                 </p>
-                <div className="absolute bottom-4 right-4 w-8 h-8 rounded-full border border-white/15 flex items-center justify-center text-white/40 group-hover:text-accent group-hover:border-accent/40 transition-all z-10">
+                <div className="absolute bottom-4 right-4 w-8 h-8 rounded-full border border-white/15 flex items-center justify-center text-white/60 group-hover:text-accent group-hover:border-accent/40 transition-all z-10">
                   <ChevronRight size={16} />
                 </div>
               </motion.div>
@@ -228,10 +228,10 @@ export default function Hero({ setView, isPremium, onSelectPeptide }: HeroProps)
                     <div className="flex items-center gap-2 mb-1">
                       <h4 className="text-sm font-black text-white italic uppercase tracking-tight">{t('hero.box2Title')}</h4>
                     </div>
-                    <span className="text-[8px] text-primary font-black uppercase tracking-widest bg-accent px-2 py-0.5 rounded-full inline-block">{t('hero.box2Tag')}</span>
+                    <span className="text-xs text-primary font-black uppercase tracking-wider bg-accent px-2 py-0.5 rounded-full inline-block">{t('hero.box2Tag')}</span>
                   </div>
                 </div>
-                <p className="text-accent/60 text-[10px] font-bold uppercase tracking-widest leading-relaxed flex-grow relative z-10">
+                <p className="text-accent/60 text-xs font-bold uppercase tracking-wider leading-loose flex-grow relative z-10">
                   {t('hero.box2Desc')}
                 </p>
                 <div className="absolute bottom-4 right-4 w-8 h-8 rounded-full border border-accent/20 flex items-center justify-center text-accent/50 group-hover:text-accent group-hover:border-accent transition-all z-10">
@@ -254,13 +254,13 @@ export default function Hero({ setView, isPremium, onSelectPeptide }: HeroProps)
                     <div className="flex items-center gap-2 mb-1">
                       <h4 className="text-sm font-black text-white italic uppercase tracking-tight">{t('hero.box3Title')}</h4>
                     </div>
-                    <span className="text-[8px] text-blue-400 font-black uppercase tracking-widest bg-blue-500/10 px-2 py-0.5 rounded-full inline-block">{t('hero.box3Tag')}</span>
+                    <span className="text-xs text-blue-400 font-black uppercase tracking-wider bg-blue-500/10 px-2 py-0.5 rounded-full inline-block">{t('hero.box3Tag')}</span>
                   </div>
                 </div>
-                <p className="text-white/30 text-[10px] font-bold uppercase tracking-widest leading-relaxed flex-grow relative z-10">
+                <p className="text-white/50 text-xs font-bold uppercase tracking-wider leading-loose flex-grow relative z-10">
                   {t('hero.box3Desc')}
                 </p>
-                <div className="absolute bottom-4 right-4 w-8 h-8 rounded-full border border-white/15 flex items-center justify-center text-white/40 group-hover:text-blue-400 group-hover:border-blue-400/40 transition-all z-10">
+                <div className="absolute bottom-4 right-4 w-8 h-8 rounded-full border border-white/15 flex items-center justify-center text-white/60 group-hover:text-blue-400 group-hover:border-blue-400/40 transition-all z-10">
                   <ChevronRight size={16} />
                 </div>
               </motion.div>
@@ -282,7 +282,7 @@ export default function Hero({ setView, isPremium, onSelectPeptide }: HeroProps)
               <div key={i} className="glass-card p-6 rounded-[24px] text-left border-white/15 bg-white/[0.01] hover:border-accent/20 transition-all duration-500 group">
                 <div className="mb-6 p-3 w-fit bg-accent/5 rounded-xl group-hover:bg-accent group-hover:text-black transition-colors">{item.icon}</div>
                 <h3 className="text-lg font-black mb-2 tracking-tighter uppercase italic">{item.title}</h3>
-                <p className="text-white/30 text-[10px] font-bold leading-relaxed uppercase tracking-widest">{item.desc}</p>
+                <p className="text-white/50 text-xs font-bold leading-loose uppercase tracking-wider">{item.desc}</p>
               </div>
             ))}
           </motion.div>

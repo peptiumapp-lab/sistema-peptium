@@ -1,6 +1,6 @@
 import { PeptideDossier, PeptideCategory, SynergyProtocol } from './types';
 
-export const PROTOCOLS: PeptideDossier[] = [
+export const PROTOCOLS: any[] = [
 {
     id: 'os-01',
     name: 'OS-01',
@@ -20,7 +20,7 @@ export const PROTOCOLS: PeptideDossier[] = [
     sideEffects: [{ effect: 'Leve desconforto gastrointestinal', mitigation: 'Ajustar dose ou tomar com alimentos.' }],
     synergies: ['ss-31', 'mots-c'],
     researchLinks: [{ title: 'Estudos pré-clínicos sobre OS-01 e longevidade', url: '#', pmid: '0' }],
-    category: PeptideCategory.METABOLISM,
+    category: 'METABOLISMO',
     secondaryCategories: ['LONGEVITY', 'METABOLISM'],
     synonyms: ['OS-01', 'Pan-AMPK Activator'],
     class: 'AMPK Activator',

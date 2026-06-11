@@ -31,7 +31,7 @@ export default function InteractionVerifier({ setView }: InteractionVerifierProp
       {setView && (
         <button 
           onClick={() => setView('home')}
-          className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.3em] text-secondary/60 hover:text-accent transition-all group mb-4"
+          className="flex items-center gap-2 text-xs font-black uppercase tracking-wider text-secondary/60 hover:text-accent transition-all group mb-4"
         >
           <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" />
           Voltar para a Home
@@ -42,12 +42,12 @@ export default function InteractionVerifier({ setView }: InteractionVerifierProp
       <div className="space-y-4 text-center">
         <div className="inline-flex items-center gap-2 px-4 py-2 bg-accent/10 border border-accent/20 rounded-full">
           <ShieldAlert size={14} className="text-accent" />
-          <span className="text-[10px] font-black uppercase tracking-widest text-accent">Misture compostos com segurança</span>
+          <span className="text-xs font-black uppercase tracking-wider text-accent">Misture compostos com segurança</span>
         </div>
         <h2 className="text-4xl md:text-5xl font-black text-white uppercase tracking-tighter italic leading-[0.9]">
           VERIFICADOR DE <span className="text-accent underline decoration-2 underline-offset-8">INTERAÇÕES</span>
         </h2>
-        <p className="text-[11px] text-white/60 font-bold uppercase tracking-[0.2em] max-w-xl mx-auto">
+        <p className="text-[11px] text-white/60 font-bold uppercase tracking-wider max-w-xl mx-auto">
           Cruze dados científicos e sinalize riscos — de precaução leve a contraindicação absoluta.
         </p>
       </div>
@@ -56,8 +56,8 @@ export default function InteractionVerifier({ setView }: InteractionVerifierProp
       <div className="p-6 bg-red-500/5 border border-red-500/20 rounded-3xl flex gap-4 items-start max-w-3xl mx-auto">
         <AlertCircle className="text-red-500 shrink-0" size={20} />
         <div className="space-y-1">
-          <h4 className="text-[10px] font-black text-red-500 uppercase tracking-widest italic">Aviso Importante</h4>
-          <p className="text-[9px] text-white/60 font-bold uppercase leading-relaxed tracking-wider">
+          <h4 className="text-xs font-black text-red-500 uppercase tracking-wider italic">Aviso Importante</h4>
+          <p className="text-xs text-white/60 font-bold uppercase leading-loose tracking-wider">
             Esta ferramenta é apenas informativa. NÃO substitui orientação médica profissional. 
             Sempre consulte seu médico antes de iniciar ou combinar protocolos.
           </p>
@@ -69,18 +69,18 @@ export default function InteractionVerifier({ setView }: InteractionVerifierProp
         {/* Selection Sidebar */}
         <div className="lg:col-span-4 space-y-6">
           <div className="relative">
-            <Search className="absolute left-6 top-1/2 -translate-y-1/2 text-white/40" size={18} />
+            <Search className="absolute left-6 top-1/2 -translate-y-1/2 text-white/60" size={18} />
             <input 
               type="text" 
               placeholder="BUSCAR PEPTÍDEO..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full bg-white/[0.03] border border-white/15 rounded-2xl py-6 pl-16 pr-6 text-xs font-black text-white placeholder:text-white/40 outline-none focus:border-accent/40 transition-all uppercase tracking-widest"
+              className="w-full bg-white/[0.03] border border-white/15 rounded-2xl py-6 pl-16 pr-6 text-xs font-black text-white placeholder:text-white/60 outline-none focus:border-accent/40 transition-all uppercase tracking-wider"
             />
           </div>
 
           <div className="glass-card rounded-[32px] border-white/15 bg-white/[0.01] overflow-hidden">
-            <div className="p-4 border-b border-white/15 font-black text-[9px] text-white/60 uppercase tracking-[0.3em] flex items-center justify-between">
+            <div className="p-4 border-b border-white/15 font-black text-xs text-white/60 uppercase tracking-wider flex items-center justify-between">
               Resultados ({filteredPeptides.length})
               <ChevronDown size={12} />
             </div>
@@ -94,12 +94,12 @@ export default function InteractionVerifier({ setView }: InteractionVerifierProp
                   }`}
                 >
                   <div>
-                    <h4 className={`text-xs font-black uppercase tracking-widest transition-colors ${
+                    <h4 className={`text-xs font-black uppercase tracking-wider transition-colors ${
                       selectedPeptide?.id === p.id ? 'text-accent' : 'text-white'
                     }`}>
                       {p.name}
                     </h4>
-                    <span className="text-[8px] font-bold text-white/40 uppercase tracking-widest">{p.tag}</span>
+                    <span className="text-xs font-bold text-white/60 uppercase tracking-wider">{p.tag}</span>
                   </div>
                   {p.interactions && p.interactions.length > 0 && (
                     <div className="w-2 h-2 rounded-full bg-amber-500 animate-pulse shadow-[0_0_10px_rgba(245,158,11,0.5)]" />
@@ -128,11 +128,11 @@ export default function InteractionVerifier({ setView }: InteractionVerifierProp
                   <div className="space-y-2">
                     <h3 className="text-3xl font-black text-white uppercase tracking-tighter italic">{selectedPeptide.name}</h3>
                     <div className="flex gap-2">
-                      <span className="px-3 py-1 bg-accent/10 border border-accent/20 rounded-full text-[8px] font-black text-accent uppercase tracking-widest">
+                      <span className="px-3 py-1 bg-accent/10 border border-accent/20 rounded-full text-xs font-black text-accent uppercase tracking-wider">
                         {selectedPeptide.tag}
                       </span>
                       {selectedPeptide.interactions && (
-                        <span className="px-3 py-1 bg-amber-500/10 border border-amber-500/20 rounded-full text-[8px] font-black text-amber-500 uppercase tracking-widest">
+                        <span className="px-3 py-1 bg-amber-500/10 border border-amber-500/20 rounded-full text-xs font-black text-amber-500 uppercase tracking-wider">
                           {selectedPeptide.interactions.length} Interações Mapeadas
                         </span>
                       )}
@@ -141,7 +141,7 @@ export default function InteractionVerifier({ setView }: InteractionVerifierProp
                 </div>
 
                 <div className="space-y-6">
-                  <h4 className="text-[10px] font-black text-white/30 uppercase tracking-[0.4em] pl-2 flex items-center gap-2">
+                  <h4 className="text-xs font-black text-white/50 uppercase tracking-wider pl-2 flex items-center gap-2">
                     <Zap size={12} className="text-accent" /> Matriz de Riscos
                   </h4>
                   
@@ -154,16 +154,16 @@ export default function InteractionVerifier({ setView }: InteractionVerifierProp
                         >
                           <div className="space-y-3">
                             <div className="flex items-center gap-3">
-                              <h5 className="text-sm font-black text-white uppercase tracking-widest">{interaction.substance}</h5>
-                              <span className={`px-2 py-0.5 rounded-md text-[7px] font-black uppercase tracking-widest border ${getRiskColor(interaction.risk)}`}>
+                              <h5 className="text-sm font-black text-white uppercase tracking-wider">{interaction.substance}</h5>
+                              <span className={`px-2 py-0.5 rounded-md text-[7px] font-black uppercase tracking-wider border ${getRiskColor(interaction.risk)}`}>
                                 Risco {interaction.risk}
                               </span>
                             </div>
-                            <p className="text-[10px] text-white/60 font-bold uppercase leading-relaxed tracking-wider italic">
+                            <p className="text-xs text-white/60 font-bold uppercase leading-loose tracking-wider italic">
                               "{interaction.warning}"
                             </p>
                           </div>
-                          <button className="px-6 py-3 bg-white/10 rounded-xl text-[9px] font-black text-white/40 uppercase tracking-widest hover:bg-white/20 hover:text-white transition-all">
+                          <button className="px-6 py-3 bg-white/10 rounded-xl text-xs font-black text-white/60 uppercase tracking-wider hover:bg-white/20 hover:text-white transition-all">
                             Ver EstudoPubMed
                           </button>
                         </div>
@@ -175,8 +175,8 @@ export default function InteractionVerifier({ setView }: InteractionVerifierProp
                         <ShieldCheck size={32} />
                       </div>
                       <div className="space-y-2">
-                        <h5 className="text-sm font-black text-white uppercase tracking-widest">Nenhuma Interação Grave Encontrada</h5>
-                        <p className="text-[10px] text-white/40 font-bold uppercase tracking-widest">Este composto possui um perfil de segurança elevado para as substâncias mapeadas.</p>
+                        <h5 className="text-sm font-black text-white uppercase tracking-wider">Nenhuma Interação Grave Encontrada</h5>
+                        <p className="text-xs text-white/60 font-bold uppercase tracking-wider">Este composto possui um perfil de segurança elevado para as substâncias mapeadas.</p>
                       </div>
                     </div>
                   )}
@@ -188,8 +188,8 @@ export default function InteractionVerifier({ setView }: InteractionVerifierProp
                   <ShieldQuestion size={40} />
                 </div>
                 <div className="space-y-2">
-                  <h3 className="text-xl font-black text-white/40 uppercase tracking-tighter">Selecione um Composto</h3>
-                  <p className="text-[10px] text-white/10 font-bold uppercase tracking-[0.3em]">Selecione ao lado para ver a matriz de interações</p>
+                  <h3 className="text-xl font-black text-white/60 uppercase tracking-tighter">Selecione um Composto</h3>
+                  <p className="text-xs text-white/10 font-bold uppercase tracking-wider">Selecione ao lado para ver a matriz de interações</p>
                 </div>
               </div>
             )}
@@ -201,15 +201,15 @@ export default function InteractionVerifier({ setView }: InteractionVerifierProp
       <div className="flex flex-wrap justify-center gap-8 pt-10 border-t border-white/15">
         <div className="flex items-center gap-2">
           <div className="w-2 h-2 rounded-full bg-red-400" />
-          <span className="text-[8px] font-black text-white/30 uppercase tracking-widest">Crítico / Não Fazer</span>
+          <span className="text-xs font-black text-white/50 uppercase tracking-wider">Crítico / Não Fazer</span>
         </div>
         <div className="flex items-center gap-2">
           <div className="w-2 h-2 rounded-full bg-amber-400" />
-          <span className="text-[8px] font-black text-white/30 uppercase tracking-widest">Atenção / Monitorar</span>
+          <span className="text-xs font-black text-white/50 uppercase tracking-wider">Atenção / Monitorar</span>
         </div>
         <div className="flex items-center gap-2">
           <div className="w-2 h-2 rounded-full bg-blue-400" />
-          <span className="text-[8px] font-black text-white/30 uppercase tracking-widest">Moderado / Precaução</span>
+          <span className="text-xs font-black text-white/50 uppercase tracking-wider">Moderado / Precaução</span>
         </div>
       </div>
     </div>

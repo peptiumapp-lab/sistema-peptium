@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { User, onAuthStateChanged } from 'firebase/auth';
-import { doc, onSnapshot } from 'firebase/firestore';
+import { doc, onSnapshot, getDoc } from 'firebase/firestore';
 import { auth, db } from '../lib/firebase';
 
 interface AuthContextType {
@@ -8,22 +8,29 @@ interface AuthContextType {
   isPro: boolean;
   isAdmin: boolean;
   loading: boolean;
+  openAuthModal: () => void;
 }
 
 const AuthContext = createContext<AuthContextType>({
   user: null,
   isPro: false,
   isAdmin: false,
-  loading: true
+  loading: true,
+  openAuthModal: () => {}
 });
 
 export const useAuth = () => useContext(AuthContext);
+
+import AuthModal from '../components/AuthModal';
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
   const [isPro, setIsPro] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+
+  const openAuthModal = () => setIsAuthModalOpen(true);
 
   useEffect(() => {
     const unsubscribeAuth = onAuthStateChanged(auth, (user) => {
@@ -144,8 +151,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, isPro, isAdmin, loading }}>
+    <AuthContext.Provider value={{ user, isPro, isAdmin, loading, openAuthModal }}>
       {children}
+      <AuthModal isOpen={isAuthModalOpen} onClose={() => setIsAuthModalOpen(false)} />
     </AuthContext.Provider>
   );
 };

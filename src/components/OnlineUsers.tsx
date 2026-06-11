@@ -56,7 +56,7 @@ export default function OnlineUsers() {
         </div>
       </div>
       <div>
-        <div className="text-[10px] uppercase font-bold tracking-widest text-muted">Acessos Agora</div>
+        <div className="text-xs uppercase font-bold tracking-wider text-muted">Acessos Agora</div>
         <div className="text-white font-mono text-sm font-medium">
           <span className="text-accent">{users.toLocaleString('pt-BR')}</span> <span className="opacity-50">ativos</span>
         </div>

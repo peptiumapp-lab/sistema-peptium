@@ -5,7 +5,7 @@ import { PayPalButtons } from '@paypal/react-paypal-js';
 import { SUPPORT_LINK } from '../constants';
 import { useAuth } from '../contexts/AuthContext';
 import { useLanguage } from '../contexts/LanguageContext';
-import { signInWithGoogle, upgradeToPro } from '../lib/firebase';
+import { upgradeToPro } from '../lib/firebase';
 
 const plansData = {
   pt: [
@@ -77,7 +77,7 @@ const plansData = {
 };
 
 export default function Pricing() {
-  const { user, isPro } = useAuth();
+  const { user, isPro, openAuthModal } = useAuth();
   const { language, currency, t } = useLanguage();
   const [couponCode, setCouponCode] = React.useState<string | null>(null);
 
@@ -90,7 +90,7 @@ export default function Pricing() {
   }, []);
 
   const handleLoginClick = async () => {
-    await signInWithGoogle();
+    openAuthModal();
   };
 
   return (
@@ -107,14 +107,14 @@ export default function Pricing() {
           >
             {t('pricing.title')}
           </motion.h2>
-          <p className="text-secondary/60 max-w-2xl mx-auto text-[11px] font-bold uppercase tracking-widest leading-relaxed">
+          <p className="text-secondary/60 max-w-2xl mx-auto text-[11px] font-bold uppercase tracking-wider leading-loose">
             {t('pricing.subtitle')}
           </p>
           {couponCode && (
             <motion.div
                initial={{ opacity: 0, scale: 0.9 }}
                animate={{ opacity: 1, scale: 1 }}
-               className="mt-6 inline-block animate-pulse bg-accent/20 border border-accent/50 text-accent px-6 py-2 rounded-full text-xs font-black uppercase tracking-widest"
+               className="mt-6 inline-block animate-pulse bg-accent/20 border border-accent/30 text-accent px-6 py-2 rounded-full text-xs font-black uppercase tracking-wider"
             >
                🎉 {t('pricing.coupon')}
             </motion.div>
@@ -134,7 +134,7 @@ export default function Pricing() {
               }`}
             >
               {plan.tag && (
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-accent text-primary text-[10px] font-bold px-3 py-1 rounded-full z-10">
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-accent text-primary text-xs font-bold px-3 py-1 rounded-full z-10">
                   {plan.tag}
                 </div>
               )}
@@ -154,30 +154,30 @@ export default function Pricing() {
                     <span className="text-xs text-gray-400">{plan.period}</span>
                   </div>
                   {plan.originalPrice && (
-                    <p className="mt-1 text-xs sm:text-sm font-bold text-secondary/50 line-through">
+                    <p className="mt-1 text-xs sm:text-sm font-bold text-secondary/70 line-through">
                       {currency === 'BRL' ? 'R$' : '$'} {plan.originalPrice}
                     </p>
                   )}
-                  <p className="mt-3 text-[10px] text-gray-400 uppercase tracking-widest leading-relaxed">{plan.description}</p>
+                  <p className="mt-3 text-xs text-gray-400 uppercase tracking-wider leading-loose">{plan.description}</p>
                 </div>
 
                 <div className="space-y-4 mb-8 flex-grow">
                   {plan.features.map((feature) => (
                     <div key={feature} className="flex items-center gap-3 text-sm text-gray-300">
                       <Check size={16} className="text-accent shrink-0" />
-                      <span className="uppercase text-[10px] font-bold tracking-widest opacity-70">{feature}</span>
+                      <span className="uppercase text-xs font-bold tracking-wider opacity-70">{feature}</span>
                     </div>
                   ))}
                 </div>
 
                 {isPro ? (
-                  <button disabled className="w-full py-4 rounded-[12px] font-bold transition-all duration-300 text-center uppercase tracking-[0.3em] text-[10px] bg-secondary/10 border border-secondary/20 opacity-50 cursor-not-allowed">
+                  <button disabled className="w-full py-4 rounded-[12px] font-bold transition-all duration-300 text-center uppercase tracking-wider text-xs bg-secondary/10 border border-secondary/20 opacity-50 cursor-not-allowed">
                     {t('pricing.currentPlan')}
                   </button>
                 ) : !user ? (
                    <button 
                      onClick={handleLoginClick}
-                     className={`w-full py-4 rounded-[12px] font-bold transition-all duration-300 text-center uppercase tracking-[0.3em] text-[10px] ${
+                     className={`w-full py-4 rounded-[12px] font-bold transition-all duration-300 text-center uppercase tracking-wider text-xs ${
                       plan.premium 
                       ? 'bg-accent text-primary hover:bg-white shadow-[0_0_20px_rgba(0,229,255,0.2)]' 
                       : 'bg-secondary/10 hover:bg-secondary/20 border border-secondary/20'

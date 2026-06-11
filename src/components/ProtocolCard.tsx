@@ -13,7 +13,7 @@ const ProtocolCard: React.FC<ProtocolCardProps> = ({ protocol, setView, onClick 
   return (
     <div 
       role="button"
-      className="group relative glass-card rounded-[20px] overflow-hidden transition-all duration-700 hover:border-accent/30 flex flex-col h-full bg-[#080808] border border-white/[0.03] cursor-pointer"
+      className="group relative glass-card rounded-[20px] overflow-hidden transition-all duration-700 hover:border-accent/20 flex flex-col h-full bg-[#080808] border border-white/[0.03] cursor-pointer"
       onClick={onClick}
     >
       <div className="relative aspect-[16/10] overflow-hidden">
@@ -37,17 +37,17 @@ const ProtocolCard: React.FC<ProtocolCardProps> = ({ protocol, setView, onClick 
         <div className="mb-3">
           <div className="flex items-center gap-1.5 mb-1.5 opacity-40">
             <div className="w-1 h-1 rounded-full bg-accent" />
-            <span className="text-[7px] font-black uppercase tracking-[0.2em] italic">{protocol.tag}</span>
+            <span className="text-[7px] font-black uppercase tracking-wider italic">{protocol.tag}</span>
           </div>
           <h3 className="text-[13px] font-black font-sans text-white tracking-tight leading-tight uppercase group-hover:text-accent transition-colors italic">{protocol.name}</h3>
         </div>
         
-        <p className="text-white/40 text-[8px] mb-4 leading-relaxed font-bold uppercase tracking-widest line-clamp-2">
+        <p className="text-white/60 text-xs mb-4 leading-loose font-bold uppercase tracking-wider line-clamp-2">
           {protocol.description}
         </p>
         
         <div className="mt-auto pt-3 border-t border-white/15 flex items-center justify-between">
-          <span className="text-[7px] font-black text-accent uppercase tracking-widest">Acessar Dossiê</span>
+          <span className="text-[7px] font-black text-accent uppercase tracking-wider">Acessar Dossiê</span>
           <ArrowUpRight size={12} className="text-accent/40 group-hover:text-accent transition-all" />
         </div>
       </div>

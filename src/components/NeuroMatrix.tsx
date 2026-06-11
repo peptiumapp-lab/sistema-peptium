@@ -1,10 +1,25 @@
+import type { View } from '../App';
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Brain, Zap, Target } from 'lucide-react';
 
-export function NeuroMatrix() {
+
+interface NeuroMatrixProps {
+  setView?: (view: View) => void;
+}
+export function NeuroMatrix({ setView }: NeuroMatrixProps) {
   return (
     <div className="p-6 text-white w-full max-w-4xl mx-auto">
+      {setView && (
+        <button 
+          onClick={() => setView('home')}
+          className="flex items-center gap-2 text-xs font-black uppercase tracking-wider text-secondary/60 hover:text-accent transition-all group mb-4 px-4 pt-4 z-50 relative"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-left group-hover:-translate-x-1 transition-transform"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+          Voltar para a Home
+        </button>
+      )}
+
       <div className="flex items-center space-x-3 mb-2">
         <Brain className="w-8 h-8 text-cyan-400" />
         <h2 className="text-3xl font-bold text-cyan-400 tracking-tight">Neuro Matrix</h2>
@@ -20,9 +35,9 @@ export function NeuroMatrix() {
               <div className="absolute h-full w-[1px] bg-cyan-900/40"></div>
               
               {/* Pontos de plotagem do radar mental */}
-              <div className="absolute flex p-2 bg-black border border-cyan-500 rounded-sm text-[10px] font-mono text-cyan-400" style={{ top: '10px', left: '50%', transform: 'translateX(-50%)' }}>FOCO</div>
-              <div className="absolute flex p-2 bg-black border border-green-500 rounded-sm text-[10px] font-mono text-green-400" style={{ right: '0px', top: '50%', transform: 'translateY(-50%)' }}>SPEED</div>
-              <div className="absolute flex p-2 bg-black border border-orange-500 rounded-sm text-[10px] font-mono text-orange-400" style={{ left: '5px', bottom: '20px' }}>ANSIEDADE (BAIXA)</div>
+              <div className="absolute flex p-2 bg-black border border-cyan-500 rounded-sm text-xs font-mono text-cyan-400" style={{ top: '10px', left: '50%', transform: 'translateX(-50%)' }}>FOCO</div>
+              <div className="absolute flex p-2 bg-black border border-green-500 rounded-sm text-xs font-mono text-green-400" style={{ right: '0px', top: '50%', transform: 'translateY(-50%)' }}>SPEED</div>
+              <div className="absolute flex p-2 bg-black border border-orange-500 rounded-sm text-xs font-mono text-orange-400" style={{ left: '5px', bottom: '20px' }}>ANSIEDADE (BAIXA)</div>
            </div>
         </div>
 

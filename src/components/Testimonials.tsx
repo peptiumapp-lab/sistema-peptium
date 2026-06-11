@@ -75,7 +75,7 @@ export default function Testimonials() {
                   <p className="text-accent text-xs">{t.role}</p>
                 </div>
               </div>
-              <p className="text-gray-400 text-sm leading-relaxed italic">
+              <p className="text-gray-400 text-sm leading-loose italic">
                 "{t.content}"
               </p>
               <div className="mt-6 flex gap-1 text-yellow-500">

@@ -1,8 +1,13 @@
+import type { View } from '../App';
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Dna, AlertOctagon, CheckSquare } from 'lucide-react';
 
-export function GenomeAnalyzer() {
+
+interface GenomeAnalyzerProps {
+  setView?: (view: View) => void;
+}
+export function GenomeAnalyzer({ setView }: GenomeAnalyzerProps) {
   const snps = [
     { name: 'MTHFR C677T', status: 'Mutação Detectada', impact: 'Absorção de Folato Comprometida', protocol: 'SAM-e / Metilfolato' },
     { name: 'APOE4', status: 'Variante de Risco', impact: 'Cleareance Neurológico Lento', protocol: 'Cerebrolysin / Dieta Cetogênica' },
@@ -11,6 +16,16 @@ export function GenomeAnalyzer() {
 
   return (
     <div className="p-6 text-white w-full max-w-4xl mx-auto">
+      {setView && (
+        <button 
+          onClick={() => setView('home')}
+          className="flex items-center gap-2 text-xs font-black uppercase tracking-wider text-secondary/60 hover:text-accent transition-all group mb-4 px-4 pt-4 z-50 relative"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-left group-hover:-translate-x-1 transition-transform"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+          Voltar para a Home
+        </button>
+      )}
+
       <div className="flex items-center space-x-3 mb-6">
         <Dna className="w-8 h-8 text-cyan-400" />
         <h2 className="text-3xl font-bold text-cyan-400 tracking-tight">Analista DNA Profiler</h2>

@@ -43,7 +43,7 @@ import { PeptideDossier, PeptideCategory } from './types';
 import { Shield, Truck, CreditCard, Activity, CheckCircle2, ArrowUpRight, Star, Zap, ChevronRight, ShieldAlert, X, Hexagon, Plus, GraduationCap, Microscope, BookOpen, Instagram, Globe, Mail, MapPin, Lock } from 'lucide-react';
 
 import { useAuth } from './contexts/AuthContext';
-import { signInWithGoogle, logout, upgradeToPro, handleRedirectResult } from './lib/firebase';
+import { logout, upgradeToPro, handleRedirectResult } from './lib/firebase';
 import { auditInventory } from './services/atlasAuditor';
 
 export type View = 'home' | 'library' | 'calculator' | 'quiz' | 'stacks' | 'interactions' | 'my-protocols' | 'plans' | 'dossier' | 'guide' | 'synergies' | 'scanner' | 'map' | 'schedule' | 'admin' | 'ai-generator' | 'lab-scanner' | 'longevity-clock' | 'fasting-tracker' | 'cycle-planner' | 'genome-analyzer' | 'microbiome-tracker' | 'neuro-matrix' | 'cofre-atlas' | 'manual';
@@ -171,35 +171,35 @@ function AppContent() {
           setCurrentView('stacks');
         }} isStandalone />;
       case 'schedule':
-        return <CycleSchedule isStandalone />;
+        return <CycleSchedule isStandalone setView={setCurrentView} />;
       case 'map':
-        return <BioHackingMap isStandalone />;
+        return <BioHackingMap isStandalone setView={setCurrentView} />;
       case 'lab-scanner':
-        return <div className="py-24"><LabScanner /></div>;
+        return <div className="py-24"><LabScanner setView={setCurrentView} /></div>;
       case 'longevity-clock':
-        return <div className="py-24"><LongevityClock /></div>;
+        return <div className="py-24"><LongevityClock setView={setCurrentView} /></div>;
       case 'fasting-tracker':
-        return <div className="py-24"><FastingTracker /></div>;
+        return <div className="py-24"><FastingTracker setView={setCurrentView} /></div>;
       case 'cycle-planner':
-        return <div className="py-24"><CyclePlanner /></div>;
+        return <div className="py-24"><CyclePlanner setView={setCurrentView} /></div>;
       case 'genome-analyzer':
-        return <div className="py-24"><GenomeAnalyzer /></div>;
+        return <div className="py-24"><GenomeAnalyzer setView={setCurrentView} /></div>;
       case 'microbiome-tracker':
-        return <div className="py-24"><MicrobiomeTracker /></div>;
+        return <div className="py-24"><MicrobiomeTracker setView={setCurrentView} /></div>;
       case 'neuro-matrix':
-        return <div className="py-24"><NeuroMatrix /></div>;
+        return <div className="py-24"><NeuroMatrix setView={setCurrentView} /></div>;
       case 'cofre-atlas':
-        return <CofreAtlas />;
+        return <CofreAtlas setView={setCurrentView} />;
       case 'manual':
-        return <HowToUse />;
+        return <HowToUse setView={setCurrentView} />;
       case 'scanner':
       case 'my-protocols':
       case 'quiz':
         return <PlaceholderView view={currentView} setView={setCurrentView} />;
       case 'admin':
-        return <AdminDashboard />;
+        return <AdminDashboard setView={setCurrentView} />;
       case 'ai-generator':
-        return <AiGenerator />;
+        return <AiGenerator setView={setCurrentView} />;
       case 'home':
       default:
         return (
@@ -214,13 +214,13 @@ function AppContent() {
                   <div className="space-y-4">
                     <div className="inline-flex items-center gap-2 px-3 py-1 bg-accent/10 border border-accent/20 rounded-full">
                       <Hexagon size={10} className="text-accent" />
-                      <span className="text-[10px] font-black uppercase tracking-widest text-accent">Banco de Dados Molecular v4.2</span>
+                      <span className="text-xs font-black uppercase tracking-wider text-accent">Banco de Dados Molecular v4.2</span>
                     </div>
                     <h2 className="text-3xl md:text-5xl font-sans font-black tracking-tighter text-white uppercase italic leading-[0.85]">
                       ATLAS DE <br/>
                       <span className="text-accent underline decoration-accent underline-offset-[8px]">COMPOSTOS</span>
                     </h2>
-                    <p className="text-white/60 text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] max-w-2xl leading-relaxed italic">
+                    <p className="text-white/60 text-xs md:text-xs font-bold uppercase tracking-wider max-w-2xl leading-loose italic">
                       A maior biblioteca técnica de peptídeos e SARMs do mundo. <br/>
                       <span className="text-white">Explore os 9 pilares da performance ou acesse o catálogo completo.</span>
                     </p>
@@ -230,12 +230,12 @@ function AppContent() {
                     <div className="flex items-center gap-8 px-8 py-4 bg-white/10 border border-white/20 rounded-2xl backdrop-blur-sm">
                       <div className="text-center">
                         <div className="text-xl font-black text-white leading-none">{TOTAL_PEPTIDES}</div>
-                        <div className="text-[8px] font-black text-accent uppercase tracking-widest mt-1">Moléculas</div>
+                        <div className="text-xs font-black text-accent uppercase tracking-wider mt-1">Moléculas</div>
                       </div>
                       <div className="w-px h-8 bg-white/10" />
                       <div className="text-center">
                         <div className="text-xl font-black text-white leading-none">24</div>
-                        <div className="text-[8px] font-black text-accent uppercase tracking-widest mt-1">Categorias</div>
+                        <div className="text-xs font-black text-accent uppercase tracking-wider mt-1">Categorias</div>
                       </div>
                     </div>
                   </div>
@@ -252,10 +252,10 @@ function AppContent() {
                           setCurrentView('library');
                           window.scrollTo(0, 0);
                         }}
-                        className="px-3 py-2 bg-white/[0.02] border border-white/15 hover:border-accent/30 hover:bg-accent/5 rounded-lg transition-all group flex items-center gap-2 cursor-pointer select-none"
+                        className="px-3 py-2 bg-white/[0.02] border border-white/15 hover:border-accent/20 hover:bg-accent/5 rounded-lg transition-all group flex items-center gap-2 cursor-pointer select-none"
                       >
                         <div className="w-1 h-1 rounded-full bg-accent/30 group-hover:bg-accent animate-pulse" />
-                        <span className="text-[12px] font-black text-white/60 group-hover:text-white uppercase tracking-widest truncate">{cat}</span>
+                        <span className="text-[12px] font-black text-white/60 group-hover:text-white uppercase tracking-wider truncate">{cat}</span>
                       </div>
                     ))}
                   </div>
@@ -298,12 +298,12 @@ function AppContent() {
                       setCurrentView('library');
                       window.scrollTo(0, 0);
                     }}
-                    className="group relative px-10 py-4 bg-accent text-black rounded-xl font-black text-[10px] uppercase tracking-[0.3em] hover:bg-white transition-all shadow-[0_0_30px_rgba(0,229,255,0.15)] hover:shadow-[0_0_50px_rgba(255,255,255,0.1)] overflow-hidden"
+                    className="group relative px-10 py-4 bg-accent text-black rounded-xl font-black text-xs uppercase tracking-wider hover:bg-white transition-all shadow-[0_0_30px_rgba(0,229,255,0.15)] hover:shadow-[0_0_50px_rgba(255,255,255,0.1)] overflow-hidden"
                   >
                     <span className="relative z-10">Explorar Catálogo {isPremium ? 'Completo' : 'Limited'}</span>
                     <div className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
                   </button>
-                  <div className="flex items-center gap-4 text-[9px] font-black text-white/40 uppercase tracking-[0.3em] italic">
+                  <div className="flex items-center gap-4 text-xs font-black text-white/60 uppercase tracking-wider italic">
                     <div className="w-8 h-px bg-white/10" />
                     {isPremium ? 'Acesso Total Liberado' : 'Contém Itens com Acesso Restrito'}
                     <div className="w-8 h-px bg-white/10" />
@@ -367,14 +367,14 @@ function AppContent() {
                 onClick={() => setCurrentView('home')}
               >
                 <PeptiumLogo className="w-12 h-12" glowing />
-                <span className="font-sans font-black text-[20px] tracking-widest text-[#00E5FF] uppercase drop-shadow-[0_0_8px_rgba(0,229,255,0.4)]">
+                <span className="font-sans font-black text-[20px] tracking-wider text-[#00E5FF] uppercase drop-shadow-[0_0_8px_rgba(0,229,255,0.4)]">
                   PEPTIUM
                 </span>
-                <span className="font-sans font-bold text-[20px] tracking-[0.3em] text-white uppercase italic opacity-90">
+                <span className="font-sans font-bold text-[20px] tracking-wider text-white uppercase italic opacity-90">
                   PRIME
                 </span>
               </span>
-              <p className="text-muted max-w-sm text-[11px] leading-relaxed font-medium opacity-60">
+              <p className="text-muted max-w-sm text-[11px] leading-loose font-medium opacity-60">
                 A maior autoridade mundial em ciência e protocolos de peptídeos. 
                 Vanguarda do biohacking na palma da sua mão.
               </p>
@@ -395,7 +395,7 @@ function AppContent() {
             </div>
             
             <div className="space-y-6">
-              <h5 className="text-[9px] font-black uppercase tracking-[0.2em] text-secondary opacity-40">Navegação</h5>
+              <h5 className="text-xs font-black uppercase tracking-wider text-secondary opacity-40">Navegação</h5>
               <ul className="space-y-4 text-[11px] font-medium text-muted">
                 <li className="hover:text-accent cursor-pointer transition-colors" onClick={() => setCurrentView('home')}>Explorar</li>
                 <li className="hover:text-accent cursor-pointer transition-colors" onClick={() => setCurrentView('library')}>Biblioteca</li>
@@ -407,7 +407,7 @@ function AppContent() {
             </div>
             
             <div className="space-y-6">
-              <h5 className="text-[9px] font-black uppercase tracking-[0.2em] text-secondary opacity-40">Legal</h5>
+              <h5 className="text-xs font-black uppercase tracking-wider text-secondary opacity-40">Legal</h5>
               <ul className="space-y-4 text-[11px] font-medium text-muted">
                 <li className="hover:text-accent cursor-pointer transition-colors" onClick={() => setLegalModalType('termos')}>Termos de Uso</li>
                 <li className="hover:text-accent cursor-pointer transition-colors" onClick={() => setLegalModalType('privacidade')}>Privacidade</li>
@@ -418,14 +418,14 @@ function AppContent() {
           
           <div className="flex flex-col md:flex-row justify-between items-center gap-6 pt-10 border-t border-secondary/15">
             <div className="flex flex-col gap-1">
-              <p className="text-[8px] font-bold text-secondary/40 uppercase tracking-widest">
+              <p className="text-xs font-bold text-secondary/60 uppercase tracking-wider">
                 © 2026 Peptium Prime. Scientific Research Purpose Only.
               </p>
               <div className="flex items-center gap-2">
-                <p className="text-[6px] font-black text-accent/20 uppercase tracking-[0.3em]">
+                <p className="text-[6px] font-black text-accent/20 uppercase tracking-wider">
                   Build v5.0.4-Prime | Email detectado: {user?.email || 'Nenhum'} | Usuário: {user ? (isPremium ? 'PRO' : 'FREE') : 'Não logado'} | Status:
                 </p>
-                <span className={`text-[6px] font-black uppercase tracking-widest ${
+                <span className={`text-[6px] font-black uppercase tracking-wider ${
                   apiStatus.startsWith('Online') ? 'text-accent' : 'text-red-500'
                 }`}>
                   {apiStatus}

@@ -54,7 +54,7 @@ function SyringeVisual({ units, type }: { units: number, type: typeof SYRINGE_TY
                  <div key={i} className="flex flex-col items-center justify-end relative h-full pb-1">
                    <div className={`w-[0.5px] bg-white/40 ${isMajor ? 'h-full bg-white/90' : isHalf ? 'h-[60%]' : 'h-[30%]'}`} />
                    {isMajor && (
-                      <span className="absolute -bottom-6 text-[9px] font-black text-white tracking-tighter">
+                      <span className="absolute -bottom-6 text-xs font-black text-white tracking-tighter">
                         {i}
                       </span>
                    )}
@@ -133,7 +133,7 @@ export default function PeptideCalculator({ setView }: PeptideCalculatorProps) {
       {setView && (
         <button 
           onClick={() => setView('home')}
-          className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.3em] text-secondary/60 hover:text-accent transition-all group mb-4"
+          className="flex items-center gap-2 text-xs font-black uppercase tracking-wider text-secondary/60 hover:text-accent transition-all group mb-4"
         >
           <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" />
           Voltar para a Home
@@ -145,14 +145,14 @@ export default function PeptideCalculator({ setView }: PeptideCalculatorProps) {
           <h2 className="text-4xl font-black text-white uppercase tracking-tighter italic">
             CALCULADORA <span className="text-accent">PRIME</span>
           </h2>
-          <p className="text-[10px] text-white/60 font-bold uppercase tracking-[0.3em]">Cálculo algorítmico e reconstituição avançada</p>
+          <p className="text-xs text-white/60 font-bold uppercase tracking-wider">Cálculo algorítmico e reconstituição avançada</p>
         </div>
         <div className="flex gap-2">
           {SYRINGE_TYPES.map((type) => (
             <button
               key={type.id}
               onClick={() => setSyringeType(type)}
-              className={`px-4 py-2 rounded-xl text-[9px] font-black uppercase tracking-widest transition-all border ${
+              className={`px-4 py-2 rounded-xl text-xs font-black uppercase tracking-wider transition-all border ${
                 syringeType.id === type.id 
                   ? 'bg-accent text-black border-accent' 
                   : 'bg-white/10 text-white/60 border-white/15 hover:bg-white/20'
@@ -165,7 +165,7 @@ export default function PeptideCalculator({ setView }: PeptideCalculatorProps) {
       </div>
 
       <div className="space-y-4 relative z-50">
-        <label className="flex items-center gap-2 text-[10px] font-black text-white/60 uppercase tracking-[0.2em] pl-2">
+        <label className="flex items-center gap-2 text-xs font-black text-white/60 uppercase tracking-wider pl-2">
           <Search size={12} className="text-accent" />
           Conectar Peptídeo do Banco de Dados
         </label>
@@ -178,7 +178,7 @@ export default function PeptideCalculator({ setView }: PeptideCalculatorProps) {
               setSearchQuery(e.target.value);
               if (e.target.value === '') setSelectedPeptide(null);
             }}
-            className="w-full bg-white/[0.03] border border-white/15 rounded-2xl p-4 text-sm font-medium text-white focus:border-accent/40 outline-none transition-all placeholder:text-white/40"
+            className="w-full bg-white/[0.03] border border-white/15 rounded-2xl p-4 text-sm font-medium text-white focus:border-accent/40 outline-none transition-all placeholder:text-white/60"
           />
           {filteredPeptides.length > 0 && (
             <div className="absolute top-full mt-2 w-full bg-[#0a0a0a] border border-white/20 rounded-2xl overflow-hidden shadow-[0_0_40px_rgba(0,0,0,0.5)] max-h-[300px] overflow-y-auto">
@@ -203,9 +203,9 @@ export default function PeptideCalculator({ setView }: PeptideCalculatorProps) {
                 >
                   <div>
                     <div className="text-sm font-bold text-white group-hover:text-accent transition-colors">{p.name}</div>
-                    <div className="text-[10px] text-white/60 uppercase tracking-widest mt-1">{p.tag}</div>
+                    <div className="text-xs text-white/60 uppercase tracking-wider mt-1">{p.tag}</div>
                   </div>
-                  <ArrowUpRight size={14} className="text-white/40 group-hover:text-accent" />
+                  <ArrowUpRight size={14} className="text-white/60 group-hover:text-accent" />
                 </button>
               ))}
             </div>
@@ -224,18 +224,18 @@ export default function PeptideCalculator({ setView }: PeptideCalculatorProps) {
             <div className="space-y-4 flex-1">
               <div>
                 <h3 className="text-lg font-black text-white">{selectedPeptide.name}</h3>
-                <p className="text-sm text-white/60 leading-relaxed mt-1">{selectedPeptide.description}</p>
+                <p className="text-sm text-white/60 leading-loose mt-1">{selectedPeptide.description}</p>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                  {selectedPeptide.dosage && (
                     <div className="space-y-1">
-                       <span className="text-[10px] font-bold text-accent uppercase tracking-widest flex items-center gap-1"><Target size={10} /> Dosagem Padrão</span>
+                       <span className="text-xs font-bold text-accent uppercase tracking-wider flex items-center gap-1"><Target size={10} /> Dosagem Padrão</span>
                        <p className="text-xs text-white/80">{selectedPeptide.dosage}</p>
                     </div>
                  )}
                  {selectedPeptide.protocol && (
                     <div className="space-y-1">
-                       <span className="text-[10px] font-bold text-accent uppercase tracking-widest flex items-center gap-1"><Clock size={10} /> Protocolo Geral</span>
+                       <span className="text-xs font-bold text-accent uppercase tracking-wider flex items-center gap-1"><Clock size={10} /> Protocolo Geral</span>
                        <p className="text-xs text-white/80">{selectedPeptide.protocol}</p>
                     </div>
                  )}
@@ -251,7 +251,7 @@ export default function PeptideCalculator({ setView }: PeptideCalculatorProps) {
           <div className="glass-card p-8 rounded-[40px] border-white/15 bg-white/[0.01] space-y-8 shadow-2xl">
             <div className="space-y-6">
               <div className="space-y-3">
-                <label className="flex items-center gap-2 text-[10px] font-black text-white/60 uppercase tracking-[0.2em] pl-2">
+                <label className="flex items-center gap-2 text-xs font-black text-white/60 uppercase tracking-wider pl-2">
                   <Beaker size={12} className="text-accent" />
                   Quantidade do Peptídeo (mg)
                 </label>
@@ -263,14 +263,14 @@ export default function PeptideCalculator({ setView }: PeptideCalculatorProps) {
                       onChange={(e) => setMg(Number(e.target.value))}
                       className="w-full bg-white/[0.03] border border-white/15 rounded-2xl p-6 text-2xl font-black text-white focus:border-accent/40 outline-none transition-all"
                     />
-                    <div className="absolute right-6 top-1/2 -translate-y-1/2 text-[10px] font-bold text-white/40 uppercase tracking-widest">Milligrams</div>
+                    <div className="absolute right-6 top-1/2 -translate-y-1/2 text-xs font-bold text-white/60 uppercase tracking-wider">Milligrams</div>
                   </div>
                   <div className="flex flex-wrap gap-2">
                     {[5, 10, 15, 20, 40, 60, 90].map((val) => (
                       <button 
                         key={val}
                         onClick={() => setMg(val)}
-                        className={`px-3 py-1.5 rounded-full text-[8px] font-black uppercase tracking-widest transition-all ${
+                        className={`px-3 py-1.5 rounded-full text-xs font-black uppercase tracking-wider transition-all ${
                           mg === val ? 'bg-accent text-black' : 'bg-white/10 text-white/60 hover:bg-white/20'
                         }`}
                       >
@@ -282,7 +282,7 @@ export default function PeptideCalculator({ setView }: PeptideCalculatorProps) {
               </div>
 
               <div className="space-y-3">
-                <label className="flex items-center gap-2 text-[10px] font-black text-white/60 uppercase tracking-[0.2em] pl-2">
+                <label className="flex items-center gap-2 text-xs font-black text-white/60 uppercase tracking-wider pl-2">
                   <Droplets size={12} className="text-accent" />
                   Volume de Água Bacteriostática (mL)
                 </label>
@@ -294,14 +294,14 @@ export default function PeptideCalculator({ setView }: PeptideCalculatorProps) {
                       onChange={(e) => setWater(Number(e.target.value))}
                       className="w-full bg-white/[0.03] border border-white/15 rounded-2xl p-6 text-2xl font-black text-white focus:border-accent/40 outline-none transition-all"
                     />
-                    <div className="absolute right-6 top-1/2 -translate-y-1/2 text-[10px] font-bold text-white/40 uppercase tracking-widest">Milliliters</div>
+                    <div className="absolute right-6 top-1/2 -translate-y-1/2 text-xs font-bold text-white/60 uppercase tracking-wider">Milliliters</div>
                   </div>
                   <div className="flex flex-wrap gap-2">
                     {[1, 2, 3].map((val) => (
                       <button 
                         key={val}
                         onClick={() => setWater(val)}
-                        className={`px-3 py-1.5 rounded-full text-[8px] font-black uppercase tracking-widest transition-all ${
+                        className={`px-3 py-1.5 rounded-full text-xs font-black uppercase tracking-wider transition-all ${
                           water === val ? 'bg-accent text-black' : 'bg-white/10 text-white/60 hover:bg-white/20'
                         }`}
                       >
@@ -313,7 +313,7 @@ export default function PeptideCalculator({ setView }: PeptideCalculatorProps) {
               </div>
 
               <div className="space-y-3">
-                <label className="flex items-center gap-2 text-[10px] font-black text-white/60 uppercase tracking-[0.2em] pl-2">
+                <label className="flex items-center gap-2 text-xs font-black text-white/60 uppercase tracking-wider pl-2">
                   <Target size={12} className="text-accent" />
                   Dose Desejada (mcg)
                 </label>
@@ -326,14 +326,14 @@ export default function PeptideCalculator({ setView }: PeptideCalculatorProps) {
                       onChange={(e) => setDose(Number(e.target.value))}
                       className="w-full bg-white/[0.03] border border-white/15 rounded-2xl p-6 text-2xl font-black text-white focus:border-accent/40 outline-none transition-all"
                     />
-                    <div className="absolute right-6 top-1/2 -translate-y-1/2 text-[10px] font-bold text-white/40 uppercase tracking-widest">Micrograms</div>
+                    <div className="absolute right-6 top-1/2 -translate-y-1/2 text-xs font-bold text-white/60 uppercase tracking-wider">Micrograms</div>
                   </div>
                   <div className="flex flex-wrap gap-2">
                     {[100, 250, 500, 1000, 2000, 5000].map((val) => (
                       <button 
                         key={val}
                         onClick={() => setDose(val)}
-                        className={`px-4 py-2 rounded-full text-[9px] font-black uppercase tracking-widest transition-all ${
+                        className={`px-4 py-2 rounded-full text-xs font-black uppercase tracking-wider transition-all ${
                           dose === val ? 'bg-accent text-black' : 'bg-white/10 text-white/60 hover:bg-white/20'
                         }`}
                       >
@@ -348,7 +348,7 @@ export default function PeptideCalculator({ setView }: PeptideCalculatorProps) {
 
           <div className="flex gap-4 p-6 bg-accent/[0.02] border border-white/15 rounded-3xl">
             <Info size={16} className="text-accent shrink-0" />
-            <p className="text-[10px] text-white/60 font-bold uppercase leading-relaxed tracking-wider">
+            <p className="text-xs text-white/60 font-bold uppercase leading-loose tracking-wider">
               A fórmula utilizada é: (Dose Desejada / (Mg Peptídeo * 1000)) * (Volume Água * 100).
               Sempre verifique a graduação da sua seringa antes da aplicação. O visual acima é meramente ilustrativo para facilitar a compreensão da dose.
             </p>
@@ -363,7 +363,7 @@ export default function PeptideCalculator({ setView }: PeptideCalculatorProps) {
             <div className="absolute top-0 right-0 w-32 h-32 bg-accent/5 blur-[40px] rounded-full -mr-10 -mt-10" />
             
             <div className="space-y-4 relative z-10">
-              <span className="text-white/30 text-[10px] font-black uppercase tracking-[0.5em]">Puxe até a marcação</span>
+              <span className="text-white/50 text-xs font-black uppercase tracking-[0.5em]">Puxe até a marcação</span>
               <div className="flex items-center justify-center gap-4">
                  <motion.div 
                   key={result}
@@ -374,8 +374,8 @@ export default function PeptideCalculator({ setView }: PeptideCalculatorProps) {
                   {result}
                  </motion.div>
                  <div className="text-left">
-                    <div className="text-[14px] font-black text-accent uppercase tracking-widest">Unidades</div>
-                    <div className="text-[10px] font-bold text-white/40 uppercase tracking-[0.3em]">Marcar na Seringa</div>
+                    <div className="text-[14px] font-black text-accent uppercase tracking-wider">Unidades</div>
+                    <div className="text-xs font-bold text-white/60 uppercase tracking-wider">Marcar na Seringa</div>
                  </div>
               </div>
             </div>
@@ -385,12 +385,12 @@ export default function PeptideCalculator({ setView }: PeptideCalculatorProps) {
                <div className="mt-8 flex justify-center gap-8">
                   <div className="text-center">
                     <div className="text-[11px] font-black text-white/60 uppercase">{result} UI</div>
-                    <div className="text-[8px] font-bold text-white/40 uppercase tracking-widest mt-1">Dose Total</div>
+                    <div className="text-xs font-bold text-white/60 uppercase tracking-wider mt-1">Dose Total</div>
                   </div>
                   <div className="w-[1px] h-8 bg-white/10" />
                   <div className="text-center">
                     <div className="text-[11px] font-black text-white/60 uppercase">{(result / 100).toFixed(2)} mL</div>
-                    <div className="text-[8px] font-bold text-white/40 uppercase tracking-widest mt-1">Volume Líquido</div>
+                    <div className="text-xs font-bold text-white/60 uppercase tracking-wider mt-1">Volume Líquido</div>
                   </div>
                </div>
             </div>
@@ -398,13 +398,13 @@ export default function PeptideCalculator({ setView }: PeptideCalculatorProps) {
             <div className="pt-6">
               <button 
                 onClick={() => window.print()}
-                className="group w-full py-6 bg-white/10 border border-white/20 rounded-2xl text-[10px] font-black text-white uppercase tracking-[0.4em] hover:bg-accent hover:text-black hover:border-accent transition-all duration-500 flex items-center justify-center gap-4"
+                className="group w-full py-6 bg-white/10 border border-white/20 rounded-2xl text-xs font-black text-white uppercase tracking-wider hover:bg-accent hover:text-black hover:border-accent transition-all duration-500 flex items-center justify-center gap-4"
               >
                 Imprimir Relatório <ArrowUpRight size={14} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
               </button>
             </div>
             
-            <p className="text-[8px] font-bold text-white/10 uppercase tracking-widest pt-4">Calculadora Validada pela Equipe Peptium</p>
+            <p className="text-xs font-bold text-white/10 uppercase tracking-wider pt-4">Calculadora Validada pela Equipe Peptium</p>
           </div>
         </div>
       </div>

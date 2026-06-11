@@ -36,7 +36,7 @@ export const translations = {
       search: 'Buscar (Cmd+K)',
       settings: 'Configurações',
       logout: 'Sair',
-      login: 'Entrar com Google',
+      login: 'Entrar / Cadastrar',
       proRequired: 'Acesso Prime Necessário',
       upgrade: 'Fazer Upgrade'
     },
@@ -109,7 +109,7 @@ export const translations = {
       search: 'Search (Cmd+K)',
       settings: 'Settings',
       logout: 'Logout',
-      login: 'Login with Google',
+      login: 'Login / Sign Up',
       proRequired: 'Prime Access Required',
       upgrade: 'Upgrade'
     },
@@ -182,7 +182,7 @@ export const translations = {
       search: 'Buscar (Cmd+K)',
       settings: 'Ajustes',
       logout: 'Salir',
-      login: 'Entrar con Google',
+      login: 'Entrar / Registrarse',
       proRequired: 'Acceso Prime Requerido',
       upgrade: 'Mejorar'
     },

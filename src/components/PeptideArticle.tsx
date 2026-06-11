@@ -45,7 +45,7 @@ export default function PeptideArticle({
         {/* Navigation */}
         <button 
           onClick={onBack}
-          className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.3em] text-accent hover:text-white transition-all group mb-12"
+          className="flex items-center gap-2 text-xs font-black uppercase tracking-wider text-accent hover:text-white transition-all group mb-12"
         >
           <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
           Voltar aos Guias
@@ -61,7 +61,7 @@ export default function PeptideArticle({
           )}
           
           <div className="relative z-10 space-y-6">
-            <div className="inline-flex px-3 py-1 rounded-lg bg-accent/10 border border-accent/20 text-accent text-[10px] font-black uppercase tracking-widest">
+            <div className="inline-flex px-3 py-1 rounded-lg bg-accent/10 border border-accent/20 text-accent text-xs font-black uppercase tracking-wider">
               {category}
             </div>
             
@@ -71,10 +71,10 @@ export default function PeptideArticle({
             </h1>
 
             <div className="flex flex-wrap items-center gap-6 pt-4 border-t border-white/15">
-              <div className="flex items-center gap-2 text-white/30 text-[10px] font-bold uppercase tracking-widest">
+              <div className="flex items-center gap-2 text-white/50 text-xs font-bold uppercase tracking-wider">
                 <Calendar size={14} /> {date}
               </div>
-              <div className="flex items-center gap-2 text-white/30 text-[10px] font-bold uppercase tracking-widest">
+              <div className="flex items-center gap-2 text-white/50 text-xs font-bold uppercase tracking-wider">
                 <Clock size={14} /> Atualizado em {date}
               </div>
             </div>
@@ -91,12 +91,12 @@ export default function PeptideArticle({
                Resumo Analítico
              </h2>
              <div className="p-8 rounded-[32px] bg-secondary/[0.08] border border-white/15 space-y-4">
-               <p className="text-lg text-white font-medium italic leading-relaxed">
+               <p className="text-lg text-white font-medium italic leading-loose">
                  "{summary}"
                </p>
                <div className="pt-6 border-t border-white/15 grid grid-cols-1 md:grid-cols-2 gap-8">
                  <div className="space-y-4">
-                   <h4 className="text-[10px] font-black text-accent uppercase tracking-widest">Metodologia Sugerida</h4>
+                   <h4 className="text-xs font-black text-accent uppercase tracking-wider">Metodologia Sugerida</h4>
                    <ul className="space-y-2 text-xs font-bold uppercase tracking-wide text-white/60">
                      <li className="flex items-center gap-2"><div className="w-1 h-1 bg-accent rounded-full"/> Protocolo de 12 semanas</li>
                      <li className="flex items-center gap-2"><div className="w-1 h-1 bg-accent rounded-full"/> Monitoramento de IGF-1 basal</li>
@@ -104,7 +104,7 @@ export default function PeptideArticle({
                    </ul>
                  </div>
                  <div className="space-y-4">
-                   <h4 className="text-[10px] font-black text-accent uppercase tracking-widest">Impacto Bioquímico</h4>
+                   <h4 className="text-xs font-black text-accent uppercase tracking-wider">Impacto Bioquímico</h4>
                    <ul className="space-y-2 text-xs font-bold uppercase tracking-wide text-white/60">
                      <li className="flex items-center gap-2"><div className="w-1 h-1 bg-accent rounded-full"/> Modulação de receptores GHRH</li>
                      <li className="flex items-center gap-2"><div className="w-1 h-1 bg-accent rounded-full"/> Otimização da reparação celular</li>
@@ -123,7 +123,7 @@ export default function PeptideArticle({
                   <Beaker size={24} className="text-accent" />
                   Dados de Excelência Técnica
                 </h2>
-                <div className="px-3 py-1 rounded bg-white/10 border border-white/20 text-[9px] font-black text-white/60 tracking-[0.2em] uppercase">
+                <div className="px-3 py-1 rounded bg-white/10 border border-white/20 text-xs font-black text-white/60 tracking-wider uppercase">
                   Fonte: {technicals.source || 'PubMed / ClinicalTrials.gov'}
                 </div>
               </div>
@@ -137,7 +137,7 @@ export default function PeptideArticle({
                 ].map((stat, i) => ( stat.value && (
                   <div key={i} className="p-6 rounded-[24px] bg-white/[0.02] border border-white/15 space-y-2">
                     <div className="text-accent">{stat.icon}</div>
-                    <div className="text-[8px] font-black text-white/30 uppercase tracking-widest">{stat.label}</div>
+                    <div className="text-xs font-black text-white/50 uppercase tracking-wider">{stat.label}</div>
                     <div className="text-sm font-black text-white">{stat.value}</div>
                   </div>
                 )))}
@@ -145,7 +145,7 @@ export default function PeptideArticle({
 
               {technicals.markers && (
                 <div className="p-8 rounded-[32px] bg-accent/5 border border-accent/10">
-                  <h4 className="text-[10px] font-black text-accent uppercase tracking-widest mb-4">Principais Marcadores Clínicos</h4>
+                  <h4 className="text-xs font-black text-accent uppercase tracking-wider mb-4">Principais Marcadores Clínicos</h4>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-3">
                     {technicals.markers.map((marker, i) => (
                       <div key={i} className="flex items-center gap-3 text-xs font-bold text-white/60">
@@ -168,7 +168,7 @@ export default function PeptideArticle({
                 </h2>
                 <button 
                   onClick={() => window.open(`https://www.openevidence.com/search?q=${encodeURIComponent(title)}`, '_blank')}
-                  className="flex items-center gap-2 px-4 py-2 bg-accent/10 border border-accent/20 rounded-xl text-[10px] font-black text-accent uppercase tracking-widest hover:bg-accent/20 transition-all"
+                  className="flex items-center gap-2 px-4 py-2 bg-accent/10 border border-accent/20 rounded-xl text-xs font-black text-accent uppercase tracking-wider hover:bg-accent/20 transition-all"
                 >
                   <Search size={14} />
                   Buscar no OpenEvidence
@@ -176,7 +176,7 @@ export default function PeptideArticle({
               </div>
               <div className="space-y-2">
                 {references.map((ref, i) => (
-                  <div key={i} className="p-4 rounded-2xl bg-white/[0.01] border border-white/15 text-[10px] font-mono text-white/60 hover:text-white/60 transition-colors">
+                  <div key={i} className="p-4 rounded-2xl bg-white/[0.01] border border-white/15 text-xs font-mono text-white/60 hover:text-white/60 transition-colors">
                     [{String(i + 1).padStart(2, '0')}] {ref}
                   </div>
                 ))}
@@ -192,7 +192,7 @@ export default function PeptideArticle({
                   <div className="w-1.5 h-1.5 rounded-full bg-accent" />
                   O que são Peptídeos?
                 </h2>
-                <div className="space-y-4 text-base leading-relaxed font-medium">
+                <div className="space-y-4 text-base leading-loose font-medium">
                   <p>
                     No seu núcleo, peptídeos são pequenas cadeias de aminoácidos ligadas por ligações peptídicas — como contas em um colar. Para uma molécula ser classificada como peptídeo, deve conter entre 2 e 50 aminoácidos, com um grupo amina (NH2) em uma extremidade e um grupo carboxila (COOH) na outra.
                   </p>
@@ -214,7 +214,7 @@ export default function PeptideArticle({
                   <div className="w-1.5 h-1.5 rounded-full bg-accent" />
                   Breve História dos Peptídeos
                 </h2>
-                <div className="space-y-4 text-base leading-relaxed font-medium">
+                <div className="space-y-4 text-base leading-loose font-medium">
                   <p>
                     O primeiro peptídeo comercialmente disponível foi a insulina. Isolada de pâncreas animais na década de 1920, ela mudou tudo para diabéticos tipo 1. Mas não foi até 1982 que vimos um grande avanço com a criação da primeira insulina humana recombinante, simetricamente sequenciada com 51 aminoácidos.
                   </p>
@@ -230,7 +230,7 @@ export default function PeptideArticle({
                   <div className="w-1.5 h-1.5 rounded-full bg-red-400" />
                   Peptídeos NÃO São Drogas Milagrosas
                 </h2>
-                <div className="space-y-6 text-base leading-relaxed font-medium">
+                <div className="space-y-6 text-base leading-loose font-medium">
                   <p>
                     Peptídeos funcionam melhor quando tudo mais já está ajustado: nutrição, sono, treinamento, estresse, digestão. Se estas bases falham, não espere um milagre. 
                   </p>
@@ -243,7 +243,7 @@ export default function PeptideArticle({
                       <Info size={24} />
                     </div>
                     <div className="space-y-2">
-                      <div className="text-blue-400 text-[10px] font-black uppercase tracking-widest">Flash Insight</div>
+                      <div className="text-blue-400 text-xs font-black uppercase tracking-wider">Flash Insight</div>
                       <p className="text-white text-sm font-black italic uppercase leading-tight">
                         Peptídeos não são instruções externas — são sinais na linguagem nativa do corpo. Você não está convencendo o corpo a fazer algo — está dando a ele o sinal ao qual ele já foi construído para responder.
                       </p>
@@ -258,16 +258,16 @@ export default function PeptideArticle({
           <section className="space-y-8">
             <div className="space-y-2">
               <h2 className="text-2xl font-black text-white uppercase italic tracking-tight">Classificação dos Peptídeos</h2>
-              <p className="text-white/30 text-[10px] font-bold uppercase tracking-[0.3em]">Categorias Principais do Acervo</p>
+              <p className="text-white/50 text-xs font-bold uppercase tracking-wider">Categorias Principais do Acervo</p>
             </div>
 
             <div className="overflow-x-auto">
               <table className="w-full text-left border-collapse">
                 <thead>
                   <tr className="border-b border-white/15">
-                    <th className="pb-4 text-[10px] font-black text-white/60 uppercase tracking-widest">Categoria</th>
-                    <th className="pb-4 text-[10px] font-black text-white/60 uppercase tracking-widest">Exemplos</th>
-                    <th className="pb-4 text-[10px] font-black text-white/60 uppercase tracking-widest">Principal Função</th>
+                    <th className="pb-4 text-xs font-black text-white/60 uppercase tracking-wider">Categoria</th>
+                    <th className="pb-4 text-xs font-black text-white/60 uppercase tracking-wider">Exemplos</th>
+                    <th className="pb-4 text-xs font-black text-white/60 uppercase tracking-wider">Principal Função</th>
                   </tr>
                 </thead>
                 <tbody className="text-sm">

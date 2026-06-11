@@ -31,7 +31,7 @@ export default function PeptideComparator({ setView, initialPeptideIds = [] }: P
       {setView && (
         <button 
           onClick={() => setView('home')}
-          className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.3em] text-secondary/60 hover:text-accent transition-all group mb-4"
+          className="flex items-center gap-2 text-xs font-black uppercase tracking-wider text-secondary/60 hover:text-accent transition-all group mb-4"
         >
           <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" />
           Voltar para a Home
@@ -47,17 +47,17 @@ export default function PeptideComparator({ setView, initialPeptideIds = [] }: P
           >
             <Activity size={14} className="text-accent" />
           </motion.div>
-          <span className="text-[10px] font-black uppercase tracking-[0.3em] text-accent">Atlas Molecular Laboratory</span>
+          <span className="text-xs font-black uppercase tracking-wider text-accent">Atlas Molecular Laboratory</span>
         </div>
         
         <div className="space-y-2">
           <h2 className="text-5xl md:text-8xl font-black text-white uppercase tracking-tighter italic leading-[0.8]">
             MODO <span className="text-accent">SANDBOX</span>
           </h2>
-          <p className="text-[12px] md:text-sm text-white/60 font-black uppercase tracking-[0.4em]">Arquitetura Bioquímica de Precisão</p>
+          <p className="text-[12px] md:text-sm text-white/60 font-black uppercase tracking-wider">Arquitetura Bioquímica de Precisão</p>
         </div>
         
-        <p className="text-[12px] md:text-base text-white/50 font-medium leading-relaxed max-w-2xl mx-auto italic">
+        <p className="text-[12px] md:text-base text-white/50 font-medium leading-loose max-w-2xl mx-auto italic">
           Combine moléculas do nosso arsenal para simular sinergias neurais e sistêmicas. Comece com um de nossos <span className="text-white text-bold">Templates de Elite</span> e modifique como desejar.
         </p>
 
@@ -65,7 +65,7 @@ export default function PeptideComparator({ setView, initialPeptideIds = [] }: P
         <div className="pt-6 space-y-4">
           <div className="flex items-center justify-center gap-4">
             <div className="h-px w-12 bg-white/10" />
-            <span className="text-[9px] font-black text-white/30 uppercase tracking-[0.4em]">Inicie com um Template de Elite</span>
+            <span className="text-xs font-black text-white/50 uppercase tracking-wider">Inicie com um Template de Elite</span>
             <div className="h-px w-12 bg-white/10" />
           </div>
           
@@ -79,12 +79,12 @@ export default function PeptideComparator({ setView, initialPeptideIds = [] }: P
               <button
                 key={template.name}
                 onClick={() => setSelectedIds(template.ids)}
-                className="px-6 py-3 rounded-[24px] flex items-center gap-3 hover:bg-accent/10 transition-all active:scale-95 group border border-transparent hover:border-accent/30 relative"
+                className="px-6 py-3 rounded-[24px] flex items-center gap-3 hover:bg-accent/10 transition-all active:scale-95 group border border-transparent hover:border-accent/20 relative"
               >
                 <span className="text-xl group-hover:scale-125 transition-transform">{template.icon}</span>
                 <div className="text-left">
-                  <span className="block text-[8px] font-black text-accent/60 uppercase tracking-widest">{template.tag}</span>
-                  <span className="text-[10px] font-black text-white/80 group-hover:text-white uppercase tracking-widest leading-none">{template.name}</span>
+                  <span className="block text-xs font-black text-accent/60 uppercase tracking-wider">{template.tag}</span>
+                  <span className="text-xs font-black text-white/80 group-hover:text-white uppercase tracking-wider leading-none">{template.name}</span>
                 </div>
               </button>
             ))}
@@ -104,7 +104,7 @@ export default function PeptideComparator({ setView, initialPeptideIds = [] }: P
               <div className="w-5 h-5 rounded-full bg-accent text-black flex items-center justify-center group-hover:bg-red-500">
                 <X size={10} />
               </div>
-              <span className="text-[11px] font-black text-white uppercase tracking-widest">{p.name}</span>
+              <span className="text-[11px] font-black text-white uppercase tracking-wider">{p.name}</span>
             </button>
           ))}
           {selectedPeptides.length < 3 && (
@@ -113,7 +113,7 @@ export default function PeptideComparator({ setView, initialPeptideIds = [] }: P
               className="flex items-center gap-3 px-8 py-4 bg-accent border-2 border-accent rounded-[20px] hover:bg-accent/80 transition-all group shadow-[0_0_30px_rgba(0,229,255,0.2)] active:scale-95"
             >
               <Plus size={16} className="text-black group-hover:rotate-90 transition-transform" />
-              <span className="text-[11px] font-black text-black uppercase tracking-[0.2em]">Acoplar Molécula</span>
+              <span className="text-[11px] font-black text-black uppercase tracking-wider">Acoplar Molécula</span>
             </button>
           )}
         </div>
@@ -122,13 +122,13 @@ export default function PeptideComparator({ setView, initialPeptideIds = [] }: P
           {selectedPeptides.length > 0 && (
             <button 
               onClick={clearStack}
-              className="text-[10px] font-black text-red-500/40 uppercase tracking-[0.4em] hover:text-red-500 transition-colors flex items-center gap-2 group"
+              className="text-xs font-black text-red-500/40 uppercase tracking-wider hover:text-red-500 transition-colors flex items-center gap-2 group"
             >
               <X size={12} className="group-hover:rotate-90 transition-transform" /> Limpar Bancada Molecular
             </button>
           )}
           <div className="h-px w-12 bg-white/10" />
-          <div className="text-[8px] font-black text-white/40 uppercase tracking-[0.5em]">Slot {selectedPeptides.length}/3</div>
+          <div className="text-xs font-black text-white/60 uppercase tracking-[0.5em]">Slot {selectedPeptides.length}/3</div>
         </div>
       </div>
 
@@ -157,7 +157,7 @@ export default function PeptideComparator({ setView, initialPeptideIds = [] }: P
                 <div className="absolute bottom-8 left-8 right-8">
                   <div className="flex items-center gap-2 mb-2">
                     <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-                    <span className="text-[9px] font-black text-accent uppercase tracking-[0.4em]">{p.tag}</span>
+                    <span className="text-xs font-black text-accent uppercase tracking-wider">{p.tag}</span>
                   </div>
                   <h3 className="text-3xl font-black text-white uppercase tracking-tighter italic leading-none">{p.name}</h3>
                 </div>
@@ -168,9 +168,9 @@ export default function PeptideComparator({ setView, initialPeptideIds = [] }: P
                 <div className="space-y-4">
                   <div className="flex items-center gap-3 text-white/60">
                     <Zap size={14} className="text-accent" />
-                    <span className="text-[10px] font-black uppercase tracking-widest">Bio-Mecanismo</span>
+                    <span className="text-xs font-black uppercase tracking-wider">Bio-Mecanismo</span>
                   </div>
-                  <p className="text-[12px] text-white/70 font-medium leading-relaxed tracking-wide italic">
+                  <p className="text-[12px] text-white/70 font-medium leading-loose tracking-wide italic">
                     "{p.mechanism || 'Iniciando decodificação de mecanismos intracelulares...'}"
                   </p>
                 </div>
@@ -178,11 +178,11 @@ export default function PeptideComparator({ setView, initialPeptideIds = [] }: P
                 {/* Dosage & Administration */}
                 <div className="grid grid-cols-2 gap-4">
                   <div className="p-5 rounded-3xl bg-white/[0.03] border border-white/15 space-y-1.5">
-                    <span className="text-[8px] font-black text-white/40 uppercase tracking-widest block">Dose Sugerida</span>
+                    <span className="text-xs font-black text-white/60 uppercase tracking-wider block">Dose Sugerida</span>
                     <span className="text-[11px] font-black text-white uppercase tracking-tight">{p.dosage || 'Analítico'}</span>
                   </div>
                   <div className="p-5 rounded-3xl bg-white/[0.03] border border-white/15 space-y-1.5">
-                    <span className="text-[8px] font-black text-white/40 uppercase tracking-widest block">Metodologia</span>
+                    <span className="text-xs font-black text-white/60 uppercase tracking-wider block">Metodologia</span>
                     <span className="text-[11px] font-black text-accent uppercase tracking-tight">{p.administration || 'Standard'}</span>
                   </div>
                 </div>
@@ -191,9 +191,9 @@ export default function PeptideComparator({ setView, initialPeptideIds = [] }: P
                 <div className="p-6 rounded-3xl bg-accent/5 border border-accent/20 space-y-3">
                   <div className="flex items-center gap-2">
                     <Shield size={12} className="text-accent" />
-                    <span className="text-[8px] font-black text-accent uppercase tracking-[0.3em] block">Protocolo Prime Labs</span>
+                    <span className="text-xs font-black text-accent uppercase tracking-wider block">Protocolo Prime Labs</span>
                   </div>
-                  <p className="text-[10px] font-bold text-white/80 uppercase tracking-widest leading-loose">
+                  <p className="text-xs font-bold text-white/80 uppercase tracking-wider leading-loose">
                     {p.protocol || 'Configurando sequenciamento molecular de aplicação...'}
                   </p>
                 </div>
@@ -201,14 +201,14 @@ export default function PeptideComparator({ setView, initialPeptideIds = [] }: P
                 {/* Benefits */}
                 <div className="space-y-5">
                   <div className="flex items-center justify-between">
-                    <span className="text-[10px] font-black text-white/40 uppercase tracking-[0.4em]">Propriedades de Elite</span>
+                    <span className="text-xs font-black text-white/60 uppercase tracking-wider">Propriedades de Elite</span>
                     <Activity size={14} className="text-accent opacity-20" />
                   </div>
                   <div className="grid grid-cols-1 gap-3">
                     {p.features.slice(0, 3).map((f, i) => (
                       <div key={i} className="flex items-center gap-4 bg-white/[0.01] p-3 rounded-2xl border border-white/15">
                         <div className="w-1.5 h-1.5 rounded-full bg-accent/40" />
-                        <span className="text-[10px] font-bold text-white/50 uppercase tracking-widest">{f}</span>
+                        <span className="text-xs font-bold text-white/50 uppercase tracking-wider">{f}</span>
                       </div>
                     ))}
                   </div>
@@ -229,8 +229,8 @@ export default function PeptideComparator({ setView, initialPeptideIds = [] }: P
               <div className="w-20 h-20 bg-white/10 rounded-full flex items-center justify-center text-white/10 mb-8 group-hover:scale-110 group-hover:bg-accent/10 group-hover:text-accent transition-all duration-500">
                 <Plus size={32} />
               </div>
-              <h4 className="text-xl font-black text-white/40 uppercase tracking-tighter group-hover:text-white/60 transition-colors">Vaga Disponível</h4>
-              <p className="text-[10px] text-white/10 font-bold uppercase tracking-[0.3em] mt-3 group-hover:text-accent/40">Integrar Nova Molécula no Stack</p>
+              <h4 className="text-xl font-black text-white/60 uppercase tracking-tighter group-hover:text-white/60 transition-colors">Vaga Disponível</h4>
+              <p className="text-xs text-white/10 font-bold uppercase tracking-wider mt-3 group-hover:text-accent/40">Integrar Nova Molécula no Stack</p>
             </motion.button>
           ))}
         </AnimatePresence>
@@ -267,7 +267,7 @@ export default function PeptideComparator({ setView, initialPeptideIds = [] }: P
               <div className="p-10 border-b border-white/15 flex items-center justify-between sticky top-0 bg-slate-900 z-10">
                 <div>
                   <h3 className="text-2xl font-black text-white uppercase tracking-tighter italic">Selecionar Peptídeo</h3>
-                  <p className="text-[9px] text-white/60 font-bold uppercase tracking-widest mt-1">Clique para incluir na comparação</p>
+                  <p className="text-xs text-white/60 font-bold uppercase tracking-wider mt-1">Clique para incluir na comparação</p>
                 </div>
                 <button 
                   onClick={() => setShowSelector(false)}
@@ -296,8 +296,8 @@ export default function PeptideComparator({ setView, initialPeptideIds = [] }: P
                       <img src={p.image} className="w-full h-full object-cover" alt={p.name} />
                     </div>
                     <div>
-                      <h4 className="text-xs font-black text-white uppercase tracking-widest">{p.name}</h4>
-                      <span className="text-[8px] font-bold text-white/40 uppercase tracking-widest">{p.tag}</span>
+                      <h4 className="text-xs font-black text-white uppercase tracking-wider">{p.name}</h4>
+                      <span className="text-xs font-bold text-white/60 uppercase tracking-wider">{p.tag}</span>
                     </div>
                   </button>
                 ))}

@@ -53,10 +53,10 @@ export default function StatsSection() {
                 <div className="text-2xl md:text-3xl font-black text-secondary tracking-tighter mb-1">
                   {stat.value}
                 </div>
-                <div className="text-[10px] font-bold text-accent uppercase tracking-widest mb-1">
+                <div className="text-xs font-bold text-accent uppercase tracking-wider mb-1">
                   {stat.label}
                 </div>
-                <div className="text-[8px] text-muted font-medium uppercase tracking-widest leading-none">
+                <div className="text-xs text-muted font-medium uppercase tracking-wider leading-none">
                   {stat.desc}
                 </div>
               </div>
@@ -71,7 +71,7 @@ export default function StatsSection() {
           viewport={{ once: true }}
           className="mt-16 flex flex-col items-center justify-center gap-6"
         >
-          <div className="text-[12px] font-black text-accent/50 uppercase tracking-[0.4em] mb-2">Protocolos estruturados sob dados de:</div>
+          <div className="text-[12px] font-black text-accent/50 uppercase tracking-wider mb-2">Protocolos estruturados sob dados de:</div>
           
           <div className="flex flex-wrap items-center justify-center gap-10 px-12 py-8 rounded-3xl bg-secondary/[0.01] border border-secondary/15">
             {/* NIH */}
@@ -79,7 +79,7 @@ export default function StatsSection() {
               <div className="px-3 py-1 bg-[#1F3E6C] rounded text-white text-xs font-bold">NIH</div>
               <div className="flex flex-col">
                 <span className="text-secondary/60 text-sm font-bold leading-none">PubMed</span>
-                <span className="text-secondary/30 text-[10px] font-medium leading-none mt-1.5 uppercase tracking-widest">Database</span>
+                <span className="text-secondary/30 text-xs font-medium leading-none mt-1.5 uppercase tracking-wider">Database</span>
               </div>
             </div>
 
@@ -90,7 +90,7 @@ export default function StatsSection() {
               <div className="w-10 h-10 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-400 font-black text-xs">CT</div>
               <div className="flex flex-col">
                 <span className="text-secondary/60 text-sm font-bold leading-none">ClinicalTrials.gov</span>
-                <span className="text-secondary/30 text-[10px] font-medium leading-none mt-1.5 uppercase tracking-widest">Human Trials</span>
+                <span className="text-secondary/30 text-xs font-medium leading-none mt-1.5 uppercase tracking-wider">Human Trials</span>
               </div>
             </div>
 
@@ -101,7 +101,7 @@ export default function StatsSection() {
               <div className="w-10 h-10 rounded-lg bg-orange-500/10 flex items-center justify-center text-orange-400 font-black text-xs">PC</div>
               <div className="flex flex-col">
                 <span className="text-secondary/60 text-sm font-bold leading-none">PubChem</span>
-                <span className="text-secondary/30 text-[10px] font-medium leading-none mt-1.5 uppercase tracking-widest">Bio-Chemistry</span>
+                <span className="text-secondary/30 text-xs font-medium leading-none mt-1.5 uppercase tracking-wider">Bio-Chemistry</span>
               </div>
             </div>
 
@@ -112,7 +112,7 @@ export default function StatsSection() {
               <div className="w-10 h-10 rounded-lg bg-green-500/10 flex items-center justify-center text-green-400 font-black text-[11px]">WADA</div>
               <div className="flex flex-col">
                 <span className="text-secondary/60 text-sm font-bold leading-none">Anti-Doping</span>
-                <span className="text-secondary/30 text-[10px] font-medium leading-none mt-1.5 uppercase tracking-widest">Compliance</span>
+                <span className="text-secondary/30 text-xs font-medium leading-none mt-1.5 uppercase tracking-wider">Compliance</span>
               </div>
             </div>
 
@@ -123,7 +123,7 @@ export default function StatsSection() {
               <div className="w-10 h-10 rounded-lg bg-cyan-500/10 flex items-center justify-center text-cyan-400 font-black text-xs">OE</div>
               <div className="flex flex-col">
                 <span className="text-secondary/60 text-sm font-bold leading-none">OpenEvidence</span>
-                <span className="text-secondary/30 text-[10px] font-medium leading-none mt-1.5 uppercase tracking-widest">AI Medical Search</span>
+                <span className="text-secondary/30 text-xs font-medium leading-none mt-1.5 uppercase tracking-wider">AI Medical Search</span>
               </div>
             </div>
           </div>

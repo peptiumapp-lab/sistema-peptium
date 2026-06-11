@@ -26,7 +26,7 @@ export default function Dossier({ setView }: DossierProps) {
           {setView && (
             <button 
               onClick={() => setView('home')}
-              className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.3em] text-secondary/60 hover:text-accent transition-all group mb-2"
+              className="flex items-center gap-2 text-xs font-black uppercase tracking-wider text-secondary/60 hover:text-accent transition-all group mb-2"
             >
               <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" />
               Voltar para a Home
@@ -35,12 +35,12 @@ export default function Dossier({ setView }: DossierProps) {
           <div className="space-y-2">
             <div className="inline-flex items-center gap-2 px-3 py-1 bg-accent/10 border border-accent/20 rounded-full">
             <span className="w-1.5 h-1.5 bg-accent rounded-full animate-pulse" />
-            <span className="text-[9px] font-black text-accent uppercase tracking-[0.4em]">Confidential Sci. Edition</span>
+            <span className="text-xs font-black text-accent uppercase tracking-wider">Confidential Sci. Edition</span>
           </div>
           <h1 className="text-4xl font-sans font-black text-white tracking-tighter uppercase italic italic">
             DOSSIÊ <span className="text-accent underline decoration-2 underline-offset-8">MOLECULAR</span>
           </h1>
-          <p className="text-white/60 text-[10px] font-bold uppercase tracking-[0.2em]">
+          <p className="text-white/60 text-xs font-bold uppercase tracking-wider">
             Inteligência Farmacodinâmica e Protocolos de Elite V1.0
           </p>
         </div>
@@ -49,7 +49,7 @@ export default function Dossier({ setView }: DossierProps) {
         <div className="flex items-center gap-3">
           <button 
             onClick={handlePrint}
-            className="flex items-center gap-2 px-6 py-4 bg-white/10 border border-white/20 text-white rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-white/20 transition-all"
+            className="flex items-center gap-2 px-6 py-4 bg-white/10 border border-white/20 text-white rounded-2xl font-black text-xs uppercase tracking-wider hover:bg-white/20 transition-all"
           >
             <Printer size={16} />
             Imprimir / Exportar PDF
@@ -69,11 +69,11 @@ export default function Dossier({ setView }: DossierProps) {
               <h2 className="text-4xl italic font-serif text-gray-800">Dossiê Molecular</h2>
             </div>
             <div className="w-32 h-1 bg-gray-200 mx-auto !my-12" />
-            <div className="text-lg font-bold tracking-[0.3em] uppercase pt-10 text-gray-500">Volume I — Registro Técnico</div>
-            <p className="max-w-2xl text-xs leading-relaxed uppercase tracking-[0.2em] text-gray-400 line-clamp-3">
+            <div className="text-lg font-bold tracking-wider uppercase pt-10 text-gray-500">Volume I — Registro Técnico</div>
+            <p className="max-w-2xl text-xs leading-loose uppercase tracking-wider text-gray-400 line-clamp-3">
                INTELIGÊNCIA FARMACODINÂMICA, PROTOCOLOS DE ELITE E EVIDÊNCIAS CIENTÍFICAS DE VANGUARDA COMPENDIADOS PARA PRESCRIPTORES DE ALTA PERFORMANCE.
             </p>
-            <div className="absolute bottom-20 left-0 right-0 flex justify-between w-full px-20 text-[8px] font-black uppercase tracking-widest text-gray-300">
+            <div className="absolute bottom-20 left-0 right-0 flex justify-between w-full px-20 text-xs font-black uppercase tracking-wider text-gray-300">
                <span>PEPTIUM PRIME // VOLUME I</span>
                <span>REGISTRO CLÍNICO</span>
                <span>CONFIDENTIAL SCI. EDITION</span>
@@ -88,12 +88,12 @@ export default function Dossier({ setView }: DossierProps) {
                 {/* ID & Category Header */}
                 <div className="flex items-center justify-between border-b border-white/15 pb-4 print:border-gray-100">
                    <div className="flex items-center gap-4 text-accent print:text-gray-500">
-                      <span className="text-[9px] font-black uppercase tracking-[0.3em] px-2 py-0.5 bg-accent/5 border border-accent/20 rounded-full print:border-gray-200">
+                      <span className="text-xs font-black uppercase tracking-wider px-2 py-0.5 bg-accent/5 border border-accent/20 rounded-full print:border-gray-200">
                          {peptide.tag}
                       </span>
-                      <span className="text-[9px] font-bold text-white/30 print:text-gray-300">REG: #00{index + 1}</span>
+                      <span className="text-xs font-bold text-white/50 print:text-gray-300">REG: #00{index + 1}</span>
                    </div>
-                   <div className="text-[8px] font-black text-white/40 uppercase tracking-widest print:text-gray-300 italic">Molecular Intelligence Registry — PEPTIUM PRIME Official</div>
+                   <div className="text-xs font-black text-white/60 uppercase tracking-wider print:text-gray-300 italic">Molecular Intelligence Registry — PEPTIUM PRIME Official</div>
                 </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
@@ -116,12 +116,12 @@ export default function Dossier({ setView }: DossierProps) {
                          <div className="space-y-4 pt-4 border-t border-white/15 print:border-gray-100">
                            {Object.entries(peptide.clinicalBenefitsCategorized).map(([category, benefits]) => (
                              <div key={category} className="space-y-3">
-                               <div className="text-[10px] font-black text-accent uppercase tracking-[0.4em] print:text-black">
+                               <div className="text-xs font-black text-accent uppercase tracking-wider print:text-black">
                                  {category}
                                </div>
                                <div className="flex flex-wrap gap-2">
-                                 {benefits.map((benefit, bIdx) => (
-                                   <span key={bIdx} className="px-3 py-1 bg-accent/20 border border-accent/30 rounded-lg text-[9px] font-black text-white print:text-black uppercase tracking-tighter">
+                                 {(benefits as string[]).map((benefit, bIdx) => (
+                                   <span key={bIdx} className="px-3 py-1 bg-accent/20 border border-accent/20 rounded-lg text-xs font-black text-white print:text-black uppercase tracking-tighter">
                                      {benefit}
                                    </span>
                                  ))}
@@ -132,26 +132,26 @@ export default function Dossier({ setView }: DossierProps) {
                        )}
                        <div className="flex flex-wrap gap-x-8 gap-y-4 pt-6">
                           <div className="space-y-0.5">
-                             <div className="text-[7px] font-black text-white/40 uppercase tracking-tighter print:text-gray-400 leading-none">Alvo Molecular</div>
-                             <div className="text-[10px] font-black text-white print:text-black uppercase leading-none">{peptide.molecularTarget || 'Geral'}</div>
+                             <div className="text-[7px] font-black text-white/60 uppercase tracking-tighter print:text-gray-400 leading-none">Alvo Molecular</div>
+                             <div className="text-xs font-black text-white print:text-black uppercase leading-none">{peptide.molecularTarget || 'Geral'}</div>
                           </div>
                           <div className="space-y-0.5">
-                             <div className="text-[7px] font-black text-white/40 uppercase tracking-tighter print:text-gray-400 leading-none">Meia-Vida</div>
-                             <div className="text-[10px] font-black text-white print:text-black uppercase leading-none">{peptide.halfLife || 'N/A'}</div>
+                             <div className="text-[7px] font-black text-white/60 uppercase tracking-tighter print:text-gray-400 leading-none">Meia-Vida</div>
+                             <div className="text-xs font-black text-white print:text-black uppercase leading-none">{peptide.halfLife || 'N/A'}</div>
                           </div>
                           <div className="space-y-0.5">
-                             <div className="text-[7px] font-black text-white/40 uppercase tracking-tighter print:text-gray-400 leading-none">Biodisponibilidade</div>
-                             <div className="text-[10px] font-black text-white print:text-black uppercase leading-none">{peptide.bioavailability || 'Alta'}</div>
+                             <div className="text-[7px] font-black text-white/60 uppercase tracking-tighter print:text-gray-400 leading-none">Biodisponibilidade</div>
+                             <div className="text-xs font-black text-white print:text-black uppercase leading-none">{peptide.bioavailability || 'Alta'}</div>
                           </div>
                           <div className="space-y-0.5">
-                             <div className="text-[7px] font-black text-white/40 uppercase tracking-tighter print:text-gray-400 leading-none">Evidência</div>
-                             <div className="text-[10px] font-black text-white print:text-black uppercase leading-none">{peptide.evidenceLevel || 'Translacional'}</div>
+                             <div className="text-[7px] font-black text-white/60 uppercase tracking-tighter print:text-gray-400 leading-none">Evidência</div>
+                             <div className="text-xs font-black text-white print:text-black uppercase leading-none">{peptide.evidenceLevel || 'Translacional'}</div>
                              <button 
                                onClick={() => window.open(`https://www.openevidence.com/search?q=${encodeURIComponent(peptide.name)}`, '_blank')}
                                className="inline-flex items-center gap-1.5 text-accent hover:text-white transition-colors print:hidden"
                              >
                                <Search size={10} />
-                               <span className="text-[8px] font-black uppercase tracking-widest">OpenEvidence</span>
+                               <span className="text-xs font-black uppercase tracking-wider">OpenEvidence</span>
                              </button>
                           </div>
                        </div>
@@ -161,20 +161,20 @@ export default function Dossier({ setView }: DossierProps) {
                   {/* Column 1: Science & Mechanism */}
                   <div className="lg:col-span-4 space-y-8">
                     <div className="space-y-3">
-                      <h4 className="text-[9px] font-black text-accent uppercase tracking-[0.4em] print:text-black border-l-2 border-accent pl-2">
+                      <h4 className="text-xs font-black text-accent uppercase tracking-wider print:text-black border-l-2 border-accent pl-2">
                          I. Mecânica Molecular
                       </h4>
-                      <p className="text-[10px] text-white/60 leading-relaxed print:text-gray-800 text-justify">
+                      <p className="text-xs text-white/60 leading-loose print:text-gray-800 text-justify">
                          {peptide.mechanism || 'Descrição técnica pendente de validação clínica.'}
                       </p>
                     </div>
 
                     {peptide.whatItIs && (
                       <div className="space-y-3">
-                        <h4 className="text-[9px] font-black text-accent uppercase tracking-[0.4em] print:text-black border-l-2 border-accent pl-2">
+                        <h4 className="text-xs font-black text-accent uppercase tracking-wider print:text-black border-l-2 border-accent pl-2">
                            II. Base Biológica
                         </h4>
-                        <p className="text-[10px] text-white/60 leading-relaxed print:text-gray-800 text-justify">
+                        <p className="text-xs text-white/60 leading-loose print:text-gray-800 text-justify">
                            {peptide.whatItIs}
                         </p>
                       </div>
@@ -182,12 +182,12 @@ export default function Dossier({ setView }: DossierProps) {
 
                     {peptide.timeline && peptide.timeline.length > 0 && (
                       <div className="space-y-3">
-                        <h4 className="text-[9px] font-black text-accent uppercase tracking-[0.4em] print:text-black border-l-2 border-accent pl-2">
+                        <h4 className="text-xs font-black text-accent uppercase tracking-wider print:text-black border-l-2 border-accent pl-2">
                            III. Timeline de Efeitos
                         </h4>
                         <div className="space-y-2">
                            {peptide.timeline.map((phase, i) => (
-                             <div key={i} className="flex gap-3 text-[9px] p-2 bg-white/10 border border-white/15 rounded-lg">
+                             <div key={i} className="flex gap-3 text-xs p-2 bg-white/10 border border-white/15 rounded-lg">
                                 <div className="font-black text-accent w-16 shrink-0">{phase.phase}</div>
                                 <div className="text-white/60 print:text-gray-700">{phase.expectedEffects.join(', ')}</div>
                              </div>
@@ -198,12 +198,12 @@ export default function Dossier({ setView }: DossierProps) {
 
                     {peptide.clinicalEfficacy && (
                       <div className="space-y-3">
-                        <h4 className="text-[9px] font-black text-accent uppercase tracking-[0.4em] print:text-black border-l-2 border-accent pl-2">
+                        <h4 className="text-xs font-black text-accent uppercase tracking-wider print:text-black border-l-2 border-accent pl-2">
                            Eficácia Clínica
                         </h4>
                         <ul className="space-y-2">
                            {peptide.clinicalEfficacy.map((item, i) => (
-                             <li key={i} className="flex gap-2 text-[9px] font-bold text-white/70 print:text-gray-700 leading-tight uppercase">
+                             <li key={i} className="flex gap-2 text-xs font-bold text-white/70 print:text-gray-700 leading-tight uppercase">
                                 <ShieldCheck size={10} className="text-accent shrink-0 mt-0.5" /> {item}
                              </li>
                            ))}
@@ -212,21 +212,21 @@ export default function Dossier({ setView }: DossierProps) {
                     )}
 
                     <div className="space-y-3">
-                      <h4 className="text-[9px] font-black text-accent uppercase tracking-[0.4em] print:text-black border-l-2 border-accent pl-2">
+                      <h4 className="text-xs font-black text-accent uppercase tracking-wider print:text-black border-l-2 border-accent pl-2">
                          Status Regulatório
                       </h4>
                       <div className="grid grid-cols-3 gap-2">
                          <div className="bg-white/10 p-1.5 rounded-lg border border-white/15 print:bg-gray-50 print:border-gray-100">
-                            <div className="text-[6px] font-black text-white/40 uppercase print:text-gray-400">FDA</div>
-                            <div className="text-[8px] font-black text-white print:text-black truncate">{peptide.regulatoryStatus?.fda || 'N/A'}</div>
+                            <div className="text-[6px] font-black text-white/60 uppercase print:text-gray-400">FDA</div>
+                            <div className="text-xs font-black text-white print:text-black truncate">{peptide.regulatoryStatus?.fda || 'N/A'}</div>
                          </div>
                          <div className="bg-white/10 p-1.5 rounded-lg border border-white/15 print:bg-gray-50 print:border-gray-100">
-                            <div className="text-[6px] font-black text-white/40 uppercase print:text-gray-400">ANVISA</div>
-                            <div className="text-[8px] font-black text-white print:text-black truncate">{peptide.regulatoryStatus?.anvisa || 'N/A'}</div>
+                            <div className="text-[6px] font-black text-white/60 uppercase print:text-gray-400">ANVISA</div>
+                            <div className="text-xs font-black text-white print:text-black truncate">{peptide.regulatoryStatus?.anvisa || 'N/A'}</div>
                          </div>
                          <div className="bg-white/10 p-1.5 rounded-lg border border-white/15 print:bg-gray-50 print:border-gray-100">
-                            <div className="text-[6px] font-black text-white/40 uppercase print:text-gray-400">EMA</div>
-                            <div className="text-[8px] font-black text-white print:text-black truncate">{peptide.regulatoryStatus?.ema || 'N/A'}</div>
+                            <div className="text-[6px] font-black text-white/60 uppercase print:text-gray-400">EMA</div>
+                            <div className="text-xs font-black text-white print:text-black truncate">{peptide.regulatoryStatus?.ema || 'N/A'}</div>
                          </div>
                       </div>
                     </div>
@@ -235,13 +235,13 @@ export default function Dossier({ setView }: DossierProps) {
                   {/* Column 2: Prescribing Guidelines & Safety */}
                   <div className="lg:col-span-4 space-y-8">
                     <div className="space-y-3 bg-accent/5 p-4 rounded-2xl border border-accent/10 print:bg-gray-50 print:border-gray-200">
-                      <h4 className="text-[9px] font-black text-accent uppercase tracking-[0.4em] print:text-black">IV. Diretrizes de Uso</h4>
+                      <h4 className="text-xs font-black text-accent uppercase tracking-wider print:text-black">IV. Diretrizes de Uso</h4>
                       <div className="space-y-3">
                          <div>
-                            <span className="text-[7px] font-black text-white/30 uppercase tracking-[0.2em]">Dosagem Ativa</span>
+                            <span className="text-[7px] font-black text-white/50 uppercase tracking-wider">Dosagem Ativa</span>
                             <div className="text-xl font-black text-white print:text-black tracking-tight">{peptide.dosage || 'Individual'}</div>
                          </div>
-                         <div className="text-[10px] font-medium text-white/60 print:text-gray-600 leading-relaxed italic">
+                         <div className="text-xs font-medium text-white/60 print:text-gray-600 leading-loose italic">
                             {peptide.protocol || 'Protocolo técnico indisponível no banco de dados principal.'}
                          </div>
                       </div>
@@ -251,18 +251,18 @@ export default function Dossier({ setView }: DossierProps) {
                       <div className="space-y-3 bg-amber-500/5 p-4 rounded-2xl border border-amber-500/20 print:bg-amber-50 print:border-amber-200">
                         <div className="flex items-center gap-2 text-amber-500">
                           <ShieldAlert size={16} />
-                          <h4 className="text-[9px] font-black uppercase tracking-[0.4em]">Informação Crítica de Reconstituição</h4>
+                          <h4 className="text-xs font-black uppercase tracking-wider">Informação Crítica de Reconstituição</h4>
                         </div>
                         <div className="space-y-2">
                            <div>
-                              <span className="text-[7px] font-black text-amber-500/50 uppercase tracking-[0.2em]">Diluente Obrigatório</span>
-                              <div className="text-[10px] font-black text-amber-100 print:text-black uppercase">{peptide.reconstitutionAlert.diluent}</div>
+                              <span className="text-[7px] font-black text-amber-500/50 uppercase tracking-wider">Diluente Obrigatório</span>
+                              <div className="text-xs font-black text-amber-100 print:text-black uppercase">{peptide.reconstitutionAlert.diluent}</div>
                            </div>
                            <div>
-                              <span className="text-[7px] font-black text-amber-500/50 uppercase tracking-[0.2em]">Instruções</span>
-                              <div className="text-[10px] font-medium text-amber-100/80 print:text-gray-800 leading-tight">{peptide.reconstitutionAlert.instruction}</div>
+                              <span className="text-[7px] font-black text-amber-500/50 uppercase tracking-wider">Instruções</span>
+                              <div className="text-xs font-medium text-amber-100/80 print:text-gray-800 leading-tight">{peptide.reconstitutionAlert.instruction}</div>
                            </div>
-                           <div className="text-[9px] font-medium text-amber-500/60 italic leading-tight pt-1">
+                           <div className="text-xs font-medium text-amber-500/60 italic leading-tight pt-1">
                               {peptide.reconstitutionAlert.reason}
                            </div>
                         </div>
@@ -271,12 +271,12 @@ export default function Dossier({ setView }: DossierProps) {
 
                     {(peptide.sideEffects && peptide.sideEffects.length > 0) && (
                       <div className="space-y-3">
-                        <h4 className="text-[9px] font-black text-yellow-500 uppercase tracking-[0.4em] print:text-black border-l-2 border-yellow-500 pl-2">
+                        <h4 className="text-xs font-black text-yellow-500 uppercase tracking-wider print:text-black border-l-2 border-yellow-500 pl-2">
                            V. Colaterais & Mitigação
                         </h4>
                         <div className="space-y-2">
                            {peptide.sideEffects.map((se, i) => (
-                             <div key={i} className="text-[9px] print:text-gray-800">
+                             <div key={i} className="text-xs print:text-gray-800">
                                 <span className="font-black text-white print:text-black uppercase tracking-tight">{se.effect}:</span>
                                 <span className="text-white/50 print:text-gray-500 ml-1 italic leading-tight">{se.mitigation}</span>
                              </div>
@@ -289,18 +289,18 @@ export default function Dossier({ setView }: DossierProps) {
                       <div className="space-y-3 bg-amber-500/5 p-4 rounded-2xl border border-amber-500/20 print:bg-amber-50 print:border-amber-200">
                         <div className="flex items-center gap-2 text-amber-500">
                           <ShieldAlert size={16} />
-                          <h4 className="text-[9px] font-black uppercase tracking-[0.4em]">Informação Crítica de Reconstituição</h4>
+                          <h4 className="text-xs font-black uppercase tracking-wider">Informação Crítica de Reconstituição</h4>
                         </div>
                         <div className="space-y-2">
                            <div>
-                              <span className="text-[7px] font-black text-amber-500/50 uppercase tracking-[0.2em]">Diluente Obrigatório</span>
-                              <div className="text-[10px] font-black text-amber-100 print:text-black uppercase">{peptide.reconstitutionAlert.diluent}</div>
+                              <span className="text-[7px] font-black text-amber-500/50 uppercase tracking-wider">Diluente Obrigatório</span>
+                              <div className="text-xs font-black text-amber-100 print:text-black uppercase">{peptide.reconstitutionAlert.diluent}</div>
                            </div>
                            <div>
-                              <span className="text-[7px] font-black text-amber-500/50 uppercase tracking-[0.2em]">Instruções</span>
-                              <div className="text-[10px] font-medium text-amber-100/80 print:text-gray-800 leading-tight">{peptide.reconstitutionAlert.instruction}</div>
+                              <span className="text-[7px] font-black text-amber-500/50 uppercase tracking-wider">Instruções</span>
+                              <div className="text-xs font-medium text-amber-100/80 print:text-gray-800 leading-tight">{peptide.reconstitutionAlert.instruction}</div>
                            </div>
-                           <div className="text-[9px] font-medium text-amber-500/60 italic leading-tight pt-1">
+                           <div className="text-xs font-medium text-amber-500/60 italic leading-tight pt-1">
                               {peptide.reconstitutionAlert.reason}
                            </div>
                         </div>
@@ -309,12 +309,12 @@ export default function Dossier({ setView }: DossierProps) {
 
                     {(peptide.sideEffects && peptide.sideEffects.length > 0) && (
                       <div className="space-y-3">
-                        <h4 className="text-[9px] font-black text-yellow-500 uppercase tracking-[0.4em] print:text-black border-l-2 border-yellow-500 pl-2">
+                        <h4 className="text-xs font-black text-yellow-500 uppercase tracking-wider print:text-black border-l-2 border-yellow-500 pl-2">
                            V. Colaterais & Mitigação
                         </h4>
                         <div className="space-y-2">
                            {peptide.sideEffects.map((se, i) => (
-                             <div key={i} className="text-[9px] print:text-gray-800">
+                             <div key={i} className="text-xs print:text-gray-800">
                                 <span className="font-black text-white print:text-black uppercase tracking-tight">{se.effect}:</span>
                                 <span className="text-white/50 print:text-gray-500 ml-1 italic leading-tight">{se.mitigation}</span>
                              </div>
@@ -325,19 +325,19 @@ export default function Dossier({ setView }: DossierProps) {
 
                     {(peptide.interactions && peptide.interactions.length > 0) && (
                       <div className="space-y-3">
-                        <h4 className="text-[9px] font-black text-red-500 uppercase tracking-[0.4em] print:text-black border-l-2 border-red-500 pl-2">
+                        <h4 className="text-xs font-black text-red-500 uppercase tracking-wider print:text-black border-l-2 border-red-500 pl-2">
                            VI. Interações Críticas
                         </h4>
                         <div className="space-y-3">
                            {peptide.interactions.map((int, i) => (
                              <div key={i} className="p-2 rounded-lg bg-red-500/5 border border-red-500/20 print:bg-red-50 print:border-red-100">
                                 <div className="flex justify-between items-center mb-1">
-                                   <span className="text-[8px] font-black text-white print:text-black uppercase">{int.substance}</span>
+                                   <span className="text-xs font-black text-white print:text-black uppercase">{int.substance}</span>
                                    <span className={`text-[6px] font-black px-1.5 py-0.5 rounded uppercase ${
                                      int.risk === 'high' ? 'bg-red-500 text-white' : 'bg-yellow-500 text-black'
                                    }`}>{int.risk}</span>
                                 </div>
-                                <div className="text-[8px] text-white/60 print:text-gray-500 italic leading-tight">{int.warning}</div>
+                                <div className="text-xs text-white/60 print:text-gray-500 italic leading-tight">{int.warning}</div>
                              </div>
                            ))}
                         </div>
@@ -349,12 +349,12 @@ export default function Dossier({ setView }: DossierProps) {
                   <div className="lg:col-span-4 space-y-8">
                     {(peptide.synergies && peptide.synergies.length > 0) && (
                       <div className="space-y-3">
-                        <h4 className="text-[9px] font-black text-accent uppercase tracking-[0.4em] print:text-black border-l-2 border-accent pl-2">
+                        <h4 className="text-xs font-black text-accent uppercase tracking-wider print:text-black border-l-2 border-accent pl-2">
                            VII. Sinergias de Stack
                         </h4>
                         <div className="flex flex-wrap gap-2">
                            {peptide.synergies.map((syn, i) => (
-                             <span key={i} className="px-2 py-1 bg-white/10 border border-white/15 rounded-md text-[8px] font-black text-white/60 uppercase print:bg-gray-100 print:text-gray-600">
+                             <span key={i} className="px-2 py-1 bg-white/10 border border-white/15 rounded-md text-xs font-black text-white/60 uppercase print:bg-gray-100 print:text-gray-600">
                                 {syn}
                              </span>
                            ))}
@@ -364,7 +364,7 @@ export default function Dossier({ setView }: DossierProps) {
 
                     {peptide.researchLinks && (
                       <div className="space-y-3 h-full">
-                        <h4 className="text-[9px] font-black text-accent uppercase tracking-[0.4em] print:text-black border-l-2 border-accent pl-2">
+                        <h4 className="text-xs font-black text-accent uppercase tracking-wider print:text-black border-l-2 border-accent pl-2">
                            VIII. Publicações Científicas
                         </h4>
                         <div className="space-y-4">
@@ -372,10 +372,10 @@ export default function Dossier({ setView }: DossierProps) {
                              <div key={i} className="space-y-1">
                                 <div className="flex items-start gap-2">
                                    <ExternalLink size={10} className="text-accent shrink-0 mt-0.5" />
-                                   <div className="text-[9px] font-black text-white/80 uppercase tracking-tight leading-tight print:text-gray-900 line-clamp-2">{link.title}</div>
+                                   <div className="text-xs font-black text-white/80 uppercase tracking-tight leading-tight print:text-gray-900 line-clamp-2">{link.title}</div>
                                 </div>
                                 {link.pmid && (
-                                  <div className="text-[7px] font-black text-white/40 print:text-gray-400 pl-4 uppercase">PMID: {link.pmid}</div>
+                                  <div className="text-[7px] font-black text-white/60 print:text-gray-400 pl-4 uppercase">PMID: {link.pmid}</div>
                                 )}
                              </div>
                            ))}
@@ -392,7 +392,7 @@ export default function Dossier({ setView }: DossierProps) {
       </div>
 
       {/* Print Info Footer */}
-      <div className="hidden print:block text-center pt-20 text-[10px] font-black text-gray-400 uppercase tracking-[0.5em]">
+      <div className="hidden print:block text-center pt-20 text-xs font-black text-gray-400 uppercase tracking-[0.5em]">
         © 2026 PEPTIUM PRIME GROUP — CONFIDENTIAL MOLECULAR DOSSIER
       </div>
     </div>

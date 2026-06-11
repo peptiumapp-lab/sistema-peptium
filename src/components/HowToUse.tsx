@@ -1,10 +1,15 @@
+import type { View } from '../App';
 import React from 'react';
 import { 
   Sparkles, Calculator, ShieldAlert, Search, ChevronRight, BookText, 
   Database, Layers, ClipboardList, Clock, Flame, Calendar, Dna, Activity, MapPin, Zap 
 } from 'lucide-react';
 
-export default function HowToUse() {
+
+interface HowToUseProps {
+  setView?: (view: View) => void;
+}
+export default function HowToUse({ setView }: HowToUseProps) {
   const tools = [
     {
       id: 'ai-generator',
@@ -178,6 +183,16 @@ export default function HowToUse() {
 
   return (
     <div className="py-24 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
+      {setView && (
+        <button 
+          onClick={() => setView('home')}
+          className="flex items-center gap-2 text-xs font-black uppercase tracking-wider text-secondary/60 hover:text-accent transition-all group mb-4 px-4 pt-4 z-50 relative"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-left group-hover:-translate-x-1 transition-transform"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+          Voltar para a Home
+        </button>
+      )}
+
       <div className="text-center space-y-4 mb-16">
         <div className="inline-flex items-center justify-center p-4 bg-accent/10 rounded-[2rem] border border-accent/20 mb-4 hover:bg-accent/20 transition-colors">
           <BookText className="w-10 h-10 text-accent" />
@@ -185,14 +200,14 @@ export default function HowToUse() {
         <h2 className="text-3xl md:text-5xl font-black text-white uppercase italic tracking-tighter leading-none">
           Manual de <span className="text-accent">Uso Tático</span>
         </h2>
-        <p className="text-white/50 text-xs md:text-sm max-w-2xl mx-auto font-medium leading-relaxed">
+        <p className="text-white/50 text-xs md:text-sm max-w-2xl mx-auto font-medium leading-loose">
           Guia de Inteligência e Procedimento Operacional: Saiba como extrair o máximo de precisão, conhecimento biológico e segurança da plataforma. Operação passo-a-passo minuciosa para cada módulo do sistema.
         </p>
       </div>
 
       <div className="space-y-8">
         {tools.map((tool) => (
-          <div key={tool.id} className="relative bg-[#050505] border border-white/15 rounded-[2.5rem] p-6 lg:p-10 overflow-hidden group hover:border-white/20 transition-colors duration-500">
+          <div key={tool.id} className="relative bg-[#0B0C10] border border-white/15 rounded-[2.5rem] p-6 lg:p-10 overflow-hidden group hover:border-white/20 transition-colors duration-500">
             <div className="absolute top-0 right-0 w-64 h-64 bg-accent/5 blur-[80px] rounded-full pointer-events-none group-hover:bg-accent/10 transition-colors duration-500" />
             
             <div className="relative z-10 flex flex-col md:flex-row gap-8 lg:gap-12 items-start">
@@ -205,7 +220,7 @@ export default function HowToUse() {
                     <h3 className="font-black text-white md:text-xl text-lg uppercase italic tracking-tighter leading-tight break-words pr-2">{tool.title}</h3>
                   </div>
                 </div>
-                <p className="text-xs lg:text-sm text-white/50 leading-relaxed font-medium">
+                <p className="text-xs lg:text-sm text-white/50 leading-loose font-medium">
                   {tool.subtitle}
                 </p>
               </div>
@@ -214,7 +229,7 @@ export default function HowToUse() {
                 {tool.steps.map((step, idx) => (
                   <div key={idx} className="flex gap-4 lg:gap-5 items-start">
                     <div className="flex flex-col items-center mt-1">
-                      <div className="w-6 h-6 rounded-xl bg-accent/10 border border-accent/30 text-accent flex items-center justify-center text-xs font-black shrink-0 relative z-10 shadow-[0_0_15px_rgba(45,212,191,0.2)]">
+                      <div className="w-6 h-6 rounded-xl bg-accent/10 border border-accent/20 text-accent flex items-center justify-center text-xs font-black shrink-0 relative z-10 shadow-[0_0_15px_rgba(45,212,191,0.2)]">
                         {idx + 1}
                       </div>
                       {idx !== tool.steps.length - 1 && (
@@ -222,10 +237,10 @@ export default function HowToUse() {
                       )}
                     </div>
                     <div className="pb-2">
-                      <h4 className="text-[11px] font-black uppercase text-white/80 tracking-widest mb-2 flex items-center gap-2">
+                      <h4 className="text-[11px] font-black uppercase text-white/80 tracking-wider mb-2 flex items-center gap-2">
                         Passo {idx + 1} <ChevronRight size={10} className="text-accent" /> {step.label}
                       </h4>
-                      <p className="text-[13px] md:text-sm text-white/50 leading-relaxed max-w-lg font-medium">
+                      <p className="text-[13px] md:text-sm text-white/50 leading-loose max-w-lg font-medium">
                         {step.desc}
                       </p>
                     </div>

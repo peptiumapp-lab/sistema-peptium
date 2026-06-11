@@ -64,7 +64,7 @@ export function CommandPalette({ isOpen, setIsOpen, setView }: CommandPalettePro
             value={query}
             onChange={(e) => setQuery(e.target.value)}
           />
-          <span className="text-[10px] uppercase font-mono text-gray-600 border border-gray-700 px-2 py-1 rounded tracking-widest">ESC</span>
+          <span className="text-xs uppercase font-mono text-gray-600 border border-gray-700 px-2 py-1 rounded tracking-wider">ESC</span>
         </div>
         <div className="max-h-[60vh] overflow-y-auto p-2">
           {filtered.length === 0 ? (

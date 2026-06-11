@@ -12,7 +12,7 @@ import type { View } from '../App';
 import { useAuth } from '../contexts/AuthContext';
 import { useLanguage, Language } from '../contexts/LanguageContext';
 import { PeptiumLogo } from './Logo';
-import { signInWithGoogle, logout } from '../lib/firebase';
+import { logout } from '../lib/firebase';
 
 const TOTAL_PEPTIDES = PROTOCOLS.length;
 
@@ -27,7 +27,7 @@ interface LayoutProps {
 
 export default function Layout({ children, currentView, setCurrentView, theme, setTheme, isPremium }: LayoutProps) {
   const [isSidebarOpen, setIsSidebarOpen] = React.useState(false);
-  const { user, isPro, isAdmin } = useAuth();
+  const { user, isPro, isAdmin, openAuthModal } = useAuth();
   const { language, setLanguage, t } = useLanguage();
 
   const bibliotecaItems = [
@@ -67,9 +67,9 @@ export default function Layout({ children, currentView, setCurrentView, theme, s
           <div className="flex items-center justify-between w-full text-left overflow-hidden">
             <div className="flex flex-col truncate max-w-[80%]">
               <span className="truncate text-[12px]">{user.displayName || 'Minha Conta'}</span>
-              <span className="truncate text-[8px] opacity-50 font-mono mt-0.5">{user.email || ''}</span>
+              <span className="truncate text-xs opacity-50 font-mono mt-0.5">{user.email || ''}</span>
             </div>
-            <span className={`text-[8px] font-black uppercase tracking-widest px-1.5 py-0.5 rounded-sm border shrink-0 ${
+            <span className={`text-xs font-black uppercase tracking-wider px-1.5 py-0.5 rounded-sm border shrink-0 ${
               isPro 
                 ? 'bg-accent/10 text-accent border-accent/20' 
                 : 'bg-white/15 text-white/90 border-white/20'
@@ -83,7 +83,7 @@ export default function Layout({ children, currentView, setCurrentView, theme, s
       { icon: <ShieldAlert size={18} />, label: 'Cofre Atlas', view: 'cofre-atlas' as View },
       { icon: <LogOut size={18} />, label: t('common.logout'), onClick: logout },
     ] : [
-      { icon: <LogIn size={18} />, label: t('common.login'), onClick: signInWithGoogle, highlight: true },
+      { icon: <LogIn size={18} />, label: t('common.login'), onClick: openAuthModal, highlight: true },
     ]),
     { icon: <Instagram size={18} />, label: INSTAGRAM_HANDLE, onClick: () => window.open(INSTAGRAM_LINK, '_blank') },
     { icon: <Globe size={18} />, label: SITE_URL, onClick: () => window.open(SITE_LINK, '_blank') },
@@ -115,7 +115,7 @@ export default function Layout({ children, currentView, setCurrentView, theme, s
     <div className="min-h-screen bg-primary flex overflow-x-hidden pt-8">
       
       {/* Prime Market Ticker (Integrated) */}
-      <div className="bg-[#02010a] border-b border-white/15 py-1.5 md:py-2 overflow-hidden whitespace-nowrap z-40 fixed top-0 left-0 w-full flex">
+      <div className="bg-[#0A0B0F] border-b border-white/15 py-1.5 md:py-2 overflow-hidden whitespace-nowrap z-40 fixed top-0 left-0 w-full flex">
         <motion.div 
           animate={{ x: [0, "-50%"] }}
           transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
@@ -138,7 +138,7 @@ export default function Layout({ children, currentView, setCurrentView, theme, s
               ].map((text, i) => (
                 <div key={`${arrayIndex}-${i}`} className="flex items-center gap-2.5">
                   <div className="w-1.5 h-1.5 rounded-full bg-accent shadow-[0_0_8px_rgba(0,229,255,0.6)] animate-pulse" />
-                  <span className="text-[10px] md:text-xs font-black text-white/90 uppercase tracking-[0.2em] font-sans italic">{text}</span>
+                  <span className="text-xs md:text-xs font-black text-white/90 uppercase tracking-wider font-sans italic">{text}</span>
                 </div>
               ))}
             </React.Fragment>
@@ -147,7 +147,7 @@ export default function Layout({ children, currentView, setCurrentView, theme, s
       </div>
 
       {/* Desktop Sidebar (Floating UI) */}
-      <aside className="hidden lg:flex flex-col w-[230px] h-[calc(100vh-2rem)] fixed left-4 top-4 bg-[#050505]/80 backdrop-blur-2xl border border-white/15 rounded-3xl z-40 shadow-[0_8px_32px_rgba(0,0,0,0.6),inset_0_0_32px_rgba(0,229,255,0.02)]">
+      <aside className="hidden lg:flex flex-col w-[230px] h-[calc(100vh-2rem)] fixed left-4 top-4 bg-[#0B0C10]/80 backdrop-blur-2xl border border-white/15 rounded-3xl z-40 shadow-[0_8px_32px_rgba(0,0,0,0.6),inset_0_0_32px_rgba(0,229,255,0.02)]">
         {/* Header */}
         <div className="p-5 pb-4 flex justify-between items-center">
           <span 
@@ -159,10 +159,10 @@ export default function Layout({ children, currentView, setCurrentView, theme, s
               <PeptiumLogo className="w-8 h-8 relative z-10" glowing />
             </div>
             <div className="flex flex-col">
-              <span className="font-sans font-black text-[14px] tracking-[0.2em] text-[#00E5FF] uppercase leading-none drop-shadow-[0_0_8px_rgba(0,229,255,0.4)]">
+              <span className="font-sans font-black text-[14px] tracking-wider text-[#00E5FF] uppercase leading-none drop-shadow-[0_0_8px_rgba(0,229,255,0.4)]">
                 PEPTIUM
               </span>
-              <span className="font-sans font-bold text-[9px] tracking-[0.4em] text-white/50 uppercase leading-relaxed mt-1">
+              <span className="font-sans font-bold text-xs tracking-wider text-white/50 uppercase leading-loose mt-1">
                 PRIME
               </span>
             </div>
@@ -170,7 +170,7 @@ export default function Layout({ children, currentView, setCurrentView, theme, s
           <select 
             value={language} 
             onChange={(e) => setLanguage(e.target.value as Language)}
-            className="bg-white/10 border border-white/20 rounded-md text-[10px] text-white/70 p-1 outline-none uppercase font-bold tracking-widest cursor-pointer"
+            className="bg-white/10 border border-white/20 rounded-md text-xs text-white/70 p-1 outline-none uppercase font-bold tracking-wider cursor-pointer"
           >
             <option value="pt">PT</option>
             <option value="en">EN</option>
@@ -184,11 +184,11 @@ export default function Layout({ children, currentView, setCurrentView, theme, s
               <div className="absolute top-0 right-0 w-16 h-16 bg-accent/20 blur-2xl rounded-full translate-x-1/2 -translate-y-1/2" />
               <div className="flex items-center gap-2 mb-1.5 relative z-10">
                 <Zap size={12} className="text-accent" fill="currentColor" />
-                <span className="text-[10px] font-black text-white tracking-[0.2em] uppercase">Status Prime</span>
+                <span className="text-xs font-black text-white tracking-wider uppercase">Status Prime</span>
               </div>
               <div className="flex items-center gap-2 relative z-10">
-                <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse shadow-[0_0_8px_#00E5FF]" />
-                <span className="text-[9px] font-bold text-accent uppercase tracking-widest opacity-80">Acesso Neural Ativo</span>
+                <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse shadow-[0_0_6px_rgba(0,229,255,0.4)]" />
+                <span className="text-xs font-bold text-accent uppercase tracking-wider opacity-80">Acesso Neural Ativo</span>
               </div>
             </div>
           )}
@@ -196,7 +196,7 @@ export default function Layout({ children, currentView, setCurrentView, theme, s
           <div className="mb-3 space-y-1">
             <div className="flex items-center gap-2 px-3 mb-1.5">
               <div className="h-[1px] w-4 bg-white/10" />
-              <div className="text-[9px] font-black text-secondary/90 uppercase tracking-[0.3em]">
+              <div className="text-xs font-black text-secondary/90 uppercase tracking-wider">
                 Biblioteca
               </div>
               <div className="h-[1px] flex-grow bg-gradient-to-r from-white/10 to-transparent" />
@@ -215,7 +215,7 @@ export default function Layout({ children, currentView, setCurrentView, theme, s
                   }`}
                 >
                   {isActive && (
-                    <motion.div layoutId="sidebar-active" className="absolute left-0 top-1/4 bottom-1/4 w-[3px] bg-accent rounded-r-full shadow-[0_0_10px_#00E5FF]" />
+                    <motion.div layoutId="sidebar-active" className="absolute left-0 top-1/4 bottom-1/4 w-[3px] bg-accent rounded-r-full shadow-[0_0_8px_rgba(0,229,255,0.15)]" />
                   )}
                   <div className={`p-1.5 rounded-xl transition-all duration-300 ${
                     isActive ? 'bg-accent/20 text-accent shadow-[0_0_10px_rgba(0,229,255,0.2)]' : 'bg-white/15 text-white/90 group-hover:bg-white/20 group-hover:text-white'
@@ -231,7 +231,7 @@ export default function Layout({ children, currentView, setCurrentView, theme, s
           <div className="mb-2 space-y-1">
             <div className="flex items-center gap-2 px-3 mb-1.5">
               <div className="h-[1px] w-4 bg-white/10" />
-              <div className="text-[9px] font-black text-secondary/90 uppercase tracking-[0.3em]">
+              <div className="text-xs font-black text-secondary/90 uppercase tracking-wider">
                 Ferramentas
               </div>
               <div className="h-[1px] flex-grow bg-gradient-to-r from-white/10 to-transparent" />
@@ -250,7 +250,7 @@ export default function Layout({ children, currentView, setCurrentView, theme, s
                   }`}
                 >
                   {isActive && (
-                    <motion.div layoutId="sidebar-active-tools" className="absolute left-0 top-1/4 bottom-1/4 w-[3px] bg-accent rounded-r-full shadow-[0_0_10px_#00E5FF]" />
+                    <motion.div layoutId="sidebar-active-tools" className="absolute left-0 top-1/4 bottom-1/4 w-[3px] bg-accent rounded-r-full shadow-[0_0_8px_rgba(0,229,255,0.15)]" />
                   )}
                   <div className={`p-1.5 rounded-xl transition-all duration-300 ${
                     isActive ? 'bg-accent/20 text-accent shadow-[0_0_10px_rgba(0,229,255,0.2)]' : 'bg-white/15 text-white/90 group-hover:bg-white/20 group-hover:text-white/90'
@@ -272,7 +272,7 @@ export default function Layout({ children, currentView, setCurrentView, theme, s
                 onClick={item.onClick || (() => handleNavClick(item.view!))}
                 className={`w-full flex items-center gap-3 px-3 py-1.5 rounded-xl transition-all duration-300 text-[12px] font-bold group ${
                   item.highlight 
-                    ? 'bg-accent/10 text-accent border border-accent/20 hover:bg-accent/20 hover:shadow-[0_0_15px_rgba(0,229,255,0.2)]' 
+                    ? 'bg-accent/10 text-accent border border-accent/20 hover:bg-accent/20 hover:shadow-[0_0_12px_rgba(0,229,255,0.1)]' 
                     : 'text-secondary/90 hover:text-white hover:bg-white/20 border border-transparent'
                 }`}
               >
@@ -306,10 +306,10 @@ export default function Layout({ children, currentView, setCurrentView, theme, s
                 onClick={() => setCurrentView('home')}
               >
                 <PeptiumLogo className="w-8 h-8" glowing />
-                <span className="font-sans font-black text-[12px] tracking-widest text-[#00E5FF] uppercase drop-shadow-[0_0_8px_rgba(0,229,255,0.4)] hidden sm:block">
+                <span className="font-sans font-black text-[12px] tracking-wider text-[#00E5FF] uppercase drop-shadow-[0_0_8px_rgba(0,229,255,0.4)] hidden sm:block">
                   PEPTIUM
                 </span>
-                <span className="font-sans font-bold text-[12px] tracking-[0.3em] text-white uppercase italic opacity-90 hidden sm:block">
+                <span className="font-sans font-bold text-[12px] tracking-wider text-white uppercase italic opacity-90 hidden sm:block">
                   PRIME
                 </span>
               </span>
@@ -319,7 +319,7 @@ export default function Layout({ children, currentView, setCurrentView, theme, s
             <select 
               value={language} 
               onChange={(e) => setLanguage(e.target.value as Language)}
-              className="bg-white/10 border border-white/20 rounded-md text-[10px] text-white/70 p-1 px-2 outline-none uppercase font-bold tracking-widest cursor-pointer mr-2"
+              className="bg-white/10 border border-white/20 rounded-md text-xs text-white/70 p-1 px-2 outline-none uppercase font-bold tracking-wider cursor-pointer mr-2"
             >
               <option value="pt">PT</option>
               <option value="en">EN</option>
@@ -350,7 +350,7 @@ export default function Layout({ children, currentView, setCurrentView, theme, s
               initial={{ x: '-100%' }}
               animate={{ x: 0 }}
               exit={{ x: '-100%' }}
-              className="fixed top-0 left-0 h-full w-[85%] max-w-sm bg-[#050505]/95 backdrop-blur-3xl z-50 lg:hidden border-r border-white/15 flex flex-col shadow-[20px_0_40px_rgba(0,0,0,0.6)]"
+              className="fixed top-0 left-0 h-full w-[85%] max-w-sm bg-[#0B0C10]/95 backdrop-blur-3xl z-50 lg:hidden border-r border-white/15 flex flex-col shadow-[20px_0_40px_rgba(0,0,0,0.6)]"
             >
               <div className="p-6 flex justify-between items-center border-b border-white/15">
                 <span className="flex items-center gap-3 cursor-pointer group">
@@ -359,10 +359,10 @@ export default function Layout({ children, currentView, setCurrentView, theme, s
                     <PeptiumLogo className="w-10 h-10 relative z-10" glowing />
                   </div>
                   <div className="flex flex-col">
-                    <span className="font-sans font-black text-[15px] tracking-[0.2em] text-[#00E5FF] uppercase leading-none drop-shadow-[0_0_8px_rgba(0,229,255,0.4)]">
+                    <span className="font-sans font-black text-[15px] tracking-wider text-[#00E5FF] uppercase leading-none drop-shadow-[0_0_8px_rgba(0,229,255,0.4)]">
                       PEPTIUM
                     </span>
-                    <span className="font-sans font-bold text-[10px] tracking-[0.4em] text-white/50 uppercase leading-relaxed mt-1">
+                    <span className="font-sans font-bold text-xs tracking-wider text-white/50 uppercase leading-loose mt-1">
                       PRIME
                     </span>
                   </div>
@@ -381,16 +381,16 @@ export default function Layout({ children, currentView, setCurrentView, theme, s
                     <div className="absolute top-0 right-0 w-16 h-16 bg-accent/20 blur-2xl rounded-full translate-x-1/2 -translate-y-1/2" />
                     <div className="flex items-center gap-2 mb-1.5 relative z-10">
                       <Zap size={12} className="text-accent" fill="currentColor" />
-                      <span className="text-[11px] font-black text-white tracking-[0.2em] uppercase">Assinatura Ativa</span>
+                      <span className="text-[11px] font-black text-white tracking-wider uppercase">Assinatura Ativa</span>
                     </div>
-                    <span className="text-[9px] font-bold text-accent uppercase tracking-widest relative z-10">Acesso Vitalício</span>
+                    <span className="text-xs font-bold text-accent uppercase tracking-wider relative z-10">Acesso Vitalício</span>
                   </div>
                 )}
 
                 <div className="mb-6 space-y-2">
                   <div className="flex items-center gap-2 px-2 mb-4">
                     <div className="h-[1px] w-3 bg-white/10" />
-                    <div className="text-[10px] font-black text-secondary/90 uppercase tracking-[0.2em]">BIBLIOTECA</div>
+                    <div className="text-xs font-black text-secondary/90 uppercase tracking-wider">BIBLIOTECA</div>
                     <div className="h-[1px] flex-grow bg-gradient-to-r from-white/10 to-transparent" />
                   </div>
                   <nav className="space-y-0.5">
@@ -420,7 +420,7 @@ export default function Layout({ children, currentView, setCurrentView, theme, s
                 <div className="mb-6 space-y-2">
                   <div className="flex items-center gap-2 px-2 mb-4">
                     <div className="h-[1px] w-3 bg-white/10" />
-                    <div className="text-[10px] font-black text-secondary/90 uppercase tracking-[0.2em]">FERRAMENTAS</div>
+                    <div className="text-xs font-black text-secondary/90 uppercase tracking-wider">FERRAMENTAS</div>
                     <div className="h-[1px] flex-grow bg-gradient-to-r from-white/10 to-transparent" />
                   </div>
                   <nav className="space-y-0.5">
@@ -470,10 +470,10 @@ export default function Layout({ children, currentView, setCurrentView, theme, s
                   ))}
                 </nav>
                 <div className="flex flex-col gap-2">
-                  <a href={SUPPORT_LINK} className="flex items-center justify-center gap-3 bg-accent/20 border border-accent/40 text-accent py-4 rounded-xl font-black text-[11px] uppercase tracking-[0.2em] shadow-[0_0_20px_rgba(0,229,255,0.1)]">
+                  <a href={SUPPORT_LINK} className="flex items-center justify-center gap-3 bg-accent/20 border border-accent/40 text-accent py-4 rounded-xl font-black text-[11px] uppercase tracking-wider shadow-[0_0_16px_rgba(0,229,255,0.15)]">
                     Fale com o Suporte
                   </a>
-                  <a href={INSTAGRAM_LINK} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-3 bg-white/10 border border-white/20 text-white/90 hover:text-white hover:bg-white/20 py-4 rounded-xl font-black text-[11px] uppercase tracking-[0.2em] transition-all">
+                  <a href={INSTAGRAM_LINK} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-3 bg-white/10 border border-white/20 text-white/90 hover:text-white hover:bg-white/20 py-4 rounded-xl font-black text-[11px] uppercase tracking-wider transition-all">
                     <Instagram size={16} /> @peptium.app
                   </a>
                 </div>

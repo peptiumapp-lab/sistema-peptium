@@ -69,7 +69,7 @@ export default function AtlasMatch() {
         </div>
         <div className="text-center space-y-2">
             <h3 className="text-xl font-black text-white italic uppercase tracking-tighter">Sincronizando Dados Biométricos</h3>
-            <p className="text-[10px] font-bold text-white/30 uppercase tracking-[0.4em]">Cruzando com a Database Peptium Prime...</p>
+            <p className="text-xs font-bold text-white/50 uppercase tracking-wider">Cruzando com a Database Peptium Prime...</p>
         </div>
       </div>
     );
@@ -87,7 +87,7 @@ export default function AtlasMatch() {
         </div>
 
         <div className="relative z-10 space-y-10">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-accent text-black rounded-full text-[9px] font-black uppercase tracking-widest">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-accent text-black rounded-full text-xs font-black uppercase tracking-wider">
             Resultado do Algoritmo Atlas
           </div>
           
@@ -96,7 +96,7 @@ export default function AtlasMatch() {
               SEU PROTOCOLO <br />
               <span className="text-accent">MIMETIZADOR ELITE</span>
             </h2>
-            <p className="max-w-md text-xs font-bold text-white/60 uppercase tracking-widest leading-relaxed">
+            <p className="max-w-md text-xs font-bold text-white/60 uppercase tracking-wider leading-loose">
               Com base no seu perfil de {answers[1]} e nível {answers[2]}, identificamos uma curva de resposta ideal com o seguinte Stack Prime:
             </p>
           </div>
@@ -109,7 +109,7 @@ export default function AtlasMatch() {
              ].map((item, i) => (
                <div key={i} className="p-6 bg-black/40 border border-white/15 rounded-3xl flex items-center justify-between group hover:border-accent/40 transition-all">
                   <div className="space-y-1">
-                    <div className="text-[8px] font-black text-white/40 uppercase tracking-widest">{item.name}</div>
+                    <div className="text-xs font-black text-white/60 uppercase tracking-wider">{item.name}</div>
                     <div className="text-sm font-black text-white uppercase">{item.value}</div>
                   </div>
                   <ChevronRight size={16} className="text-accent group-hover:translate-x-1 transition-transform" />
@@ -119,7 +119,7 @@ export default function AtlasMatch() {
 
           <button 
             onClick={() => document.getElementById('planos-vendas')?.scrollIntoView({ behavior: 'smooth' })}
-            className="w-full py-6 bg-accent text-black rounded-2xl font-black text-[12px] uppercase tracking-[0.4em] shadow-2xl shadow-accent/20 hover:scale-[1.02] active:scale-95 transition-all"
+            className="w-full py-6 bg-accent text-black rounded-2xl font-black text-[12px] uppercase tracking-wider shadow-2xl shadow-accent/20 hover:scale-[1.02] active:scale-95 transition-all"
           >
             Acessar Protocolo Completo
           </button>
@@ -140,7 +140,7 @@ export default function AtlasMatch() {
             </button>
           )}
           <div className="space-y-1">
-            <div className="text-[8px] font-black text-accent uppercase tracking-[0.4em]">Scan em Progresso</div>
+            <div className="text-xs font-black text-accent uppercase tracking-wider">Scan em Progresso</div>
             <div className="flex gap-1">
               {QUESTIONS.map((_, i) => (
                 <div key={i} className={`h-1 rounded-full transition-all duration-500 ${i <= step ? 'w-8 bg-accent' : 'w-2 bg-white/10'}`} />
@@ -148,7 +148,7 @@ export default function AtlasMatch() {
             </div>
           </div>
         </div>
-        <div className="text-[10px] font-black text-white/40 uppercase tracking-widest italic font-sans">Atlas Match v5.4</div>
+        <div className="text-xs font-black text-white/60 uppercase tracking-wider italic font-sans">Atlas Match v5.4</div>
       </div>
 
       <AnimatePresence mode="wait">
@@ -173,12 +173,12 @@ export default function AtlasMatch() {
                   className="group relative p-6 bg-white/[0.03] border border-white/15 rounded-3xl text-left hover:border-accent/40 hover:bg-accent/[0.02] transition-all"
                 >
                   <div className="flex items-start gap-4">
-                    <div className="p-3 bg-white/10 border border-white/20 rounded-2xl text-white/40 group-hover:bg-accent group-hover:text-black transition-all">
+                    <div className="p-3 bg-white/10 border border-white/20 rounded-2xl text-white/60 group-hover:bg-accent group-hover:text-black transition-all">
                       <Icon size={20} />
                     </div>
                     <div className="space-y-1">
                       <div className="text-sm font-black text-white uppercase tracking-tight group-hover:text-accent transition-colors">{opt.label}</div>
-                      <div className="text-[9px] font-bold text-white/30 uppercase tracking-widest leading-relaxed group-hover:text-white/60 transition-colors">{opt.desc}</div>
+                      <div className="text-xs font-bold text-white/50 uppercase tracking-wider leading-loose group-hover:text-white/60 transition-colors">{opt.desc}</div>
                     </div>
                   </div>
                 </button>
@@ -190,7 +190,7 @@ export default function AtlasMatch() {
 
       <div className="mt-12 flex items-center gap-3 text-white/10">
         <CheckCircle2 size={12} />
-        <span className="text-[8px] font-bold uppercase tracking-[0.2em]">Criptografia de Dados Bio-Sincronizados Ativa</span>
+        <span className="text-xs font-bold uppercase tracking-wider">Criptografia de Dados Bio-Sincronizados Ativa</span>
       </div>
     </div>
   );

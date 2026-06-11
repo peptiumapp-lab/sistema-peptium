@@ -98,11 +98,11 @@ export default function StartHere({ setView }: StartHereProps) {
             
             <div className="space-y-1">
               <h3 className="text-sm font-black text-secondary tracking-tight group-hover:text-accent transition-colors uppercase italic">{card.title}</h3>
-              <p className="text-[9px] font-bold text-muted uppercase tracking-[0.2em]">{card.description}</p>
+              <p className="text-xs font-bold text-muted uppercase tracking-wider">{card.description}</p>
             </div>
             
             <div className="mt-5 flex items-center gap-2 text-accent opacity-0 group-hover:opacity-100 transition-all translate-x-[-10px] group-hover:translate-x-0">
-              <span className="text-[10px] font-black uppercase tracking-widest leading-none">Acessar Terminal</span>
+              <span className="text-xs font-black uppercase tracking-wider leading-none">Acessar Terminal</span>
               <ArrowRight size={14} />
             </div>
           </motion.div>
@@ -117,7 +117,7 @@ export default function StartHere({ setView }: StartHereProps) {
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 2, duration: 0.8, ease: "circOut" }}
             onClick={() => setView('plans')}
-            className="group relative bg-[#050505]/40 backdrop-blur-xl border border-white/20 p-1.5 rounded-2xl cursor-pointer hover:bg-white/20 transition-all hover:scale-105 active:scale-95 shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden"
+            className="group relative bg-[#0B0C10]/40 backdrop-blur-xl border border-white/20 p-1.5 rounded-2xl cursor-pointer hover:bg-white/20 transition-all hover:scale-105 active:scale-95 shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden"
           >
             {/* Subtle Glow Effect */}
             <div className="absolute inset-0 bg-accent/5 opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -130,10 +130,10 @@ export default function StartHere({ setView }: StartHereProps) {
               
               <div className="space-y-0.5">
                 <div className="flex items-center gap-2">
-                  <span className="text-[8px] font-black text-accent uppercase tracking-[0.3em]">Neural Update</span>
+                  <span className="text-xs font-black text-accent uppercase tracking-wider">Neural Update</span>
                   <div className="w-1 h-1 rounded-full bg-accent animate-pulse" />
                 </div>
-                <div className="text-[10px] font-black text-white/90 uppercase tracking-tight">
+                <div className="text-xs font-black text-white/90 uppercase tracking-tight">
                   3 Novos Protocolos de <span className="text-accent underline decoration-accent/30">Sinergia</span>
                 </div>
               </div>

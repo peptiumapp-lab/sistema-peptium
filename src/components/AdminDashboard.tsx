@@ -1,3 +1,4 @@
+import type { View } from '../App';
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { collection, query, onSnapshot, doc, setDoc, deleteDoc, getDoc } from 'firebase/firestore';
@@ -11,7 +12,11 @@ interface ProGrant {
   type: 'monthly' | 'annual';
 }
 
-export default function AdminDashboard() {
+
+interface AdminDashboardProps {
+  setView?: (view: View) => void;
+}
+export default function AdminDashboard({ setView }: AdminDashboardProps) {
   const { isAdmin } = useAuth();
   const [grants, setGrants] = useState<ProGrant[]>([]);
   const [newEmail, setNewEmail] = useState('');
@@ -103,6 +108,16 @@ export default function AdminDashboard() {
   if (!isAdmin) {
     return (
       <div className="py-24 px-4 max-w-7xl mx-auto flex justify-center items-center h-64">
+      {setView && (
+        <button 
+          onClick={() => setView('home')}
+          className="flex items-center gap-2 text-xs font-black uppercase tracking-wider text-secondary/60 hover:text-accent transition-all group mb-4 px-4 pt-4 z-50 relative"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-left group-hover:-translate-x-1 transition-transform"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+          Voltar para a Home
+        </button>
+      )}
+
         <p className="text-white">Acesso negado.</p>
       </div>
     );
@@ -113,13 +128,13 @@ export default function AdminDashboard() {
       <div className="mb-12 flex items-center gap-4">
         <Shield className="w-10 h-10 text-accent" />
         <div>
-          <h1 className="text-3xl font-black text-white uppercase tracking-widest">Painel Administrativo</h1>
-          <p className="text-white/60 text-sm uppercase tracking-widest">Gerencie acessos temporários Pro</p>
+          <h1 className="text-3xl font-black text-white uppercase tracking-wider">Painel Administrativo</h1>
+          <p className="text-white/60 text-sm uppercase tracking-wider">Gerencie acessos temporários Pro</p>
         </div>
       </div>
 
       <div className="bg-white/10 border border-white/20 p-6 rounded-2xl mb-12">
-        <h2 className="text-lg font-bold text-white mb-4 uppercase tracking-widest flex items-center gap-2">
+        <h2 className="text-lg font-bold text-white mb-4 uppercase tracking-wider flex items-center gap-2">
           <Plus size={18} /> Conceder Acesso
         </h2>
         
@@ -133,13 +148,13 @@ export default function AdminDashboard() {
           />
           <button 
             onClick={() => handleAddGrant('monthly')}
-            className="px-6 py-3 bg-white/10 hover:bg-white/20 text-white rounded-xl font-bold text-sm tracking-widest uppercase transition-colors flex items-center justify-center gap-2"
+            className="px-6 py-3 bg-white/10 hover:bg-white/20 text-white rounded-xl font-bold text-sm tracking-wider uppercase transition-colors flex items-center justify-center gap-2"
           >
             <Clock size={16} /> 30 Dias
           </button>
           <button 
             onClick={() => handleAddGrant('annual')}
-            className="px-6 py-3 bg-accent hover:bg-accent/80 text-black rounded-xl font-bold text-sm tracking-widest uppercase transition-colors flex items-center justify-center gap-2"
+            className="px-6 py-3 bg-accent hover:bg-accent/80 text-black rounded-xl font-bold text-sm tracking-wider uppercase transition-colors flex items-center justify-center gap-2"
           >
             <Calendar size={16} /> 1 Ano
           </button>
@@ -148,7 +163,7 @@ export default function AdminDashboard() {
 
       <div className="bg-white/10 border border-white/20 rounded-2xl overflow-hidden">
         <div className="p-6 border-b border-white/20">
-          <h2 className="text-lg font-bold text-white uppercase tracking-widest flex items-center gap-2">
+          <h2 className="text-lg font-bold text-white uppercase tracking-wider flex items-center gap-2">
            Acessos Ativos ({grants.length})
           </h2>
         </div>
@@ -161,7 +176,7 @@ export default function AdminDashboard() {
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse">
               <thead>
-                <tr className="bg-black/20 text-white/60 text-xs font-bold uppercase tracking-widest">
+                <tr className="bg-black/20 text-white/60 text-xs font-bold uppercase tracking-wider">
                   <th className="p-4">Email</th>
                   <th className="p-4">Tipo</th>
                   <th className="p-4">Expira em</th>

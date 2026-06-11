@@ -23,7 +23,7 @@ export default function CalculatorTeaser({ setView, isPremium }: CalculatorTease
               O Motor de <br />
               <span className="text-accent text-glow">Precisão Molecular</span>
             </h2>
-            <p className="text-muted text-base leading-relaxed font-bold uppercase tracking-wider opacity-60">
+            <p className="text-muted text-base leading-loose font-bold uppercase tracking-wider opacity-60">
               ELIMINE O ERRO HUMANO. NOSSO ALGORITMO DE RECONSTITUIÇÃO CALCULA VOLUMES EXATOS 
               BASEADOS EM CONCENTRAÇÃO EFETIVA E SATURAÇÃO BIOLÓGICA.
             </p>
@@ -46,7 +46,7 @@ export default function CalculatorTeaser({ setView, isPremium }: CalculatorTease
             {setView && (
               <button 
                 onClick={() => setView(isPremium ? 'calculator' : 'plans')}
-                className="px-8 py-4 bg-accent/10 border border-accent/20 text-accent rounded-2xl font-bold text-[10px] uppercase tracking-widest flex items-center gap-2 hover:bg-accent/20 transition-all w-fit"
+                className="px-8 py-4 bg-accent/10 border border-accent/20 text-accent rounded-2xl font-bold text-xs uppercase tracking-wider flex items-center gap-2 hover:bg-accent/20 transition-all w-fit"
               >
                 {isPremium ? 'Abrir Calculadora Prime' : 'Acessar Calculadora no Prime'} <ArrowUpRight size={14} />
               </button>
@@ -66,7 +66,7 @@ export default function CalculatorTeaser({ setView, isPremium }: CalculatorTease
                 
                 {/* Status Bar */}
                 <div className="p-6 flex justify-between items-center opacity-40">
-                  <span className="text-[8px] font-bold tracking-widest uppercase text-secondary">Bio-Core v2.4</span>
+                  <span className="text-xs font-bold tracking-wider uppercase text-secondary">Bio-Core v2.4</span>
                   <div className="flex gap-1">
                     <div className="w-1 h-1 bg-secondary rounded-full" />
                     <div className="w-1 h-1 bg-secondary rounded-full" />
@@ -76,29 +76,29 @@ export default function CalculatorTeaser({ setView, isPremium }: CalculatorTease
 
                 <div className="px-6 space-y-6">
                   <div className="space-y-1">
-                    <h4 className="text-secondary/60 text-[10px] uppercase font-bold tracking-widest">Ativo Selecionado</h4>
+                    <h4 className="text-secondary/60 text-xs uppercase font-bold tracking-wider">Ativo Selecionado</h4>
                     <div className="text-xl font-extrabold font-sans text-secondary uppercase tracking-tight">Semaglutida Elite</div>
                   </div>
 
                   <div className="bg-secondary/[0.08] rounded-3xl p-6 border border-secondary/15 text-center relative overflow-hidden">
                     <div className="absolute top-0 right-0 p-2"><Zap size={12} className="text-accent" /></div>
                     <span className="block text-4xl font-black text-secondary mb-1">0.25</span>
-                    <span className="text-[8px] uppercase font-black text-accent tracking-[0.2em]">Miligramas (mg)</span>
+                    <span className="text-xs uppercase font-black text-accent tracking-wider">Miligramas (mg)</span>
                   </div>
 
                   <div className="space-y-4 pt-4">
                     <div className="flex justify-between items-end border-b border-secondary/15 pb-2">
-                       <span className="text-[10px] text-secondary/60 uppercase font-bold">Unidades Seringa</span>
+                       <span className="text-xs text-secondary/60 uppercase font-bold">Unidades Seringa</span>
                        <span className="text-xl font-black text-secondary">10 UI</span>
                     </div>
                     <div className="flex justify-between items-end border-b border-secondary/15 pb-2">
-                       <span className="text-[10px] text-secondary/60 uppercase font-bold">Volume Total</span>
+                       <span className="text-xs text-secondary/60 uppercase font-bold">Volume Total</span>
                        <span className="text-xl font-black text-secondary">0.10 mL</span>
                     </div>
                   </div>
 
                   <div className="pt-8">
-                    <div className="w-full py-4 bg-accent text-white rounded-2xl text-[10px] uppercase font-black tracking-widest text-center shadow-lg shadow-accent/20">
+                    <div className="w-full py-4 bg-accent text-white rounded-2xl text-xs uppercase font-black tracking-wider text-center shadow-lg shadow-accent/20">
                       Confirmar Aplicação
                     </div>
                   </div>

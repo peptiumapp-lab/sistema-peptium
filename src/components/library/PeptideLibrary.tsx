@@ -69,7 +69,7 @@ export default function PeptideLibrary({ setView, isPremium, initialCategory = '
     <div className="space-y-12">
       <button 
         onClick={() => setView('home')}
-        className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.3em] text-secondary/60 hover:text-accent transition-all group mb-4"
+        className="flex items-center gap-2 text-xs font-black uppercase tracking-wider text-secondary/60 hover:text-accent transition-all group mb-4"
       >
         <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" />
         Voltar para a Home
@@ -78,15 +78,15 @@ export default function PeptideLibrary({ setView, isPremium, initialCategory = '
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
         <div className="space-y-4">
           <div className={`inline-flex items-center gap-2 px-3 py-1 border rounded-full ${isPremium ? 'bg-accent/20 border-accent/40' : 'bg-white/10 border-white/20'}`}>
-            <Zap size={10} className={`${isPremium ? 'text-accent fill-accent' : 'text-white/40'}`} />
-            <span className={`text-[9px] font-black uppercase tracking-widest ${isPremium ? 'text-accent' : 'text-white/60'}`}>
+            <Zap size={10} className={`${isPremium ? 'text-accent fill-accent' : 'text-white/60'}`} />
+            <span className={`text-xs font-black uppercase tracking-wider ${isPremium ? 'text-accent' : 'text-white/60'}`}>
               Status: {isPremium ? 'Acesso Prime Ativado' : 'Acesso Limitado (Free)'} • {TOTAL_PEPTIDES} Compostos
             </span>
           </div>
           <h2 className="text-2xl md:text-3xl font-extrabold text-secondary uppercase tracking-tight italic">
             Atlas de <span className="text-accent underline decoration-2 underline-offset-8">Compostos</span>
           </h2>
-          <p className="text-muted text-xs font-medium max-w-lg leading-relaxed">
+          <p className="text-muted text-xs font-medium max-w-lg leading-loose">
             Nossa inteligência mapeou {TOTAL_PEPTIDES} compostos. {isPremium ? 'Sua licença Prime concede acesso total.' : 'Upgrade para Prime para desbloquear o catálogo completo e farmacodinâmica avançada.'}
           </p>
         </div>
@@ -108,7 +108,7 @@ export default function PeptideLibrary({ setView, isPremium, initialCategory = '
           <button
             key={cat}
             onClick={() => setActiveCategory(cat)}
-            className={`px-4 py-2 md:px-6 md:py-2.5 rounded-full text-[9px] md:text-[10px] font-black uppercase tracking-widest transition-all ${activeCategory === cat ? 'bg-accent text-white shadow-lg shadow-accent/20' : 'bg-white/10 text-secondary/60 hover:bg-white/20'}`}
+            className={`px-4 py-2 md:px-6 md:py-2.5 rounded-full text-xs md:text-xs font-black uppercase tracking-wider transition-all ${activeCategory === cat ? 'bg-accent text-white shadow-lg shadow-accent/20' : 'bg-white/10 text-secondary/60 hover:bg-white/20'}`}
           >
             {cat}
           </button>
@@ -158,7 +158,7 @@ export default function PeptideLibrary({ setView, isPremium, initialCategory = '
                     </div>
                     
                     {/* Category Badge - Bottom Right to stay clear of text */}
-                    <div className="absolute bottom-2.5 right-2.5 z-20 px-1.5 py-0.5 bg-black/70 text-white/60 rounded text-[6px] font-black uppercase tracking-widest border border-white/15 backdrop-blur-md">
+                    <div className="absolute bottom-2.5 right-2.5 z-20 px-1.5 py-0.5 bg-black/70 text-white/60 rounded text-[6px] font-black uppercase tracking-wider border border-white/15 backdrop-blur-md">
                       {protocol.tag.split(' ')[0]}
                     </div>
                 </div>
@@ -168,7 +168,7 @@ export default function PeptideLibrary({ setView, isPremium, initialCategory = '
                     {isBlurred ? 'XXXXXXXXXXXXX' : protocol.name}
                   </h3>
                   
-                  <p className={`text-muted text-[9px] leading-relaxed font-medium mb-4 line-clamp-2 ${isBlurred ? 'blur-[3px] select-none' : ''}`}>
+                  <p className={`text-muted text-xs leading-loose font-medium mb-4 line-clamp-2 ${isBlurred ? 'blur-[3px] select-none' : ''}`}>
                     {isBlurred ? 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' : protocol.description}
                   </p>
                   
@@ -190,7 +190,7 @@ export default function PeptideLibrary({ setView, isPremium, initialCategory = '
                     </div>
                     
                     <button 
-                      className={`text-[8px] font-black uppercase tracking-widest transition-all flex items-center gap-1 ${level === 'free' || level === 'full' ? 'text-accent' : 'text-secondary/40'}`}
+                      className={`text-xs font-black uppercase tracking-wider transition-all flex items-center gap-1 ${level === 'free' || level === 'full' ? 'text-accent' : 'text-secondary/60'}`}
                     >
                       {level === 'free' || level === 'full' ? 'Ver Bula' : 'Bloqueado'} 
                       {level === 'free' || level === 'full' ? <ArrowUpRight size={12} /> : <Lock size={10} />}
@@ -201,7 +201,7 @@ export default function PeptideLibrary({ setView, isPremium, initialCategory = '
                 {/* Hover Overlay for Locked */}
                 {(isProLocked || isBlurred) && (
                     <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all flex items-center justify-center opacity-0 group-hover:opacity-100 z-10 backdrop-blur-[1px]">
-                        <div className="bg-accent text-black px-4 py-2 rounded-xl font-black text-[9px] uppercase tracking-[0.2em] shadow-xl transform translate-y-4 group-hover:translate-y-0 transition-all">
+                        <div className="bg-accent text-black px-4 py-2 rounded-xl font-black text-xs uppercase tracking-wider shadow-xl transform translate-y-4 group-hover:translate-y-0 transition-all">
                             Upgrade Prime
                         </div>
                     </div>
@@ -212,10 +212,10 @@ export default function PeptideLibrary({ setView, isPremium, initialCategory = '
         </div>
       ) : (
         <div className="py-20 text-center space-y-4">
-          <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mx-auto text-secondary/40">
+          <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mx-auto text-secondary/60">
             <Search size={24} />
           </div>
-          <p className="text-secondary/60 font-black uppercase tracking-widest text-[10px]">Nenhum composto encontrado</p>
+          <p className="text-secondary/60 font-black uppercase tracking-wider text-xs">Nenhum composto encontrado</p>
         </div>
       )}
 

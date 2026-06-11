@@ -71,7 +71,7 @@ export default function PlaceholderView({ view, setView }: PlaceholderViewProps)
           
           <div className="inline-flex items-center gap-2 px-3 py-1 bg-accent/10 border border-accent/20 rounded-full mb-6">
             <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-            <span className="text-[10px] font-black uppercase tracking-widest text-accent">
+            <span className="text-xs font-black uppercase tracking-wider text-accent">
               {details.status}
             </span>
           </div>
@@ -80,13 +80,13 @@ export default function PlaceholderView({ view, setView }: PlaceholderViewProps)
             {details.title}
           </h2>
           
-          <p className="text-white/60 text-xs md:text-sm font-medium leading-relaxed max-w-lg mb-10">
+          <p className="text-white/60 text-xs md:text-sm font-medium leading-loose max-w-lg mb-10">
             {details.description}
           </p>
 
           <button 
             onClick={() => setView('home')}
-            className="px-8 py-4 bg-white text-black font-black uppercase tracking-widest text-xs rounded-xl hover:bg-accent hover:text-white transition-all duration-300"
+            className="px-8 py-4 bg-white text-black font-black uppercase tracking-wider text-xs rounded-xl hover:bg-accent hover:text-white transition-all duration-300"
           >
             Voltar ao Painel
           </button>

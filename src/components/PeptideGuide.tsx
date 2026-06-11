@@ -6,7 +6,6 @@ import ProGate from './ProGate';
 import ReconstitutionArticle from './articles/ReconstitutionArticle';
 import InjectionArticle from './articles/InjectionArticle';
 import { useAuth } from '../contexts/AuthContext';
-import { signInWithGoogle } from '../lib/firebase';
 
 interface PeptideGuideProps {
   setView: (view: any) => void;
@@ -17,7 +16,7 @@ export default function PeptideGuide({ setView }: PeptideGuideProps) {
   const [activeTab, setActiveTab] = useState<'guides' | 'studies' | 'safety'>('guides');
   const [safetySubTab, setSafetySubTab] = useState<'effects' | 'exams' | 'risks'>('effects');
   const [completedExams, setCompletedExams] = useState<string[]>([]);
-  const { user, isPro: isPremium } = useAuth();
+  const { user, isPro: isPremium, openAuthModal } = useAuth();
 
   const technicalGuides = [
     {
@@ -1879,7 +1878,7 @@ export default function PeptideGuide({ setView }: PeptideGuideProps) {
       <div className="max-w-7xl mx-auto px-6 py-12">
         <button 
           onClick={() => setView('home')}
-          className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.3em] text-accent hover:text-white transition-all group mb-12"
+          className="flex items-center gap-2 text-xs font-black uppercase tracking-wider text-accent hover:text-white transition-all group mb-12"
         >
           <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
           Voltar para o Terminal
@@ -1889,18 +1888,18 @@ export default function PeptideGuide({ setView }: PeptideGuideProps) {
           <div className="flex items-center justify-between">
             <div className="space-y-1">
               <h1 className="text-4xl font-sans font-black text-white italic tracking-tighter uppercase leading-[0.9]">Aprender</h1>
-              <p className="text-white/60 text-[10px] font-bold uppercase tracking-widest leading-relaxed">
+              <p className="text-white/60 text-xs font-bold uppercase tracking-wider leading-loose">
                 Guias, estudos científicos e segurança em um só lugar.
               </p>
             </div>
             
             {!user && (
               <button 
-                onClick={signInWithGoogle}
+                onClick={openAuthModal}
                 className="hidden md:flex items-center gap-3 px-6 py-3 rounded-full bg-accent/10 border border-accent/20 text-accent hover:bg-accent/20 transition-all"
               >
                 <LogIn size={14} />
-                <span className="text-[10px] font-black uppercase tracking-widest">Entrar para Acesso Total</span>
+                <span className="text-xs font-black uppercase tracking-wider">Entrar para Acesso Total</span>
               </button>
             )}
           </div>
@@ -1916,10 +1915,10 @@ export default function PeptideGuide({ setView }: PeptideGuideProps) {
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id as any)}
-                  className={`flex-1 flex items-center justify-center gap-3 py-4 rounded-[20px] text-[10px] font-black uppercase tracking-widest transition-all ${
+                  className={`flex-1 flex items-center justify-center gap-3 py-4 rounded-[20px] text-xs font-black uppercase tracking-wider transition-all ${
                     activeTab === tab.id 
                       ? 'bg-white/10 text-white shadow-[0_0_20px_rgba(255,255,255,0.05)] border border-white/20' 
-                      : 'text-white/30 hover:text-white/60'
+                      : 'text-white/50 hover:text-white/60'
                   }`}
                 >
                   {tab.icon}
@@ -1942,10 +1941,10 @@ export default function PeptideGuide({ setView }: PeptideGuideProps) {
                   key={index}
                   whileHover={{ y: -5 }}
                   onClick={() => setActiveArticle(guide.id)}
-                  className="group p-6 rounded-[32px] bg-secondary/[0.01] border border-white/15 hover:border-accent/30 transition-all flex flex-col justify-between h-[240px] relative overflow-hidden cursor-pointer"
+                  className="group p-6 rounded-[32px] bg-secondary/[0.01] border border-white/15 hover:border-accent/20 transition-all flex flex-col justify-between h-[240px] relative overflow-hidden cursor-pointer"
                 >
                   <div className="absolute top-0 right-0 p-4">
-                    <div className={`px-2 py-1 rounded text-[8px] font-black uppercase tracking-widest flex items-center gap-1.5 ${guide.type === 'PRO' ? 'bg-accent text-primary' : 'bg-white/10 text-white'}`}>
+                    <div className={`px-2 py-1 rounded text-xs font-black uppercase tracking-wider flex items-center gap-1.5 ${guide.type === 'PRO' ? 'bg-accent text-primary' : 'bg-white/10 text-white'}`}>
                       {guide.type === 'PRO' && <Crown size={10} />}
                       {guide.type}
                     </div>
@@ -1956,14 +1955,14 @@ export default function PeptideGuide({ setView }: PeptideGuideProps) {
                       {guide.icon}
                     </div>
                     <div className="space-y-1">
-                      <div className="text-[10px] font-bold text-accent/50 uppercase tracking-widest">{guide.category}</div>
+                      <div className="text-xs font-bold text-accent/50 uppercase tracking-wider">{guide.category}</div>
                       <h3 className="text-sm font-black text-white uppercase italic leading-tight group-hover:text-accent transition-colors">{guide.title}</h3>
                     </div>
                   </div>
 
                   <button className="flex items-center justify-between w-full pt-4 border-t border-white/15 group/btn">
-                    <span className="text-[9px] font-black uppercase tracking-widest text-white/60 group-hover/btn:text-white">Acessar Guia</span>
-                    <ChevronRight size={14} className="text-white/40 group-hover/btn:text-accent group-hover/btn:translate-x-1 transition-all" />
+                    <span className="text-xs font-black uppercase tracking-wider text-white/60 group-hover/btn:text-white">Acessar Guia</span>
+                    <ChevronRight size={14} className="text-white/60 group-hover/btn:text-accent group-hover/btn:translate-x-1 transition-all" />
                   </button>
                 </motion.div>
               ))}
@@ -1976,7 +1975,7 @@ export default function PeptideGuide({ setView }: PeptideGuideProps) {
                  <p className="text-white/60 text-sm max-w-lg mx-auto">Acesse conteúdo exclusivo com base científica para elevar seus resultados.</p>
                  <button 
                    onClick={() => setView('plans')}
-                   className="px-10 py-5 bg-accent text-primary font-black text-[10px] uppercase tracking-widest mx-auto block hover:scale-105 active:scale-95 transition-all"
+                   className="px-10 py-5 bg-accent text-primary font-black text-xs uppercase tracking-wider mx-auto block hover:scale-105 active:scale-95 transition-all"
                    style={{ clipPath: 'polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0 30%)' }}
                  >
                    Assinar Agora
@@ -2006,13 +2005,13 @@ export default function PeptideGuide({ setView }: PeptideGuideProps) {
                   </div>
                   <div className="p-6 flex flex-col flex-grow space-y-4">
                     <div className="space-y-3 min-h-[80px]">
-                      <div className="px-2 py-0.5 rounded bg-accent/10 border border-accent/20 text-accent text-[7px] font-black uppercase tracking-[0.2em] inline-block mb-1">
+                      <div className="px-2 py-0.5 rounded bg-accent/10 border border-accent/20 text-accent text-[7px] font-black uppercase tracking-wider inline-block mb-1">
                         {study.category}
                       </div>
                       <h3 className="text-[13px] font-black text-white uppercase italic leading-tight group-hover:text-accent transition-colors line-clamp-2">{study.title}</h3>
                     </div>
-                    <p className="text-[11px] text-white/60 leading-relaxed line-clamp-3 flex-grow">{study.summary}</p>
-                    <button className="text-[9px] font-black text-accent uppercase tracking-widest flex items-center gap-2 group-hover:gap-3 transition-all pt-2 mt-auto">
+                    <p className="text-[11px] text-white/60 leading-loose line-clamp-3 flex-grow">{study.summary}</p>
+                    <button className="text-xs font-black text-accent uppercase tracking-wider flex items-center gap-2 group-hover:gap-3 transition-all pt-2 mt-auto">
                       Ler Resumo Analítico <ArrowRight size={14} />
                     </button>
                   </div>
@@ -2022,50 +2021,50 @@ export default function PeptideGuide({ setView }: PeptideGuideProps) {
 
             {/* Locked Content Info */}
             <div className="flex flex-col items-center justify-center py-20 text-center space-y-6 opacity-40 grayscale">
-              <Lock size={48} className="text-white/40" />
+              <Lock size={48} className="text-white/60" />
               <div className="space-y-2">
                 <h4 className="text-xl font-black text-white uppercase italic">Base de Estudos Restrita</h4>
-                <p className="text-xs text-white/60 uppercase tracking-widest font-bold">Mais 452 estudos disponíveis apenas para membros Prime</p>
+                <p className="text-xs text-white/60 uppercase tracking-wider font-bold">Mais 452 estudos disponíveis apenas para membros Prime</p>
               </div>
             </div>
 
             {/* Data Source Footer Section */}
             <div className="pt-20 pb-10 border-t border-white/15 space-y-12">
               <div className="text-center space-y-2">
-                <div className="text-accent text-[10px] font-black uppercase tracking-[0.5em]">Excelência em Dados</div>
-                <h3 className="text-[10px] font-black text-white/60 uppercase tracking-[0.4em]">Protocolos Estruturados sob dados de:</h3>
+                <div className="text-accent text-xs font-black uppercase tracking-[0.5em]">Excelência em Dados</div>
+                <h3 className="text-xs font-black text-white/60 uppercase tracking-wider">Protocolos Estruturados sob dados de:</h3>
               </div>
               
               <div className="max-w-5xl mx-auto p-12 rounded-[40px] bg-secondary/[0.01] border border-white/15 flex flex-wrap items-center justify-center gap-12 md:gap-24 opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-700">
                 <div className="flex items-center gap-4 group">
-                  <div className="w-10 h-10 rounded-lg bg-[#004e92]/20 border border-[#004e92]/30 flex items-center justify-center text-[10px] font-black text-[#004e92]">NIH</div>
+                  <div className="w-10 h-10 rounded-lg bg-[#004e92]/20 border border-[#004e92]/30 flex items-center justify-center text-xs font-black text-[#004e92]">NIH</div>
                   <div className="space-y-0.5">
                     <div className="text-[11px] font-black text-white uppercase italic">PubMed</div>
-                    <div className="text-[8px] font-black text-white/40 uppercase tracking-widest leading-none">Database</div>
+                    <div className="text-xs font-black text-white/60 uppercase tracking-wider leading-none">Database</div>
                   </div>
                 </div>
                 
                 <div className="flex items-center gap-4 group">
-                  <div className="w-10 h-10 rounded-lg bg-[#002147]/20 border border-[#002147]/30 flex items-center justify-center text-[10px] font-black text-[#002147]">CT</div>
+                  <div className="w-10 h-10 rounded-lg bg-[#002147]/20 border border-[#002147]/30 flex items-center justify-center text-xs font-black text-[#002147]">CT</div>
                   <div className="space-y-0.5">
                     <div className="text-[11px] font-black text-white uppercase italic">ClinicalTrials.gov</div>
-                    <div className="text-[8px] font-black text-white/40 uppercase tracking-widest leading-none">Human Trials</div>
+                    <div className="text-xs font-black text-white/60 uppercase tracking-wider leading-none">Human Trials</div>
                   </div>
                 </div>
                 
                 <div className="flex items-center gap-4 group">
-                  <div className="w-10 h-10 rounded-lg bg-[#f68b1f]/20 border border-[#f68b1f]/30 flex items-center justify-center text-[10px] font-black text-[#f68b1f]">PC</div>
+                  <div className="w-10 h-10 rounded-lg bg-[#f68b1f]/20 border border-[#f68b1f]/30 flex items-center justify-center text-xs font-black text-[#f68b1f]">PC</div>
                   <div className="space-y-0.5">
                     <div className="text-[11px] font-black text-white uppercase italic">PubChem</div>
-                    <div className="text-[8px] font-black text-white/40 uppercase tracking-widest leading-none">Bio-chemistry</div>
+                    <div className="text-xs font-black text-white/60 uppercase tracking-wider leading-none">Bio-chemistry</div>
                   </div>
                 </div>
                 
                 <div className="flex items-center gap-4 group">
-                  <div className="w-10 h-10 rounded-lg bg-[#00a859]/20 border border-[#00a859]/30 flex items-center justify-center text-[10px] font-black text-[#00a859]">WADA</div>
+                  <div className="w-10 h-10 rounded-lg bg-[#00a859]/20 border border-[#00a859]/30 flex items-center justify-center text-xs font-black text-[#00a859]">WADA</div>
                   <div className="space-y-0.5">
                     <div className="text-[11px] font-black text-white uppercase italic font-mono">Anti-Doping</div>
-                    <div className="text-[8px] font-black text-white/40 uppercase tracking-widest leading-none">Compliance</div>
+                    <div className="text-xs font-black text-white/60 uppercase tracking-wider leading-none">Compliance</div>
                   </div>
                 </div>
               </div>
@@ -2075,7 +2074,7 @@ export default function PeptideGuide({ setView }: PeptideGuideProps) {
 
         {activeTab === 'safety' && (
           <div className="space-y-6">
-            <p className="text-white/60 text-[10px] font-bold uppercase tracking-widest px-4">
+            <p className="text-white/60 text-xs font-bold uppercase tracking-wider px-4">
               Efeitos colaterais, exames de sangue e contraindicações para uso seguro de peptídeos.
             </p>
 
@@ -2090,10 +2089,10 @@ export default function PeptideGuide({ setView }: PeptideGuideProps) {
                   <button
                     key={sTab.id}
                     onClick={() => setSafetySubTab(sTab.id as any)}
-                    className={`flex-1 flex items-center justify-center gap-2 py-4 rounded-[20px] text-[10px] font-black uppercase tracking-widest transition-all ${
+                    className={`flex-1 flex items-center justify-center gap-2 py-4 rounded-[20px] text-xs font-black uppercase tracking-wider transition-all ${
                       safetySubTab === sTab.id 
                         ? 'bg-white/10 text-white shadow-[0_0_20px_rgba(255,255,255,0.05)] border border-white/20' 
-                        : 'text-white/30 hover:text-white/60'
+                        : 'text-white/50 hover:text-white/60'
                     }`}
                   >
                     {sTab.icon}
@@ -2106,7 +2105,7 @@ export default function PeptideGuide({ setView }: PeptideGuideProps) {
             <div className="pt-6">
               {safetySubTab === 'effects' && (
                 <div className="space-y-4">
-                  <div className="text-[10px] font-bold text-white/30 uppercase tracking-[0.3em] mb-4 px-4">Tabela de efeitos colaterais por peptídeo com estratégias de mitigação.</div>
+                  <div className="text-xs font-bold text-white/50 uppercase tracking-wider mb-4 px-4">Tabela de efeitos colaterais por peptídeo com estratégias de mitigação.</div>
                   <div className="grid gap-3">
                     {safetyData.effects.map((item, i) => (
                       <details key={i} className="group p-4 rounded-2xl bg-secondary/[0.01] border border-white/15 hover:border-white/20 transition-all">
@@ -2117,14 +2116,14 @@ export default function PeptideGuide({ setView }: PeptideGuideProps) {
                             </div>
                             <div className="space-y-0.5">
                               <div className="text-sm font-black text-white uppercase italic">{item.name}</div>
-                              <div className="text-[8px] font-bold text-white/40 uppercase tracking-widest">
+                              <div className="text-xs font-bold text-white/60 uppercase tracking-wider">
                                 {item.common} comuns • {item.rare} raros
                               </div>
                             </div>
                           </div>
-                          <ChevronRight size={16} className="text-white/40 group-open:rotate-90 transition-transform" />
+                          <ChevronRight size={16} className="text-white/60 group-open:rotate-90 transition-transform" />
                         </summary>
-                        <div className="mt-4 pt-4 border-t border-white/15 text-[10px] text-white/60 leading-relaxed font-bold uppercase tracking-widest">
+                        <div className="mt-4 pt-4 border-t border-white/15 text-xs text-white/60 leading-loose font-bold uppercase tracking-wider">
                           {item.details}
                         </div>
                       </details>
@@ -2136,8 +2135,8 @@ export default function PeptideGuide({ setView }: PeptideGuideProps) {
               {safetySubTab === 'exams' && (
                 <div className="space-y-6">
                   <div className="flex items-center justify-between px-4">
-                    <p className="text-white/60 text-[10px] font-bold uppercase tracking-widest">Checklist de exames de sangue para monitoramento durante ciclos.</p>
-                    <div className="px-3 py-1 rounded-lg bg-accent/10 border border-accent/20 text-accent text-[8px] font-black uppercase tracking-widest">
+                    <p className="text-white/60 text-xs font-bold uppercase tracking-wider">Checklist de exames de sangue para monitoramento durante ciclos.</p>
+                    <div className="px-3 py-1 rounded-lg bg-accent/10 border border-accent/20 text-accent text-xs font-black uppercase tracking-wider">
                       {completedExams.length}/{safetyData.exams.length} realizados
                     </div>
                   </div>
@@ -2149,9 +2148,9 @@ export default function PeptideGuide({ setView }: PeptideGuideProps) {
                         <thead>
                           <tr className="border-b border-white/15">
                             <th className="pb-4 w-12"></th>
-                            <th className="pb-4 text-[10px] font-black text-white/60 uppercase tracking-widest">Marcador</th>
-                            <th className="pb-4 text-[10px] font-black text-white/60 uppercase tracking-widest">Objetivo Técnico</th>
-                            <th className="pb-4 text-[10px] font-black text-white/60 uppercase tracking-widest">Status</th>
+                            <th className="pb-4 text-xs font-black text-white/60 uppercase tracking-wider">Marcador</th>
+                            <th className="pb-4 text-xs font-black text-white/60 uppercase tracking-wider">Objetivo Técnico</th>
+                            <th className="pb-4 text-xs font-black text-white/60 uppercase tracking-wider">Status</th>
                           </tr>
                         </thead>
                         <tbody className="text-xs">
@@ -2180,10 +2179,10 @@ export default function PeptideGuide({ setView }: PeptideGuideProps) {
                                   <div className="font-black text-white italic">{exam.name}</div>
                                 </td>
                                 <td className="py-5">
-                                  <div className="text-white/50 text-[10px] font-bold uppercase tracking-tight max-w-sm">{exam.purpose}</div>
+                                  <div className="text-white/50 text-xs font-bold uppercase tracking-tight max-w-sm">{exam.purpose}</div>
                                 </td>
                                 <td className="py-5">
-                                  <span className={`text-[8px] font-black uppercase tracking-widest ${isCompleted ? 'text-accent' : 'text-white/40'}`}>
+                                  <span className={`text-xs font-black uppercase tracking-wider ${isCompleted ? 'text-accent' : 'text-white/60'}`}>
                                     {isCompleted ? 'Realizado' : 'Pendente'}
                                   </span>
                                 </td>
@@ -2196,8 +2195,8 @@ export default function PeptideGuide({ setView }: PeptideGuideProps) {
 
                     <div className="p-8 border-t border-white/15 bg-black/40">
                       <div className="flex items-center justify-between mb-4">
-                        <span className="text-[10px] font-black text-white/60 uppercase tracking-widest">Progresso dos Exames</span>
-                        <span className="text-[10px] font-black text-accent uppercase tracking-widest">
+                        <span className="text-xs font-black text-white/60 uppercase tracking-wider">Progresso dos Exames</span>
+                        <span className="text-xs font-black text-accent uppercase tracking-wider">
                           {Math.round((completedExams.length / safetyData.exams.length) * 100)}%
                         </span>
                       </div>
@@ -2214,7 +2213,7 @@ export default function PeptideGuide({ setView }: PeptideGuideProps) {
 
               {safetySubTab === 'risks' && (
                 <div className="space-y-8">
-                  <p className="text-white/60 text-[10px] font-bold uppercase tracking-widest px-4">Condições que impedem o uso de determinados peptídeos.</p>
+                  <p className="text-white/60 text-xs font-bold uppercase tracking-wider px-4">Condições que impedem o uso de determinados peptídeos.</p>
 
                   {/* Absolute Contraindications */}
                   <div className="p-8 md:p-12 rounded-[48px] bg-red-500/[0.02] border border-red-500/10 space-y-8">
@@ -2238,7 +2237,7 @@ export default function PeptideGuide({ setView }: PeptideGuideProps) {
                           </div>
                           <div>
                             <div className="text-xs font-black text-white uppercase italic mb-1">{item.title}</div>
-                            <p className="text-[10px] text-white/30 font-bold uppercase tracking-widest leading-normal">{item.desc}</p>
+                            <p className="text-xs text-white/50 font-bold uppercase tracking-wider leading-normal">{item.desc}</p>
                           </div>
                         </div>
                       ))}
@@ -2264,7 +2263,7 @@ export default function PeptideGuide({ setView }: PeptideGuideProps) {
                           </div>
                           <div>
                             <div className="text-xs font-black text-white uppercase italic mb-1">{item.title}</div>
-                            <p className="text-[10px] text-white/30 font-bold uppercase tracking-widest leading-normal">{item.desc}</p>
+                            <p className="text-xs text-white/50 font-bold uppercase tracking-wider leading-normal">{item.desc}</p>
                           </div>
                         </div>
                       ))}
@@ -2281,12 +2280,12 @@ export default function PeptideGuide({ setView }: PeptideGuideProps) {
                       <table className="w-full text-left">
                         <thead>
                           <tr className="border-b border-white/15">
-                            <th className="pb-4 text-[10px] font-black text-white/60 uppercase tracking-widest">Combinação</th>
-                            <th className="pb-4 text-[10px] font-black text-white/60 uppercase tracking-widest">Risco</th>
-                            <th className="pb-4 text-[10px] font-black text-white/60 uppercase tracking-widest">Motivo</th>
+                            <th className="pb-4 text-xs font-black text-white/60 uppercase tracking-wider">Combinação</th>
+                            <th className="pb-4 text-xs font-black text-white/60 uppercase tracking-wider">Risco</th>
+                            <th className="pb-4 text-xs font-black text-white/60 uppercase tracking-wider">Motivo</th>
                           </tr>
                         </thead>
-                        <tbody className="text-[10px] font-bold uppercase tracking-widest">
+                        <tbody className="text-xs font-bold uppercase tracking-wider">
                           {[
                             { combo: 'CJC-1295 + GHRP-6', risk: 'Hipoglicemia / Fome', note: 'Aumento massivo de ghrelina e cortisol.' },
                             { combo: 'Tirzepatida + Semaglutida', risk: 'Desidratação / Vômito', note: 'Sobrecarga de receptores GLP-1/GIP.' },
@@ -2298,9 +2297,9 @@ export default function PeptideGuide({ setView }: PeptideGuideProps) {
                             <tr key={i} className="border-b border-white/15">
                               <td className="py-6 text-white font-black">{item.combo}</td>
                               <td className="py-6">
-                                <span className="px-3 py-1 rounded-full bg-red-500/10 border border-red-500/20 text-red-500 text-[8px]">{item.risk}</span>
+                                <span className="px-3 py-1 rounded-full bg-red-500/10 border border-red-500/20 text-red-500 text-xs">{item.risk}</span>
                               </td>
-                              <td className="py-6 text-white/30 italic">{item.note}</td>
+                              <td className="py-6 text-white/50 italic">{item.note}</td>
                             </tr>
                           ))}
                         </tbody>
@@ -2310,7 +2309,7 @@ export default function PeptideGuide({ setView }: PeptideGuideProps) {
 
                   {/* Disclaimer */}
                   <div className="p-6 rounded-[32px] bg-white/[0.01] border border-white/15 text-center">
-                    <p className="text-[9px] text-white/40 font-bold uppercase tracking-widest leading-relaxed">
+                    <p className="text-xs text-white/60 font-bold uppercase tracking-wider leading-loose">
                       <span className="text-orange-500/50">⚠ Disclaimer:</span> Este conteúdo é educacional e baseado em pesquisa. Consulte sempre um profissional de saúde antes de iniciar qualquer protocolo com peptídeos.
                     </p>
                   </div>
@@ -2328,7 +2327,7 @@ export default function PeptideGuide({ setView }: PeptideGuideProps) {
             <p className="text-white/60 text-sm font-medium max-w-lg mx-auto">Queremos levar você ao seu potencial máximo. Assine agora e desbloqueie o maior acervo de peptídeos do Brasil.</p>
             <button 
               onClick={() => setView('plans')}
-              className="px-12 py-6 bg-accent text-black font-black text-[11px] uppercase tracking-[0.3em] transition-all hover:scale-105 active:scale-95 mx-auto block"
+              className="px-12 py-6 bg-accent text-black font-black text-[11px] uppercase tracking-wider transition-all hover:scale-105 active:scale-95 mx-auto block"
               style={{ clipPath: 'polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0 30%)' }}
             >
               Ver Planos e Preços
