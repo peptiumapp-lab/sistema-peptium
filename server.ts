@@ -3,6 +3,7 @@ import path from "path";
 import rateLimit from "express-rate-limit";
 import stackAnalysisRouter from "./server/api/stackAnalysis";
 import protocolAssistantRouter from "./server/api/protocolAssistant";
+import chatRouter from "./server/api/chat";
 
 async function startServer() {
   const app = express();
@@ -60,6 +61,10 @@ async function startServer() {
   // 5. AI Protocol Builder
   app.use("/api/protocol-assistant", protocolAssistantRouter);
   console.log('[SERVER] AI Protocol Builder router mounted at /api/protocol-assistant');
+
+  // Chat API
+  app.use("/api/chat", chatRouter);
+  console.log('[SERVER] Chat router mounted at /api/chat');
 
   // 6. Debug route
   app.get("/api/test-direct", (req, res) => {

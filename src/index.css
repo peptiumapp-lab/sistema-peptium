@@ -119,3 +119,13 @@
 .glow-hover {
   @apply transition-all duration-500 hover:border-accent/30 hover:shadow-[0_0_30px_rgba(59,130,246,0.15)];
 }
+
+/* Oculta a barra do Google Translate e a box original */
+.skiptranslate iframe,
+.skiptranslate {
+  display: none !important;
+}
+
+body {
+  top: 0px !important; 
+}

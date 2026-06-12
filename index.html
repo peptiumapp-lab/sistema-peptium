@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="pt-BR" translate="no">
+<html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -16,8 +16,23 @@
 
       gtag('config', 'G-TWN4QVWTQB');
     </script>
+
+    <!-- Google Translate Script -->
+    <script type="text/javascript">
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement({
+          pageLanguage: 'pt',
+          autoDisplay: true,
+          layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+        }, 'google_translate_element');
+      }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
   </head>
   <body>
+    <!-- Google Translate Container (Invisível/Minimalista por padrão) -->
+    <div id="google_translate_element" style="position: absolute; top: 0; right: 0; z-index: 9999;"></div>
+
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

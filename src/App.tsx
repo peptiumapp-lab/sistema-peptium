@@ -37,6 +37,7 @@ import AdminDashboard from './components/AdminDashboard';
 import AiGenerator from './components/AiGenerator';
 import CofreAtlas from './components/CofreAtlas';
 import HowToUse from './components/HowToUse';
+import FloatingChat from './components/FloatingChat';
 import { PeptiumLogo } from './components/Logo';
 import { PROTOCOLS, SUPPORT_LINK, TOTAL_PEPTIDES, INSTAGRAM_LINK, SITE_LINK } from './constants';
 import { PeptideDossier, PeptideCategory } from './types';
@@ -452,6 +453,7 @@ function AppContent() {
       </AnimatePresence>
 
       <LegalModal type={legalModalType} onClose={() => setLegalModalType(null)} />
+      <FloatingChat />
       </Layout>
     </ErrorBoundary>
   </div>
