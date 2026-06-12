@@ -1,11 +1,27 @@
 import express from "express";
 import path from "path";
+import rateLimit from "express-rate-limit";
 import stackAnalysisRouter from "./server/api/stackAnalysis";
 import protocolAssistantRouter from "./server/api/protocolAssistant";
 
 async function startServer() {
   const app = express();
   const PORT = 3000;
+
+  // IMPORTANT: Configurar trust proxy para express-rate-limit rodar corretamente por trás do proxy do Cloud Run / Nginx
+  app.set("trust proxy", 1);
+
+  // Rate Limiting Config: 100 requests per 15 minutes per IP
+  const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 100,
+    standardHeaders: true,
+    legacyHeaders: false,
+    message: { success: false, error: "Muitas requisições. Tente novamente mais tarde." }
+  });
+
+  // Apply to all API routes
+  app.use('/api/', limiter);
 
   // GLOBAL LOGGER
   app.use((req, res, next) => {

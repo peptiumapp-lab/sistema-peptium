@@ -23,13 +23,16 @@ export default function LegalModal({ type, onClose }: LegalModalProps) {
       '4. Isenção de Responsabilidade: Os mantenedores da plataforma não se responsabilizam pelo uso indevido das informações aqui contidas. O usuário assume total responsabilidade por suas ações e interpretações baseadas nas ferramentas e calculadoras fornecidas.'
     ];
   } else if (type === 'privacidade') {
-    title = 'Privacidade';
+    title = 'Política de Privacidade e LGPD';
     content = [
       'Última atualização: Maio de 2026',
-      '1. Coleta de Dados: Coletamos apenas os dados essenciais para o funcionamento da sua conta, incluindo e-mail de registro e configurações de perfil.',
-      '2. Uso das Informações: As informações processadas em calculadoras e ferramentas são submetidas apenas para resultados durante a sessão e não são comercializadas a terceiros.',
-      '3. Armazenamento e Segurança: Adotamos medidas e tecnologias rigorosas para proteger seus dados pessoais, mantendo a plataforma sincronizada com infraestrutura em nuvem segura.',
-      '4. Direitos do Usuário: Você tem o direito de solicitar a exclusão da sua conta e de seus dados a qualquer momento pelos nossos canais de suporte.'
+      'Em conformidade com a Lei Geral de Proteção de Dados (LGPD - Lei nº 13.709/2018), detalhamos abaixo como tratamos suas informações:',
+      '1. Coleta e Finalidade: Coletamos dados como e-mail (para autenticação via Firebase) e histórico de uso das calculadoras e do Atlas. Esses dados são utilizados exclusivamente para fornecer a funcionalidade da plataforma e manter suas configurações.',
+      '2. Base Legal: O tratamento de seus dados ocorre mediante o seu consentimento (Art. 7º, I, LGPD) ao criar a conta e usar os serviços.',
+      '3. Compartilhamento: Não comercializamos ou compartilhamos dados pessoais com terceiros não autorizados. Utilizamos serviços de infraestrutura seguros (Google Cloud, Firebase) para armazenamento.',
+      '4. Segurança Técnica: A aplicação possui sistema de Rate Limit contra abusos, protege a comunicação backend/database por ambientes isolados e não expõe credenciais de sistema no Client-side, seguindo as melhores práticas de Cybersegurança e Biohacking Privacy.',
+      '5. Direitos do Titular da LGPD: Você possui o direito de confirmar a existência de tratamento, acessar dados, corrigir dados incompletos ou solicitar a exclusão de sua conta e dos dados vinculados. Para exercer esses direitos, contate peptium.app@gmail.com.',
+      '6. Retenção: Armazenamos seus dados enquanto sua conta estiver ativa. Ao cancelar a conta, os dados são anonimizados ou definitivamente apagados de nossos servidores.'
     ];
   } else if (type === 'disclaimer') {
     title = 'Disclaimer Médico';

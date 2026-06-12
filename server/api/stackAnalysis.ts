@@ -1,6 +1,8 @@
 import express, { Request, Response } from 'express';
 import { GoogleGenAI } from "@google/genai";
 
+import { createCircuitBreaker } from './circuitBreaker';
+
 const router = express.Router();
 
 // Inicialização de acordo com o skill gemini-api
@@ -66,35 +68,42 @@ router.post('/', async (req: Request, res: Response) => {
       Responda APENAS com o JSON documentado em Português do Brasil.
     `;
 
-    const modelsToTry = ["gemini-3.5-flash", "gemini-3.1-pro-preview", "gemini-3.1-flash-lite", "gemini-flash-latest"];
-    let response;
-    let lastError: any;
+    const performAIAnalysis = async () => {
+      const modelsToTry = ["gemini-3.5-flash", "gemini-3.1-pro-preview", "gemini-3.1-flash-lite", "gemini-flash-latest"];
+      let lastError: any;
 
-    for (const model of modelsToTry) {
-      try {
-        console.log(`Tentando análise com o modelo: ${model}`);
-        response = await ai.models.generateContent({
-          model: model,
-          contents: prompt,
-          config: {
-            responseMimeType: "application/json",
-          }
-        });
-        break; // Success!
-      } catch (aiError: any) {
-        console.warn(`Aviso: Tentativa com ${model} falhou:`, aiError.message);
-        lastError = aiError;
+      for (const model of modelsToTry) {
+        try {
+          console.log(`Tentando análise com o modelo: ${model}`);
+          const response = await ai.models.generateContent({
+            model: model,
+            contents: prompt,
+            config: {
+              responseMimeType: "application/json",
+            }
+          });
+          return response;
+        } catch (aiError: any) {
+          console.warn(`Aviso: Tentativa com ${model} falhou:`, aiError.message);
+          lastError = aiError;
+        }
       }
-    }
+      throw new Error(`Atlas Neural Engine temporariamente sobrecarregado (Alta Demanda). Ultimo erro: ${lastError?.message}`);
+    };
 
-    if (!response) {
-      console.error('AI Analysis Error após tentar todos os modelos:', lastError?.message);
+    const breaker = createCircuitBreaker(performAIAnalysis);
+    let response;
+
+    try {
+      response = await breaker.fire();
+    } catch (cbError: any) {
+      console.error('AI Analysis Error após tentar todos os modelos ou Circuit Breaker ativado:', cbError?.message);
       return res.status(503).json({
         success: false,
         error: {
           code: 'AI_SERVICE_ERROR',
-          message: 'Atlas Neural Engine temporariamente sobrecarregado (Alta Demanda). Os modelos de contingência também falharam. Tente novamente em instantes.',
-          details: lastError?.message
+          message: cbError?.message || 'Atlas Neural Engine temporariamente sobrecarregado.',
+          details: cbError?.message
         }
       });
     }

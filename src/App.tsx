@@ -56,8 +56,9 @@ function AppContent() {
   const [selectedSynergyIds, setSelectedSynergyIds] = useState<string[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string>('Todos');
   const [legalModalType, setLegalModalType] = useState<'termos' | 'privacidade' | 'disclaimer' | null>(null);
-  const { user, loading: authLoading } = useAuth();
-  const isPremium = true; // ALL FEATURES UNLOCKED FOR NATIVE TESTING
+  const { user, isPro, loading: authLoading, openAuthModal } = useAuth();
+  const isPremium = isPro; // Read from Firebase Auth Context
+
   const [apiStatus, setApiStatus] = useState<string>('checking...');
 
   useEffect(() => {
@@ -143,7 +144,7 @@ function AppContent() {
 
   const renderView = () => {
     // Content Locking Logic
-    const premiumViews: View[] = ['calculator', 'dossier', 'interactions', 'stacks', 'synergies', 'scanner', 'map', 'schedule', 'my-protocols', 'quiz'];
+    const premiumViews: View[] = ['calculator', 'dossier', 'interactions', 'stacks', 'synergies', 'scanner', 'map', 'schedule', 'my-protocols', 'quiz', 'lab-scanner', 'longevity-clock', 'fasting-tracker', 'cycle-planner', 'genome-analyzer', 'microbiome-tracker', 'neuro-matrix', 'cofre-atlas', 'ai-generator'];
     const isRestricted = !isPremium && premiumViews.includes(currentView);
 
     if (isRestricted) {

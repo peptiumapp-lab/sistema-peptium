@@ -1,6 +1,8 @@
 import express, { Request, Response } from 'express';
 import { GoogleGenAI, Type } from "@google/genai";
 
+import { createCircuitBreaker } from './circuitBreaker';
+
 const router = express.Router();
 
 const getAIClient = () => {
@@ -63,80 +65,85 @@ router.post('/', async (req: Request, res: Response) => {
       Responda APENAS com o JSON documentado em Português do Brasil.
     `;
 
-    const modelsToTry = ["gemini-3.5-flash", "gemini-3.1-pro-preview", "gemini-3.1-flash-lite", "gemini-flash-latest"];
-    let response;
-    let lastError: any;
+    const performAIGeneration = async () => {
+      const modelsToTry = ["gemini-3.5-flash", "gemini-3.1-pro-preview", "gemini-3.1-flash-lite", "gemini-flash-latest"];
+      let lastError: any;
 
-    for (const model of modelsToTry) {
-      try {
-        console.log(`Tentando geração com o modelo: ${model}`);
-        response = await ai.models.generateContent({
-          model: model,
-          contents: prompt,
-          config: {
-            responseMimeType: "application/json",
-            responseSchema: {
-              type: Type.OBJECT,
-              properties: {
-                protocolName: { type: Type.STRING, description: "Nome comercial/futurista do stack." },
-                physiologicalRationale: { type: Type.STRING, description: "Justificativa fisiológica e metabólica completa cobrindo todas as queixas do usuário." },
-                cycleDuration: { type: Type.STRING, description: "Ex: '8-12 semanas'." },
-                directAdvantages: {
-                  type: Type.ARRAY,
-                  items: { type: Type.STRING, description: "Ex: 'Reconstrução de ligamentos acelerada', 'Queima de gordura visceral'." }
+      for (const model of modelsToTry) {
+        try {
+          console.log(`Tentando geração com o modelo: ${model}`);
+          const response = await ai.models.generateContent({
+            model: model,
+            contents: prompt,
+            config: {
+              responseMimeType: "application/json",
+              responseSchema: {
+                type: Type.OBJECT,
+                properties: {
+                  protocolName: { type: Type.STRING, description: "Nome comercial/futurista do stack." },
+                  physiologicalRationale: { type: Type.STRING, description: "Justificativa fisiológica e metabólica completa cobrindo todas as queixas do usuário." },
+                  cycleDuration: { type: Type.STRING, description: "Ex: '8-12 semanas'." },
+                  directAdvantages: {
+                    type: Type.ARRAY,
+                    items: { type: Type.STRING, description: "Ex: 'Reconstrução de ligamentos acelerada', 'Queima de gordura visceral'." }
+                  },
+                  coreCompounds: {
+                    type: Type.ARRAY,
+                    description: "Lista de 3 a 5 moléculas ou peptídeos. Não deixe de fora as dosagens.",
+                    items: {
+                      type: Type.OBJECT,
+                      properties: {
+                        name: { type: Type.STRING, description: "Nome científico ou marca (ex: BPC-157, CJC-1295)" },
+                        action: { type: Type.STRING, description: "Ex: Acelera angiogênese e reparo tecidual profundo." },
+                        initialDose: { type: Type.STRING, description: "Ex: 250mcg" },
+                        maintenanceDose: { type: Type.STRING, description: "Ex: 500mcg" },
+                        bestTime: { type: Type.STRING, description: "Ex: Pós treino / Antes de dormir" },
+                      },
+                      required: ["name", "action", "initialDose", "maintenanceDose", "bestTime"]
+                    }
+                  },
+                  mitigationMatrix: {
+                    type: Type.ARRAY,
+                    description: "Efeitos colaterais esperados e mitigações estratégicas (ex: sensibilidade à insulina)",
+                    items: {
+                      type: Type.OBJECT,
+                      properties: {
+                        risk: { type: Type.STRING, description: "O risco potencial." },
+                        mitigation: { type: Type.STRING, description: "Como evitar o risco e manter a saúde." }
+                      },
+                      required: ["risk", "mitigation"]
+                    }
+                  },
+                  structuralTactics: { type: Type.STRING, description: "Táticas de ciclo e combinação temporal na rotina." },
+                  receptorSynergy: { type: Type.STRING, description: "Resumo da sinergia molecular operando nos receptores endócrinos e celulares." },
+                  applicationManual: { type: Type.STRING, description: "Manual detalhado cobrindo assepsia, reconstituição biológica, meios de preservação e detalhamento rigoroso para locais de aplicação." }
                 },
-                coreCompounds: {
-                  type: Type.ARRAY,
-                  description: "Lista de 3 a 5 moléculas ou peptídeos. Não deixe de fora as dosagens.",
-                  items: {
-                    type: Type.OBJECT,
-                    properties: {
-                      name: { type: Type.STRING, description: "Nome científico ou marca (ex: BPC-157, CJC-1295)" },
-                      action: { type: Type.STRING, description: "Ex: Acelera angiogênese e reparo tecidual profundo." },
-                      initialDose: { type: Type.STRING, description: "Ex: 250mcg" },
-                      maintenanceDose: { type: Type.STRING, description: "Ex: 500mcg" },
-                      bestTime: { type: Type.STRING, description: "Ex: Pós treino / Antes de dormir" },
-                    },
-                    required: ["name", "action", "initialDose", "maintenanceDose", "bestTime"]
-                  }
-                },
-                mitigationMatrix: {
-                  type: Type.ARRAY,
-                  description: "Efeitos colaterais esperados e mitigações estratégicas (ex: sensibilidade à insulina)",
-                  items: {
-                    type: Type.OBJECT,
-                    properties: {
-                      risk: { type: Type.STRING, description: "O risco potencial." },
-                      mitigation: { type: Type.STRING, description: "Como evitar o risco e manter a saúde." }
-                    },
-                    required: ["risk", "mitigation"]
-                  }
-                },
-                structuralTactics: { type: Type.STRING, description: "Táticas de ciclo e combinação temporal na rotina." },
-                receptorSynergy: { type: Type.STRING, description: "Resumo da sinergia molecular operando nos receptores endócrinos e celulares." },
-                applicationManual: { type: Type.STRING, description: "Manual detalhado cobrindo assepsia, reconstituição biológica, meios de preservação e detalhamento rigoroso para locais de aplicação." }
-              },
-              required: ["protocolName", "physiologicalRationale", "cycleDuration", "directAdvantages", "coreCompounds", "mitigationMatrix", "structuralTactics", "receptorSynergy", "applicationManual"]
+                required: ["protocolName", "physiologicalRationale", "cycleDuration", "directAdvantages", "coreCompounds", "mitigationMatrix", "structuralTactics", "receptorSynergy", "applicationManual"]
+              }
             }
-          }
-        });
-        
-        // If we get here, the call succeeded!
-        break;
-      } catch (aiError: any) {
-        console.warn(`Aviso: Tentativa com ${model} falhou:`, aiError.message);
-        lastError = aiError;
+          });
+          return response;
+        } catch (aiError: any) {
+          console.warn(`Aviso: Tentativa com ${model} falhou:`, aiError.message);
+          lastError = aiError;
+        }
       }
-    }
+      throw new Error(`Atlas Neural Engine temporariamente sobrecarregado (Alta Demanda). Ultimo erro: ${lastError?.message}`);
+    };
 
-    if (!response) {
-      console.error('AI Generation Error após tentar todos os modelos:', lastError?.message);
+    const breaker = createCircuitBreaker(performAIGeneration);
+    let response;
+
+    try {
+      response = await breaker.fire();
+    } catch (cbError: any) {
+      console.error('AI Generation Error após tentar todos os modelos ou Circuit Breaker ativado:', cbError?.message);
       return res.status(503).json({
         success: false,
         error: {
           code: 'AI_SERVICE_ERROR',
-          message: 'Atlas Neural Engine temporariamente sobrecarregado (Alta Demanda). Os modelos primários e de contingência estão ocupados. Tente novamente em alguns instantes.',
-          details: lastError?.message
+          message: cbError?.message || 'Atlas Neural Engine temporariamente sobrecarregado.',
+          details: cbError?.message
         }
       });
     }
