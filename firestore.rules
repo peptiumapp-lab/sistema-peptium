@@ -70,7 +70,7 @@ service cloud.firestore {
                     && isValidUserUpdate(incoming())
                     && (
                       isAdmin() ||
-                      incoming().diff(existing()).affectedKeys().hasOnly(['isPro', 'updatedAt', 'displayName', 'email'])
+                      incoming().diff(existing()).affectedKeys().hasOnly(['updatedAt', 'displayName', 'email'])
                     );
     }
 

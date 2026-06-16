@@ -4,6 +4,7 @@ import rateLimit from "express-rate-limit";
 import stackAnalysisRouter from "./server/api/stackAnalysis";
 import protocolAssistantRouter from "./server/api/protocolAssistant";
 import chatRouter from "./server/api/chat";
+import activateSubscriptionRouter from "./server/api/activate-subscription";
 
 async function startServer() {
   const app = express();
@@ -65,6 +66,10 @@ async function startServer() {
   // Chat API
   app.use("/api/chat", chatRouter);
   console.log('[SERVER] Chat router mounted at /api/chat');
+
+  // Activate Subscription
+  app.use("/api/activate-subscription", activateSubscriptionRouter);
+  console.log('[SERVER] Activate Subscription router mounted at /api/activate-subscription');
 
   // 6. Debug route
   app.get("/api/test-direct", (req, res) => {

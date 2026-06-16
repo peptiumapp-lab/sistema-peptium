@@ -103,18 +103,40 @@ function AppContent() {
   }, []);
 
   useEffect(() => {
+    if (authLoading) return; // Wait until firebase auth state is resolved before processing URL params
+
     const params = new URLSearchParams(window.location.search);
     const paymentStatus = params.get('payment_status');
+    const subscriptionId = params.get('subscription_id');
     
-    if (paymentStatus === 'success') {
-      alert('Pagamento processado! Seu acesso Prime será ativado em alguns instantes.');
-      // Remove query param without reload
+    if (subscriptionId && user && !isPro) {
+      fetch('/api/activate-subscription', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ subscriptionId, userId: user.uid, planKey: 'return_flow' })
+      }).then(res => res.json()).then(result => {
+        if (!result.success) throw new Error(result.error);
+        alert('Pagamento aprovado via PayPal! Você agora é um membro Prime.');
+        window.history.replaceState({}, document.title, window.location.pathname);
+        window.location.reload();
+      }).catch(err => {
+        console.error('Error upgrading after PayPal return:', err);
+        alert('Erro ao ativar sua assinatura. Por favor, contate o suporte.');
+      });
+    } else if (paymentStatus === 'success' && user && !isPro) {
+      alert('Pagamento detectado, mas falta ID da assinatura. Aguardando processamento.');
+      window.history.replaceState({}, document.title, window.location.pathname);
+    } else if (paymentStatus === 'success' && (!user || isPro)) {
+      if (!user) alert('Pagamento processado! Por favor, faça login para ativar seu acesso Prime.');
+      window.history.replaceState({}, document.title, window.location.pathname);
+    } else if (subscriptionId && (!user || isPro)) {
+      if (!user) alert('Pagamento aprovado! Por favor, faça login para ativar seu acesso Prime.');
       window.history.replaceState({}, document.title, window.location.pathname);
     } else if (paymentStatus === 'cancel') {
       alert('O checkout foi cancelado.');
       window.history.replaceState({}, document.title, window.location.pathname);
     }
-  }, []);
+  }, [user, isPro, authLoading]);
 
   const auditResult = auditInventory(userPeptides);
 

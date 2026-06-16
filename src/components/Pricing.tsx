@@ -212,12 +212,26 @@ export default function Pricing() {
                        }}
                        onApprove={async (data, actions) => {
                          try {
-                           await upgradeToPro(user.uid);
+                           const response = await fetch('/api/activate-subscription', {
+                             method: 'POST',
+                             headers: { 'Content-Type': 'application/json' },
+                             body: JSON.stringify({
+                               subscriptionId: data.subscriptionID,
+                               userId: user.uid,
+                               planKey: plan.name
+                             })
+                           });
+
+                           const result = await response.json();
+                           if (!response.ok) {
+                             throw new Error(result.error || 'Erro ao ativar assinatura no servidor');
+                           }
+
                            alert('Pagamento aprovado via PayPal! Você agora é um membro Prime.');
                            window.location.reload();
-                         } catch (error) {
+                         } catch (error: any) {
                            console.error(error);
-                           alert('Erro ao finalizar o pagamento.');
+                           alert('Sua assinatura foi processada no PayPal, mas houve um erro na ativação: ' + error.message);
                          }
                        }}
                        onError={(err) => {
