@@ -33713,6 +33713,82 @@ export const PROTOCOLS: any[] = [
     completenessScore: 100,
     colorHex: '#2dd4bf'
   },
+  {
+    id: 'livagen',
+    name: 'Livagen',
+    tag: 'Descondensação da Cromatina & Modulação 🧬',
+    description: 'Biorregulador peptídico avançado que atua diretamente no DNA, promovendo a descondensação da cromatina, regulação gênica e resiliência imunológica.',
+    image: 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?q=80&w=600&auto=format&fit=crop',
+    features: [
+      'Expressão gênica',
+      'Sinalização celular',
+      'Imunomodulação'
+    ],
+    researchLinks: [
+      { title: 'Estudos Experimentais: Expressão Gênica e Sinalização Celular', url: 'https://pubmed.ncbi.nlm.nih.gov/15422737/', pmid: '15422737' }
+    ],
+    category: PeptideCategory.LONGEVIDADE,
+    secondaryCategories: ['IMUNOLOGIA', 'BIO-REPARO'],
+    synonyms: [
+      'Livagen', 'LIV'
+    ],
+    class: 'Biorregulador',
+    mechanismOfAction: [
+      'Expressão gênica e sinalização celular.',
+      'Reparação tecidual profunda.',
+      'Modulação imunológica.',
+      'Bloqueio da degradação de endorfinas (aumentando a tolerância à dor e resiliência ao estresse).'
+    ],
+    clinicalBenefits: [
+      'Modula ativamente a expressão gênica celular induzindo a descondensação da cromatina.',
+      'Promove a ativação de vias de sinalização para uma vigorosa reparação tecidual profunda.',
+      'Reequilibra funções do sistema imune (Modulação imunológica).',
+      'Aumenta a tolerância à dor e a resiliência ao estresse através do bloqueio da degradação de endorfinas.'
+    ],
+    dosageProtocol: {
+      standard: '10mg / dia via subcutânea (ex: protocolos fragmentados ou ciclos de 10 dias)',
+      titration: [
+        'Uso em blocos ou ciclos',
+        'Consolidado em base per-necessidade dependente de exames'
+      ],
+      maintenance: 'Ciclos repetidos a cada 6 meses',
+      reconstitution: 'Reconstituir pó liofilizado com 2mL a 3mL de Água Bacteriostática.'
+    },
+    administrationWay: 'Injeção Subcutânea (SC)',
+    cycleAndDuration: 'Ciclos curtos (ex. 10 a 20 dias) repetidos conforme a necessidade.',
+    stacksAndCombinations: ['Epithalon', 'Thymalin', 'GHK-Cu'],
+    pharmacologyAndPharmacokinetics: {
+      halfLife: 'Extremamente curta',
+      bioavailability: 'Alta via administração SC',
+      metabolism: 'Degradação proteolítica celular/plasmática',
+      sinalizacao: 'Regulação direta a nível de DNA (cromatina)',
+      picoClinico: '2 a 4 semanas',
+      picoBiologico: 'Horas a poucos dias após o ciclo',
+      notes: [
+        'Ação incrivelmente rápida a nível celular.'
+      ]
+    },
+    adverseEffects: [
+      'Irritação leve no local de aplicação'
+    ],
+    scientificEvidence: [
+      'Ensaios em humanos de idade avançada mostrando impacto epigenético e imunológico direto.'
+    ],
+    pmids: [
+      '15422737'
+    ],
+    evidenceMatrix: {
+      humanStudies: 4,
+      animalStudies: 5,
+      inVitroStudies: 5,
+      safetyScore: 5,
+      efficacyScore: 5
+    },
+    importantNote: 'Aviso: Peptídeos são biomoléculas ativas, procedência garantida é mandatória.',
+    detailedNarrative: 'Livagen atua onde a maior parte dos compostos nunca chega: no núcleo celular, relaxando a cromatina. Esse processo, conhecido como descondensação, permite que os genes que foram "silenciados" com o passar dos anos voltem a ser transcritos, resultando numa notável reparação celular, modulação imunológica robusta e maior resistência a estressores fisiológicos e dores crônicas.',
+    completenessScore: 100,
+    colorHex: '#3b82f6'
+  }
 ];
 
 export const SYNERGY_PROTOCOLS: any[] = [
@@ -33721,43 +33797,35 @@ export const SYNERGY_PROTOCOLS: any[] = [
     title: 'Perda de Gordura Agressiva',
     description: 'Combina a supressão máxima do apetite com a queima de gordura localizada e o aumento do metabolismo mitocondrial.',
     peptides: ['retatrutida', 'aod-9604', 'mots-c'],
-    effects: ['Supressão extrema de apetite', 'Gasto basal elevado', 'Lipólise direcionada'],
-    duration: '12-16 semanas'
+    effects: ['Redução drástica de apetite', 'Lise de gordura abdominal', 'Aumento de energia celular'],
+    duration: '8 a 12 semanas'
   },
   {
-    id: 'syn-reparo-avancado',
-    title: 'Reparo Avançado de Lesões',
-    description: 'Oferece reparo localizado (BPC-157), cura sistêmica (TB-500) e potente controle da inflamação (KPV).',
-    peptides: ['bpc-157', 'tb-500', 'kpv'],
-    effects: ['Regeneração acelerada', 'Controle inflamatório sistêmico e local', 'Reparo de tendões e ligamentos'],
-    duration: '4-8 semanas'
+    id: 'syn-recuperacao-extrema',
+    title: 'Recuperação Extrema & Cura',
+    description: 'A co-administração do BPC-157 com o TB-500 promove uma sinergia sistêmica e local sem precedentes para regeneração de tecidos moles.',
+    peptides: ['bpc-157', 'tb-500'],
+    effects: ['Cura rápida de lesões tendíneas', 'Reparo muscular acelerado', 'Efeito anti-inflamatório sistêmico'],
+    duration: '4 a 6 semanas (Agudo)'
   },
   {
-    id: 'syn-longevidade-antiaging',
-    title: 'Antienvelhecimento & Longevidade',
-    description: 'Foca na reparação do DNA, energia celular e saúde mitocondrial para um protocolo completo de longevidade.',
-    peptides: ['epithalon', 'nad', 'ss-31'],
-    effects: ['Reparo de DNA e telômeros', 'Energia celular (ATP)', 'Vitalidade do organismo todo'],
-    duration: 'Ciclos de 10-20 dias (Epithalon) + Uso contínuo (NAD, SS-31)'
+    id: 'syn-longevidade-cerebral',
+    title: 'Peak Cognition & Neuro-Reparo',
+    description: 'Uma combinação nootrópica e neurogênica poderosa.',
+    peptides: ['cerebrolysin', 'dihexa', 'selank'],
+    effects: ['Aumento massivo de BDNF', 'Redução de ansiedade', 'Clareza mental cristalina'],
+    duration: '4 a 8 semanas'
   },
   {
-    id: 'syn-hipertrofia-maxima',
-    title: 'Máximo Ganho Muscular',
-    description: 'Aumenta drasticamente os pulsos de GH e os níveis de IGF-1, otimizando a síntese de proteínas e reparação.',
-    peptides: ['cjc-1295-no-dac', 'ipamorelina', 'igf-1-lr3'],
-    effects: ['Hipertrofia muscular', 'Síntese de proteína máxima', 'Recuperação noturna'],
-    duration: '8-12 semanas'
-  },
-  {
-    id: 'syn-beleza-cosmetica',
-    title: 'Melhoria Cosmética (Pele & Cabelo)',
-    description: 'Estimula colágeno e folículos (GHK-Cu), repara desgaste da pele (BPC-157) e desintoxica para brilho interno.',
+    id: 'syn-antiaging-estetica',
+    title: 'Fonte da Juventude Dermal',
+    description: 'Protocolo focado na biorrenovação da matriz extracelular da pele e reversão do envelhecimento.',
     peptides: ['ghk-cu-liposomal', 'bpc-157', 'glutationa'],
     effects: ['Brilho e viço na pele', 'Remodelação de colágeno', 'Crescimento capilar acelerado'],
     duration: 'Uso contínuo e microagulhamento local'
   }
 ];
-export const TOTAL_PEPTIDES = 563;
+export const TOTAL_PEPTIDES = 564;
 export const SUPPORT_LINK = 'https://wa.me/something';
 export const INSTAGRAM_HANDLE = '@peptiumprime';
 export const INSTAGRAM_LINK = 'https://instagram.com/peptiumprime';
